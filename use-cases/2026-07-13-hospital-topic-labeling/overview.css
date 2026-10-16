@@ -1,0 +1,20 @@
+/* Scoped to the two preserved maps; the article uses the shared site design. */
+.hospital-map { --foreground:var(--cat-ink); --background:var(--cat-bg); --muted:var(--cat-panel); --muted-foreground:var(--cat-sub); --viz-series-1:var(--cat-accent); font-size:15px; line-height:1.5; }
+.hospital-map * { box-sizing:border-box; }
+.hospital-map .coverage-map-head { display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:1rem; }
+.hospital-map .coverage-map-layout { display:grid; grid-template-columns:minmax(0,3fr) minmax(215px,1fr); gap:1.25rem; align-items:start; }
+.hospital-map .coverage-map-plot { min-width:0; }
+.hospital-map .coverage-map-svg { display:block; width:100%; height:auto; }
+.hospital-map .coverage-state { cursor:pointer; stroke:var(--background); stroke-width:1; }
+.hospital-map .coverage-state:hover,.hospital-map .coverage-state.is-selected { stroke:var(--foreground); stroke-width:1.7; }
+.hospital-map .coverage-points { pointer-events:none; }
+.hospital-map .coverage-map-controls { display:grid; gap:.8rem; }
+.hospital-map .form-label { display:grid; gap:.3rem; margin:0; }
+.hospital-map .form-select { font:inherit; color:var(--cat-ink); background-color:var(--cat-bg); }
+.hospital-map .coverage-state-detail { display:grid; gap:.25rem; padding:.8rem 0; background:transparent; border:0; color:var(--cat-ink); }
+.hospital-map .coverage-state-detail strong { font-size:1.2rem; }
+.hospital-map .coverage-state-detail span { display:block; color:var(--cat-sub); }
+.hospital-map .coverage-legend-ramp { display:grid; grid-template-columns:repeat(5,1fr); gap:2px; }
+.hospital-map .coverage-legend-ramp span { display:block; height:.65rem; background:var(--viz-series-1); }
+.hospital-map .coverage-legend-labels { display:flex; justify-content:space-between; color:var(--cat-sub); font-size:13px; }
+@media(max-width:700px) { .hospital-map .coverage-map-layout { grid-template-columns:1fr; } }

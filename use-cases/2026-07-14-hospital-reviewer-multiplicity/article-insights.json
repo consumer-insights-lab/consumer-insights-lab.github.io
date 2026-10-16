@@ -1,0 +1,1258 @@
+{
+  "quality": {
+    "reviews": 2306550,
+    "missing_hash": 0,
+    "duplicate_review_keys": 0,
+    "repeated_profile_listing_rows": 6,
+    "first_date": "2007-09-19 21:39:36.048000+02:00",
+    "last_date": "2026-06-10 06:47:39.809000+02:00"
+  },
+  "groups": [
+    {
+      "grp": "1 listing",
+      "profiles": 2059030,
+      "reviews": 2059031,
+      "rating": 3.736626597656859,
+      "low_rating_pct": 29.96152073475339
+    },
+    {
+      "grp": "11+ listings",
+      "profiles": 46,
+      "reviews": 964,
+      "rating": 3.995850622406639,
+      "low_rating_pct": 12.136929460580912
+    },
+    {
+      "grp": "2\u201310 listings",
+      "profiles": 113937,
+      "reviews": 246555,
+      "rating": 3.499357141408611,
+      "low_rating_pct": 35.4501024112267
+    }
+  ],
+  "national": {
+    "all_reviews": 3.711372396002688,
+    "single_only": 3.736626597656859,
+    "excluding_11plus": 3.711253451400208,
+    "single_only_change": 0.025254201654171027
+  },
+  "decomposition": {
+    "both_listings": 8707,
+    "overall_gap": -0.23726945624824802,
+    "listing_mix": -0.17293885755315852,
+    "within_listing": -0.061153264686883466,
+    "residual": -0.003177334008206037,
+    "listing_mix_share_of_gap_pct": 72.88711336372673
+  },
+  "shift_summary": {
+    "listings": 6224,
+    "median_absolute_shift": 0.03011690814345358,
+    "at_least_point_one": 674,
+    "at_least_point_two_five": 48,
+    "ratings_rise": 3336,
+    "ratings_fall": 2838,
+    "unchanged": 50,
+    "listings_with_11plus": 688,
+    "max_difference_if_including_11plus": 0.08708708708708723,
+    "spearman": 0.9975925648957259
+  },
+  "shifts_by_volume": [
+    {
+      "single_review_count": "30\u201399",
+      "listings": 2024,
+      "at_least_point_one": 516,
+      "median_absolute_shift": 0.05250626566416061
+    },
+    {
+      "single_review_count": "100\u2013499",
+      "listings": 3077,
+      "at_least_point_one": 155,
+      "median_absolute_shift": 0.02731373204143006
+    },
+    {
+      "single_review_count": "500+",
+      "listings": 1123,
+      "at_least_point_one": 3,
+      "median_absolute_shift": 0.017962628089209787
+    }
+  ],
+  "topic_denominators": [
+    {
+      "grp": "1 listing",
+      "reviews": 152703,
+      "listings": 7776
+    },
+    {
+      "grp": "2\u201310 listings",
+      "reviews": 24150,
+      "listings": 7776
+    }
+  ],
+  "topics": [
+    {
+      "topic": "Accessibility and accommodations",
+      "single_mentions": 1386,
+      "repeat_mentions": 330,
+      "single_reach_pct": 0.9076442506041138,
+      "repeat_reach_pct": 1.3664596273291925,
+      "difference_pp": 0.45881537672507866,
+      "ratio": 1.5055013309671694,
+      "repeat_share_of_topic_accounts_pct": 19.230769230769234
+    },
+    {
+      "topic": "Appointment scheduling and access",
+      "single_mentions": 9298,
+      "repeat_mentions": 1493,
+      "single_reach_pct": 6.08894389763135,
+      "repeat_reach_pct": 6.182194616977226,
+      "difference_pp": 0.09325071934587559,
+      "ratio": 1.015314760804768,
+      "repeat_share_of_topic_accounts_pct": 13.835603743860625
+    },
+    {
+      "topic": "Behavioral health and psychiatric care",
+      "single_mentions": 1993,
+      "repeat_mentions": 411,
+      "single_reach_pct": 1.3051479014819618,
+      "repeat_reach_pct": 1.7018633540372672,
+      "difference_pp": 0.3967154525553054,
+      "ratio": 1.3039620659887246,
+      "repeat_share_of_topic_accounts_pct": 17.096505823627286
+    },
+    {
+      "topic": "Billing, charges and collections",
+      "single_mentions": 6958,
+      "repeat_mentions": 1137,
+      "single_reach_pct": 4.5565575005075205,
+      "repeat_reach_pct": 4.708074534161491,
+      "difference_pp": 0.1515170336539704,
+      "ratio": 1.0332525231245504,
+      "repeat_share_of_topic_accounts_pct": 14.045707226683138
+    },
+    {
+      "topic": "Care coordination and referrals",
+      "single_mentions": 3730,
+      "repeat_mentions": 702,
+      "single_reach_pct": 2.44265011165465,
+      "repeat_reach_pct": 2.906832298136646,
+      "difference_pp": 0.46418218648199616,
+      "ratio": 1.1900322048856844,
+      "repeat_share_of_topic_accounts_pct": 15.839350180505415
+    },
+    {
+      "topic": "Cleanliness and housekeeping",
+      "single_mentions": 8712,
+      "repeat_mentions": 1544,
+      "single_reach_pct": 5.705192432368715,
+      "repeat_reach_pct": 6.393374741200828,
+      "difference_pp": 0.6881823088321131,
+      "ratio": 1.12062385572267,
+      "repeat_share_of_topic_accounts_pct": 15.054602184087361
+    },
+    {
+      "topic": "Clinical assessment and diagnostic accuracy",
+      "single_mentions": 12155,
+      "repeat_mentions": 2225,
+      "single_reach_pct": 7.95989600728211,
+      "repeat_reach_pct": 9.213250517598343,
+      "difference_pp": 1.2533545103162336,
+      "ratio": 1.157458653878091,
+      "repeat_share_of_topic_accounts_pct": 15.472878998609179
+    },
+    {
+      "topic": "Clinical staff bedside manner and empathy",
+      "single_mentions": 63501,
+      "repeat_mentions": 10017,
+      "single_reach_pct": 41.584644702461645,
+      "repeat_reach_pct": 41.47826086956522,
+      "difference_pp": -0.10638383289642661,
+      "ratio": 0.9974417520299235,
+      "repeat_share_of_topic_accounts_pct": 13.625234636415573
+    },
+    {
+      "topic": "Communication and information sharing",
+      "single_mentions": 22086,
+      "repeat_mentions": 3350,
+      "single_reach_pct": 14.463370071314904,
+      "repeat_reach_pct": 13.871635610766045,
+      "difference_pp": -0.5917344605488584,
+      "ratio": 0.9590873733001937,
+      "repeat_share_of_topic_accounts_pct": 13.170309797137914
+    },
+    {
+      "topic": "Diagnostic testing and imaging services",
+      "single_mentions": 3858,
+      "repeat_mentions": 637,
+      "single_reach_pct": 2.526472957309287,
+      "repeat_reach_pct": 2.63768115942029,
+      "difference_pp": 0.11120820211100302,
+      "ratio": 1.0440171749273108,
+      "repeat_share_of_topic_accounts_pct": 14.171301446051169
+    },
+    {
+      "topic": "Discharge process and aftercare planning",
+      "single_mentions": 2847,
+      "repeat_mentions": 507,
+      "single_reach_pct": 1.8644034498339914,
+      "repeat_reach_pct": 2.099378881987578,
+      "difference_pp": 0.2349754321535864,
+      "ratio": 1.1260325023398283,
+      "repeat_share_of_topic_accounts_pct": 15.11627906976744
+    },
+    {
+      "topic": "Discrimination and equitable treatment",
+      "single_mentions": 3395,
+      "repeat_mentions": 793,
+      "single_reach_pct": 2.2232700077929053,
+      "repeat_reach_pct": 3.2836438923395446,
+      "difference_pp": 1.0603738845466393,
+      "ratio": 1.4769433675756272,
+      "repeat_share_of_topic_accounts_pct": 18.93505253104107
+    },
+    {
+      "topic": "Facility condition, comfort and environment",
+      "single_mentions": 7371,
+      "repeat_mentions": 1409,
+      "single_reach_pct": 4.82701715094006,
+      "repeat_reach_pct": 5.834368530020704,
+      "difference_pp": 1.007351379080644,
+      "ratio": 1.2086902423548387,
+      "repeat_share_of_topic_accounts_pct": 16.04783599088838
+    },
+    {
+      "topic": "Food, parking and facility amenities",
+      "single_mentions": 5714,
+      "repeat_mentions": 1309,
+      "single_reach_pct": 3.74190421930152,
+      "repeat_reach_pct": 5.420289855072464,
+      "difference_pp": 1.678385635770944,
+      "ratio": 1.4485378399354751,
+      "repeat_share_of_topic_accounts_pct": 18.638758365370926
+    },
+    {
+      "topic": "Front desk, reception and administrative staff conduct",
+      "single_mentions": 38570,
+      "repeat_mentions": 5711,
+      "single_reach_pct": 25.258180913276096,
+      "repeat_reach_pct": 23.648033126293996,
+      "difference_pp": -1.6101477869821004,
+      "ratio": 0.9362524248080042,
+      "repeat_share_of_topic_accounts_pct": 12.897179377159503
+    },
+    {
+      "topic": "Infection control and health safety practices",
+      "single_mentions": 2039,
+      "repeat_mentions": 414,
+      "single_reach_pct": 1.3352717366390967,
+      "repeat_reach_pct": 1.7142857142857144,
+      "difference_pp": 0.3790139776466177,
+      "ratio": 1.283847824563862,
+      "repeat_share_of_topic_accounts_pct": 16.87729311047697
+    },
+    {
+      "topic": "Insurance coverage, denials and network issues",
+      "single_mentions": 2028,
+      "repeat_mentions": 359,
+      "single_reach_pct": 1.3280682108406514,
+      "repeat_reach_pct": 1.486542443064182,
+      "difference_pp": 0.15847423222353063,
+      "ratio": 1.1193268771362417,
+      "repeat_share_of_topic_accounts_pct": 15.039798910766653
+    },
+    {
+      "topic": "Maternity and pediatric care",
+      "single_mentions": 4410,
+      "repeat_mentions": 573,
+      "single_reach_pct": 2.8879589791949076,
+      "repeat_reach_pct": 2.3726708074534164,
+      "difference_pp": -0.5152881717414912,
+      "ratio": 0.8215735834706555,
+      "repeat_share_of_topic_accounts_pct": 11.499096929560505
+    },
+    {
+      "topic": "Medical records and administrative documentation",
+      "single_mentions": 2441,
+      "repeat_mentions": 477,
+      "single_reach_pct": 1.5985278612731906,
+      "repeat_reach_pct": 1.9751552795031058,
+      "difference_pp": 0.3766274182299152,
+      "ratio": 1.2356089170256563,
+      "repeat_share_of_topic_accounts_pct": 16.34681288553804
+    },
+    {
+      "topic": "Medication, prescriptions and pharmacy",
+      "single_mentions": 5418,
+      "repeat_mentions": 1005,
+      "single_reach_pct": 3.5480638887251725,
+      "repeat_reach_pct": 4.161490683229814,
+      "difference_pp": 0.6134267945046412,
+      "ratio": 1.172890571800004,
+      "repeat_share_of_topic_accounts_pct": 15.646893974778141
+    },
+    {
+      "topic": "Nursing responsiveness and basic care needs",
+      "single_mentions": 18293,
+      "repeat_mentions": 3035,
+      "single_reach_pct": 11.979463402814613,
+      "repeat_reach_pct": 12.56728778467909,
+      "difference_pp": 0.5878243818644773,
+      "ratio": 1.049069341597251,
+      "repeat_share_of_topic_accounts_pct": 14.230120030007502
+    },
+    {
+      "topic": "Pain management",
+      "single_mentions": 5262,
+      "repeat_mentions": 1044,
+      "single_reach_pct": 3.445904795583584,
+      "repeat_reach_pct": 4.3229813664596275,
+      "difference_pp": 0.8770765708760435,
+      "ratio": 1.2545272208333038,
+      "repeat_share_of_topic_accounts_pct": 16.555661274976213
+    },
+    {
+      "topic": "Patient safety and medical errors",
+      "single_mentions": 5977,
+      "repeat_mentions": 1231,
+      "single_reach_pct": 3.9141339724825315,
+      "repeat_reach_pct": 5.097308488612836,
+      "difference_pp": 1.1831745161303049,
+      "ratio": 1.3022825801181963,
+      "repeat_share_of_topic_accounts_pct": 17.07824639289678
+    },
+    {
+      "topic": "Privacy and confidentiality",
+      "single_mentions": 1783,
+      "repeat_mentions": 375,
+      "single_reach_pct": 1.1676260453298233,
+      "repeat_reach_pct": 1.5527950310559007,
+      "difference_pp": 0.3851689857260774,
+      "ratio": 1.3298735817573146,
+      "repeat_share_of_topic_accounts_pct": 17.377201112140874
+    },
+    {
+      "topic": "Rehabilitation and long-term care / therapy services",
+      "single_mentions": 2297,
+      "repeat_mentions": 352,
+      "single_reach_pct": 1.504227159911724,
+      "repeat_reach_pct": 1.4575569358178053,
+      "difference_pp": -0.046670224093918744,
+      "ratio": 0.9689739519816557,
+      "repeat_share_of_topic_accounts_pct": 13.28803322008305
+    },
+    {
+      "topic": "Staffing levels and operational capacity",
+      "single_mentions": 4663,
+      "repeat_mentions": 860,
+      "single_reach_pct": 3.053640072559151,
+      "repeat_reach_pct": 3.5610766045548656,
+      "difference_pp": 0.5074365319957148,
+      "ratio": 1.1661743099835764,
+      "repeat_share_of_topic_accounts_pct": 15.571247510411009
+    },
+    {
+      "topic": "Surgical and procedural care",
+      "single_mentions": 5719,
+      "repeat_mentions": 881,
+      "single_reach_pct": 3.7451785492099043,
+      "repeat_reach_pct": 3.648033126293996,
+      "difference_pp": -0.09714542291590833,
+      "ratio": 0.974061203854646,
+      "repeat_share_of_topic_accounts_pct": 13.348484848484848
+    },
+    {
+      "topic": "Visitor access, security, and property safety",
+      "single_mentions": 2480,
+      "repeat_mentions": 428,
+      "single_reach_pct": 1.6240676345585876,
+      "repeat_reach_pct": 1.7722567287784678,
+      "difference_pp": 0.14818909421988025,
+      "ratio": 1.0912456421558805,
+      "repeat_share_of_topic_accounts_pct": 14.718019257221457
+    },
+    {
+      "topic": "Wait times and timeliness of care",
+      "single_mentions": 41367,
+      "repeat_mentions": 5990,
+      "single_reach_pct": 27.08984106402625,
+      "repeat_reach_pct": 24.803312629399585,
+      "difference_pp": -2.286528434626664,
+      "ratio": 0.915594616106366,
+      "repeat_share_of_topic_accounts_pct": 12.648605274827377
+    }
+  ],
+  "tone": [
+    {
+      "grp": "1 listing",
+      "negative_pct": 45.33789171700137,
+      "directional_statements": 327309
+    },
+    {
+      "grp": "2\u201310 listings",
+      "negative_pct": 50.43899373394207,
+      "directional_statements": 54101
+    }
+  ],
+  "repeat_share_of_topic_sample_pct": 13.655408729283641,
+  "verification": "All saved group counts/means, decomposition components and 29 topic rates match frozen inputs. Rounded shift thresholds match retained export; exact thresholds separately recomputed. Original listing histogram omits 11+ profiles, unlike pooled all-profile mean.",
+  "interpretation_checks": {
+    "category_comparison": [
+      {
+        "place_category": "University hospital",
+        "text_reviews": 33683,
+        "repeat_share_pct": 13.529079951310749,
+        "single_mean": 2.916517672947325,
+        "repeat_mean": 2.8613122668422206
+      },
+      {
+        "place_category": "Children's hospital",
+        "text_reviews": 43183,
+        "repeat_share_pct": 11.875043419864298,
+        "single_mean": 3.5222856241289544,
+        "repeat_mean": 3.484399375975039
+      },
+      {
+        "place_category": "General hospital",
+        "text_reviews": 227953,
+        "repeat_share_pct": 11.613358894158006,
+        "single_mean": 3.39676374761602,
+        "repeat_mean": 3.1858875080270463
+      },
+      {
+        "place_category": "Emergency room",
+        "text_reviews": 340728,
+        "repeat_share_pct": 11.446373647014628,
+        "single_mean": 3.7006641224664376,
+        "repeat_mean": 3.410476654444758
+      },
+      {
+        "place_category": "Medical clinic",
+        "text_reviews": 214626,
+        "repeat_share_pct": 10.914800629933,
+        "single_mean": 3.996123524088034,
+        "repeat_mean": 3.8106377529241016
+      },
+      {
+        "place_category": "Medical Center",
+        "text_reviews": 311923,
+        "repeat_share_pct": 10.80394841034486,
+        "single_mean": 3.668469505178366,
+        "repeat_mean": 3.442551928783383
+      },
+      {
+        "place_category": "Hospital",
+        "text_reviews": 722245,
+        "repeat_share_pct": 10.591004437552353,
+        "single_mean": 3.681617455654308,
+        "repeat_mean": 3.458878590197796
+      },
+      {
+        "place_category": "Urgent care center",
+        "text_reviews": 277553,
+        "repeat_share_pct": 8.26869102477725,
+        "single_mean": 4.268430251968813,
+        "repeat_mean": 4.1110675381263615
+      },
+      {
+        "place_category": "Mental health clinic",
+        "text_reviews": 21732,
+        "repeat_share_pct": 8.245904656727406,
+        "single_mean": 2.819276503938588,
+        "repeat_mean": 2.5083705357142856
+      }
+    ],
+    "rating_strata": [
+      {
+        "band": "1\u20132 stars",
+        "topic": "Accessibility and accommodations",
+        "single_reach_pct": 1.2681191960196145,
+        "repeat_reach_pct": 1.5856881479975604,
+        "ratio": 1.2504251595392093,
+        "single_mentions": 706,
+        "repeat_mentions": 156,
+        "single_denominator": 55673,
+        "repeat_denominator": 9838
+      },
+      {
+        "band": "1\u20132 stars",
+        "topic": "Care coordination and referrals",
+        "single_reach_pct": 3.3104018105724498,
+        "repeat_reach_pct": 3.689774344378939,
+        "ratio": 1.1146001469050932,
+        "single_mentions": 1843,
+        "repeat_mentions": 363,
+        "single_denominator": 55673,
+        "repeat_denominator": 9838
+      },
+      {
+        "band": "1\u20132 stars",
+        "topic": "Discrimination and equitable treatment",
+        "single_reach_pct": 5.340111005334722,
+        "repeat_reach_pct": 6.86115064037406,
+        "ratio": 1.2848329619964516,
+        "single_mentions": 2973,
+        "repeat_mentions": 675,
+        "single_denominator": 55673,
+        "repeat_denominator": 9838
+      },
+      {
+        "band": "1\u20132 stars",
+        "topic": "Food, parking and facility amenities",
+        "single_reach_pct": 2.845185278321628,
+        "repeat_reach_pct": 3.598292335840618,
+        "ratio": 1.264695260184689,
+        "single_mentions": 1584,
+        "repeat_mentions": 354,
+        "single_denominator": 55673,
+        "repeat_denominator": 9838
+      },
+      {
+        "band": "1\u20132 stars",
+        "topic": "Patient safety and medical errors",
+        "single_reach_pct": 9.243259748890845,
+        "repeat_reach_pct": 10.794877007521855,
+        "ratio": 1.1678647253007466,
+        "single_mentions": 5146,
+        "repeat_mentions": 1062,
+        "single_denominator": 55673,
+        "repeat_denominator": 9838
+      },
+      {
+        "band": "1\u20132 stars",
+        "topic": "Wait times and timeliness of care",
+        "single_reach_pct": 32.597488908447545,
+        "repeat_reach_pct": 28.694856678186625,
+        "ratio": 0.8802781330420343,
+        "single_mentions": 18148,
+        "repeat_mentions": 2823,
+        "single_denominator": 55673,
+        "repeat_denominator": 9838
+      },
+      {
+        "band": "3 stars",
+        "topic": "Accessibility and accommodations",
+        "single_reach_pct": 1.7971442639094042,
+        "repeat_reach_pct": 2.6651216685979144,
+        "ratio": 1.4829759202527026,
+        "single_mentions": 73,
+        "repeat_mentions": 23,
+        "single_denominator": 4062,
+        "repeat_denominator": 863
+      },
+      {
+        "band": "3 stars",
+        "topic": "Care coordination and referrals",
+        "single_reach_pct": 4.012801575578533,
+        "repeat_reach_pct": 3.1286210892236386,
+        "ratio": 0.7796600530322957,
+        "single_mentions": 163,
+        "repeat_mentions": 27,
+        "single_denominator": 4062,
+        "repeat_denominator": 863
+      },
+      {
+        "band": "3 stars",
+        "topic": "Discrimination and equitable treatment",
+        "single_reach_pct": 2.0433284096504187,
+        "repeat_reach_pct": 4.055619930475087,
+        "ratio": 1.9848106213963619,
+        "single_mentions": 83,
+        "repeat_mentions": 35,
+        "single_denominator": 4062,
+        "repeat_denominator": 863
+      },
+      {
+        "band": "3 stars",
+        "topic": "Food, parking and facility amenities",
+        "single_reach_pct": 8.665681930083704,
+        "repeat_reach_pct": 12.630359212050985,
+        "ratio": 1.457514747708838,
+        "single_mentions": 352,
+        "repeat_mentions": 109,
+        "single_denominator": 4062,
+        "repeat_denominator": 863
+      },
+      {
+        "band": "3 stars",
+        "topic": "Patient safety and medical errors",
+        "single_reach_pct": 6.253077301821763,
+        "repeat_reach_pct": 7.068366164542295,
+        "ratio": 1.1303820220618424,
+        "single_mentions": 254,
+        "repeat_mentions": 61,
+        "single_denominator": 4062,
+        "repeat_denominator": 863
+      },
+      {
+        "band": "3 stars",
+        "topic": "Wait times and timeliness of care",
+        "single_reach_pct": 29.2712949286066,
+        "repeat_reach_pct": 26.07184241019699,
+        "ratio": 0.8906965842743495,
+        "single_mentions": 1189,
+        "repeat_mentions": 225,
+        "single_denominator": 4062,
+        "repeat_denominator": 863
+      },
+      {
+        "band": "4\u20135 stars",
+        "topic": "Accessibility and accommodations",
+        "single_reach_pct": 0.6529128302211514,
+        "repeat_reach_pct": 1.1227600565097777,
+        "ratio": 1.7196170829258814,
+        "single_mentions": 607,
+        "repeat_mentions": 151,
+        "single_denominator": 92968,
+        "repeat_denominator": 13449
+      },
+      {
+        "band": "4\u20135 stars",
+        "topic": "Care coordination and referrals",
+        "single_reach_pct": 1.8544015144996127,
+        "repeat_reach_pct": 2.3198750836493423,
+        "ratio": 1.2510101321154992,
+        "single_mentions": 1724,
+        "repeat_mentions": 312,
+        "single_denominator": 92968,
+        "repeat_denominator": 13449
+      },
+      {
+        "band": "4\u20135 stars",
+        "topic": "Discrimination and equitable treatment",
+        "single_reach_pct": 0.36464159710868255,
+        "repeat_reach_pct": 0.6171462562272287,
+        "ratio": 1.6924735442163128,
+        "single_mentions": 339,
+        "repeat_mentions": 83,
+        "single_denominator": 92968,
+        "repeat_denominator": 13449
+      },
+      {
+        "band": "4\u20135 stars",
+        "topic": "Food, parking and facility amenities",
+        "single_reach_pct": 4.063763875742191,
+        "repeat_reach_pct": 6.2904305152799465,
+        "ratio": 1.547932091436067,
+        "single_mentions": 3778,
+        "repeat_mentions": 846,
+        "single_denominator": 92968,
+        "repeat_denominator": 13449
+      },
+      {
+        "band": "4\u20135 stars",
+        "topic": "Patient safety and medical errors",
+        "single_reach_pct": 0.6206436623354272,
+        "repeat_reach_pct": 0.8030336828016953,
+        "ratio": 1.293872364345026,
+        "single_mentions": 577,
+        "repeat_mentions": 108,
+        "single_denominator": 92968,
+        "repeat_denominator": 13449
+      },
+      {
+        "band": "4\u20135 stars",
+        "topic": "Wait times and timeliness of care",
+        "single_reach_pct": 23.696325617416747,
+        "repeat_reach_pct": 21.875232359283217,
+        "ratio": 0.9231487072073726,
+        "single_mentions": 22030,
+        "repeat_mentions": 2942,
+        "single_denominator": 92968,
+        "repeat_denominator": 13449
+      }
+    ],
+    "common_listing_weights": [
+      {
+        "topic": "Accessibility and accommodations",
+        "pooled_difference_pp": 0.45881537672507866,
+        "equal_listing_difference_pp": 0.33233049241776436,
+        "common_volume_weight_difference_pp": 0.2238220090045714,
+        "common_single_reach_pct": 0.9288864568981327,
+        "common_repeat_reach_pct": 1.152708465902704
+      },
+      {
+        "topic": "Care coordination and referrals",
+        "pooled_difference_pp": 0.46418218648199616,
+        "equal_listing_difference_pp": 0.49426999637615054,
+        "common_volume_weight_difference_pp": 0.3589667465986479,
+        "common_single_reach_pct": 2.4662093144346273,
+        "common_repeat_reach_pct": 2.8251760610332752
+      },
+      {
+        "topic": "Discrimination and equitable treatment",
+        "pooled_difference_pp": 1.0603738845466393,
+        "equal_listing_difference_pp": 0.7793767372595282,
+        "common_volume_weight_difference_pp": 0.7646979018583919,
+        "common_single_reach_pct": 2.267471781360563,
+        "common_repeat_reach_pct": 3.032169683218955
+      },
+      {
+        "topic": "Food, parking and facility amenities",
+        "pooled_difference_pp": 1.678385635770944,
+        "equal_listing_difference_pp": 1.5660232727493941,
+        "common_volume_weight_difference_pp": 1.1908199272714115,
+        "common_single_reach_pct": 3.774433689956324,
+        "common_repeat_reach_pct": 4.965253617227735
+      },
+      {
+        "topic": "Patient safety and medical errors",
+        "pooled_difference_pp": 1.1831745161303049,
+        "equal_listing_difference_pp": 0.7900205013606403,
+        "common_volume_weight_difference_pp": 0.9881576704192092,
+        "common_single_reach_pct": 3.9535722058847425,
+        "common_repeat_reach_pct": 4.941729876303952
+      },
+      {
+        "topic": "Wait times and timeliness of care",
+        "pooled_difference_pp": -2.286528434626664,
+        "equal_listing_difference_pp": -1.6695994028544874,
+        "common_volume_weight_difference_pp": -1.651203412679621,
+        "common_single_reach_pct": 27.01487705265025,
+        "common_repeat_reach_pct": 25.363673639970628
+      }
+    ],
+    "negative_topics_in_high_ratings": [
+      {
+        "grp": "1 listing",
+        "sub_topic_label": "Patient safety and medical errors",
+        "mentions": 205,
+        "group_reviews": 92968,
+        "reach_pct": 0.22050598055244813
+      },
+      {
+        "grp": "2\u201310 listings",
+        "sub_topic_label": "Wait times and timeliness of care",
+        "mentions": 375,
+        "group_reviews": 13449,
+        "reach_pct": 2.788311398616998
+      },
+      {
+        "grp": "1 listing",
+        "sub_topic_label": "Discrimination and equitable treatment",
+        "mentions": 92,
+        "group_reviews": 92968,
+        "reach_pct": 0.09895878151622063
+      },
+      {
+        "grp": "2\u201310 listings",
+        "sub_topic_label": "Food, parking and facility amenities",
+        "mentions": 176,
+        "group_reviews": 13449,
+        "reach_pct": 1.3086474830842443
+      },
+      {
+        "grp": "2\u201310 listings",
+        "sub_topic_label": "Care coordination and referrals",
+        "mentions": 28,
+        "group_reviews": 13449,
+        "reach_pct": 0.2081939177634025
+      },
+      {
+        "grp": "2\u201310 listings",
+        "sub_topic_label": "Accessibility and accommodations",
+        "mentions": 41,
+        "group_reviews": 13449,
+        "reach_pct": 0.30485537958212505
+      },
+      {
+        "grp": "1 listing",
+        "sub_topic_label": "Accessibility and accommodations",
+        "mentions": 135,
+        "group_reviews": 92968,
+        "reach_pct": 0.14521125548575853
+      },
+      {
+        "grp": "1 listing",
+        "sub_topic_label": "Wait times and timeliness of care",
+        "mentions": 2037,
+        "group_reviews": 92968,
+        "reach_pct": 2.1910764994406677
+      },
+      {
+        "grp": "1 listing",
+        "sub_topic_label": "Food, parking and facility amenities",
+        "mentions": 755,
+        "group_reviews": 92968,
+        "reach_pct": 0.8121073917907238
+      },
+      {
+        "grp": "1 listing",
+        "sub_topic_label": "Care coordination and referrals",
+        "mentions": 123,
+        "group_reviews": 92968,
+        "reach_pct": 0.13230358833146888
+      },
+      {
+        "grp": "2\u201310 listings",
+        "sub_topic_label": "Discrimination and equitable treatment",
+        "mentions": 24,
+        "group_reviews": 13449,
+        "reach_pct": 0.17845192951148786
+      },
+      {
+        "grp": "2\u201310 listings",
+        "sub_topic_label": "Patient safety and medical errors",
+        "mentions": 38,
+        "group_reviews": 13449,
+        "reach_pct": 0.2825488883931891
+      }
+    ],
+    "filter_effect_on_topics": [
+      {
+        "sub_topic_label": "Clinical staff bedside manner and empathy",
+        "single_mentions": 63501,
+        "repeat_mentions": 10017,
+        "single_reach_pct": 41.584644702461645,
+        "combined_reach_pct": 41.57011755525776,
+        "single_rank": 1,
+        "combined_rank": 1,
+        "filter_change_pp": 0.014527147203885704,
+        "relative_change_pct": 0.034946129715840435
+      },
+      {
+        "sub_topic_label": "Wait times and timeliness of care",
+        "single_mentions": 41367,
+        "repeat_mentions": 5990,
+        "single_reach_pct": 27.08984106402625,
+        "combined_reach_pct": 26.77760626056668,
+        "single_rank": 2,
+        "combined_rank": 2,
+        "filter_change_pp": 0.31223480345956744,
+        "relative_change_pct": 1.166029556269077
+      },
+      {
+        "sub_topic_label": "Front desk, reception and administrative staff conduct",
+        "single_mentions": 38570,
+        "repeat_mentions": 5711,
+        "single_reach_pct": 25.258180913276096,
+        "combined_reach_pct": 25.038308651818177,
+        "single_rank": 3,
+        "combined_rank": 3,
+        "filter_change_pp": 0.21987226145791894,
+        "relative_change_pct": 0.87814342620125
+      },
+      {
+        "sub_topic_label": "Communication and information sharing",
+        "single_mentions": 22086,
+        "repeat_mentions": 3350,
+        "single_reach_pct": 14.463370071314904,
+        "combined_reach_pct": 14.382566312134937,
+        "single_rank": 4,
+        "combined_rank": 4,
+        "filter_change_pp": 0.0808037591799664,
+        "relative_change_pct": 0.5618173935467263
+      },
+      {
+        "sub_topic_label": "Nursing responsiveness and basic care needs",
+        "single_mentions": 18293,
+        "repeat_mentions": 3035,
+        "single_reach_pct": 11.979463402814613,
+        "combined_reach_pct": 12.059733224768593,
+        "single_rank": 5,
+        "combined_rank": 5,
+        "filter_change_pp": -0.08026982195397991,
+        "relative_change_pct": -0.6656019702750982
+      },
+      {
+        "sub_topic_label": "Clinical assessment and diagnostic accuracy",
+        "single_mentions": 12155,
+        "repeat_mentions": 2225,
+        "single_reach_pct": 7.95989600728211,
+        "combined_reach_pct": 8.131046688492702,
+        "single_rank": 6,
+        "combined_rank": 6,
+        "filter_change_pp": -0.17115068121059274,
+        "relative_change_pct": -2.1049034370053565
+      },
+      {
+        "sub_topic_label": "Appointment scheduling and access",
+        "single_mentions": 9298,
+        "repeat_mentions": 1493,
+        "single_reach_pct": 6.08894389763135,
+        "combined_reach_pct": 6.101677664501026,
+        "single_rank": 7,
+        "combined_rank": 7,
+        "filter_change_pp": -0.012733766869676089,
+        "relative_change_pct": -0.20869288038206646
+      },
+      {
+        "sub_topic_label": "Cleanliness and housekeeping",
+        "single_mentions": 8712,
+        "repeat_mentions": 1544,
+        "single_reach_pct": 5.705192432368715,
+        "combined_reach_pct": 5.7991665394423615,
+        "single_rank": 8,
+        "combined_rank": 8,
+        "filter_change_pp": -0.09397410707364617,
+        "relative_change_pct": -1.6204760879773294
+      },
+      {
+        "sub_topic_label": "Facility condition, comfort and environment",
+        "single_mentions": 7371,
+        "repeat_mentions": 1409,
+        "single_reach_pct": 4.82701715094006,
+        "combined_reach_pct": 4.964575099093597,
+        "single_rank": 9,
+        "combined_rank": 9,
+        "filter_change_pp": -0.13755794815353717,
+        "relative_change_pct": -2.7707899549883286
+      },
+      {
+        "sub_topic_label": "Billing, charges and collections",
+        "single_mentions": 6958,
+        "repeat_mentions": 1137,
+        "single_reach_pct": 4.5565575005075205,
+        "combined_reach_pct": 4.577247770747457,
+        "single_rank": 10,
+        "combined_rank": 10,
+        "filter_change_pp": -0.020690270239936304,
+        "relative_change_pct": -0.45202425728764206
+      },
+      {
+        "sub_topic_label": "Patient safety and medical errors",
+        "single_mentions": 5977,
+        "repeat_mentions": 1231,
+        "single_reach_pct": 3.9141339724825315,
+        "combined_reach_pct": 4.075701288640849,
+        "single_rank": 11,
+        "combined_rank": 11,
+        "filter_change_pp": -0.1615673161583171,
+        "relative_change_pct": -3.9641599007417927
+      },
+      {
+        "sub_topic_label": "Food, parking and facility amenities",
+        "single_mentions": 5714,
+        "repeat_mentions": 1309,
+        "single_reach_pct": 3.74190421930152,
+        "combined_reach_pct": 3.971094637919628,
+        "single_rank": 13,
+        "combined_rank": 12,
+        "filter_change_pp": -0.22919041861810818,
+        "relative_change_pct": -5.771467051668555
+      },
+      {
+        "sub_topic_label": "Surgical and procedural care",
+        "single_mentions": 5719,
+        "repeat_mentions": 881,
+        "single_reach_pct": 3.7451785492099043,
+        "combined_reach_pct": 3.7319129446489456,
+        "single_rank": 12,
+        "combined_rank": 13,
+        "filter_change_pp": 0.01326560456095871,
+        "relative_change_pct": 0.3554639338513965
+      },
+      {
+        "sub_topic_label": "Medication, prescriptions and pharmacy",
+        "single_mentions": 5418,
+        "repeat_mentions": 1005,
+        "single_reach_pct": 3.5480638887251725,
+        "combined_reach_pct": 3.6318298247697243,
+        "single_rank": 14,
+        "combined_rank": 14,
+        "filter_change_pp": -0.08376593604455174,
+        "relative_change_pct": -2.3064389050735046
+      },
+      {
+        "sub_topic_label": "Pain management",
+        "single_mentions": 5262,
+        "repeat_mentions": 1044,
+        "single_reach_pct": 3.445904795583584,
+        "combined_reach_pct": 3.5656731862054922,
+        "single_rank": 15,
+        "combined_rank": 15,
+        "filter_change_pp": -0.11976839062190825,
+        "relative_change_pct": -3.358927876095197
+      },
+      {
+        "sub_topic_label": "Staffing levels and operational capacity",
+        "single_mentions": 4663,
+        "repeat_mentions": 860,
+        "single_reach_pct": 3.053640072559151,
+        "combined_reach_pct": 3.122932605044868,
+        "single_rank": 16,
+        "combined_rank": 16,
+        "filter_change_pp": -0.0692925324857172,
+        "relative_change_pct": -2.2188289421865903
+      },
+      {
+        "sub_topic_label": "Maternity and pediatric care",
+        "single_mentions": 4410,
+        "repeat_mentions": 573,
+        "single_reach_pct": 2.8879589791949076,
+        "combined_reach_pct": 2.817594273209954,
+        "single_rank": 17,
+        "combined_rank": 17,
+        "filter_change_pp": 0.0703647059849537,
+        "relative_change_pct": 2.497332801034924
+      },
+      {
+        "sub_topic_label": "Diagnostic testing and imaging services",
+        "single_mentions": 3858,
+        "repeat_mentions": 637,
+        "single_reach_pct": 2.526472957309287,
+        "combined_reach_pct": 2.541658891848032,
+        "single_rank": 18,
+        "combined_rank": 18,
+        "filter_change_pp": -0.015185934538744839,
+        "relative_change_pct": -0.5974812193505374
+      },
+      {
+        "sub_topic_label": "Care coordination and referrals",
+        "single_mentions": 3730,
+        "repeat_mentions": 702,
+        "single_reach_pct": 2.44265011165465,
+        "combined_reach_pct": 2.506036086467292,
+        "single_rank": 19,
+        "combined_rank": 19,
+        "filter_change_pp": -0.06338597481264197,
+        "relative_change_pct": -2.5293320856363155
+      },
+      {
+        "sub_topic_label": "Discrimination and equitable treatment",
+        "single_mentions": 3395,
+        "repeat_mentions": 793,
+        "single_reach_pct": 2.2232700077929053,
+        "combined_reach_pct": 2.368068395786331,
+        "single_rank": 20,
+        "combined_rank": 20,
+        "filter_change_pp": -0.1447983879934256,
+        "relative_change_pct": -6.114620179513208
+      },
+      {
+        "sub_topic_label": "Discharge process and aftercare planning",
+        "single_mentions": 2847,
+        "repeat_mentions": 507,
+        "single_reach_pct": 1.8644034498339914,
+        "combined_reach_pct": 1.8964903055079645,
+        "single_rank": 21,
+        "combined_rank": 21,
+        "filter_change_pp": -0.03208685567397307,
+        "relative_change_pct": -1.6919071814278985
+      },
+      {
+        "sub_topic_label": "Medical records and administrative documentation",
+        "single_mentions": 2441,
+        "repeat_mentions": 477,
+        "single_reach_pct": 1.5985278612731906,
+        "combined_reach_pct": 1.649957874619034,
+        "single_rank": 23,
+        "combined_rank": 22,
+        "filter_change_pp": -0.051430013345843406,
+        "relative_change_pct": -3.11705008576163
+      },
+      {
+        "sub_topic_label": "Visitor access, security, and property safety",
+        "single_mentions": 2480,
+        "repeat_mentions": 428,
+        "single_reach_pct": 1.6240676345585876,
+        "combined_reach_pct": 1.6443034610665355,
+        "single_rank": 22,
+        "combined_rank": 23,
+        "filter_change_pp": -0.020235826507947863,
+        "relative_change_pct": -1.230662525931947
+      },
+      {
+        "sub_topic_label": "Rehabilitation and long-term care / therapy services",
+        "single_mentions": 2297,
+        "repeat_mentions": 352,
+        "single_reach_pct": 1.504227159911724,
+        "combined_reach_pct": 1.497854150056827,
+        "single_rank": 24,
+        "combined_rank": 24,
+        "filter_change_pp": 0.006373009854897083,
+        "relative_change_pct": 0.4254759954201992
+      },
+      {
+        "sub_topic_label": "Infection control and health safety practices",
+        "single_mentions": 2039,
+        "repeat_mentions": 414,
+        "single_reach_pct": 1.3352717366390967,
+        "combined_reach_pct": 1.3870276444278582,
+        "single_rank": 25,
+        "combined_rank": 25,
+        "filter_change_pp": -0.05175590778876149,
+        "relative_change_pct": -3.7314258296640146
+      },
+      {
+        "sub_topic_label": "Behavioral health and psychiatric care",
+        "single_mentions": 1993,
+        "repeat_mentions": 411,
+        "single_reach_pct": 1.3051479014819618,
+        "combined_reach_pct": 1.3593210180206161,
+        "single_rank": 27,
+        "combined_rank": 26,
+        "filter_change_pp": -0.05417311653865431,
+        "relative_change_pct": -3.9853070628996012
+      },
+      {
+        "sub_topic_label": "Insurance coverage, denials and network issues",
+        "single_mentions": 2028,
+        "repeat_mentions": 359,
+        "single_reach_pct": 1.3280682108406514,
+        "combined_reach_pct": 1.3497085149813686,
+        "single_rank": 26,
+        "combined_rank": 27,
+        "filter_change_pp": -0.02164030414071716,
+        "relative_change_pct": -1.603331674988795
+      },
+      {
+        "sub_topic_label": "Privacy and confidentiality",
+        "single_mentions": 1783,
+        "repeat_mentions": 375,
+        "single_reach_pct": 1.1676260453298233,
+        "combined_reach_pct": 1.2202224446291554,
+        "single_rank": 28,
+        "combined_rank": 28,
+        "filter_change_pp": -0.05259639929933213,
+        "relative_change_pct": -4.31039434906616
+      },
+      {
+        "sub_topic_label": "Accessibility and accommodations",
+        "single_mentions": 1386,
+        "repeat_mentions": 330,
+        "single_reach_pct": 0.9076442506041138,
+        "combined_reach_pct": 0.9702973656087259,
+        "single_rank": 29,
+        "combined_rank": 29,
+        "filter_change_pp": -0.06265311500461213,
+        "relative_change_pct": -6.457104515099454
+      }
+    ],
+    "topic_rank_summary": {
+      "spearman": 0.9985221674876845,
+      "same_top_five": true,
+      "largest_rank_movement": 1
+    },
+    "local_shift_mechanics": [
+      {
+        "single_volume_band": "30\u201399",
+        "listings": 2024,
+        "median_repeat_share_pct": 13.660287081339712,
+        "median_absolute_group_gap": 0.4282496782496785,
+        "median_absolute_shift": 0.05250626566416061,
+        "large_shift_count": 516
+      },
+      {
+        "single_volume_band": "100\u2013499",
+        "listings": 3077,
+        "median_repeat_share_pct": 11.297071129707113,
+        "median_absolute_group_gap": 0.26619154788697186,
+        "median_absolute_shift": 0.02731373204143006,
+        "large_shift_count": 155
+      },
+      {
+        "single_volume_band": "500+",
+        "listings": 1123,
+        "median_repeat_share_pct": 9.18918918918919,
+        "median_absolute_group_gap": 0.2127659574468086,
+        "median_absolute_shift": 0.017962628089209787,
+        "large_shift_count": 3
+      }
+    ],
+    "text_detail": [
+      {
+        "grp": "2\u201310 listings",
+        "reviews": 24150,
+        "median_characters": 265.0,
+        "mean_characters": 418.8568115942029,
+        "mean_topics_per_review": 2.012380952380952
+      },
+      {
+        "grp": "1 listing",
+        "reviews": 152703,
+        "median_characters": 229.0,
+        "mean_characters": 366.1642665828438,
+        "mean_topics_per_review": 1.9367726894691002
+      }
+    ],
+    "common_length_weights": [
+      {
+        "sub_topic_label": "Care coordination and referrals",
+        "grp": "1 listing",
+        "common_length_reach_pct": 2.4729655338973258
+      },
+      {
+        "sub_topic_label": "Discrimination and equitable treatment",
+        "grp": "2\u201310 listings",
+        "common_length_reach_pct": 3.0390376816356977
+      },
+      {
+        "sub_topic_label": "Food, parking and facility amenities",
+        "grp": "1 listing",
+        "common_length_reach_pct": 3.7649605262130152
+      },
+      {
+        "sub_topic_label": "Patient safety and medical errors",
+        "grp": "1 listing",
+        "common_length_reach_pct": 3.978834775306274
+      },
+      {
+        "sub_topic_label": "Wait times and timeliness of care",
+        "grp": "1 listing",
+        "common_length_reach_pct": 27.108398980723656
+      },
+      {
+        "sub_topic_label": "Accessibility and accommodations",
+        "grp": "1 listing",
+        "common_length_reach_pct": 0.916349639808507
+      },
+      {
+        "sub_topic_label": "Food, parking and facility amenities",
+        "grp": "2\u201310 listings",
+        "common_length_reach_pct": 5.282874865624372
+      },
+      {
+        "sub_topic_label": "Care coordination and referrals",
+        "grp": "2\u201310 listings",
+        "common_length_reach_pct": 2.7185337184867184
+      },
+      {
+        "sub_topic_label": "Patient safety and medical errors",
+        "grp": "2\u201310 listings",
+        "common_length_reach_pct": 4.643274245494865
+      },
+      {
+        "sub_topic_label": "Discrimination and equitable treatment",
+        "grp": "1 listing",
+        "common_length_reach_pct": 2.255607000588583
+      },
+      {
+        "sub_topic_label": "Wait times and timeliness of care",
+        "grp": "2\u201310 listings",
+        "common_length_reach_pct": 24.598158115020293
+      },
+      {
+        "sub_topic_label": "Accessibility and accommodations",
+        "grp": "2\u201310 listings",
+        "common_length_reach_pct": 1.3125274031989163
+      }
+    ],
+    "definitions": {
+      "standardization": "Both groups receive identical listing weights across all 7,776 shared listings. Common-volume weights use combined labeled review counts; equal-listing weights weight each listing equally. Neither adjusts for service, date, rating, or contributor differences within a listing.",
+      "rating_strata": "Separate 1\u20132, 3, and 4\u20135 star bands within the same shared-listing topic sample; topics may have any sentiment.",
+      "local_shift": "Single-profile mean minus single-plus-2\u201310 mean at listings with at least 30 single-profile text reviews; 11+ excluded."
+    },
+    "queries": {
+      "setting_comparison": "SELECT p.place_category,\n        count(*) AS text_reviews,\n        count(*) FILTER(WHERE t.grp='2\u201310 listings')::DOUBLE/count(*)*100 AS repeat_share_pct,\n        avg(t.rating) FILTER(WHERE t.grp='1 listing') AS single_mean,\n        avg(t.rating) FILTER(WHERE t.grp='2\u201310 listings') AS repeat_mean\n        FROM text_reviews t JOIN places p USING(place_id)\n        GROUP BY 1 HAVING count(*)>=20000 ORDER BY repeat_share_pct DESC",
+      "rating_strata": "WITH rt AS (\n          SELECT *, CASE WHEN rating<=2 THEN '1\u20132 stars' WHEN rating>=4 THEN '4\u20135 stars'\n             ELSE '3 stars' END AS band FROM review_topics),\n        denom AS (SELECT band,grp,count(DISTINCT(place_id,review_id)) AS n\n          FROM rt GROUP BY 1,2),\n        counts AS (SELECT band,grp,sub_topic_label,count(*) AS mentions FROM rt GROUP BY 1,2,3)\n        SELECT c.*,d.n AS group_reviews,c.mentions::DOUBLE/d.n*100 AS reach_pct\n        FROM counts c JOIN denom d USING(band,grp)",
+      "same_listing_weights": "WITH topics AS (SELECT DISTINCT sub_topic_label FROM base),\n        counts AS (SELECT place_id,grp,sub_topic_label,count(*) AS mentions\n          FROM review_topics GROUP BY 1,2,3),\n        weights AS (SELECT place_id,sum(n) AS both_n FROM den GROUP BY 1),\n        cells AS (SELECT d.place_id,d.grp,t.sub_topic_label,d.n,\n          coalesce(c.mentions,0) AS mentions,w.both_n\n          FROM den d CROSS JOIN topics t LEFT JOIN counts c USING(place_id,grp,sub_topic_label)\n          JOIN weights w USING(place_id))\n        SELECT sub_topic_label,grp,sum(mentions)::DOUBLE/sum(n)*100 AS pooled_reach_pct,\n          avg(mentions::DOUBLE/n)*100 AS equal_listing_reach_pct,\n          sum(mentions::DOUBLE/n*both_n)/sum(both_n)*100 AS common_volume_weight_reach_pct\n        FROM cells GROUP BY 1,2",
+      "negative_topics_in_high_ratings": "WITH den AS (\n          SELECT grp,count(DISTINCT(place_id,review_id)) AS n FROM base WHERE rating>=4 GROUP BY 1),\n        neg AS (SELECT grp,sub_topic_label,count(DISTINCT(place_id,review_id)) AS mentions\n          FROM base WHERE rating>=4 AND sentiment='negative' GROUP BY 1,2)\n        SELECT neg.*,den.n AS group_reviews,mentions::DOUBLE/den.n*100 AS reach_pct\n        FROM neg JOIN den USING(grp)",
+      "filter_effect_on_topic_picture": "WITH counts AS (\n        SELECT sub_topic_label,\n          count(*) FILTER(WHERE grp='1 listing') AS single_mentions,\n          count(*) FILTER(WHERE grp='2\u201310 listings') AS repeat_mentions\n        FROM review_topics GROUP BY 1),\n        n AS (SELECT sum(n) FILTER(WHERE grp='1 listing') AS single_n,\n          sum(n) AS both_n FROM den)\n        SELECT c.*, single_mentions::DOUBLE/single_n*100 AS single_reach_pct,\n          (single_mentions+repeat_mentions)::DOUBLE/both_n*100 AS combined_reach_pct\n        FROM counts c CROSS JOIN n",
+      "local_shift_mechanics": "WITH per_place AS (\n        SELECT place_id,\n          count(*) FILTER(WHERE grp='1 listing') AS n_single,\n          count(*) FILTER(WHERE grp='2\u201310 listings') AS n_repeat,\n          avg(rating) FILTER(WHERE grp='1 listing') AS single_mean,\n          avg(rating) FILTER(WHERE grp='2\u201310 listings') AS repeat_mean\n        FROM text_reviews GROUP BY 1),\n        s AS (SELECT *, n_repeat::DOUBLE/(n_single+n_repeat) AS repeat_share,\n          single_mean - coalesce(repeat_mean,single_mean) AS group_gap,\n          single_mean-(single_mean*n_single+coalesce(repeat_mean,0)*n_repeat)/(n_single+n_repeat) AS shift\n        FROM per_place WHERE n_single>=30)\n        SELECT * FROM s",
+      "text_detail_in_topic_sample": "WITH unique_reviews AS (\n        SELECT place_id,review_id,grp,count(DISTINCT sub_topic_label) AS n_topics\n        FROM base GROUP BY 1,2,3)\n        SELECT u.grp,count(*) AS reviews,median(r.text_len) AS median_characters,\n          avg(r.text_len) AS mean_characters,avg(u.n_topics) AS mean_topics_per_review\n        FROM unique_reviews u JOIN reviews r USING(place_id,review_id)\n        GROUP BY u.grp",
+      "topic_reach_with_common_text_length_mix": "WITH rt AS (\n        SELECT t.*,CASE WHEN r.text_len<100 THEN '15\u201399'\n          WHEN r.text_len<300 THEN '100\u2013299' WHEN r.text_len<1000 THEN '300\u2013999'\n          ELSE '1000+' END AS length_band\n        FROM review_topics t JOIN reviews r USING(place_id,review_id)),\n        den AS (SELECT length_band,grp,count(DISTINCT(place_id,review_id)) AS n\n          FROM rt GROUP BY 1,2),\n        counts AS (SELECT length_band,grp,sub_topic_label,count(*) AS mentions\n          FROM rt GROUP BY 1,2,3),\n        weights AS (SELECT length_band,sum(n) AS both_n FROM den GROUP BY 1)\n        SELECT c.sub_topic_label,c.grp,\n          sum(c.mentions::DOUBLE/d.n*w.both_n)/sum(w.both_n)*100 AS common_length_reach_pct\n        FROM counts c JOIN den d USING(length_band,grp) JOIN weights w USING(length_band)\n        GROUP BY 1,2"
+    }
+  },
+  "sources": {
+    "reviews": "reviews.parquet",
+    "places": "places.parquet",
+    "labels": "topic-labeling-hospitals-usa-deepseek-v4-flash-b25-combined/review_topic_labels.parquet",
+    "original_charts": "chart-data.json"
+  },
+  "definitions": {
+    "national": "All eligible text contributions versus single-listing profiles only; all three profile groups enter the baseline.",
+    "listing_sensitivity": "Single-profile mean minus single-plus-2\u201310-profile mean; 11+ excluded; at least 30 single-profile text contributions.",
+    "topic_reach": "Distinct listing-plus-review keys mentioning a topic, divided by all labeled keys in that contributor group at shared listings.",
+    "topic_coverage": "Repeat-profile keys mentioning a topic, divided by all single- and repeat-profile keys mentioning that topic."
+  },
+  "note": "Self-selected public feedback; contributor profiles do not identify patients or visits. Topic labels await human validation. Descriptive pooled comparisons do not estimate intervention effects."
+}

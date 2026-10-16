@@ -1,0 +1,14 @@
+/* Keep the desktop outline at laptop widths, with room for the chart outsets.
+   Scoped to this review page so the shared site layout can be revised separately. */
+@media (min-width:1100px) and (max-width:1399.98px) {
+  body.hospital-taxonomy-review .cat-outline {
+    display:block;
+    left:16px;
+    width:150px;
+  }
+  body.hospital-taxonomy-review .cat-outline-bar { display:none; }
+  body.hospital-taxonomy-review .content .chart-shell {
+    margin-left:calc(-1 * clamp(0px, (100vw - 720px) / 2 - 200px, 120px));
+    margin-right:calc(-1 * clamp(0px, (100vw - 720px) / 2 - 200px, 120px));
+  }
+}

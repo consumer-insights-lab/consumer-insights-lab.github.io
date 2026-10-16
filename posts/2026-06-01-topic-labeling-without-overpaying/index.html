@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Philipp Ahrens">
+<meta name="dcterms.date" content="2026-06-01">
+<meta name="description" content="A measured review-labeling case study: reducing API costs and checking what changes in the output.">
+
+<title>Reading 200,000 Reviews with LLMs: Without Overpaying – Consumer Insights Lab</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/logo/cil-favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0fbde207ce81bf9426c5784a9eeeac32.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-edcd074f3279d486dc45f546d2ea2952.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0fbde207ce81bf9426c5784a9eeeac32.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-ab0d50567a0d435f44aef41949094666.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-1df226be0be97fd31b3e42168101d5ba.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ab0d50567a0d435f44aef41949094666.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-fixed cat-article fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/logo/cil-mark.svg" alt="" class="navbar-logo light-content">
+    <img src="../../assets/logo/cil-mark-dark.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Consumer Insights Lab</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../use-cases.html"> 
+<span class="menu-text">Analyses</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block cat-hero" data-hero="spheres" data-hero-palette="cool">
+<div class="cat-hero-meta">
+<span class="cat-hero-date">June 1, 2026</span>
+<span class="cat-hero-category">LLMs</span>
+<span class="cat-hero-category">topic labeling</span>
+<span class="cat-hero-category">prompt caching</span>
+<span class="cat-hero-category">review analytics</span>
+</div>
+<h1 class="title display-7">Reading 200,000 Reviews with LLMs: Without Overpaying</h1>
+<p class="subtitle lead">How output format, reasoning settings, caching, and batch size changed the cost of labeling customer reviews.</p>
+</header>
+
+
+<!-- Generated by scripts/generate_cost_quality_charts.py. Do not edit by hand. -->
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="36" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 35;"><span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>modelChoice <span class="op">=</span> [{<span class="st">"model"</span><span class="op">:</span><span class="st">"OpenAI gpt-5.4-nano"</span><span class="op">,</span><span class="st">"labels"</span><span class="op">:</span><span class="dv">59012</span><span class="op">,</span><span class="st">"exact"</span><span class="op">:</span><span class="dv">56684</span><span class="op">,</span><span class="st">"quote_acc"</span><span class="op">:</span><span class="fl">96.06</span>}<span class="op">,</span>{<span class="st">"model"</span><span class="op">:</span><span class="st">"DeepSeek v4 flash"</span><span class="op">,</span><span class="st">"labels"</span><span class="op">:</span><span class="dv">71915</span><span class="op">,</span><span class="st">"exact"</span><span class="op">:</span><span class="dv">70330</span><span class="op">,</span><span class="st">"quote_acc"</span><span class="op">:</span><span class="fl">97.8</span>}]</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>thinking <span class="op">=</span> [{<span class="st">"prompt"</span><span class="op">:</span><span class="st">"Verbose prompt"</span><span class="op">,</span><span class="st">"thinking"</span><span class="op">:</span><span class="st">"Thinking on"</span><span class="op">,</span><span class="st">"out_per_review"</span><span class="op">:</span><span class="fl">367.0</span><span class="op">,</span><span class="st">"reasoning_share"</span><span class="op">:</span><span class="fl">68.6</span>}<span class="op">,</span>{<span class="st">"prompt"</span><span class="op">:</span><span class="st">"Verbose prompt"</span><span class="op">,</span><span class="st">"thinking"</span><span class="op">:</span><span class="st">"Thinking off"</span><span class="op">,</span><span class="st">"out_per_review"</span><span class="op">:</span><span class="fl">110.1</span><span class="op">,</span><span class="st">"reasoning_share"</span><span class="op">:</span><span class="fl">0.0</span>}<span class="op">,</span>{<span class="st">"prompt"</span><span class="op">:</span><span class="st">"Compact prompt"</span><span class="op">,</span><span class="st">"thinking"</span><span class="op">:</span><span class="st">"Thinking on"</span><span class="op">,</span><span class="st">"out_per_review"</span><span class="op">:</span><span class="fl">190.9</span><span class="op">,</span><span class="st">"reasoning_share"</span><span class="op">:</span><span class="fl">72.1</span>}<span class="op">,</span>{<span class="st">"prompt"</span><span class="op">:</span><span class="st">"Compact prompt"</span><span class="op">,</span><span class="st">"thinking"</span><span class="op">:</span><span class="st">"Thinking off"</span><span class="op">,</span><span class="st">"out_per_review"</span><span class="op">:</span><span class="fl">50.7</span><span class="op">,</span><span class="st">"reasoning_share"</span><span class="op">:</span><span class="fl">0.0</span>}]</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>costSplit <span class="op">=</span> [{<span class="st">"part"</span><span class="op">:</span><span class="st">"Input (the prompt)"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">26.36</span>}<span class="op">,</span>{<span class="st">"part"</span><span class="op">:</span><span class="st">"Output (the answer)"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">102.75</span>}]</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>compactCodes <span class="op">=</span> [{<span class="st">"batch"</span><span class="op">:</span><span class="dv">10</span><span class="op">,</span><span class="st">"format"</span><span class="op">:</span><span class="st">"Verbose JSON"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">104.19</span>}<span class="op">,</span>{<span class="st">"batch"</span><span class="op">:</span><span class="dv">10</span><span class="op">,</span><span class="st">"format"</span><span class="op">:</span><span class="st">"Compact codes"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">97.64</span>}<span class="op">,</span>{<span class="st">"batch"</span><span class="op">:</span><span class="dv">25</span><span class="op">,</span><span class="st">"format"</span><span class="op">:</span><span class="st">"Verbose JSON"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">80.99</span>}<span class="op">,</span>{<span class="st">"batch"</span><span class="op">:</span><span class="dv">25</span><span class="op">,</span><span class="st">"format"</span><span class="op">:</span><span class="st">"Compact codes"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">73.94</span>}<span class="op">,</span>{<span class="st">"batch"</span><span class="op">:</span><span class="dv">50</span><span class="op">,</span><span class="st">"format"</span><span class="op">:</span><span class="st">"Verbose JSON"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">68.02</span>}<span class="op">,</span>{<span class="st">"batch"</span><span class="op">:</span><span class="dv">50</span><span class="op">,</span><span class="st">"format"</span><span class="op">:</span><span class="st">"Compact codes"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">53.83</span>}<span class="op">,</span>{<span class="st">"batch"</span><span class="op">:</span><span class="dv">100</span><span class="op">,</span><span class="st">"format"</span><span class="op">:</span><span class="st">"Verbose JSON"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">55.09</span>}<span class="op">,</span>{<span class="st">"batch"</span><span class="op">:</span><span class="dv">100</span><span class="op">,</span><span class="st">"format"</span><span class="op">:</span><span class="st">"Compact codes"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">43.41</span>}]</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>cachePrice <span class="op">=</span> [{<span class="st">"case"</span><span class="op">:</span><span class="st">"Cache hit"</span><span class="op">,</span><span class="st">"price"</span><span class="op">:</span><span class="fl">0.0028</span>}<span class="op">,</span>{<span class="st">"case"</span><span class="op">:</span><span class="st">"Cache miss"</span><span class="op">,</span><span class="st">"price"</span><span class="op">:</span><span class="fl">0.14</span>}]</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>cacheJob <span class="op">=</span> [{<span class="st">"case"</span><span class="op">:</span><span class="st">"Cache working"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">104.19</span><span class="op">,</span><span class="st">"measured"</span><span class="op">:</span><span class="kw">true</span>}<span class="op">,</span>{<span class="st">"case"</span><span class="op">:</span><span class="st">"Cache broken (re-priced)"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">129.11</span><span class="op">,</span><span class="st">"measured"</span><span class="op">:</span><span class="kw">false</span>}]</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>batchSize <span class="op">=</span> [{<span class="st">"batch"</span><span class="op">:</span><span class="dv">10</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">17.8</span><span class="op">,</span><span class="st">"quote_acc"</span><span class="op">:</span><span class="fl">98.93</span>}<span class="op">,</span>{<span class="st">"batch"</span><span class="op">:</span><span class="dv">25</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">15.81</span><span class="op">,</span><span class="st">"quote_acc"</span><span class="op">:</span><span class="fl">99.08</span>}<span class="op">,</span>{<span class="st">"batch"</span><span class="op">:</span><span class="dv">50</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">14.57</span><span class="op">,</span><span class="st">"quote_acc"</span><span class="op">:</span><span class="fl">99.19</span>}<span class="op">,</span>{<span class="st">"batch"</span><span class="op">:</span><span class="dv">100</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">13.94</span><span class="op">,</span><span class="st">"quote_acc"</span><span class="op">:</span><span class="fl">98.89</span>}]</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>reduction <span class="op">=</span> [{<span class="st">"stage"</span><span class="op">:</span><span class="st">"All reviews"</span><span class="op">,</span><span class="st">"reviews"</span><span class="op">:</span><span class="dv">197827</span><span class="op">,</span><span class="st">"estimated"</span><span class="op">:</span><span class="kw">false</span>}<span class="op">,</span>{<span class="st">"stage"</span><span class="op">:</span><span class="st">"After date filter (2023 to 2026)"</span><span class="op">,</span><span class="st">"reviews"</span><span class="op">:</span><span class="dv">100611</span><span class="op">,</span><span class="st">"estimated"</span><span class="op">:</span><span class="kw">false</span>}<span class="op">,</span>{<span class="st">"stage"</span><span class="op">:</span><span class="st">"After de-duplication"</span><span class="op">,</span><span class="st">"reviews"</span><span class="op">:</span><span class="dv">95640</span><span class="op">,</span><span class="st">"estimated"</span><span class="op">:</span><span class="kw">true</span>}]</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>payoff <span class="op">=</span> [{<span class="st">"step"</span><span class="op">:</span><span class="st">"Naive setup, cache broken"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">129.11</span><span class="op">,</span><span class="st">"measured"</span><span class="op">:</span><span class="kw">false</span>}<span class="op">,</span>{<span class="st">"step"</span><span class="op">:</span><span class="st">"Prefix-stable cache"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">104.19</span><span class="op">,</span><span class="st">"measured"</span><span class="op">:</span><span class="kw">true</span>}<span class="op">,</span>{<span class="st">"step"</span><span class="op">:</span><span class="st">"Short topic codes"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">97.64</span><span class="op">,</span><span class="st">"measured"</span><span class="op">:</span><span class="kw">true</span>}<span class="op">,</span>{<span class="st">"step"</span><span class="op">:</span><span class="st">"Reasoning off"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">17.8</span><span class="op">,</span><span class="st">"measured"</span><span class="op">:</span><span class="kw">true</span>}<span class="op">,</span>{<span class="st">"step"</span><span class="op">:</span><span class="st">"Batch size 50"</span><span class="op">,</span><span class="st">"cost"</span><span class="op">:</span><span class="fl">14.57</span><span class="op">,</span><span class="st">"measured"</span><span class="op">:</span><span class="kw">true</span>}]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="131" data-source-offset="-82"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 130;"><span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>themedSelect <span class="op">=</span> (values<span class="op">,</span> options) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> form <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(values<span class="op">,</span> options)<span class="op">;</span></span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> select <span class="op">=</span> form<span class="op">.</span><span class="fu">querySelector</span>(<span class="st">"select"</span>)<span class="op">;</span></span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (select) {</span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">const</span> [property<span class="op">,</span> value] <span class="kw">of</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">entries</span>({</span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>      <span class="st">"appearance"</span><span class="op">:</span> <span class="st">"none"</span><span class="op">,</span></span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>      <span class="st">"-webkit-appearance"</span><span class="op">:</span> <span class="st">"none"</span><span class="op">,</span></span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a>      <span class="st">"background-color"</span><span class="op">:</span> <span class="st">"var(--cat-panel)"</span><span class="op">,</span></span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a>      <span class="st">"color"</span><span class="op">:</span> <span class="st">"var(--cat-ink)"</span><span class="op">,</span></span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a>      <span class="st">"-webkit-text-fill-color"</span><span class="op">:</span> <span class="st">"var(--cat-ink)"</span><span class="op">,</span></span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>      <span class="st">"border"</span><span class="op">:</span> <span class="st">"1px solid var(--cat-sub)"</span><span class="op">,</span></span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a>      <span class="st">"border-radius"</span><span class="op">:</span> <span class="st">"6px"</span><span class="op">,</span></span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a>      <span class="st">"padding"</span><span class="op">:</span> <span class="st">"0.35em 1.75rem 0.35em 0.5em"</span></span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a>    })) select<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="fu">setProperty</span>(property<span class="op">,</span> value<span class="op">,</span> <span class="st">"important"</span>)<span class="op">;</span></span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">const</span> option <span class="kw">of</span> select<span class="op">.</span><span class="at">options</span>) {</span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a>      option<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">backgroundColor</span> <span class="op">=</span> <span class="st">"var(--cat-panel)"</span><span class="op">;</span></span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a>      option<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">color</span> <span class="op">=</span> <span class="st">"var(--cat-ink)"</span><span class="op">;</span></span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> form<span class="op">;</span></span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a><span class="co">// Colours come from the page's CSS tokens and update when the reader switches light/dark.</span></span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> Generators<span class="op">.</span><span class="fu">observe</span>(notify <span class="kw">=&gt;</span> {</span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> read <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> css <span class="op">=</span> <span class="fu">getComputedStyle</span>(<span class="bu">document</span><span class="op">.</span><span class="at">documentElement</span>)<span class="op">;</span></span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> v <span class="op">=</span> name <span class="kw">=&gt;</span> css<span class="op">.</span><span class="fu">getPropertyValue</span>(name)<span class="op">.</span><span class="fu">trim</span>()<span class="op">;</span></span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="dt">ink</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-ink"</span>)<span class="op">,</span> <span class="dt">sub</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-sub"</span>)<span class="op">,</span> <span class="dt">muted</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-muted"</span>)<span class="op">,</span> <span class="dt">neutral</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-neutral"</span>)<span class="op">,</span> <span class="dt">panel</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-panel"</span>)<span class="op">,</span> <span class="dt">accent</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-accent"</span>)<span class="op">,</span> <span class="dt">accentSoft</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-accent-soft"</span>)<span class="op">,</span> <span class="dt">positive</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-positive"</span>)<span class="op">,</span> <span class="dt">bg</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-bg"</span>)}<span class="op">;</span></span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> last <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(<span class="fu">read</span>())<span class="op">;</span></span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">notify</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(last))<span class="op">;</span></span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Re-read a few times: the swapped stylesheet can apply a moment after the switch.</span></span>
+<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> refresh <span class="op">=</span> () <span class="kw">=&gt;</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">150</span><span class="op">,</span> <span class="dv">500</span><span class="op">,</span> <span class="dv">1200</span>]<span class="op">.</span><span class="fu">forEach</span>(ms <span class="kw">=&gt;</span> <span class="pp">setTimeout</span>(() <span class="kw">=&gt;</span> {</span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> next <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(<span class="fu">read</span>())<span class="op">;</span></span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (next <span class="op">!==</span> last) { last <span class="op">=</span> next<span class="op">;</span> <span class="fu">notify</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(next))<span class="op">;</span> }</span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span> ms))<span class="op">;</span></span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Quarto switches themes by swapping stylesheet link attributes in &lt;head&gt;.</span></span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> observer <span class="op">=</span> <span class="kw">new</span> <span class="bu">MutationObserver</span>(refresh)<span class="op">;</span></span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a>  observer<span class="op">.</span><span class="fu">observe</span>(<span class="bu">document</span><span class="op">.</span><span class="at">head</span><span class="op">,</span> {<span class="dt">subtree</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">attributes</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">attributeFilter</span><span class="op">:</span> [<span class="st">"rel"</span><span class="op">,</span> <span class="st">"disabled"</span>]})<span class="op">;</span></span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a>  observer<span class="op">.</span><span class="fu">observe</span>(<span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">,</span> {<span class="dt">attributes</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">attributeFilter</span><span class="op">:</span> [<span class="st">"class"</span>]})<span class="op">;</span></span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> () <span class="kw">=&gt;</span> observer<span class="op">.</span><span class="fu">disconnect</span>()<span class="op">;</span></span>
+<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>chartWidth <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">960</span><span class="op">,</span> (<span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">".chart-shell"</span>) <span class="op">||</span> <span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">"main.content"</span>))<span class="op">.</span><span class="at">clientWidth</span>)</span>
+<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a>narrow <span class="op">=</span> chartWidth <span class="op">&lt;</span> <span class="dv">520</span></span>
+<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a>fmt <span class="op">=</span> d3<span class="op">.</span><span class="fu">format</span>(<span class="st">","</span>)</span>
+<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a>usd <span class="op">=</span> d <span class="kw">=&gt;</span> <span class="st">"$"</span> <span class="op">+</span> d3<span class="op">.</span><span class="fu">format</span>(<span class="st">",.2f"</span>)(d)</span>
+<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a><span class="co">// Label drawn above each horizontal bar on narrow screens (chartBase margins: 34 top, 44 bottom).</span></span>
+<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a>labelAbove <span class="op">=</span> (data<span class="op">,</span> y<span class="op">,</span> text<span class="op">,</span> h<span class="op">,</span> pad) <span class="kw">=&gt;</span> Plot<span class="op">.</span><span class="fu">text</span>(data<span class="op">,</span> {y<span class="op">,</span> <span class="dt">frameAnchor</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> text<span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"start"</span><span class="op">,</span> <span class="dt">lineAnchor</span><span class="op">:</span> <span class="st">"bottom"</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span>((h <span class="op">-</span> <span class="dv">78</span>) <span class="op">/</span> data<span class="op">.</span><span class="at">length</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> pad)) <span class="op">/</span> <span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> C<span class="op">.</span><span class="at">ink</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">12</span>})</span>
+<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a>chartBase <span class="op">=</span> h <span class="kw">=&gt;</span> ({</span>
+<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> chartWidth<span class="op">,</span></span>
+<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> h<span class="op">,</span></span>
+<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">34</span><span class="op">,</span></span>
+<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">16</span><span class="op">,</span></span>
+<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">44</span><span class="op">,</span></span>
+<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">56</span><span class="op">,</span></span>
+<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Inter, -apple-system, sans-serif"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> C<span class="op">.</span><span class="at">sub</span><span class="op">,</span> <span class="dt">background</span><span class="op">:</span> <span class="st">"transparent"</span><span class="op">,</span> <span class="dt">overflow</span><span class="op">:</span> <span class="st">"visible"</span>}</span>
+<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="157" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 156;"><span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>thinkingRows <span class="op">=</span> thinking<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({<span class="op">...</span>d<span class="op">,</span> <span class="dt">label</span><span class="op">:</span> d<span class="op">.</span><span class="at">prompt</span><span class="op">.</span><span class="fu">replace</span>(<span class="st">" prompt"</span><span class="op">,</span> <span class="st">""</span>) <span class="op">+</span> <span class="st">" prompt, "</span> <span class="op">+</span> d<span class="op">.</span><span class="at">thinking</span><span class="op">.</span><span class="fu">toLowerCase</span>()}))</span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>costSplitShares <span class="op">=</span> costSplit<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({<span class="op">...</span>d<span class="op">,</span> <span class="dt">share</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(d<span class="op">.</span><span class="at">cost</span> <span class="op">/</span> d3<span class="op">.</span><span class="fu">sum</span>(costSplit<span class="op">,</span> r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">cost</span>) <span class="op">*</span> <span class="dv">100</span>)}))</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>cacheJobDisplay <span class="op">=</span> cacheJob<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({<span class="op">...</span>d<span class="op">,</span> <span class="dt">case</span><span class="op">:</span> d<span class="op">.</span><span class="at">measured</span> <span class="op">?</span> <span class="st">"Observed cache hits"</span> <span class="op">:</span> <span class="st">"No-cache estimate"</span>}))</span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>payoffDisplay <span class="op">=</span> payoff<span class="op">.</span><span class="fu">map</span>((d<span class="op">,</span> i) <span class="kw">=&gt;</span> ({<span class="op">...</span>d<span class="op">,</span> <span class="dt">step</span><span class="op">:</span> [<span class="st">"No-cache estimate"</span><span class="op">,</span> <span class="st">"Observed cache hits"</span><span class="op">,</span> <span class="st">"Short topic codes"</span><span class="op">,</span> <span class="st">"Reasoning off"</span><span class="op">,</span> <span class="st">"Batch size 50"</span>][i]}))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-3-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-3-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-3-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-3-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="lede">
+<p>Small changes to a review-labeling workflow can make a large difference to its API cost. The useful test is what those changes save, and what they change in the labels.</p>
+</div>
+<section id="from-customer-reviews-to-usable-labels" class="level2">
+<h2 data-anchor-id="from-customer-reviews-to-usable-labels">From customer reviews to usable labels</h2>
+<p>We wanted to turn roughly <strong>200,000 German reviews of local tradespeople</strong> into a dataset we could analyze. For each relevant passage, a language model assigned a topic, recorded its sentiment, and copied the phrase that supported the label.</p>
+<p>At that scale, keeping the API bill low was part of the task. For a fixed model and token prices, cost grows with the input and output tokens used: every request sends instructions and reviews, and every extracted label adds output. We therefore asked which parts of that usage we could reduce: the input tokens per review, the output tokens per label, and the repeated instructions across requests. We also tested caching to make repeated input cheaper. The aim was to lower the cost while retaining labels useful for the analysis.</p>
+<p>We then compared different configurations on the same <strong>1,000-review sample</strong>. Shorter outputs, disabled reasoning, prompt caching, and larger batches brought the estimated API cost down to about <strong>$15 per million reviews</strong>. This article explains which changes made the difference and what we checked before deciding whether the cheaper configuration was useful.</p>
+<p>The model receives instructions, a fixed list of 23 topics, and a batch of reviews. It returns a set of labels that can be stored and counted. The topic list comes from a separate discovery step, described in <a href="../../posts/2026-06-01-from-113518-reviews-to-23-topics/index.html">“From 113,518 Reviews to 23 Topics”</a>.</p>
+<div class="flow">
+<div class="flow-step">
+<p><span class="flow-num">01</span> <span class="flow-title">Select and batch reviews</span></p>
+<p><span class="flow-note">Choose the records needed for the analysis and split them into batches.</span></p>
+<p><span class="flow-handoff">reviews to label</span></p>
+</div>
+<div class="flow-step">
+<p><span class="flow-num">02</span> <span class="flow-title">Build the prompt</span></p>
+<p><span class="flow-note">Keep instructions and the 23-topic list first; put the review batch last.</span></p>
+<p><span class="flow-handoff">send to the model</span></p>
+</div>
+<div class="flow-step is-key">
+<p><span class="flow-num">03</span> <span class="flow-title">Extract labels</span></p>
+<p><span class="flow-note">Return each review ID, copied phrase, topic code, and sentiment.</span></p>
+<p><span class="flow-handoff">structured output</span></p>
+</div>
+<div class="flow-step">
+<p><span class="flow-num">04</span> <span class="flow-title">Store the results</span></p>
+<p><span class="flow-note">Look up full topic names and keep the labels linked to their source reviews.</span></p>
+</div>
+</div>
+<p>The easiest way to see what labeling produces is to follow a single review through it. Scroll through the steps below.</p>
+<div class="scrolly" id="anatomy">
+  <div class="scrolly-graphic" aria-hidden="true">
+    <div class="anat" data-step="0">
+      <div class="anat-layer anat-review">
+        <div class="anat-card">
+          <div class="anat-meta"><span class="anat-stars">★★★★<span>★</span></span><span>Heating repair · illustrative review</span></div>
+          <p class="anat-text">Called on Monday because <mark data-s="neu">our heating had failed</mark><sup>1</sup>, and <mark data-s="pos">they came the very next morning</mark><sup>2</sup>. <mark data-s="pos">The technician was friendly</mark><sup>3</sup> and <mark data-s="pos">explained what was wrong</mark><sup>4</sup>. <mark data-s="pos">He left everything clean and tidy</mark><sup>5</sup>. Only <mark data-s="neg">the invoice was higher than the quote, and nobody could explain why</mark><sup>6</sup>.</p>
+        </div>
+        <ol class="anat-labels">
+          <li data-s="neu"><span class="anat-n">1</span><span class="anat-topic">Heating system installations, repairs, and maintenance</span><span class="anat-sent">neutral</span></li>
+          <li data-s="pos"><span class="anat-n">2</span><span class="anat-topic">Emergency and rapid response</span><span class="anat-sent">positive</span></li>
+          <li data-s="pos"><span class="anat-n">3</span><span class="anat-topic">Staff friendliness and courtesy</span><span class="anat-sent">positive</span></li>
+          <li data-s="pos"><span class="anat-n">4</span><span class="anat-topic">Professional consultation and advice</span><span class="anat-sent">positive</span></li>
+          <li data-s="pos"><span class="anat-n">5</span><span class="anat-topic">Workmanship cleanliness and site tidiness</span><span class="anat-sent">positive</span></li>
+          <li data-s="neg"><span class="anat-n">6</span><span class="anat-topic">Pricing transparency and value for money</span><span class="anat-sent">negative</span></li>
+        </ol>
+      </div>
+
+      <div class="anat-layer anat-rows">
+        <p class="anat-rows-head">Review R0417 · six labels</p>
+        <div class="anat-row" data-s="neu"><span class="anat-row-phrase">“our heating had failed”</span><span class="anat-row-meta"><span>Heating system installations, repairs, and maintenance</span><span class="anat-row-sent">neutral</span><span class="anat-ok">✓</span></span></div>
+        <div class="anat-row" data-s="pos"><span class="anat-row-phrase">“they came the very next morning”</span><span class="anat-row-meta"><span>Emergency and rapid response</span><span class="anat-row-sent">positive</span><span class="anat-ok">✓</span></span></div>
+        <div class="anat-row" data-s="pos"><span class="anat-row-phrase">“The technician was friendly”</span><span class="anat-row-meta"><span>Staff friendliness and courtesy</span><span class="anat-row-sent">positive</span><span class="anat-ok">✓</span></span></div>
+        <div class="anat-row" data-s="pos"><span class="anat-row-phrase">“explained what was wrong”</span><span class="anat-row-meta"><span>Professional consultation and advice</span><span class="anat-row-sent">positive</span><span class="anat-ok">✓</span></span></div>
+        <div class="anat-row" data-s="pos"><span class="anat-row-phrase">“He left everything clean and tidy”</span><span class="anat-row-meta"><span>Workmanship cleanliness and site tidiness</span><span class="anat-row-sent">positive</span><span class="anat-ok">✓</span></span></div>
+        <div class="anat-row" data-s="neg"><span class="anat-row-phrase">“the invoice was higher than the quote, and nobody could explain why”</span><span class="anat-row-meta"><span>Pricing transparency and value for money</span><span class="anat-row-sent">negative</span><span class="anat-ok">✓</span></span></div>
+        <p class="anat-note">✓ phrase found word for word in the review</p>
+      </div>
+
+      <div class="anat-layer anat-count">
+        <div class="anat-bars"></div>
+        <p class="anat-note">Illustration, not measured counts. Grey marks stand for labels from other reviews. Filled endpoints are this review's six labels; hollow endpoints mean it adds no label to that topic.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="scrolly-steps">
+    <div class="scrolly-step" data-step="0"><p><strong>Start with one review.</strong> This one is written for illustration and shown in English; the reviews in the study were German. In a few sentences it covers timing, staff, advice, tidiness, and price.</p></div>
+    <div class="scrolly-step" data-step="1"><p><strong>Find what is said, not the overall mood.</strong> The model looks for passages that make a specific point and copies each one exactly as written.</p></div>
+    <div class="scrolly-step" data-step="2"><p><strong>Match each passage to a topic.</strong> Every passage gets one of the 23 topics from the fixed list. A single review can receive several labels, here six.</p></div>
+    <div class="scrolly-step" data-step="3"><p><strong>Add a sentiment to each label.</strong> Four labels are positive, one is neutral, and one is negative. The four-star rating alone would hide the complaint about the invoice.</p></div>
+    <div class="scrolly-step" data-step="4"><p><strong>Store the labels as data.</strong> Each row keeps the review ID, the copied phrase, the topic, and the sentiment. Because the phrase is copied word for word, we can check it against the review automatically. That check is the exact-phrase match rate used later in this article.</p></div>
+    <div class="scrolly-step" data-step="5"><p><strong>Only then count.</strong> Each label adds one mark to its topic. Across roughly 200,000 reviews these marks become the topic counts, and every count can still be traced back to the phrases behind it.</p></div>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById("anatomy");
+  if (!root) return;
+  var anat = root.querySelector(".anat");
+  var steps = root.querySelectorAll(".scrolly-step");
+
+  // Counting layer: grey marks from other reviews, then this review's label in colour.
+  var bars = [
+    ["Workmanship quality and precision", 34, null],
+    ["Staff friendliness and courtesy", 29, "pos"],
+    ["Appointment scheduling, punctuality, and timely completion", 25, null],
+    ["Pricing transparency and value for money", 19, "neg"],
+    ["Emergency and rapid response", 12, "pos"],
+    ["Workmanship cleanliness and site tidiness", 11, "pos"],
+    ["Professional consultation and advice", 9, "pos"],
+    ["Heating system installations, repairs, and maintenance", 7, "neu"]
+  ];
+  var box = root.querySelector(".anat-bars");
+  bars.forEach(function (b) {
+    var row = document.createElement("div");
+    row.className = "anat-bar";
+    var dots = "";
+    for (var i = 0; i < b[1]; i++) dots += '<i style="--d:' + (i * 12) + 'ms"></i>';
+    if (b[2]) dots += '<i class="is-new" data-s="' + b[2] + '"></i>';
+    else dots += '<i class="is-empty"></i>';
+    row.innerHTML = '<span class="anat-bar-label">' + b[0] + '</span><span class="anat-bar-dots">' + dots + "</span>";
+    box.appendChild(row);
+  });
+
+  function show(step) {
+    anat.setAttribute("data-step", step);
+    steps.forEach(function (s) { s.classList.toggle("is-active", s.getAttribute("data-step") === String(step)); });
+  }
+  // The active step is the last one whose top has passed the middle of the screen.
+  var current = null;
+  function update() {
+    var mid = window.innerHeight * 0.55, active = steps[0].getAttribute("data-step");
+    steps.forEach(function (s) { if (s.getBoundingClientRect().top < mid) active = s.getAttribute("data-step"); });
+    if (active !== current) { current = active; show(active); }
+  }
+  var queued = false;
+  window.addEventListener("scroll", function () {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(function () { queued = false; update(); });
+  }, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+})();
+</script>
+<p>Keeping the original phrase with each label makes it possible to inspect what the model extracted, rather than relying on a topic count alone.</p>
+</section>
+<section id="establish-a-baseline-on-the-same-workload" class="level2">
+<h2 data-anchor-id="establish-a-baseline-on-the-same-workload">Establish a baseline on the same workload</h2>
+<p>The main experiment used <code>deepseek-v4-flash</code>, the fixed taxonomy, and the same 1,000-review slice. We varied the output format, reasoning setting, and batch size, recording token usage and checking the returned labels. Holding the review sample constant made the configurations easier to compare.</p>
+<p>Costs below are <strong>estimates per million reviews</strong>, calculated from those small runs using the token prices applied to the experiment on May 30, 2026: $0.0028 per million cached input tokens, $0.14 per million uncached input tokens, and $0.28 per million output tokens. They describe provider API charges, not the cost of data collection, engineering, or human review.</p>
+<p>The verbose batch-10 run cost approximately <strong>$104 per million reviews</strong> with its recorded cache hits. Pricing exactly the same token usage as if every input token missed the cache gives a <strong>$129 reference baseline</strong>. This second number is a calculation, not a separate observed run.</p>
+<p>We tracked two kinds of result:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Measure</th>
+<th style="text-align: left;">What it tells us</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Estimated API cost</td>
+<td style="text-align: left;">How recorded input, output, and cache usage translate into a bill.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Exact-phrase match rate</td>
+<td style="text-align: left;">The share of returned label phrases that appear verbatim in their source review.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Labeling rate and label count</td>
+<td style="text-align: left;">How many reviews receive any label, and how many labels the model emits.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Distinct topics emitted</td>
+<td style="text-align: left;">How many of the 23 allowed topics appear at least once in the output.</td>
+</tr>
+</tbody>
+</table>
+<p>The output checks describe copying fidelity and labeling behavior. They do not, by themselves, establish whether the topics or sentiments are correct. We return to that distinction when comparing the baseline with the optimized result.</p>
+<p>Other exploratory runs used OpenAI models on different review slices. Those comparisons need matched inputs before they can support a model ranking; the savings described here come from changing the configuration of the same DeepSeek model.</p>
+</section>
+<section id="reduce-the-cost-of-the-models-answer" class="level2">
+<h2 data-anchor-id="reduce-the-cost-of-the-models-answer">Reduce the cost of the model’s answer</h2>
+<p>Language models charge for both the text they receive and the tokens they generate. In the uncached reference calculation, output accounted for about <strong>80% of the bill</strong>. That made the answer an important place to look for savings.</p>
+<div class="chart-shell">
+<p><span class="chart-title">Output accounted for about 80% of the uncached reference cost.</span> <span class="chart-subtitle">Cost per 1M reviews for the verbose, batch-10 run priced without any cache hits: output is about 80% of the total.</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="238" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 237;"><span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span><span class="fu">chartBase</span>(narrow <span class="op">?</span> <span class="dv">200</span> <span class="op">:</span> <span class="dv">160</span>)<span class="op">,</span></span>
+<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> narrow <span class="op">?</span> <span class="dv">8</span> <span class="op">:</span> <span class="dv">170</span><span class="op">,</span></span>
+<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">110</span><span class="op">,</span></span>
+<span id="cb4-242"><a href="#cb4-242" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Cost per 1M reviews (USD)"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">130</span>]<span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> costSplit<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">part</span>)<span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">axis</span><span class="op">:</span> narrow <span class="op">?</span> <span class="kw">null</span> <span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">paddingInner</span><span class="op">:</span> narrow <span class="op">?</span> <span class="fl">0.55</span> <span class="op">:</span> <span class="fl">0.3</span>}<span class="op">,</span></span>
+<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barX</span>(costSplitShares<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"part"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"cost"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">part</span><span class="op">.</span><span class="fu">startsWith</span>(<span class="st">"Output"</span>) <span class="op">?</span> C<span class="op">.</span><span class="at">accent</span> <span class="op">:</span> C<span class="op">.</span><span class="at">neutral</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> usd}}})<span class="op">,</span></span>
+<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>(costSplitShares<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"part"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"cost"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="fu">usd</span>(d<span class="op">.</span><span class="at">cost</span>) <span class="op">+</span> <span class="st">" · "</span> <span class="op">+</span> d<span class="op">.</span><span class="at">share</span> <span class="op">+</span> <span class="st">"%"</span><span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"start"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> C<span class="op">.</span><span class="at">ink</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="dv">600</span>})<span class="op">,</span></span>
+<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a>    narrow <span class="op">?</span> <span class="fu">labelAbove</span>(costSplitShares<span class="op">,</span> <span class="st">"part"</span><span class="op">,</span> <span class="st">"part"</span><span class="op">,</span> <span class="dv">200</span><span class="op">,</span> <span class="fl">0.55</span>) <span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p><span class="chart-source">Source: compact-JSON × batch-size experiment, 2026-05-30, deepseek-v4-flash, same 1,000-review slice (comparison_summary.csv). Input re-priced at the cache-miss price.</span></p>
+</div>
+<section id="test-whether-reasoning-helps-this-task" class="level3">
+<h3 data-anchor-id="test-whether-reasoning-helps-this-task">Test whether reasoning helps this task</h3>
+<p>In the verbose batch-10 run, about 69% of the output tokens were recorded as reasoning tokens. Those tokens contributed to the bill without appearing in the final labels. We therefore tested whether disabling reasoning would reduce cost while retaining useful output.</p>
+<div class="chart-shell">
+<p><span class="chart-title">Disabling reasoning reduced output tokens in both prompt formats.</span> <span class="chart-subtitle">Output tokens per review. With thinking on, 69% of the verbose prompt’s output was reasoning. Verbose pair at batch size 10, compact pair at 50.</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="288" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 287;"><span id="cb5-288"><a href="#cb5-288" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb5-289"><a href="#cb5-289" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span><span class="fu">chartBase</span>(narrow <span class="op">?</span> <span class="dv">320</span> <span class="op">:</span> <span class="dv">250</span>)<span class="op">,</span></span>
+<span id="cb5-290"><a href="#cb5-290" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> narrow <span class="op">?</span> <span class="dv">8</span> <span class="op">:</span> <span class="dv">220</span><span class="op">,</span></span>
+<span id="cb5-291"><a href="#cb5-291" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">48</span><span class="op">,</span></span>
+<span id="cb5-292"><a href="#cb5-292" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Output tokens per review"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">400</span>]}<span class="op">,</span></span>
+<span id="cb5-293"><a href="#cb5-293" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> thinkingRows<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">label</span>)<span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">axis</span><span class="op">:</span> narrow <span class="op">?</span> <span class="kw">null</span> <span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">paddingInner</span><span class="op">:</span> narrow <span class="op">?</span> <span class="fl">0.55</span> <span class="op">:</span> <span class="fl">0.25</span>}<span class="op">,</span></span>
+<span id="cb5-294"><a href="#cb5-294" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb5-295"><a href="#cb5-295" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barX</span>(thinkingRows<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"label"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"out_per_review"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">thinking</span> <span class="op">===</span> <span class="st">"Thinking off"</span> <span class="op">?</span> C<span class="op">.</span><span class="at">accent</span> <span class="op">:</span> C<span class="op">.</span><span class="at">neutral</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> {<span class="dt">channels</span><span class="op">:</span> {<span class="st">"Reasoning share"</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">reasoning_share</span> <span class="op">+</span> <span class="st">"%"</span>}}})<span class="op">,</span></span>
+<span id="cb5-296"><a href="#cb5-296" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>(thinkingRows<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"label"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"out_per_review"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">out_per_review</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"start"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> C<span class="op">.</span><span class="at">ink</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="dv">600</span>})<span class="op">,</span></span>
+<span id="cb5-297"><a href="#cb5-297" aria-hidden="true" tabindex="-1"></a>    narrow <span class="op">?</span> <span class="fu">labelAbove</span>(thinkingRows<span class="op">,</span> <span class="st">"label"</span><span class="op">,</span> <span class="st">"label"</span><span class="op">,</span> <span class="dv">320</span><span class="op">,</span> <span class="fl">0.55</span>) <span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb5-298"><a href="#cb5-298" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb5-299"><a href="#cb5-299" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p><span class="chart-source">Source: compact-JSON × batch-size experiment, 2026-05-30, deepseek-v4-flash, same 1,000-review slice (comparison_summary.csv).</span></p>
+</div>
+<p>The reasoning-disabled configurations used roughly 70% fewer output tokens in these pairs and had higher exact-phrase match rates. That supports testing this setting for a similar extraction task. It does not tell us that reasoning is unnecessary for every labeling problem, or that the cheaper output has identical topic and sentiment accuracy.</p>
+</section>
+<section id="return-codes-instead-of-repeating-names" class="level3">
+<h3 data-anchor-id="return-codes-instead-of-repeating-names">Return codes instead of repeating names</h3>
+<p>The other source of avoidable output was information already available in the topic list. A verbose label repeated the full topic name and its broader category for every extracted phrase.</p>
+<p>The following illustrative outputs represent the same label. In the compact version, the application can recover the topic and category names by looking up <code>T003</code>.</p>
+<div class="ba">
+<div class="card before">
+<p><strong>Verbose output</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"item_id"</span><span class="fu">:</span> <span class="st">"I001"</span><span class="fu">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"extracted_phrase"</span><span class="fu">:</span> <span class="st">"freundliche Mitarbeiter"</span><span class="fu">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"topic_id"</span><span class="fu">:</span> <span class="st">"T003"</span><span class="fu">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"high_level_category"</span><span class="fu">:</span> <span class="st">"Customer Interaction &amp; Professionalism"</span><span class="fu">,</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"canonical_topic"</span><span class="fu">:</span> <span class="st">"Staff friendliness and courtesy"</span><span class="fu">,</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"sentiment"</span><span class="fu">:</span> <span class="st">"positive"</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="arrow">
+<p>→</p>
+</div>
+<div class="card after">
+<p><strong>Compact output</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"i"</span><span class="fu">:</span> <span class="st">"I001"</span><span class="fu">,</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"p"</span><span class="fu">:</span> <span class="st">"freundliche Mitarbeiter"</span><span class="fu">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"t"</span><span class="fu">:</span> <span class="st">"T003"</span><span class="fu">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"s"</span><span class="fu">:</span> <span class="st">"positive"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>The key legend is defined once in the instructions: <code>i</code> is the review ID, <code>p</code> the copied phrase, <code>t</code> the topic code, and <code>s</code> the sentiment. The phrase remains unchanged; only the representation becomes smaller.</p>
+<p>With reasoning enabled and ten reviews per request, switching from verbose labels to compact codes reduced estimated cost from <strong>$104.19 to $97.64 per million reviews</strong>. Both configurations emitted 22 of the 23 topics. The saving was smaller than the reduction from disabling reasoning, but it removed repeated text that the application could supply through a lookup.</p>
+</section>
+</section>
+<section id="reuse-the-prompt-and-batch-reviews-efficiently" class="level2">
+<h2 data-anchor-id="reuse-the-prompt-and-batch-reviews-efficiently">Reuse the prompt and batch reviews efficiently</h2>
+<p>Every request includes instructions and the topic list, even though only the reviews change. Caching can reduce the price of that repeated input; batching spreads the repeated material across more reviews.</p>
+<section id="keep-the-reusable-prompt-first" class="level3">
+<h3 data-anchor-id="keep-the-reusable-prompt-first">Keep the reusable prompt first</h3>
+<p>A provider-side prompt cache can reuse a previously processed prefix. To make that possible, keep the instructions and topic list stable and put changing content after them:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Reusable beginning</th>
+<th style="text-align: left;">Changing content at the end</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Instructions → topic list</td>
+<td style="text-align: left;">Batch metadata → reviews</td>
+</tr>
+</tbody>
+</table>
+<p>Use the same topic order and serialization on each call. A changing identifier or timestamp placed before the topic list can prevent reuse of that part of the prompt. Stable layout supports caching, but cache hits are best-effort behavior and should be checked in the provider’s returned usage fields.</p>
+<div class="chart-shell">
+<p><span class="chart-title">Recorded cache hits lowered the reference run’s estimated cost.</span> <span class="chart-subtitle">The same token usage priced with observed cache hits ($104.19) and with all input billed as a miss ($129.11), per million reviews.</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="319" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 318;"><span id="cb8-319"><a href="#cb8-319" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb8-320"><a href="#cb8-320" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span><span class="fu">chartBase</span>(<span class="dv">200</span>)<span class="op">,</span></span>
+<span id="cb8-321"><a href="#cb8-321" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> narrow <span class="op">?</span> <span class="dv">8</span> <span class="op">:</span> <span class="dv">180</span><span class="op">,</span></span>
+<span id="cb8-322"><a href="#cb8-322" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">72</span><span class="op">,</span></span>
+<span id="cb8-323"><a href="#cb8-323" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Cost per 1M reviews (USD)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">140</span>]}<span class="op">,</span></span>
+<span id="cb8-324"><a href="#cb8-324" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> cacheJobDisplay<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">case</span>)<span class="op">,</span> <span class="dt">axis</span><span class="op">:</span> narrow <span class="op">?</span> <span class="kw">null</span> <span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">paddingInner</span><span class="op">:</span> narrow <span class="op">?</span> <span class="fl">0.55</span> <span class="op">:</span> <span class="fl">0.3</span>}<span class="op">,</span></span>
+<span id="cb8-325"><a href="#cb8-325" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb8-326"><a href="#cb8-326" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barX</span>(cacheJobDisplay<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"case"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"cost"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">measured</span> <span class="op">?</span> C<span class="op">.</span><span class="at">accent</span> <span class="op">:</span> C<span class="op">.</span><span class="at">neutral</span>})<span class="op">,</span></span>
+<span id="cb8-327"><a href="#cb8-327" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>(cacheJobDisplay<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"case"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"cost"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="fu">usd</span>(d<span class="op">.</span><span class="at">cost</span>)<span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"start"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> C<span class="op">.</span><span class="at">ink</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="dv">600</span>})<span class="op">,</span></span>
+<span id="cb8-328"><a href="#cb8-328" aria-hidden="true" tabindex="-1"></a>    narrow <span class="op">?</span> <span class="fu">labelAbove</span>(cacheJobDisplay<span class="op">,</span> <span class="st">"case"</span><span class="op">,</span> <span class="st">"case"</span><span class="op">,</span> <span class="dv">200</span><span class="op">,</span> <span class="fl">0.55</span>) <span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb8-329"><a href="#cb8-329" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb8-330"><a href="#cb8-330" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p><span class="chart-source">Source: comparison_summary.csv, deepseek-v4-flash, 2026-05-30. The no-cache estimate is a price calculation, not a separate run.</span></p>
+</div>
+<p>At the prices used here, cached input tokens were 50 times cheaper than uncached input tokens. The whole job did not become 50 times cheaper: output still had to be generated, and the changing review text still incurred input cost. For this run, recorded cache hits reduced the estimated bill from the <strong>$129.11 no-cache reference to $104.19</strong>, about 19%.</p>
+<p>The separate article <a href="../../posts/2026-06-02-dont-break-the-cache/index.html">“Reducing LLM Costs with Prompt Caching”</a> tests prompt layout directly. Here, the chart compares two prices for the same recorded token usage.</p>
+</section>
+<section id="choose-batch-size-by-the-tradeoff" class="level3">
+<h3 data-anchor-id="choose-batch-size-by-the-tradeoff">Choose batch size by the tradeoff</h3>
+<p>We tested 10, 25, 50, and 100 reviews per request. Larger batches needed fewer calls, but the relevant question was whether the remaining saving justified changes in the output. These results use compact codes with reasoning disabled:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Reviews per request</th>
+<th style="text-align: right;">Cost per million reviews</th>
+<th style="text-align: right;">Exact-phrase match rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">$17.80</td>
+<td style="text-align: right;">98.93%</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">$15.81</td>
+<td style="text-align: right;">99.08%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">$14.57</td>
+<td style="text-align: right;">99.19%</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">$13.94</td>
+<td style="text-align: right;">98.89%</td>
+</tr>
+</tbody>
+</table>
+<p>Increasing the batch size from 50 to 100 saved <strong>$0.63 per million reviews</strong>, while exact-phrase matching fell from 99.19% to 98.89%. That made 25–50 a reasonable range for this workload. Longer reviews or different instructions could change the tradeoff.</p>
+<p>Fewer requests do not necessarily mean a faster job. These figures compare cost and phrase matching; they do not establish a latency improvement.</p>
+</section>
+</section>
+<section id="reduce-the-workload-without-changing-the-question" class="level2">
+<h2 data-anchor-id="reduce-the-workload-without-changing-the-question">Reduce the workload without changing the question</h2>
+<p>The previous changes lowered cost per review. A separate decision is how many reviews the analysis needs and which model calls can be reused.</p>
+<p><strong>Date filtering defines the population being analyzed.</strong> Of 197,827 eligible reviews, 100,611 were dated from 2023 through 2026. Restricting the analysis to that period removed about 49% of the workload. That is useful for a question about recent customer experience, but it would exclude information needed for a longer historical comparison.</p>
+<p><strong>Duplicate handling can avoid repeated model calls.</strong> When identical text is labeled under the same instructions and context, the result can be reused. Attach those labels back to every original record so that review counts and business-level analysis retain their meaning. Repeated phrases such as “Sehr gut” (“Very good”) still represent separate customer reviews, even if they do not need separate model calls.</p>
+<div class="chart-shell">
+<p><span class="chart-title">Restricting the analysis to recent reviews roughly halved the workload.</span> <span class="chart-subtitle">197,827 eligible reviews, 100,611 from 2023–2026, and an estimated 95,640 after normalized-text deduplication. The final count is not a measured intersection.</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb9" data-startfrom="0" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line -1;"><span id="cb9-0"><a href="#cb9-0" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span><span class="fu">chartBase</span>(narrow <span class="op">?</span> <span class="dv">240</span> <span class="op">:</span> <span class="dv">200</span>)<span class="op">,</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> narrow <span class="op">?</span> <span class="dv">8</span> <span class="op">:</span> <span class="dv">220</span><span class="op">,</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">80</span><span class="op">,</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Reviews to label"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">220000</span>]<span class="op">,</span> <span class="dt">tickFormat</span><span class="op">:</span> d <span class="kw">=&gt;</span> d3<span class="op">.</span><span class="fu">format</span>(<span class="st">"~s"</span>)(d)}<span class="op">,</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> reduction<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">stage</span>)<span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">axis</span><span class="op">:</span> narrow <span class="op">?</span> <span class="kw">null</span> <span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">paddingInner</span><span class="op">:</span> narrow <span class="op">?</span> <span class="fl">0.55</span> <span class="op">:</span> <span class="fl">0.3</span>}<span class="op">,</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barX</span>(reduction<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"stage"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"reviews"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">estimated</span> <span class="op">?</span> C<span class="op">.</span><span class="at">accentSoft</span> <span class="op">:</span> d<span class="op">.</span><span class="at">stage</span> <span class="op">===</span> <span class="st">"All reviews"</span> <span class="op">?</span> C<span class="op">.</span><span class="at">neutral</span> <span class="op">:</span> C<span class="op">.</span><span class="at">accent</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> fmt}}})<span class="op">,</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>(reduction<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"stage"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"reviews"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">estimated</span> <span class="op">?</span> <span class="st">"~95.6k (est.)"</span> <span class="op">:</span> <span class="fu">fmt</span>(d<span class="op">.</span><span class="at">reviews</span>)<span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"start"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> C<span class="op">.</span><span class="at">ink</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="dv">600</span>})<span class="op">,</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    narrow <span class="op">?</span> <span class="fu">labelAbove</span>(reduction<span class="op">,</span> <span class="st">"stage"</span><span class="op">,</span> <span class="st">"stage"</span><span class="op">,</span> <span class="dv">240</span><span class="op">,</span> <span class="fl">0.55</span>) <span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p><span class="chart-source">Source: corpus counts in the labeling project notes (QUALITY_AND_COST_NOTES.md); not a recorded run.</span></p>
+</div>
+<p>The corpus notes report <strong>4.58% exact-text duplicates</strong>, or <strong>4.94% after lowercase and whitespace normalization</strong>. Applying the latter rate to the recent-review subset gives an estimated 95,640 texts to label. That combined figure was not measured on the filtered subset and should be recomputed before budgeting a production run. If normalization is used to find duplicates, any returned phrase must also be checked against each original review.</p>
+<p>These workload reductions are separate from the per-review savings. Filter only when the filter matches the analytical question, and reuse labels where doing so preserves the original records and their counts.</p>
+</section>
+<section id="what-the-savings-mean-for-quality" class="level2">
+<h2 data-anchor-id="what-the-savings-mean-for-quality">What the savings mean for quality</h2>
+<p>The chart below brings the configuration changes together. Starting with the no-cache reference, it shows the recorded cache benefit, compact output, disabled reasoning, and a batch size of 50.</p>
+<div class="chart-shell">
+<p><span class="chart-title">One route through the tested configurations: about $129 to $15 per million reviews.</span> <span class="chart-subtitle">The first bar is a no-cache price estimate. The other four use recorded usage, including cache hits. All underlying runs in this sequence emitted 22 of the 23 allowed topics.</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb10" data-startfrom="0" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line -1;"><span id="cb10-0"><a href="#cb10-0" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span><span class="fu">chartBase</span>(narrow <span class="op">?</span> <span class="dv">330</span> <span class="op">:</span> <span class="dv">260</span>)<span class="op">,</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> narrow <span class="op">?</span> <span class="dv">8</span> <span class="op">:</span> <span class="dv">190</span><span class="op">,</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">72</span><span class="op">,</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Cost per 1M reviews (USD)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">140</span>]}<span class="op">,</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> payoffDisplay<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">step</span>)<span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">axis</span><span class="op">:</span> narrow <span class="op">?</span> <span class="kw">null</span> <span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">paddingInner</span><span class="op">:</span> narrow <span class="op">?</span> <span class="fl">0.55</span> <span class="op">:</span> <span class="fl">0.25</span>}<span class="op">,</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barX</span>(payoffDisplay<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"step"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"cost"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">measured</span> <span class="op">?</span> C<span class="op">.</span><span class="at">accent</span> <span class="op">:</span> C<span class="op">.</span><span class="at">neutral</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> usd}}})<span class="op">,</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>(payoffDisplay<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"step"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"cost"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="fu">usd</span>(d<span class="op">.</span><span class="at">cost</span>)<span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"start"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> C<span class="op">.</span><span class="at">ink</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="dv">600</span>})<span class="op">,</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    narrow <span class="op">?</span> <span class="fu">labelAbove</span>(payoffDisplay<span class="op">,</span> <span class="st">"step"</span><span class="op">,</span> <span class="st">"step"</span><span class="op">,</span> <span class="dv">330</span><span class="op">,</span> <span class="fl">0.55</span>) <span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-8" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p><span class="chart-source">Source: compact-JSON × batch-size experiment, 2026-05-30, deepseek-v4-flash, same 1,000-review slice (comparison_summary.csv).</span></p>
+</div>
+<p>The optimized estimate of <strong>$14.57 per million reviews</strong> is about <strong>89% below the $129.11 no-cache reference</strong>, or about <strong>86% below the $104.19 observed baseline</strong>. The reduction is substantial, but it needs to be read alongside changes in the labels:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Output check, on the same 1,000 reviews</th>
+<th style="text-align: right;">Verbose baseline, batch 10</th>
+<th style="text-align: right;">Compact, reasoning off, batch 50</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Reviews receiving a label</td>
+<td style="text-align: right;">658 (65.8%)</td>
+<td style="text-align: right;">601 (60.1%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Labels emitted</td>
+<td style="text-align: right;">1,532</td>
+<td style="text-align: right;">1,234</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Distinct topics emitted</td>
+<td style="text-align: right;">22 of 23</td>
+<td style="text-align: right;">22 of 23</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Exact-phrase match rate</td>
+<td style="text-align: right;">98.37%</td>
+<td style="text-align: right;">99.19%</td>
+</tr>
+</tbody>
+</table>
+<p>The optimized configuration copied phrases more consistently, but emitted fewer labels and labeled fewer reviews. Without a manually evaluated reference set, we cannot tell how much of that difference is useful restraint and how much is missed information. A high phrase-match rate also does not establish that a phrase received the correct topic or sentiment.</p>
+<p>Before choosing a configuration for production, inspect reviews where the outputs disagree, especially those labeled by the baseline but left unlabeled by the cheaper setup. Evaluate topic assignment and sentiment separately, and check whether the differences change the conclusions you intend to draw.</p>
+<p>The practical sequence is to choose a representative sample, record token usage, compare configurations, and inspect what the cheaper setup stops labeling. This experiment shows how much the API cost can move within one model. The final choice depends on whether the resulting labels answer the analytical question well enough.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+// Article outline: a sticky list in the left margin on wide screens and a
+// sticky "current section" bar with a dropdown on narrow screens.
+(function () {
+  "use strict";
+
+  function init() {
+    if (!document.body.classList.contains("cat-article")) return;
+    var main = document.querySelector("main.content");
+    if (!main) return;
+    var headings = Array.prototype.filter.call(
+      main.querySelectorAll("h2[id], section.level2 > h2"),
+      function (h) { return !h.closest(".panel-tabset"); }
+    );
+    headings.forEach(function (h) {
+      if (!h.id && h.parentElement.id) h.id = h.parentElement.id + "-h";
+    });
+    headings = headings.filter(function (h) { return h.id; });
+    if (headings.length < 2) return;
+
+    var side = document.createElement("nav");
+    side.className = "cat-outline";
+    side.setAttribute("aria-label", "On this page");
+    var list = document.createElement("ol");
+    side.appendChild(list);
+
+    var bar = document.createElement("div");
+    bar.className = "cat-outline-bar";
+    var toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "cat-outline-toggle";
+    toggle.setAttribute("aria-expanded", "false");
+    var current = document.createElement("span");
+    current.className = "cat-outline-current";
+    toggle.appendChild(current);
+    var chevron = document.createElement("span");
+    chevron.className = "cat-outline-chevron";
+    chevron.setAttribute("aria-hidden", "true");
+    toggle.appendChild(chevron);
+    var menu = document.createElement("ol");
+    menu.className = "cat-outline-menu";
+    menu.hidden = true;
+    bar.appendChild(toggle);
+    bar.appendChild(menu);
+
+    var links = [];
+    headings.forEach(function (h) {
+      var label = h.textContent.trim();
+      [list, menu].forEach(function (target) {
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        a.href = "#" + h.id;
+        a.textContent = label;
+        a.dataset.target = h.id;
+        li.appendChild(a);
+        target.appendChild(li);
+        links.push(a);
+      });
+    });
+
+    document.body.appendChild(side);
+    var header = document.getElementById("title-block-header");
+    if (header && header.parentNode) header.parentNode.insertBefore(bar, header.nextSibling);
+
+    function setOpen(open) {
+      menu.hidden = !open;
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      bar.classList.toggle("is-open", open);
+    }
+    toggle.addEventListener("click", function () { setOpen(menu.hidden); });
+    menu.addEventListener("click", function (e) { if (e.target.tagName === "A") setOpen(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") setOpen(false); });
+
+    function setActive(id) {
+      links.forEach(function (a) { a.classList.toggle("is-active", a.dataset.target === id); });
+      var h = document.getElementById(id);
+      current.textContent = h ? h.textContent.trim() : "";
+    }
+
+    function update() {
+      var offset = 140;
+      var active = headings[0].id;
+      headings.forEach(function (h) {
+        if (h.getBoundingClientRect().top - offset <= 0) active = h.id;
+      });
+      setActive(active);
+      var nav = document.getElementById("quarto-header");
+      var navBottom = nav ? Math.max(0, nav.getBoundingClientRect().bottom) : 0;
+      bar.style.top = navBottom + "px";
+      var headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+      side.classList.toggle("is-visible", headerBottom < 80);
+    }
+
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
+
+  // Keep an in-page link target aligned while charts and diagrams render below
+  // or above it (they change the page height after the browser has scrolled).
+  function followHash(id) {
+    var target = document.getElementById(id);
+    if (!target) return;
+    var main = document.querySelector("main.content") || document.body;
+    var done = false;
+    function jump() { target.scrollIntoView({block: "start", behavior: "instant"}); }
+    function stop() {
+      if (done) return;
+      done = true;
+      observer.disconnect();
+      ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (ev) {
+        window.removeEventListener(ev, stop, true);
+      });
+    }
+    var observer = new ResizeObserver(function () { if (!done) jump(); });
+    jump();
+    observer.observe(main);
+    ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (ev) {
+      window.addEventListener(ev, stop, {capture: true, passive: true});
+    });
+    setTimeout(stop, 10000);
+  }
+
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || a.closest(".panel-tabset .nav") || a.hasAttribute("data-bs-toggle")) return;
+    var id = decodeURIComponent(a.getAttribute("href").slice(1));
+    if (!id || !document.getElementById(id)) return;
+    e.preventDefault();
+    if (history.pushState) history.pushState(null, "", "#" + id);
+    // Defer so this click's own mousedown listener registration does not stop it.
+    setTimeout(function () { followHash(id); }, 0);
+  });
+
+  if (location.hash) {
+    var initial = decodeURIComponent(location.hash.slice(1));
+    if (document.readyState === "complete") followHash(initial);
+    else window.addEventListener("load", function () { followHash(initial); });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+<script>
+// Article hero backgrounds. A post opts in with front matter:
+//   hero: spheres | cache | tail | arenas | review-lines | paired-bars | grouped-cards | polarity | travelers | cascade | gravity
+//   hero-palette: warm | cool | green   (spheres only)
+// Static concepts use SVG. Animated concepts use canvas, pause off-screen,
+// and show a still frame when the reader prefers reduced motion.
+(function () {
+  "use strict";
+
+  var PALETTES = {
+    warm: [[[247, 150, 70], [236, 90, 60]], [[70, 110, 220], [60, 150, 120]]],
+    cool: [[[70, 110, 220], [60, 150, 120]], [[247, 150, 70], [236, 90, 60]]],
+    green: [[[60, 150, 120], [70, 110, 220]], [[247, 150, 70], [236, 90, 60]]]
+  };
+  var GLYPHS = ["★", "1", "2", "3", "4", "5"];
+
+  function init() {
+    var header = document.getElementById("title-block-header");
+    if (!header || !header.dataset.hero) return;
+    var concept = header.dataset.hero;
+    var palette = PALETTES[header.dataset.heroPalette] || PALETTES.warm;
+    document.body.classList.add("cat-has-hero");
+
+    var wrap = document.createElement("div");
+    wrap.className = "cat-hero-bg";
+    wrap.setAttribute("aria-hidden", "true");
+
+    // Static illustrations use SVG shapes, with no canvas or animation loop.
+    if (concept === "review-lines" || concept === "paired-bars" || concept === "grouped-cards") {
+      wrap.classList.add("cat-hero-bg-static", "cat-hero-bg-" + concept);
+      var ns = "http://www.w3.org/2000/svg";
+      function shape(tag, attrs, parent) {
+        var node = document.createElementNS(ns, tag);
+        Object.keys(attrs).forEach(function (key) { node.setAttribute(key, attrs[key]); });
+        parent.appendChild(node);
+        return node;
+      }
+      var svg = shape("svg", {viewBox: "0 0 1440 800", preserveAspectRatio: "none", focusable: "false"}, wrap);
+      if (concept === "paired-bars") {
+        // Decorative comparisons, not measurements from the article.
+        var blocks = [
+          {x: 24, y: 110, width: 275, right: false},
+          {x: 1140, y: 100, width: 275, right: true},
+          {x: -20, y: 340, width: 290, right: false},
+          {x: 1180, y: 350, width: 280, right: true},
+          {x: 75, y: 590, width: 335, right: false},
+          {x: 1040, y: 590, width: 335, right: true}
+        ];
+        blocks.forEach(function (block, index) {
+          var group = shape("g", {transform: "translate(" + block.x + " " + block.y + ")"}, svg);
+          for (var row = 0; row < 4; row++) {
+            var before = block.width * [1, 0.72, 0.9, 0.61][row];
+            var after = before * [0.67, 0.46, 0.79, 0.53][(row + index) % 4];
+            shape("rect", {x: block.right ? block.width - before : 0, y: row * 34,
+              width: before, height: 7, rx: 3.5, fill: "var(--cat-sub)", opacity: 0.16}, group);
+            shape("rect", {x: block.right ? block.width - after : 0, y: row * 34 + 12,
+              width: after, height: 7, rx: 3.5,
+              fill: (row + index) % 2 ? "var(--cat-negative)" : "var(--cat-accent)", opacity: 0.24}, group);
+          }
+        });
+      } else if (concept === "grouped-cards") {
+        // Seven groups and 29 cards echo the taxonomy; text marks are abstract.
+        var categories = [
+          {x: 45, y: 115, count: 3, color: "--cat-accent"},
+          {x: 1140, y: 110, count: 4, color: "--cat-negative"},
+          {x: 10, y: 355, count: 2, color: "--cat-sub"},
+          {x: 1210, y: 350, count: 5, color: "--cat-accent"},
+          {x: 80, y: 600, count: 6, color: "--cat-negative"},
+          {x: 1130, y: 600, count: 4, color: "--cat-sub"},
+          {x: 615, y: 65, count: 5, color: "--cat-accent"}
+        ];
+        categories.forEach(function (category, index) {
+          var group = shape("g", {transform: "translate(" + category.x + " " + category.y + ")"}, svg);
+          shape("rect", {x: 0, y: 0, width: 38 + index % 3 * 12, height: 4, rx: 2,
+            fill: "var(" + category.color + ")", opacity: 0.25}, group);
+          for (var card = 0; card < category.count; card++) {
+            var item = shape("g", {transform: "translate(" + (card % 2 * 118) + " " + (18 + Math.floor(card / 2) * 38) + ")"}, group);
+            shape("rect", {x: 0, y: 0, width: 106, height: 28, rx: 6,
+              fill: "var(" + category.color + ")", "fill-opacity": 0.05,
+              stroke: "var(" + category.color + ")", "stroke-opacity": 0.2, "stroke-width": 1}, item);
+            shape("rect", {x: 6, y: 7, width: 3, height: 14, rx: 1.5,
+              fill: "var(" + category.color + ")", opacity: 0.3}, item);
+            var lineWidth = [59, 72, 48, 66][(card + index) % 4];
+            shape("rect", {x: 15, y: 9, width: lineWidth, height: 3, rx: 1.5,
+              fill: "var(--cat-sub)", opacity: 0.22}, item);
+            shape("rect", {x: 15, y: 16, width: lineWidth * 0.65, height: 3, rx: 1.5,
+              fill: "var(--cat-sub)", opacity: 0.15}, item);
+          }
+        });
+      } else {
+      var passages = [
+        {x: 36, y: 110, width: 320, angle: -4, color: "--cat-accent"},
+        {x: 1070, y: 80, width: 330, angle: 3, color: "--cat-negative"},
+        {x: 12, y: 340, width: 290, angle: 3, color: "--cat-negative"},
+        {x: 1150, y: 315, width: 280, angle: -4, color: "--cat-accent"},
+        {x: 90, y: 590, width: 390, angle: -3, color: "--cat-accent"},
+        {x: 980, y: 590, width: 360, angle: 4, color: "--cat-negative"}
+      ];
+      passages.forEach(function (passage, index) {
+        var group = shape("g", {transform: "translate(" + passage.x + " " + passage.y + ") rotate(" + passage.angle + ")"}, svg);
+        for (var row = 0; row < 5; row++) {
+          var y = row * 22, length = passage.width * [1, 0.86, 0.95, 0.72, 0.9][row];
+          if (row === 1 || row === 3) {
+            shape("rect", {x: row === 1 ? 0 : length * 0.25, y: y - 5,
+              width: length * (row === 1 ? 0.72 : 0.65), height: 15, rx: 3,
+              fill: "var(" + passage.color + ")", opacity: 0.2}, group);
+          }
+          var x = 0, word = 0, widths = [34, 52, 25, 46, 29, 41];
+          while (x < length - 12) {
+            var width = Math.min(widths[(word + row + index) % widths.length], length - x);
+            shape("rect", {x: x, y: y, width: width, height: 4, rx: 2,
+              fill: "var(--cat-sub)", opacity: 0.2}, group);
+            x += width + 8;
+            word++;
+          }
+        }
+      });
+      }
+      document.body.appendChild(wrap);
+      function sizeStaticHero() {
+        wrap.style.height = Math.round(header.getBoundingClientRect().bottom + window.scrollY + 72) + "px";
+      }
+      window.addEventListener("resize", sizeStaticHero);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(sizeStaticHero);
+      sizeStaticHero();
+      return;
+    }
+
+    var canvas = document.createElement("canvas");
+    wrap.appendChild(canvas);
+    document.body.appendChild(wrap);
+    var ctx = canvas.getContext("2d");
+
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var W = 0, H = 0, running = false, visible = true, t0 = performance.now(), last = t0;
+    var seed = 7;
+    // Background colour as "r, g, b", so the fades behind the title follow light/dark mode.
+    var bgRGB = "255, 255, 255", dark = false;
+    function readTheme() {
+      var css = getComputedStyle(document.documentElement);
+      bgRGB = css.getPropertyValue("--cat-bg-rgb").trim() || "255, 255, 255";
+      dark = bgRGB.replace(/\s/g, "") !== "255,255,255";
+    }
+    readTheme();
+    // Quarto switches themes by swapping stylesheet link attributes in <head>.
+    var themeObserver = new MutationObserver(function () {
+      // The swapped stylesheet can apply a moment after the switch, so re-read a few times.
+      [0, 150, 500, 1200].forEach(function (ms) {
+        setTimeout(function () { readTheme(); if (reduce || !running) render(performance.now(), true); }, ms);
+      });
+    });
+    themeObserver.observe(document.head, { subtree: true, attributes: true, attributeFilter: ["rel", "disabled"] });
+    themeObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+    function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+
+    function glow(x, y, r, color, alpha) {
+      var g = ctx.createRadialGradient(x, y, 0, x, y, r);
+      g.addColorStop(0, "rgba(" + color + "," + alpha + ")");
+      g.addColorStop(1, "rgba(" + color + ",0)");
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+    }
+
+    function centreFade(cy, radius, strength) {
+      var g = ctx.createRadialGradient(W / 2, cy, 0, W / 2, cy, radius);
+      g.addColorStop(0, "rgba(" + bgRGB + "," + strength + ")");
+      g.addColorStop(0.6, "rgba(" + bgRGB + "," + strength * 0.6 + ")");
+      g.addColorStop(1, "rgba(" + bgRGB + ",0)");
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    }
+
+    function titleCentre() {
+      var r = header.getBoundingClientRect(), w = wrap.getBoundingClientRect();
+      return r.top - w.top + r.height / 2;
+    }
+
+    /* ---------- spheres ---------- */
+    var spheres = [], loose = [];
+    function buildSpheres() {
+      seed = 11;
+      var narrow = W < 760, big = Math.min(W, H);
+      spheres = narrow ? [
+        { cx: W * 0.02, cy: H * 0.2, r: big * 0.42, n: 520, hue: palette[0], spin: 0.05 },
+        { cx: W * 1.0, cy: H * 0.86, r: big * 0.36, n: 380, hue: palette[1], spin: -0.07 }
+      ] : [
+        { cx: W * 0.13, cy: H * 0.6, r: big * 0.42, n: 900, hue: palette[0], spin: 0.05 },
+        { cx: W * 0.85, cy: H * 0.72, r: big * 0.25, n: 520, hue: palette[1], spin: -0.07 },
+        { cx: W * 0.88, cy: H * 0.2, r: big * 0.1, n: 160, hue: [[90, 90, 90], [140, 140, 140]], spin: 0.1 }
+      ];
+      var golden = Math.PI * (3 - Math.sqrt(5));
+      spheres.forEach(function (s) {
+        s.pts = [];
+        for (var i = 0; i < s.n; i++) {
+          var y = 1 - (i / (s.n - 1)) * 2, rad = Math.sqrt(1 - y * y), th = golden * i;
+          s.pts.push({ x: Math.cos(th) * rad, y: y, z: Math.sin(th) * rad, g: GLYPHS[(rnd() * GLYPHS.length) | 0] });
+        }
+      });
+      loose = [];
+      var count = Math.round(W * H / (narrow ? 14000 : 9000));
+      for (var k = 0; k < count; k++) {
+        loose.push({ x: rnd() * W, y: rnd() * H, g: GLYPHS[(rnd() * GLYPHS.length) | 0], a: 0.12 + rnd() * 0.25,
+          s: 9 + rnd() * 4, target: (rnd() * spheres.length) | 0, phase: rnd() });
+      }
+    }
+    function drawSpheres(t) {
+      spheres.forEach(function (s) { glow(s.cx - s.r * 0.25, s.cy - s.r * 0.2, s.r * 1.25, s.hue[0].join(","), 0.1); });
+      ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      loose.forEach(function (p) {
+        var s = spheres[p.target], k = (t * 0.018 + p.phase) % 1;
+        ctx.globalAlpha = p.a * (1 - k);
+        ctx.fillStyle = dark ? "#9a9a9a" : "#8a8a8a"; ctx.font = p.s + "px Inter, sans-serif";
+        ctx.fillText(p.g, p.x + (s.cx - p.x) * k * 0.9, p.y + (s.cy - p.y) * k * 0.9);
+      });
+      spheres.forEach(function (s) {
+        var a = t * s.spin, ca = Math.cos(a), sa = Math.sin(a), ct = Math.cos(0.35), st = Math.sin(0.35);
+        ctx.font = "600 " + Math.max(7, s.r / 26) + "px Inter, sans-serif";
+        var c0 = s.hue[0], c1 = s.hue[1];
+        s.pts.forEach(function (p) {
+          var x = p.x * ca - p.z * sa, z = p.x * sa + p.z * ca, y = p.y * ct - z * st;
+          z = p.y * st + z * ct;
+          var m = (x + 1) / 2;
+          ctx.globalAlpha = (dark ? 0.1 : 0.08) + ((z + 1) / 2) * (dark ? 0.85 : 0.75);
+          ctx.fillStyle = "rgb(" + ((c0[0] + (c1[0] - c0[0]) * m) | 0) + "," + ((c0[1] + (c1[1] - c0[1]) * m) | 0) + "," + ((c0[2] + (c1[2] - c0[2]) * m) | 0) + ")";
+          ctx.fillText(p.g, s.cx + x * s.r, s.cy + y * s.r);
+        });
+      });
+      ctx.globalAlpha = 1;
+      if (W < 900) centreFade(titleCentre(), Math.max(W, H) * 0.5, 0.75);
+    }
+
+    /* ---------- cache stream ---------- */
+    var rows = [];
+    function buildCache() {
+      seed = 23;
+      var rowH = 30, n = Math.ceil(H / rowH) + 1;
+      rows = [];
+      for (var i = 0; i < n; i++) {
+        rows.push({ y: i * rowH + 11, speed: 12 + rnd() * 18, offset: rnd() * 400,
+          prefix: 6 + ((rnd() * 10) | 0), broken: 0, nextBreak: 3 + rnd() * 14 });
+      }
+    }
+    function drawCache(t, dt) {
+      glow(W * 0.2, H * 0.3, Math.max(W, H) * 0.45, "42,91,215", 0.07);
+      glow(W * 0.85, H * 0.8, Math.max(W, H) * 0.35, "31,138,91", 0.06);
+      var bw = 14, gap = 3, block = 4, cy = titleCentre();
+      rows.forEach(function (r) {
+        var band = Math.min(1, Math.abs(r.y - cy) / (H * 0.42)), rowFade = 0.15 + 0.85 * band * band;
+        r.nextBreak -= dt;
+        if (r.nextBreak <= 0 && r.broken <= 0) { r.broken = 2.2; r.nextBreak = 6 + rnd() * 16; }
+        if (r.broken > 0) r.broken -= dt;
+        var shift = (t * r.speed + r.offset) % ((bw + gap) * block);
+        var cells = Math.ceil(W / (bw + gap)) + block * 2;
+        for (var i = 0; i < cells; i++) {
+          var x = i * (bw + gap) - shift - (bw + gap) * block, inPrefix = i < r.prefix * block, color, alpha;
+          if (inPrefix && r.broken <= 0) { color = "42,91,215"; alpha = 0.22 + 0.08 * Math.sin(i * 0.3); }
+          else if (inPrefix) { color = "150,150,150"; alpha = 0.1 + 0.1 * (r.broken / 2.2); }
+          else { color = "120,120,120"; alpha = 0.03 + 0.08 * Math.abs(Math.sin(i * 12.9898 + Math.floor(t * 3 + r.offset))); }
+          alpha *= rowFade;
+          ctx.fillStyle = "rgba(" + color + "," + alpha + ")";
+          ctx.fillRect(x, r.y - 4, bw, 8);
+          if (inPrefix && i % block === block - 1) ctx.fillRect(x + bw + 0.5, r.y - 4, 1, 8);
+        }
+      });
+      centreFade(cy, Math.max(W, H) * 0.42, 0.92);
+    }
+
+    /* ---------- long tail ---------- */
+    var dots = [];
+    function buildTail() {
+      seed = 31;
+      dots = [];
+      var base = H * 0.96, cols = W < 760 ? 90 : 150;
+      for (var c = 0; c < cols; c++) {
+        var u = c / cols, count = Math.round((Math.pow(1 - u, 2.6) * 0.85 + 0.035) * 90);
+        for (var k = 0; k < count; k++) {
+          dots.push({ x: u * W * 1.02 + (rnd() - 0.5) * 3, y: base - (k / 90) * H * 0.95 - rnd() * 3,
+            u: u, rare: u > 0.55 && rnd() < 0.55, phase: rnd() * 6.28 });
+        }
+      }
+    }
+    function drawTail(t) {
+      glow(W * 0.12, H * 0.7, Math.max(W, H) * 0.45, "247,150,70", 0.09);
+      glow(W * 0.88, H * 0.85, Math.max(W, H) * 0.3, "42,91,215", 0.08);
+      var sweep = ((t * 0.07) % 1.6) - 0.3;
+      dots.forEach(function (d) {
+        var near = Math.max(0, 1 - Math.abs(d.u - sweep) / 0.18), a, r, col;
+        if (d.rare) {
+          var pulse = 0.55 + 0.45 * Math.sin(t * 2 + d.phase);
+          a = (0.4 + 0.5 * pulse) * (1 - near * 0.9); r = 2.6; col = "42,91,215";
+          if (a > 0.05) glow(d.x, d.y, 16, col, a * 0.22);
+        } else {
+          a = (0.1 + (1 - d.u) * 0.28) * (1 - near * 0.5); r = 1.5; col = "120,120,120";
+        }
+        ctx.fillStyle = "rgba(" + col + "," + a + ")";
+        ctx.beginPath(); ctx.arc(d.x, d.y, r, 0, Math.PI * 2); ctx.fill();
+      });
+      centreFade(titleCentre(), Math.max(W, H) * 0.38, 0.85);
+    }
+
+    /* ---------- shared colours for the hospital concepts ---------- */
+    var HUES = {
+      warm: [236, 128, 64], red: [214, 86, 72], blue: [42, 91, 215], green: [31, 138, 91],
+      lilac: [140, 110, 214], teal: [34, 150, 140], ochre: [196, 150, 40], gray: [130, 130, 130]
+    };
+    function hue(name, a) {
+      var c = HUES[name];
+      if (dark && name === "blue") c = [122, 155, 255];
+      return "rgba(" + c.join(",") + "," + a + ")";
+    }
+    function rgb(name) { return (dark && name === "blue" ? [122, 155, 255] : HUES[name]).join(","); }
+
+    /* ---------- arenas: 7 topic arenas orbiting around the title ---------- */
+    var arenas = [];
+    function buildArenas() {
+      seed = 41;
+      var names = ["blue", "warm", "green", "lilac", "teal", "ochre", "red"];
+      var sizes = [5, 4, 4, 4, 4, 4, 4];
+      var narrow = W < 760, rx = W * (narrow ? 0.46 : 0.4), ry = H * 0.4, cy = titleCentre();
+      arenas = names.map(function (name, i) {
+        var a = -Math.PI / 2 + (i / names.length) * Math.PI * 2 + 0.25;
+        var cx = W / 2 + Math.cos(a) * rx, ccy = cy + Math.sin(a) * ry;
+        var r = Math.min(W, H) * (narrow ? 0.09 : 0.075);
+        var topics = [];
+        for (var k = 0; k < sizes[i]; k++) topics.push({ a: (k / sizes[i]) * Math.PI * 2 + rnd(), d: r * (0.55 + rnd() * 0.3), s: 3 + rnd() * 2.5 });
+        var dust = [];
+        for (var j = 0; j < 46; j++) dust.push({ a: rnd() * Math.PI * 2, d: r * (0.2 + rnd() * 1.1), s: 0.8 + rnd() * 1.4, v: (0.08 + rnd() * 0.12) * (rnd() < 0.5 ? -1 : 1) });
+        return { x: cx, y: ccy, r: r, name: name, topics: topics, dust: dust, spin: 0.05 + rnd() * 0.05 };
+      });
+    }
+    function drawArenas(t) {
+      arenas.forEach(function (ar) {
+        glow(ar.x, ar.y, ar.r * 2.2, rgb(ar.name), dark ? 0.16 : 0.1);
+        ar.dust.forEach(function (p) {
+          var a = p.a + t * p.v;
+          ctx.fillStyle = hue(ar.name, dark ? 0.55 : 0.4);
+          ctx.beginPath(); ctx.arc(ar.x + Math.cos(a) * p.d, ar.y + Math.sin(a) * p.d * 0.8, p.s, 0, Math.PI * 2); ctx.fill();
+        });
+        ar.topics.forEach(function (p, k) {
+          var a = p.a + t * ar.spin;
+          var x = ar.x + Math.cos(a) * p.d, y = ar.y + Math.sin(a) * p.d * 0.8;
+          ctx.strokeStyle = hue(ar.name, 0.25); ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(ar.x, ar.y); ctx.lineTo(x, y); ctx.stroke();
+          var pulse = 0.75 + 0.25 * Math.sin(t * 1.4 + k);
+          ctx.fillStyle = hue(ar.name, 0.9 * pulse);
+          ctx.beginPath(); ctx.arc(x, y, p.s, 0, Math.PI * 2); ctx.fill();
+        });
+        ctx.fillStyle = hue(ar.name, 0.95);
+        ctx.beginPath(); ctx.arc(ar.x, ar.y, 4.5, 0, Math.PI * 2); ctx.fill();
+      });
+      centreFade(titleCentre(), Math.max(W, H) * 0.34, 0.85);
+    }
+
+    /* ---------- polarity: star rows for 1 to 5 stars, thick at the extremes ---------- */
+    var starRows = [];
+    function buildPolarity() {
+      seed = 43;
+      // Approximate shares of 1..5 star reviews: polarized, most at 5 and 1.
+      var shares = [0.24, 0.05, 0.04, 0.06, 0.61], names = ["red", "warm", "gray", "teal", "green"];
+      var top = H * 0.08, span = H * 0.84;
+      starRows = [];
+      for (var star = 5; star >= 1; star--) {
+        var i = star - 1, band = shares[i];
+        var yc = top + ((5 - star) / 4) * span, thick = 10 + band * H * 0.5;
+        var count = Math.round(40 + band * W * 0.9), glyphs = [];
+        for (var k = 0; k < count; k++) glyphs.push({ x: rnd() * W, dy: (rnd() - 0.5) * thick, s: 9 + rnd() * 6, a: 0.25 + rnd() * 0.55 });
+        starRows.push({ y: yc, name: names[i], glyphs: glyphs, speed: (star % 2 ? 1 : -1) * (8 + star * 2) });
+      }
+    }
+    function drawPolarity(t) {
+      ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      starRows.forEach(function (row) {
+        glow(W * 0.5, row.y, Math.max(W, H) * 0.35, rgb(row.name), dark ? 0.06 : 0.04);
+        row.glyphs.forEach(function (g) {
+          var x = ((g.x + t * row.speed) % (W + 40) + W + 40) % (W + 40) - 20;
+          ctx.globalAlpha = g.a * (dark ? 1 : 0.85);
+          ctx.fillStyle = hue(row.name, 1);
+          ctx.font = g.s + "px Inter, sans-serif";
+          ctx.fillText("★", x, row.y + g.dy);
+        });
+      });
+      ctx.globalAlpha = 1;
+      centreFade(titleCentre(), Math.max(W, H) * 0.36, 0.9);
+    }
+
+    /* ---------- travelers: most reviewers stay local, a few hop between hospitals ---------- */
+    var nodes = [], travelers = [];
+    function buildTravelers() {
+      seed = 47;
+      var count = W < 760 ? 26 : 46;
+      nodes = [];
+      for (var i = 0; i < count; i++) {
+        var locals = [];
+        for (var k = 0; k < 6 + ((rnd() * 8) | 0); k++) locals.push({ a: rnd() * Math.PI * 2, d: 6 + rnd() * 14, v: 0.2 + rnd() * 0.4 });
+        nodes.push({ x: W * (0.03 + rnd() * 0.94), y: H * (0.06 + rnd() * 0.88), locals: locals });
+      }
+      travelers = [];
+      for (var j = 0; j < 7; j++) {
+        travelers.push({ path: [(rnd() * count) | 0], t: rnd(), speed: 0.18 + rnd() * 0.12, name: j === 0 ? "warm" : "blue", trail: [] });
+      }
+    }
+    function drawTravelers(t, dt) {
+      nodes.forEach(function (n) {
+        ctx.fillStyle = hue("gray", dark ? 0.55 : 0.45);
+        ctx.beginPath(); ctx.arc(n.x, n.y, 3.2, 0, Math.PI * 2); ctx.fill();
+        n.locals.forEach(function (l) {
+          var a = l.a + t * l.v;
+          ctx.fillStyle = hue("gray", dark ? 0.35 : 0.28);
+          ctx.beginPath(); ctx.arc(n.x + Math.cos(a) * l.d, n.y + Math.sin(a) * l.d, 1.2, 0, Math.PI * 2); ctx.fill();
+        });
+      });
+      travelers.forEach(function (tr) {
+        if (tr.path.length < 2) tr.path.push((rnd() * nodes.length) | 0);
+        tr.t += dt * tr.speed * (tr.name === "warm" ? 2.2 : 1);
+        if (tr.t >= 1) { tr.t = 0; tr.path.shift(); tr.path.push((rnd() * nodes.length) | 0); }
+        var a = nodes[tr.path[0]], b = nodes[tr.path[1]];
+        var mx = (a.x + b.x) / 2 + (b.y - a.y) * 0.25, my = (a.y + b.y) / 2 - (b.x - a.x) * 0.25;
+        var u = tr.t, x = (1 - u) * (1 - u) * a.x + 2 * (1 - u) * u * mx + u * u * b.x, y = (1 - u) * (1 - u) * a.y + 2 * (1 - u) * u * my + u * u * b.y;
+        tr.trail.push([x, y]); if (tr.trail.length > 70) tr.trail.shift();
+        for (var i = 1; i < tr.trail.length; i++) {
+          ctx.strokeStyle = hue(tr.name, (i / tr.trail.length) * 0.5); ctx.lineWidth = 1.4;
+          ctx.beginPath(); ctx.moveTo(tr.trail[i - 1][0], tr.trail[i - 1][1]); ctx.lineTo(tr.trail[i][0], tr.trail[i][1]); ctx.stroke();
+        }
+        glow(x, y, 14, rgb(tr.name), 0.3);
+        ctx.fillStyle = hue(tr.name, 0.95);
+        ctx.beginPath(); ctx.arc(x, y, 3.2, 0, Math.PI * 2); ctx.fill();
+      });
+      centreFade(titleCentre(), Math.max(W, H) * 0.36, 0.88);
+    }
+
+    /* ---------- cascade: one complaint lights up the topics reported with it ---------- */
+    var cNodes = [], cEdges = [], cWaves = [], nextWave = 0;
+    function buildCascade() {
+      seed = 53;
+      var n = 16, rx = W * (W < 760 ? 0.46 : 0.42), ry = H * 0.4, cy = titleCentre();
+      var names = ["warm", "red", "lilac", "teal", "blue", "ochre", "green", "gray"];
+      cNodes = [];
+      for (var i = 0; i < n; i++) {
+        var a = (i / n) * Math.PI * 2 + 0.2;
+        cNodes.push({ x: W / 2 + Math.cos(a) * rx * (0.85 + rnd() * 0.2), y: cy + Math.sin(a) * ry * (0.8 + rnd() * 0.3), name: names[(i / 2) | 0], lit: 0 });
+      }
+      // Eight bundles of neighbours, plus a few long links across the ring.
+      cEdges = [];
+      for (var b = 0; b < 8; b++) { cEdges.push([2 * b, 2 * b + 1]); cEdges.push([2 * b + 1, (2 * b + 2) % n]); }
+      [[0, 7], [3, 11], [5, 13], [9, 14], [1, 10]].forEach(function (e) { cEdges.push(e); });
+      cWaves = []; nextWave = 0.5;
+    }
+    function neighbours(i) {
+      var out = [];
+      cEdges.forEach(function (e) { if (e[0] === i) out.push(e[1]); else if (e[1] === i) out.push(e[0]); });
+      return out;
+    }
+    function drawCascade(t, dt) {
+      nextWave -= dt;
+      if (nextWave <= 0) { cWaves.push({ node: (rnd() * cNodes.length) | 0, step: 0, clock: 0, seen: {} }); nextWave = 3 + rnd() * 2; }
+      cWaves.forEach(function (w) {
+        w.clock += dt;
+        if (w.step === 0) { cNodes[w.node].lit = 1; w.seen[w.node] = 1; w.front = [w.node]; w.step = 1; }
+        if (w.clock > 0.55 && w.step < 4) {
+          w.clock = 0; w.step++;
+          var next = [];
+          w.front.forEach(function (i) { neighbours(i).forEach(function (j) { if (!w.seen[j]) { w.seen[j] = 1; cNodes[j].lit = Math.max(cNodes[j].lit, 1 - w.step * 0.2); next.push(j); } }); });
+          w.front = next;
+        }
+      });
+      cWaves = cWaves.filter(function (w) { return w.step < 4; });
+      cEdges.forEach(function (e) {
+        var a = cNodes[e[0]], b = cNodes[e[1]], lit = Math.min(a.lit, b.lit);
+        ctx.strokeStyle = lit > 0.05 ? hue("warm", 0.2 + lit * 0.6) : hue("gray", dark ? 0.3 : 0.22);
+        ctx.lineWidth = 1 + lit * 1.5;
+        ctx.beginPath(); ctx.moveTo(a.x, a.y);
+        ctx.quadraticCurveTo(W / 2 + (a.x + b.x - W) * 0.2, (a.y + b.y) / 2, b.x, b.y); ctx.stroke();
+      });
+      cNodes.forEach(function (nd) {
+        if (nd.lit > 0.02) glow(nd.x, nd.y, 26, rgb("warm"), nd.lit * 0.5);
+        ctx.fillStyle = nd.lit > 0.05 ? hue("warm", 0.6 + nd.lit * 0.4) : hue(nd.name, 0.7);
+        ctx.beginPath(); ctx.arc(nd.x, nd.y, 4 + nd.lit * 2, 0, Math.PI * 2); ctx.fill();
+        nd.lit = Math.max(0, nd.lit - dt * 0.35);
+      });
+      centreFade(titleCentre(), Math.max(W, H) * 0.34, 0.88);
+    }
+
+    /* ---------- gravity: driver wells pull stars down onto the one-star floor ---------- */
+    var gStars = [], wells = [];
+    function buildGravity() {
+      seed = 59;
+      var narrow = W < 760;
+      wells = [
+        { x: W * 0.12, y: H * 0.45, m: 1.0 }, { x: W * 0.86, y: H * 0.38, m: 0.9 },
+        { x: W * 0.24, y: H * 0.78, m: 0.8 }, { x: W * 0.76, y: H * 0.74, m: 0.8 }
+      ];
+      if (narrow) wells = wells.slice(0, 2);
+      gStars = [];
+      for (var i = 0; i < (narrow ? 90 : 170); i++) gStars.push(newStar(true));
+    }
+    function newStar(initial) {
+      return { x: rnd() * W, y: initial ? rnd() * H * 0.9 : -10, vx: 0, vy: 6 + rnd() * 8, s: 8 + rnd() * 6, rest: 0 };
+    }
+    function drawGravity(t, dt) {
+      var floor = H * 0.97;
+      wells.forEach(function (w) {
+        glow(w.x, w.y, 70, rgb("warm"), dark ? 0.22 : 0.14);
+        ctx.fillStyle = hue("warm", 0.55);
+        ctx.beginPath(); ctx.arc(w.x, w.y, 5, 0, Math.PI * 2); ctx.fill();
+      });
+      ctx.fillStyle = hue("red", 0.25); ctx.fillRect(0, floor + 4, W, 1);
+      ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      gStars.forEach(function (s, i) {
+        if (s.rest > 0) {
+          s.rest -= dt;
+          if (s.rest <= 0) gStars[i] = newStar(false);
+        } else {
+          wells.forEach(function (w) {
+            var dx = w.x - s.x, dy = w.y - s.y, d2 = dx * dx + dy * dy + 900;
+            var f = 5200 * w.m / d2;
+            s.vx += (dx / Math.sqrt(d2)) * f * dt * 6; s.vy += Math.max(0, (dy / Math.sqrt(d2))) * f * dt * 6 + f * dt * 2;
+          });
+          s.vx *= 0.97; s.vy = Math.min(s.vy + dt * 2, 90);
+          s.x += s.vx * dt; s.y += s.vy * dt;
+          if (s.y >= floor) { s.y = floor; s.vx = 0; s.vy = 0; s.rest = 2 + rnd() * 3; }
+        }
+        var u = Math.min(1, Math.max(0, s.y / floor));
+        var c = u < 0.5 ? "green" : (u < 0.8 ? "ochre" : "red");
+        ctx.globalAlpha = s.rest > 0 ? Math.min(1, s.rest) * 0.7 : 0.35 + u * 0.45;
+        ctx.fillStyle = hue(c, 1);
+        ctx.font = s.s + "px Inter, sans-serif";
+        ctx.fillText("★", s.x, s.y);
+      });
+      ctx.globalAlpha = 1;
+      centreFade(titleCentre(), Math.max(W, H) * 0.36, 0.88);
+    }
+
+    var build = {
+      spheres: buildSpheres, cache: buildCache, tail: buildTail, arenas: buildArenas,
+      polarity: buildPolarity, travelers: buildTravelers, cascade: buildCascade, gravity: buildGravity
+    }[concept];
+    var draw = {
+      spheres: drawSpheres, cache: drawCache, tail: drawTail, arenas: drawArenas,
+      polarity: drawPolarity, travelers: drawTravelers, cascade: drawCascade, gravity: drawGravity
+    }[concept];
+    if (!build) return;
+
+    function resize() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var bottom = header.getBoundingClientRect().bottom + window.scrollY;
+      wrap.style.height = Math.round(bottom + 72) + "px";
+      W = wrap.clientWidth; H = wrap.clientHeight;
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      canvas.style.width = W + "px"; canvas.style.height = H + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      build();
+      render(performance.now(), true);
+    }
+
+    function render(now, once) {
+      var t = (now - t0) / 1000, dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      ctx.clearRect(0, 0, W, H);
+      draw(t, dt);
+      if (once) return;
+      if (!reduce && visible) requestAnimationFrame(function (n) { render(n); });
+      else running = false;
+    }
+    function start() {
+      if (running || reduce) return;
+      running = true; last = performance.now();
+      requestAnimationFrame(function (n) { render(n); });
+    }
+
+    new IntersectionObserver(function (entries) {
+      visible = entries[0].isIntersecting;
+      if (visible) start();
+    }).observe(wrap);
+    window.addEventListener("resize", resize);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(resize);
+    resize();
+    start();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1vZGVsQ2hvaWNlID0gW3tcIm1vZGVsXCI6XCJPcGVuQUkgZ3B0LTUuNC1uYW5vXCIsXCJsYWJlbHNcIjo1OTAxMixcImV4YWN0XCI6NTY2ODQsXCJxdW90ZV9hY2NcIjo5Ni4wNn0se1wibW9kZWxcIjpcIkRlZXBTZWVrIHY0IGZsYXNoXCIsXCJsYWJlbHNcIjo3MTkxNSxcImV4YWN0XCI6NzAzMzAsXCJxdW90ZV9hY2NcIjo5Ny44fV1cbnRoaW5raW5nID0gW3tcInByb21wdFwiOlwiVmVyYm9zZSBwcm9tcHRcIixcInRoaW5raW5nXCI6XCJUaGlua2luZyBvblwiLFwib3V0X3Blcl9yZXZpZXdcIjozNjcuMCxcInJlYXNvbmluZ19zaGFyZVwiOjY4LjZ9LHtcInByb21wdFwiOlwiVmVyYm9zZSBwcm9tcHRcIixcInRoaW5raW5nXCI6XCJUaGlua2luZyBvZmZcIixcIm91dF9wZXJfcmV2aWV3XCI6MTEwLjEsXCJyZWFzb25pbmdfc2hhcmVcIjowLjB9LHtcInByb21wdFwiOlwiQ29tcGFjdCBwcm9tcHRcIixcInRoaW5raW5nXCI6XCJUaGlua2luZyBvblwiLFwib3V0X3Blcl9yZXZpZXdcIjoxOTAuOSxcInJlYXNvbmluZ19zaGFyZVwiOjcyLjF9LHtcInByb21wdFwiOlwiQ29tcGFjdCBwcm9tcHRcIixcInRoaW5raW5nXCI6XCJUaGlua2luZyBvZmZcIixcIm91dF9wZXJfcmV2aWV3XCI6NTAuNyxcInJlYXNvbmluZ19zaGFyZVwiOjAuMH1dXG5jb3N0U3BsaXQgPSBbe1wicGFydFwiOlwiSW5wdXQgKHRoZSBwcm9tcHQpXCIsXCJjb3N0XCI6MjYuMzZ9LHtcInBhcnRcIjpcIk91dHB1dCAodGhlIGFuc3dlcilcIixcImNvc3RcIjoxMDIuNzV9XVxuY29tcGFjdENvZGVzID0gW3tcImJhdGNoXCI6MTAsXCJmb3JtYXRcIjpcIlZlcmJvc2UgSlNPTlwiLFwiY29zdFwiOjEwNC4xOX0se1wiYmF0Y2hcIjoxMCxcImZvcm1hdFwiOlwiQ29tcGFjdCBjb2Rlc1wiLFwiY29zdFwiOjk3LjY0fSx7XCJiYXRjaFwiOjI1LFwiZm9ybWF0XCI6XCJWZXJib3NlIEpTT05cIixcImNvc3RcIjo4MC45OX0se1wiYmF0Y2hcIjoyNSxcImZvcm1hdFwiOlwiQ29tcGFjdCBjb2Rlc1wiLFwiY29zdFwiOjczLjk0fSx7XCJiYXRjaFwiOjUwLFwiZm9ybWF0XCI6XCJWZXJib3NlIEpTT05cIixcImNvc3RcIjo2OC4wMn0se1wiYmF0Y2hcIjo1MCxcImZvcm1hdFwiOlwiQ29tcGFjdCBjb2Rlc1wiLFwiY29zdFwiOjUzLjgzfSx7XCJiYXRjaFwiOjEwMCxcImZvcm1hdFwiOlwiVmVyYm9zZSBKU09OXCIsXCJjb3N0XCI6NTUuMDl9LHtcImJhdGNoXCI6MTAwLFwiZm9ybWF0XCI6XCJDb21wYWN0IGNvZGVzXCIsXCJjb3N0XCI6NDMuNDF9XVxuY2FjaGVQcmljZSA9IFt7XCJjYXNlXCI6XCJDYWNoZSBoaXRcIixcInByaWNlXCI6MC4wMDI4fSx7XCJjYXNlXCI6XCJDYWNoZSBtaXNzXCIsXCJwcmljZVwiOjAuMTR9XVxuY2FjaGVKb2IgPSBbe1wiY2FzZVwiOlwiQ2FjaGUgd29ya2luZ1wiLFwiY29zdFwiOjEwNC4xOSxcIm1lYXN1cmVkXCI6dHJ1ZX0se1wiY2FzZVwiOlwiQ2FjaGUgYnJva2VuIChyZS1wcmljZWQpXCIsXCJjb3N0XCI6MTI5LjExLFwibWVhc3VyZWRcIjpmYWxzZX1dXG5iYXRjaFNpemUgPSBbe1wiYmF0Y2hcIjoxMCxcImNvc3RcIjoxNy44LFwicXVvdGVfYWNjXCI6OTguOTN9LHtcImJhdGNoXCI6MjUsXCJjb3N0XCI6MTUuODEsXCJxdW90ZV9hY2NcIjo5OS4wOH0se1wiYmF0Y2hcIjo1MCxcImNvc3RcIjoxNC41NyxcInF1b3RlX2FjY1wiOjk5LjE5fSx7XCJiYXRjaFwiOjEwMCxcImNvc3RcIjoxMy45NCxcInF1b3RlX2FjY1wiOjk4Ljg5fV1cbnJlZHVjdGlvbiA9IFt7XCJzdGFnZVwiOlwiQWxsIHJldmlld3NcIixcInJldmlld3NcIjoxOTc4MjcsXCJlc3RpbWF0ZWRcIjpmYWxzZX0se1wic3RhZ2VcIjpcIkFmdGVyIGRhdGUgZmlsdGVyICgyMDIzIHRvIDIwMjYpXCIsXCJyZXZpZXdzXCI6MTAwNjExLFwiZXN0aW1hdGVkXCI6ZmFsc2V9LHtcInN0YWdlXCI6XCJBZnRlciBkZS1kdXBsaWNhdGlvblwiLFwicmV2aWV3c1wiOjk1NjQwLFwiZXN0aW1hdGVkXCI6dHJ1ZX1dXG5wYXlvZmYgPSBbe1wic3RlcFwiOlwiTmFpdmUgc2V0dXAsIGNhY2hlIGJyb2tlblwiLFwiY29zdFwiOjEyOS4xMSxcIm1lYXN1cmVkXCI6ZmFsc2V9LHtcInN0ZXBcIjpcIlByZWZpeC1zdGFibGUgY2FjaGVcIixcImNvc3RcIjoxMDQuMTksXCJtZWFzdXJlZFwiOnRydWV9LHtcInN0ZXBcIjpcIlNob3J0IHRvcGljIGNvZGVzXCIsXCJjb3N0XCI6OTcuNjQsXCJtZWFzdXJlZFwiOnRydWV9LHtcInN0ZXBcIjpcIlJlYXNvbmluZyBvZmZcIixcImNvc3RcIjoxNy44LFwibWVhc3VyZWRcIjp0cnVlfSx7XCJzdGVwXCI6XCJCYXRjaCBzaXplIDUwXCIsXCJjb3N0XCI6MTQuNTcsXCJtZWFzdXJlZFwiOnRydWV9XVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiLy8gS2VlcCBPYnNlcnZhYmxlJ3MgbmF0aXZlIHNlbGVjdHMgcmVhZGFibGUgaW4gU2FmYXJpIGFzIHdlbGwgYXMgb3RoZXIgYnJvd3NlcnMuXG50aGVtZWRTZWxlY3QgPSAodmFsdWVzLCBvcHRpb25zKSA9PiB7XG4gIGNvbnN0IGZvcm0gPSBJbnB1dHMuc2VsZWN0KHZhbHVlcywgb3B0aW9ucyk7XG4gIGNvbnN0IHNlbGVjdCA9IGZvcm0ucXVlcnlTZWxlY3RvcihcInNlbGVjdFwiKTtcbiAgaWYgKHNlbGVjdCkge1xuICAgIGZvciAoY29uc3QgW3Byb3BlcnR5LCB2YWx1ZV0gb2YgT2JqZWN0LmVudHJpZXMoe1xuICAgICAgXCJhcHBlYXJhbmNlXCI6IFwibm9uZVwiLFxuICAgICAgXCItd2Via2l0LWFwcGVhcmFuY2VcIjogXCJub25lXCIsXG4gICAgICBcImJhY2tncm91bmQtY29sb3JcIjogXCJ2YXIoLS1jYXQtcGFuZWwpXCIsXG4gICAgICBcImNvbG9yXCI6IFwidmFyKC0tY2F0LWluaylcIixcbiAgICAgIFwiLXdlYmtpdC10ZXh0LWZpbGwtY29sb3JcIjogXCJ2YXIoLS1jYXQtaW5rKVwiLFxuICAgICAgXCJib3JkZXJcIjogXCIxcHggc29saWQgdmFyKC0tY2F0LXN1YilcIixcbiAgICAgIFwiYm9yZGVyLXJhZGl1c1wiOiBcIjZweFwiLFxuICAgICAgXCJwYWRkaW5nXCI6IFwiMC4zNWVtIDEuNzVyZW0gMC4zNWVtIDAuNWVtXCJcbiAgICB9KSkgc2VsZWN0LnN0eWxlLnNldFByb3BlcnR5KHByb3BlcnR5LCB2YWx1ZSwgXCJpbXBvcnRhbnRcIik7XG4gICAgZm9yIChjb25zdCBvcHRpb24gb2Ygc2VsZWN0Lm9wdGlvbnMpIHtcbiAgICAgIG9wdGlvbi5zdHlsZS5iYWNrZ3JvdW5kQ29sb3IgPSBcInZhcigtLWNhdC1wYW5lbClcIjtcbiAgICAgIG9wdGlvbi5zdHlsZS5jb2xvciA9IFwidmFyKC0tY2F0LWluaylcIjtcbiAgICB9XG4gIH1cbiAgcmV0dXJuIGZvcm07XG59XG5cbi8vIENvbG91cnMgY29tZSBmcm9tIHRoZSBwYWdlJ3MgQ1NTIHRva2VucyBhbmQgdXBkYXRlIHdoZW4gdGhlIHJlYWRlciBzd2l0Y2hlcyBsaWdodC9kYXJrLlxuQyA9IEdlbmVyYXRvcnMub2JzZXJ2ZShub3RpZnkgPT4ge1xuICBjb25zdCByZWFkID0gKCkgPT4ge1xuICAgIGNvbnN0IGNzcyA9IGdldENvbXB1dGVkU3R5bGUoZG9jdW1lbnQuZG9jdW1lbnRFbGVtZW50KTtcbiAgICBjb25zdCB2ID0gbmFtZSA9PiBjc3MuZ2V0UHJvcGVydHlWYWx1ZShuYW1lKS50cmltKCk7XG4gICAgcmV0dXJuIHtpbms6IHYoXCItLWNhdC1pbmtcIiksIHN1YjogdihcIi0tY2F0LXN1YlwiKSwgbXV0ZWQ6IHYoXCItLWNhdC1tdXRlZFwiKSwgbmV1dHJhbDogdihcIi0tY2F0LW5ldXRyYWxcIiksIHBhbmVsOiB2KFwiLS1jYXQtcGFuZWxcIiksIGFjY2VudDogdihcIi0tY2F0LWFjY2VudFwiKSwgYWNjZW50U29mdDogdihcIi0tY2F0LWFjY2VudC1zb2Z0XCIpLCBwb3NpdGl2ZTogdihcIi0tY2F0LXBvc2l0aXZlXCIpLCBiZzogdihcIi0tY2F0LWJnXCIpfTtcbiAgfTtcbiAgbGV0IGxhc3QgPSBKU09OLnN0cmluZ2lmeShyZWFkKCkpO1xuICBub3RpZnkoSlNPTi5wYXJzZShsYXN0KSk7XG4gIC8vIFJlLXJlYWQgYSBmZXcgdGltZXM6IHRoZSBzd2FwcGVkIHN0eWxlc2hlZXQgY2FuIGFwcGx5IGEgbW9tZW50IGFmdGVyIHRoZSBzd2l0Y2guXG4gIGNvbnN0IHJlZnJlc2ggPSAoKSA9PiBbMCwgMTUwLCA1MDAsIDEyMDBdLmZvckVhY2gobXMgPT4gc2V0VGltZW91dCgoKSA9PiB7XG4gICAgY29uc3QgbmV4dCA9IEpTT04uc3RyaW5naWZ5KHJlYWQoKSk7XG4gICAgaWYgKG5leHQgIT09IGxhc3QpIHsgbGFzdCA9IG5leHQ7IG5vdGlmeShKU09OLnBhcnNlKG5leHQpKTsgfVxuICB9LCBtcykpO1xuICAvLyBRdWFydG8gc3dpdGNoZXMgdGhlbWVzIGJ5IHN3YXBwaW5nIHN0eWxlc2hlZXQgbGluayBhdHRyaWJ1dGVzIGluIDxoZWFkPi5cbiAgY29uc3Qgb2JzZXJ2ZXIgPSBuZXcgTXV0YXRpb25PYnNlcnZlcihyZWZyZXNoKTtcbiAgb2JzZXJ2ZXIub2JzZXJ2ZShkb2N1bWVudC5oZWFkLCB7c3VidHJlZTogdHJ1ZSwgYXR0cmlidXRlczogdHJ1ZSwgYXR0cmlidXRlRmlsdGVyOiBbXCJyZWxcIiwgXCJkaXNhYmxlZFwiXX0pO1xuICBvYnNlcnZlci5vYnNlcnZlKGRvY3VtZW50LmJvZHksIHthdHRyaWJ1dGVzOiB0cnVlLCBhdHRyaWJ1dGVGaWx0ZXI6IFtcImNsYXNzXCJdfSk7XG4gIHJldHVybiAoKSA9PiBvYnNlcnZlci5kaXNjb25uZWN0KCk7XG59KVxuY2hhcnRXaWR0aCA9IE1hdGgubWluKDk2MCwgKGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIuY2hhcnQtc2hlbGxcIikgfHwgZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIm1haW4uY29udGVudFwiKSkuY2xpZW50V2lkdGgpXG5uYXJyb3cgPSBjaGFydFdpZHRoIDwgNTIwXG5mbXQgPSBkMy5mb3JtYXQoXCIsXCIpXG51c2QgPSBkID0+IFwiJFwiICsgZDMuZm9ybWF0KFwiLC4yZlwiKShkKVxuLy8gTGFiZWwgZHJhd24gYWJvdmUgZWFjaCBob3Jpem9udGFsIGJhciBvbiBuYXJyb3cgc2NyZWVucyAoY2hhcnRCYXNlIG1hcmdpbnM6IDM0IHRvcCwgNDQgYm90dG9tKS5cbmxhYmVsQWJvdmUgPSAoZGF0YSwgeSwgdGV4dCwgaCwgcGFkKSA9PiBQbG90LnRleHQoZGF0YSwge3ksIGZyYW1lQW5jaG9yOiBcImxlZnRcIiwgdGV4dCwgdGV4dEFuY2hvcjogXCJzdGFydFwiLCBsaW5lQW5jaG9yOiBcImJvdHRvbVwiLCBkeTogLSgoaCAtIDc4KSAvIGRhdGEubGVuZ3RoICogKDEgLSBwYWQpKSAvIDIgLSA0LCBmaWxsOiBDLmluaywgZm9udFNpemU6IDEyfSlcbmNoYXJ0QmFzZSA9IGggPT4gKHtcbiAgd2lkdGg6IGNoYXJ0V2lkdGgsXG4gIGhlaWdodDogaCxcbiAgbWFyZ2luVG9wOiAzNCxcbiAgbWFyZ2luUmlnaHQ6IDE2LFxuICBtYXJnaW5Cb3R0b206IDQ0LFxuICBtYXJnaW5MZWZ0OiA1NixcbiAgc3R5bGU6IHtmb250RmFtaWx5OiBcIkludGVyLCAtYXBwbGUtc3lzdGVtLCBzYW5zLXNlcmlmXCIsIGZvbnRTaXplOiBcIjEzcHhcIiwgY29sb3I6IEMuc3ViLCBiYWNrZ3JvdW5kOiBcInRyYW5zcGFyZW50XCIsIG92ZXJmbG93OiBcInZpc2libGVcIn1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ0aGlua2luZ1Jvd3MgPSB0aGlua2luZy5tYXAoZCA9PiAoey4uLmQsIGxhYmVsOiBkLnByb21wdC5yZXBsYWNlKFwiIHByb21wdFwiLCBcIlwiKSArIFwiIHByb21wdCwgXCIgKyBkLnRoaW5raW5nLnRvTG93ZXJDYXNlKCl9KSlcbmNvc3RTcGxpdFNoYXJlcyA9IGNvc3RTcGxpdC5tYXAoZCA9PiAoey4uLmQsIHNoYXJlOiBNYXRoLnJvdW5kKGQuY29zdCAvIGQzLnN1bShjb3N0U3BsaXQsIHIgPT4gci5jb3N0KSAqIDEwMCl9KSlcbmNhY2hlSm9iRGlzcGxheSA9IGNhY2hlSm9iLm1hcChkID0+ICh7Li4uZCwgY2FzZTogZC5tZWFzdXJlZCA/IFwiT2JzZXJ2ZWQgY2FjaGUgaGl0c1wiIDogXCJOby1jYWNoZSBlc3RpbWF0ZVwifSkpXG5wYXlvZmZEaXNwbGF5ID0gcGF5b2ZmLm1hcCgoZCwgaSkgPT4gKHsuLi5kLCBzdGVwOiBbXCJOby1jYWNoZSBlc3RpbWF0ZVwiLCBcIk9ic2VydmVkIGNhY2hlIGhpdHNcIiwgXCJTaG9ydCB0b3BpYyBjb2Rlc1wiLCBcIlJlYXNvbmluZyBvZmZcIiwgXCJCYXRjaCBzaXplIDUwXCJdW2ldfSkpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJQbG90LnBsb3Qoe1xuICAuLi5jaGFydEJhc2UobmFycm93ID8gMjAwIDogMTYwKSxcbiAgbWFyZ2luTGVmdDogbmFycm93ID8gOCA6IDE3MCxcbiAgbWFyZ2luUmlnaHQ6IDExMCxcbiAgeDoge2xhYmVsOiBcIkNvc3QgcGVyIDFNIHJldmlld3MgKFVTRClcIiwgZG9tYWluOiBbMCwgMTMwXSwgZ3JpZDogdHJ1ZX0sXG4gIHk6IHtkb21haW46IGNvc3RTcGxpdC5tYXAoZCA9PiBkLnBhcnQpLCBsYWJlbDogbnVsbCwgYXhpczogbmFycm93ID8gbnVsbCA6IFwibGVmdFwiLCBwYWRkaW5nSW5uZXI6IG5hcnJvdyA/IDAuNTUgOiAwLjN9LFxuICBtYXJrczogW1xuICAgIFBsb3QuYmFyWChjb3N0U3BsaXRTaGFyZXMsIHt5OiBcInBhcnRcIiwgeDogXCJjb3N0XCIsIGZpbGw6IGQgPT4gZC5wYXJ0LnN0YXJ0c1dpdGgoXCJPdXRwdXRcIikgPyBDLmFjY2VudCA6IEMubmV1dHJhbCwgdGlwOiB7Zm9ybWF0OiB7eDogdXNkfX19KSxcbiAgICBQbG90LnRleHQoY29zdFNwbGl0U2hhcmVzLCB7eTogXCJwYXJ0XCIsIHg6IFwiY29zdFwiLCB0ZXh0OiBkID0+IHVzZChkLmNvc3QpICsgXCIgwrcgXCIgKyBkLnNoYXJlICsgXCIlXCIsIGR4OiA2LCB0ZXh0QW5jaG9yOiBcInN0YXJ0XCIsIGZpbGw6IEMuaW5rLCBmb250V2VpZ2h0OiA2MDB9KSxcbiAgICBuYXJyb3cgPyBsYWJlbEFib3ZlKGNvc3RTcGxpdFNoYXJlcywgXCJwYXJ0XCIsIFwicGFydFwiLCAyMDAsIDAuNTUpIDogbnVsbFxuICBdXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiUGxvdC5wbG90KHtcbiAgLi4uY2hhcnRCYXNlKG5hcnJvdyA/IDMyMCA6IDI1MCksXG4gIG1hcmdpbkxlZnQ6IG5hcnJvdyA/IDggOiAyMjAsXG4gIG1hcmdpblJpZ2h0OiA0OCxcbiAgeDoge2xhYmVsOiBcIk91dHB1dCB0b2tlbnMgcGVyIHJldmlld1wiLCBncmlkOiB0cnVlLCBkb21haW46IFswLCA0MDBdfSxcbiAgeToge2RvbWFpbjogdGhpbmtpbmdSb3dzLm1hcChkID0+IGQubGFiZWwpLCBsYWJlbDogbnVsbCwgYXhpczogbmFycm93ID8gbnVsbCA6IFwibGVmdFwiLCBwYWRkaW5nSW5uZXI6IG5hcnJvdyA/IDAuNTUgOiAwLjI1fSxcbiAgbWFya3M6IFtcbiAgICBQbG90LmJhclgodGhpbmtpbmdSb3dzLCB7eTogXCJsYWJlbFwiLCB4OiBcIm91dF9wZXJfcmV2aWV3XCIsIGZpbGw6IGQgPT4gZC50aGlua2luZyA9PT0gXCJUaGlua2luZyBvZmZcIiA/IEMuYWNjZW50IDogQy5uZXV0cmFsLCB0aXA6IHtjaGFubmVsczoge1wiUmVhc29uaW5nIHNoYXJlXCI6IGQgPT4gZC5yZWFzb25pbmdfc2hhcmUgKyBcIiVcIn19fSksXG4gICAgUGxvdC50ZXh0KHRoaW5raW5nUm93cywge3k6IFwibGFiZWxcIiwgeDogXCJvdXRfcGVyX3Jldmlld1wiLCB0ZXh0OiBkID0+IGQub3V0X3Blcl9yZXZpZXcudG9GaXhlZCgwKSwgZHg6IDYsIHRleHRBbmNob3I6IFwic3RhcnRcIiwgZmlsbDogQy5pbmssIGZvbnRXZWlnaHQ6IDYwMH0pLFxuICAgIG5hcnJvdyA/IGxhYmVsQWJvdmUodGhpbmtpbmdSb3dzLCBcImxhYmVsXCIsIFwibGFiZWxcIiwgMzIwLCAwLjU1KSA6IG51bGxcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QucGxvdCh7XG4gIC4uLmNoYXJ0QmFzZSgyMDApLFxuICBtYXJnaW5MZWZ0OiBuYXJyb3cgPyA4IDogMTgwLFxuICBtYXJnaW5SaWdodDogNzIsXG4gIHg6IHtsYWJlbDogXCJDb3N0IHBlciAxTSByZXZpZXdzIChVU0QpXCIsIGdyaWQ6IHRydWUsIGRvbWFpbjogWzAsIDE0MF19LFxuICB5OiB7bGFiZWw6IG51bGwsIGRvbWFpbjogY2FjaGVKb2JEaXNwbGF5Lm1hcChkID0+IGQuY2FzZSksIGF4aXM6IG5hcnJvdyA/IG51bGwgOiBcImxlZnRcIiwgcGFkZGluZ0lubmVyOiBuYXJyb3cgPyAwLjU1IDogMC4zfSxcbiAgbWFya3M6IFtcbiAgICBQbG90LmJhclgoY2FjaGVKb2JEaXNwbGF5LCB7eTogXCJjYXNlXCIsIHg6IFwiY29zdFwiLCBmaWxsOiBkID0+IGQubWVhc3VyZWQgPyBDLmFjY2VudCA6IEMubmV1dHJhbH0pLFxuICAgIFBsb3QudGV4dChjYWNoZUpvYkRpc3BsYXksIHt5OiBcImNhc2VcIiwgeDogXCJjb3N0XCIsIHRleHQ6IGQgPT4gdXNkKGQuY29zdCksIGR4OiA2LCB0ZXh0QW5jaG9yOiBcInN0YXJ0XCIsIGZpbGw6IEMuaW5rLCBmb250V2VpZ2h0OiA2MDB9KSxcbiAgICBuYXJyb3cgPyBsYWJlbEFib3ZlKGNhY2hlSm9iRGlzcGxheSwgXCJjYXNlXCIsIFwiY2FzZVwiLCAyMDAsIDAuNTUpIDogbnVsbFxuICBdXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC03IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiUGxvdC5wbG90KHtcbiAgLi4uY2hhcnRCYXNlKG5hcnJvdyA/IDI0MCA6IDIwMCksXG4gIG1hcmdpbkxlZnQ6IG5hcnJvdyA/IDggOiAyMjAsXG4gIG1hcmdpblJpZ2h0OiA4MCxcbiAgeDoge2xhYmVsOiBcIlJldmlld3MgdG8gbGFiZWxcIiwgZ3JpZDogdHJ1ZSwgZG9tYWluOiBbMCwgMjIwMDAwXSwgdGlja0Zvcm1hdDogZCA9PiBkMy5mb3JtYXQoXCJ+c1wiKShkKX0sXG4gIHk6IHtkb21haW46IHJlZHVjdGlvbi5tYXAoZCA9PiBkLnN0YWdlKSwgbGFiZWw6IG51bGwsIGF4aXM6IG5hcnJvdyA/IG51bGwgOiBcImxlZnRcIiwgcGFkZGluZ0lubmVyOiBuYXJyb3cgPyAwLjU1IDogMC4zfSxcbiAgbWFya3M6IFtcbiAgICBQbG90LmJhclgocmVkdWN0aW9uLCB7eTogXCJzdGFnZVwiLCB4OiBcInJldmlld3NcIiwgZmlsbDogZCA9PiBkLmVzdGltYXRlZCA/IEMuYWNjZW50U29mdCA6IGQuc3RhZ2UgPT09IFwiQWxsIHJldmlld3NcIiA/IEMubmV1dHJhbCA6IEMuYWNjZW50LCB0aXA6IHtmb3JtYXQ6IHt4OiBmbXR9fX0pLFxuICAgIFBsb3QudGV4dChyZWR1Y3Rpb24sIHt5OiBcInN0YWdlXCIsIHg6IFwicmV2aWV3c1wiLCB0ZXh0OiBkID0+IGQuZXN0aW1hdGVkID8gXCJ+OTUuNmsgKGVzdC4pXCIgOiBmbXQoZC5yZXZpZXdzKSwgZHg6IDYsIHRleHRBbmNob3I6IFwic3RhcnRcIiwgZmlsbDogQy5pbmssIGZvbnRXZWlnaHQ6IDYwMH0pLFxuICAgIG5hcnJvdyA/IGxhYmVsQWJvdmUocmVkdWN0aW9uLCBcInN0YWdlXCIsIFwic3RhZ2VcIiwgMjQwLCAwLjU1KSA6IG51bGxcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtOCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QucGxvdCh7XG4gIC4uLmNoYXJ0QmFzZShuYXJyb3cgPyAzMzAgOiAyNjApLFxuICBtYXJnaW5MZWZ0OiBuYXJyb3cgPyA4IDogMTkwLFxuICBtYXJnaW5SaWdodDogNzIsXG4gIHg6IHtsYWJlbDogXCJDb3N0IHBlciAxTSByZXZpZXdzIChVU0QpXCIsIGdyaWQ6IHRydWUsIGRvbWFpbjogWzAsIDE0MF19LFxuICB5OiB7ZG9tYWluOiBwYXlvZmZEaXNwbGF5Lm1hcChkID0+IGQuc3RlcCksIGxhYmVsOiBudWxsLCBheGlzOiBuYXJyb3cgPyBudWxsIDogXCJsZWZ0XCIsIHBhZGRpbmdJbm5lcjogbmFycm93ID8gMC41NSA6IDAuMjV9LFxuICBtYXJrczogW1xuICAgIFBsb3QuYmFyWChwYXlvZmZEaXNwbGF5LCB7eTogXCJzdGVwXCIsIHg6IFwiY29zdFwiLCBmaWxsOiBkID0+IGQubWVhc3VyZWQgPyBDLmFjY2VudCA6IEMubmV1dHJhbCwgdGlwOiB7Zm9ybWF0OiB7eDogdXNkfX19KSxcbiAgICBQbG90LnRleHQocGF5b2ZmRGlzcGxheSwge3k6IFwic3RlcFwiLCB4OiBcImNvc3RcIiwgdGV4dDogZCA9PiB1c2QoZC5jb3N0KSwgZHg6IDYsIHRleHRBbmNob3I6IFwic3RhcnRcIiwgZmlsbDogQy5pbmssIGZvbnRXZWlnaHQ6IDYwMH0pLFxuICAgIG5hcnJvdyA/IGxhYmVsQWJvdmUocGF5b2ZmRGlzcGxheSwgXCJzdGVwXCIsIFwic3RlcFwiLCAzMzAsIDAuNTUpIDogbnVsbFxuICBdXG59KVxuIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../posts/2026-06-01-topic-labeling-without-overpaying";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/consumer-insights-lab\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Consumer Insights Lab</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://github.com/consumer-insights-lab">
+<p>GitHub</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

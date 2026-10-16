@@ -1,0 +1,12 @@
+/* Article-specific process diagram and definition explorer. */
+.taxonomy-stages { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.4rem; margin:1.8rem 0; }
+.taxonomy-stage { border-top:2px solid var(--cat-accent); padding-top:.7rem; }
+.taxonomy-stage > p:first-child { font-size:2rem; color:var(--cat-ink); margin-bottom:.5rem; }
+.taxonomy-stage > p { font-size:15px; line-height:1.5; }
+.taxonomy-stage > p:last-child { color:var(--cat-sub); }
+.taxonomy-definitions dl > div,.taxonomy-boundary dl > div { padding:1rem 0; border-bottom:1px solid var(--cat-neutral); }
+.taxonomy-definitions dt,.taxonomy-boundary dt { font-size:17px; line-height:1.5; }
+.taxonomy-definitions dd,.taxonomy-boundary dd { margin:.4rem 0 0; color:var(--cat-sub); font-size:16px; line-height:1.6; }
+.taxonomy-count { color:var(--cat-sub); font-size:14px; margin-top:1rem; }
+.taxonomy-boundary > p:last-child { margin-top:1.2rem; font-size:17px; line-height:1.6; }
+@media(max-width:650px) { .taxonomy-stages { grid-template-columns:repeat(2,minmax(0,1fr)); } }

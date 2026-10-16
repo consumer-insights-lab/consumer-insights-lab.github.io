@@ -1,0 +1,1980 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Philipp Ahrens">
+<meta name="dcterms.date" content="2026-09-26">
+<meta name="description" content="Across 15 summary variants, only 1 to 3 of 7 rare topics survived clearly. Labeling individual texts preserved 5 to 7. Here is what that means for customer research.">
+
+<title>What LLM Summaries Miss in Customer Feedback – Consumer Insights Lab</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../assets/logo/cil-favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0fbde207ce81bf9426c5784a9eeeac32.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-edcd074f3279d486dc45f546d2ea2952.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-0fbde207ce81bf9426c5784a9eeeac32.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-ab0d50567a0d435f44aef41949094666.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-1df226be0be97fd31b3e42168101d5ba.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ab0d50567a0d435f44aef41949094666.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-fixed cat-article fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../assets/logo/cil-mark.svg" alt="" class="navbar-logo light-content">
+    <img src="../../assets/logo/cil-mark-dark.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Consumer Insights Lab</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../research.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../use-cases.html"> 
+<span class="menu-text">Analyses</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block cat-hero" data-hero="tail">
+<div class="cat-hero-meta">
+<span class="cat-hero-date">September 26, 2026</span>
+<span class="cat-hero-category">LLMs</span>
+<span class="cat-hero-category">topic modeling</span>
+<span class="cat-hero-category">consumer analytics</span>
+<span class="cat-hero-category">summarization</span>
+</div>
+<h1 class="title display-7">What LLM Summaries Miss in Customer Feedback</h1>
+<p class="subtitle lead">How summaries of customer feedback can lose rare issues, even when you ask for them.</p>
+</header>
+
+
+<!-- Generated by scripts/generate_average_trap_charts.py. Do not edit by hand. -->
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="71" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 70;"><span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>conditionRange <span class="op">=</span> [{<span class="st">"condition"</span><span class="op">:</span><span class="st">"Corpus summarization"</span><span class="op">,</span><span class="st">"minimum"</span><span class="op">:</span><span class="fl">14.3</span><span class="op">,</span><span class="st">"median"</span><span class="op">:</span><span class="fl">28.6</span><span class="op">,</span><span class="st">"maximum"</span><span class="op">:</span><span class="fl">42.9</span><span class="op">,</span><span class="st">"n"</span><span class="op">:</span><span class="dv">15</span>}<span class="op">,</span>{<span class="st">"condition"</span><span class="op">:</span><span class="st">"Record-level labeling"</span><span class="op">,</span><span class="st">"minimum"</span><span class="op">:</span><span class="fl">71.4</span><span class="op">,</span><span class="st">"median"</span><span class="op">:</span><span class="fl">85.7</span><span class="op">,</span><span class="st">"maximum"</span><span class="op">:</span><span class="fl">100.0</span><span class="op">,</span><span class="st">"n"</span><span class="op">:</span><span class="dv">2</span>}]</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>categorySurvival <span class="op">=</span> [{<span class="st">"category"</span><span class="op">:</span><span class="st">"QR-Code"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"rare"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">14</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">6.7</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">8</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:-</span><span class="dv">10</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"Gepäck"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">2</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"rare"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">3</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">7</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">5</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">20.0</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">8</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:</span><span class="dv">12</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"Gastronomisches Angebot"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">3</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"rare"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">14</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">0.0</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">8</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:-</span><span class="dv">10</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"Design"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">4</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"rare"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">4</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">11</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">0.0</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">8</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:</span><span class="dv">12</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"Reisen mit Kindern"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">7</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"rare"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">12</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">2</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">6.7</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">8</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:-</span><span class="dv">10</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"Toiletten"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">7</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"rare"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">13</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">86.7</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">8</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:</span><span class="dv">12</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"Barrierefreiheit"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">9</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"rare"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">11</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">2</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">2</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">73.3</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">8</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:-</span><span class="dv">10</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"Komfort und Ausstattung"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">24</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"low"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">13</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">2</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">86.7</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:</span><span class="dv">0</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"DB App und Website"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">28</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"low"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">14</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">93.3</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:</span><span class="dv">0</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"Auslastung und Platzangebot"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">35</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"low"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">100.0</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:</span><span class="dv">0</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"Connectivity"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">36</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"low"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">13</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">2</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">86.7</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:</span><span class="dv">0</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"Informationen"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">58</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"mid"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">100.0</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:</span><span class="dv">0</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"Service und Kundenbetreuung"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">63</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"mid"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">100.0</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:</span><span class="dv">0</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"Sicherheit"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">84</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"mid"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">100.0</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:</span><span class="dv">0</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"Ticketkauf"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">95</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"mid"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">12</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">3</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">80.0</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:</span><span class="dv">0</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"Atmosphäre"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">148</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"mid"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">2</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">13</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">13.3</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:</span><span class="dv">0</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"Sonstige Unregelmässigkeiten"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">224</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"mid"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">3</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">12</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">20.0</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:</span><span class="dv">0</span>}<span class="op">,</span>{<span class="st">"category"</span><span class="op">:</span><span class="st">"Zugfahrt"</span><span class="op">,</span><span class="st">"gold_docs"</span><span class="op">:</span><span class="dv">241</span><span class="op">,</span><span class="st">"band"</span><span class="op">:</span><span class="st">"mid"</span><span class="op">,</span><span class="st">"clear_summaries"</span><span class="op">:</span><span class="dv">9</span><span class="op">,</span><span class="st">"vague_summaries"</span><span class="op">:</span><span class="dv">6</span><span class="op">,</span><span class="st">"missed_summaries"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"total_summaries"</span><span class="op">:</span><span class="dv">15</span><span class="op">,</span><span class="st">"clear_rate"</span><span class="op">:</span><span class="fl">60.0</span><span class="op">,</span><span class="st">"label_dx"</span><span class="op">:</span><span class="dv">0</span><span class="op">,</span><span class="st">"label_dy"</span><span class="op">:</span><span class="dv">0</span>}]</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>promptCells <span class="op">=</span> [{<span class="st">"model"</span><span class="op">:</span><span class="st">"DeepSeek v4 flash"</span><span class="op">,</span><span class="st">"prompt"</span><span class="op">:</span><span class="st">"Naive"</span><span class="op">,</span><span class="st">"rare_clear"</span><span class="op">:</span><span class="fl">14.3</span>}<span class="op">,</span>{<span class="st">"model"</span><span class="op">:</span><span class="st">"DeepSeek v4 flash"</span><span class="op">,</span><span class="st">"prompt"</span><span class="op">:</span><span class="st">"Steelman"</span><span class="op">,</span><span class="st">"rare_clear"</span><span class="op">:</span><span class="fl">28.6</span>}<span class="op">,</span>{<span class="st">"model"</span><span class="op">:</span><span class="st">"DeepSeek v4 flash"</span><span class="op">,</span><span class="st">"prompt"</span><span class="op">:</span><span class="st">"Thorough"</span><span class="op">,</span><span class="st">"rare_clear"</span><span class="op">:</span><span class="fl">28.6</span>}<span class="op">,</span>{<span class="st">"model"</span><span class="op">:</span><span class="st">"GPT-5.1 · full context"</span><span class="op">,</span><span class="st">"prompt"</span><span class="op">:</span><span class="st">"Naive"</span><span class="op">,</span><span class="st">"rare_clear"</span><span class="op">:</span><span class="fl">14.3</span>}<span class="op">,</span>{<span class="st">"model"</span><span class="op">:</span><span class="st">"GPT-5.1 · full context"</span><span class="op">,</span><span class="st">"prompt"</span><span class="op">:</span><span class="st">"Steelman"</span><span class="op">,</span><span class="st">"rare_clear"</span><span class="op">:</span><span class="fl">28.6</span>}<span class="op">,</span>{<span class="st">"model"</span><span class="op">:</span><span class="st">"GPT-5.4 mini"</span><span class="op">,</span><span class="st">"prompt"</span><span class="op">:</span><span class="st">"Naive"</span><span class="op">,</span><span class="st">"rare_clear"</span><span class="op">:</span><span class="fl">28.6</span>}<span class="op">,</span>{<span class="st">"model"</span><span class="op">:</span><span class="st">"GPT-5.4 mini"</span><span class="op">,</span><span class="st">"prompt"</span><span class="op">:</span><span class="st">"Steelman"</span><span class="op">,</span><span class="st">"rare_clear"</span><span class="op">:</span><span class="fl">14.3</span>}<span class="op">,</span>{<span class="st">"model"</span><span class="op">:</span><span class="st">"GPT-5.4 mini"</span><span class="op">,</span><span class="st">"prompt"</span><span class="op">:</span><span class="st">"Thorough"</span><span class="op">,</span><span class="st">"rare_clear"</span><span class="op">:</span><span class="fl">14.3</span>}]</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>datasetRange <span class="op">=</span> [{<span class="st">"dataset"</span><span class="op">:</span><span class="st">"GermEval"</span><span class="op">,</span><span class="st">"condition"</span><span class="op">:</span><span class="st">"Corpus summarization"</span><span class="op">,</span><span class="st">"minimum"</span><span class="op">:</span><span class="fl">14.3</span><span class="op">,</span><span class="st">"maximum"</span><span class="op">:</span><span class="fl">42.9</span>}<span class="op">,</span>{<span class="st">"dataset"</span><span class="op">:</span><span class="st">"GermEval"</span><span class="op">,</span><span class="st">"condition"</span><span class="op">:</span><span class="st">"Record-level labeling"</span><span class="op">,</span><span class="st">"minimum"</span><span class="op">:</span><span class="fl">71.4</span><span class="op">,</span><span class="st">"maximum"</span><span class="op">:</span><span class="fl">100.0</span>}<span class="op">,</span>{<span class="st">"dataset"</span><span class="op">:</span><span class="st">"M-ABSA"</span><span class="op">,</span><span class="st">"condition"</span><span class="op">:</span><span class="st">"Corpus summarization"</span><span class="op">,</span><span class="st">"minimum"</span><span class="op">:</span><span class="fl">0.0</span><span class="op">,</span><span class="st">"maximum"</span><span class="op">:</span><span class="fl">66.7</span>}<span class="op">,</span>{<span class="st">"dataset"</span><span class="op">:</span><span class="st">"M-ABSA"</span><span class="op">,</span><span class="st">"condition"</span><span class="op">:</span><span class="st">"Record-level labeling"</span><span class="op">,</span><span class="st">"minimum"</span><span class="op">:</span><span class="fl">100.0</span><span class="op">,</span><span class="st">"maximum"</span><span class="op">:</span><span class="fl">100.0</span>}]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="139" data-source-offset="-82"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 138;"><span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a>themedSelect <span class="op">=</span> (values<span class="op">,</span> options) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> form <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(values<span class="op">,</span> options)<span class="op">;</span></span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> select <span class="op">=</span> form<span class="op">.</span><span class="fu">querySelector</span>(<span class="st">"select"</span>)<span class="op">;</span></span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (select) {</span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">const</span> [property<span class="op">,</span> value] <span class="kw">of</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">entries</span>({</span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a>      <span class="st">"appearance"</span><span class="op">:</span> <span class="st">"none"</span><span class="op">,</span></span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a>      <span class="st">"-webkit-appearance"</span><span class="op">:</span> <span class="st">"none"</span><span class="op">,</span></span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a>      <span class="st">"background-color"</span><span class="op">:</span> <span class="st">"var(--cat-panel)"</span><span class="op">,</span></span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a>      <span class="st">"color"</span><span class="op">:</span> <span class="st">"var(--cat-ink)"</span><span class="op">,</span></span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a>      <span class="st">"-webkit-text-fill-color"</span><span class="op">:</span> <span class="st">"var(--cat-ink)"</span><span class="op">,</span></span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a>      <span class="st">"border"</span><span class="op">:</span> <span class="st">"1px solid var(--cat-sub)"</span><span class="op">,</span></span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a>      <span class="st">"border-radius"</span><span class="op">:</span> <span class="st">"6px"</span><span class="op">,</span></span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a>      <span class="st">"padding"</span><span class="op">:</span> <span class="st">"0.35em 1.75rem 0.35em 0.5em"</span></span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a>    })) select<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="fu">setProperty</span>(property<span class="op">,</span> value<span class="op">,</span> <span class="st">"important"</span>)<span class="op">;</span></span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">const</span> option <span class="kw">of</span> select<span class="op">.</span><span class="at">options</span>) {</span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a>      option<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">backgroundColor</span> <span class="op">=</span> <span class="st">"var(--cat-panel)"</span><span class="op">;</span></span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>      option<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">color</span> <span class="op">=</span> <span class="st">"var(--cat-ink)"</span><span class="op">;</span></span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> form<span class="op">;</span></span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a><span class="co">// Colours come from the page's CSS tokens and update when the reader switches light/dark.</span></span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> Generators<span class="op">.</span><span class="fu">observe</span>(notify <span class="kw">=&gt;</span> {</span>
+<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> read <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> css <span class="op">=</span> <span class="fu">getComputedStyle</span>(<span class="bu">document</span><span class="op">.</span><span class="at">documentElement</span>)<span class="op">;</span></span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> v <span class="op">=</span> name <span class="kw">=&gt;</span> css<span class="op">.</span><span class="fu">getPropertyValue</span>(name)<span class="op">.</span><span class="fu">trim</span>()<span class="op">;</span></span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="dt">ink</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-ink"</span>)<span class="op">,</span> <span class="dt">sub</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-sub"</span>)<span class="op">,</span> <span class="dt">muted</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-muted"</span>)<span class="op">,</span> <span class="dt">neutral</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-neutral"</span>)<span class="op">,</span> <span class="dt">panel</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-panel"</span>)<span class="op">,</span> <span class="dt">accent</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-accent"</span>)<span class="op">,</span> <span class="dt">accentSoft</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-accent-soft"</span>)<span class="op">,</span> <span class="dt">positive</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-positive"</span>)<span class="op">,</span> <span class="dt">bg</span><span class="op">:</span> <span class="fu">v</span>(<span class="st">"--cat-bg"</span>)}<span class="op">;</span></span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> last <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(<span class="fu">read</span>())<span class="op">;</span></span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">notify</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(last))<span class="op">;</span></span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Re-read a few times: the swapped stylesheet can apply a moment after the switch.</span></span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> refresh <span class="op">=</span> () <span class="kw">=&gt;</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">150</span><span class="op">,</span> <span class="dv">500</span><span class="op">,</span> <span class="dv">1200</span>]<span class="op">.</span><span class="fu">forEach</span>(ms <span class="kw">=&gt;</span> <span class="pp">setTimeout</span>(() <span class="kw">=&gt;</span> {</span>
+<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> next <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(<span class="fu">read</span>())<span class="op">;</span></span>
+<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (next <span class="op">!==</span> last) { last <span class="op">=</span> next<span class="op">;</span> <span class="fu">notify</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(next))<span class="op">;</span> }</span>
+<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span> ms))<span class="op">;</span></span>
+<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Quarto switches themes by swapping stylesheet link attributes in &lt;head&gt;.</span></span>
+<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> observer <span class="op">=</span> <span class="kw">new</span> <span class="bu">MutationObserver</span>(refresh)<span class="op">;</span></span>
+<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a>  observer<span class="op">.</span><span class="fu">observe</span>(<span class="bu">document</span><span class="op">.</span><span class="at">head</span><span class="op">,</span> {<span class="dt">subtree</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">attributes</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">attributeFilter</span><span class="op">:</span> [<span class="st">"rel"</span><span class="op">,</span> <span class="st">"disabled"</span>]})<span class="op">;</span></span>
+<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a>  observer<span class="op">.</span><span class="fu">observe</span>(<span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">,</span> {<span class="dt">attributes</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">attributeFilter</span><span class="op">:</span> [<span class="st">"class"</span>]})<span class="op">;</span></span>
+<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> () <span class="kw">=&gt;</span> observer<span class="op">.</span><span class="fu">disconnect</span>()<span class="op">;</span></span>
+<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>chartWidth <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">960</span><span class="op">,</span> (<span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">".chart-shell"</span>) <span class="op">||</span> <span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">"main.content"</span>))<span class="op">.</span><span class="at">clientWidth</span>)</span>
+<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a>narrow <span class="op">=</span> chartWidth <span class="op">&lt;</span> <span class="dv">520</span></span>
+<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a>fmt <span class="op">=</span> d3<span class="op">.</span><span class="fu">format</span>(<span class="st">","</span>)</span>
+<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a>usd <span class="op">=</span> d <span class="kw">=&gt;</span> <span class="st">"$"</span> <span class="op">+</span> d3<span class="op">.</span><span class="fu">format</span>(<span class="st">",.2f"</span>)(d)</span>
+<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a><span class="co">// Label drawn above each horizontal bar on narrow screens (chartBase margins: 34 top, 44 bottom).</span></span>
+<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a>labelAbove <span class="op">=</span> (data<span class="op">,</span> y<span class="op">,</span> text<span class="op">,</span> h<span class="op">,</span> pad) <span class="kw">=&gt;</span> Plot<span class="op">.</span><span class="fu">text</span>(data<span class="op">,</span> {y<span class="op">,</span> <span class="dt">frameAnchor</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> text<span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"start"</span><span class="op">,</span> <span class="dt">lineAnchor</span><span class="op">:</span> <span class="st">"bottom"</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span>((h <span class="op">-</span> <span class="dv">78</span>) <span class="op">/</span> data<span class="op">.</span><span class="at">length</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> pad)) <span class="op">/</span> <span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> C<span class="op">.</span><span class="at">ink</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">12</span>})</span>
+<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>chartBase <span class="op">=</span> h <span class="kw">=&gt;</span> ({</span>
+<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> chartWidth<span class="op">,</span></span>
+<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> h<span class="op">,</span></span>
+<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">34</span><span class="op">,</span></span>
+<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">16</span><span class="op">,</span></span>
+<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">44</span><span class="op">,</span></span>
+<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">56</span><span class="op">,</span></span>
+<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"Inter, -apple-system, sans-serif"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> C<span class="op">.</span><span class="at">sub</span><span class="op">,</span> <span class="dt">background</span><span class="op">:</span> <span class="st">"transparent"</span><span class="op">,</span> <span class="dt">overflow</span><span class="op">:</span> <span class="st">"visible"</span>}</span>
+<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="lede">
+<p>A summary can capture the main themes in thousands of customer comments and still leave out a small group whose experience matters. In our comparison, even prompts that explicitly asked for rare issues did not reliably preserve them.</p>
+</div>
+<p>Imagine using a summary of rail passengers’ feedback to decide what deserves a closer look. It covers delays, service, and ticketing. But does its silence about travelling with children mean nobody raised the issue, or that the issue disappeared during summarization? The summary alone cannot tell you.</p>
+<p>We tested this problem on public text with human annotations. Across 15 summaries of 2,095 posts about Deutsche Bahn, only <strong>1 to 3 of 7 rare topics</strong> were clearly preserved. Labeling each post individually retained at least one correctly labeled example for <strong>5 of 7 topics with one model and all 7 with another</strong>.</p>
+<p>That is what we call the <em>average trap</em>: a readable account of the main themes can be mistaken for a complete account of the evidence. The question is how to keep smaller issues visible while still producing a useful overview.</p>
+<p>Scroll through the steps below to see the result before the details.</p>
+<div class="scrolly" id="tail-story">
+  <div class="scrolly-graphic" aria-hidden="true">
+    <div class="tail" data-step="0">
+      <svg class="tail-svg" viewbox="0 0 640 430"></svg>
+      <p class="tail-note">Each dot is one human topic tag on a GermEval post (1,069 tags in 18 categories, catch-all excluded). Grey dots are common topics, blue dots the seven rare topics.</p>
+    </div>
+  </div>
+
+  <div class="scrolly-steps">
+    <div class="scrolly-step" data-step="0"><p><strong>Start with the evidence.</strong> 2,095 posts about Deutsche Bahn, tagged by human annotators. Each dot is one tag. The blue ones are easy to miss already: together they are 33 of 1,069.</p></div>
+    <div class="scrolly-step" data-step="1"><p><strong>Group the tags by topic.</strong> A few large themes dominate, led by the train journey itself and other irregularities. Seven topics have ten or fewer posts each: the long tail.</p></div>
+    <div class="scrolly-step" data-step="2"><p><strong>Summarize, and the tail fades.</strong> A summary describes what is common. Across 15 summaries, only 1 to 3 of the 7 rare topics were clearly covered. The numbers show in how many summaries each one was clear.</p></div>
+    <div class="scrolly-step" data-step="3"><p><strong>Size is not the whole story.</strong> Toilets and travelling with children both had seven posts. Toilets were clear in 13 of 15 summaries, travelling with children in one.</p></div>
+    <div class="scrolly-step" data-step="4"><p><strong>Label first, then count.</strong> Labeling each post on its own keeps every dot addressable. One labeling run kept a correct example of all 7 rare topics, the other of 5. The overview can then be written from counts that still include the tail.</p></div>
+  </div>
+</div>
+<script>
+(function () {
+  var root = document.getElementById("tail-story");
+  if (!root) return;
+  var tail = root.querySelector(".tail");
+  var svg = root.querySelector(".tail-svg");
+  var steps = root.querySelectorAll(".scrolly-step");
+  var NS = "http://www.w3.org/2000/svg";
+
+  // Counts from the GermEval evaluation (categorySurvival); clear = summaries with clear coverage, of 15.
+  // [name, tags, x, y, label baseline]
+  var big = [
+    ["Train journey", 241, 62, 104, 172], ["Other irregularities", 224, 180, 104, 172], ["Atmosphere", 148, 284, 104, 172],
+    ["Ticket purchase", 95, 364, 104, 172], ["Safety", 84, 56, 240, 290], ["Service", 63, 148, 240, 290],
+    ["Information", 58, 240, 240, 290], ["Connectivity", 36, 342, 240, 290], ["Crowding and seating", 35, 76, 350, 390],
+    ["App and website", 28, 212, 350, 390], ["Comfort", 24, 330, 350, 390]
+  ];
+  var rare = [
+    ["Accessibility", 9, 11], ["Toilets", 7, 13], ["With children", 7, 1], ["Design", 4, 0],
+    ["Catering", 3, 0], ["Luggage", 2, 3], ["QR codes", 1, 1]
+  ];
+  var S = 3.1, R = 1.9;
+  var seed = 7;
+  function rand() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+  function spiral(n, cx, cy) {
+    var pts = [];
+    for (var i = 0; i < n; i++) {
+      var r = S * Math.sqrt(i + 0.5), a = i * 2.39996;
+      pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]);
+    }
+    return pts;
+  }
+  function el(name, attrs, parent) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    (parent || svg).appendChild(e);
+    return e;
+  }
+
+  var dotsG = el("g", {"class": "tail-dots"});
+  var labelsG = el("g", {"class": "tail-labels"});
+  var dots = [];
+  function addCluster(name, n, cx, cy, isRare, extra) {
+    spiral(n, cx, cy).forEach(function (p) {
+      var c = el("circle", {r: isRare ? R + 0.6 : R, "class": "tail-dot" + (isRare ? " is-rare" : "") + (extra ? " " + extra : "")}, dotsG);
+      c.style.transitionDelay = Math.round(rand() * 350) + "ms";
+      dots.push({el: c, home: p, start: [20 + rand() * 600, 20 + rand() * 390]});
+    });
+  }
+  big.forEach(function (b, i) {
+    addCluster(b[0], b[1], b[2], b[3], false);
+    var t = el("text", {x: b[2], y: b[4], "text-anchor": "middle", "class": "tail-label"}, labelsG);
+    t.textContent = b[0];
+  });
+  rare.forEach(function (r, i) {
+    var y = 44 + i * 58, cx = 446;
+    var slug = r[0] === "Toilets" ? "is-toilets" : r[0] === "With children" ? "is-children" : "";
+    addCluster(r[0], r[1], cx, y, true, slug);
+    var t = el("text", {x: cx + 22, y: y + 4, "class": "tail-label tail-rare-label " + slug}, labelsG);
+    t.textContent = r[0];
+    var s = el("text", {x: cx + 22, y: y + 20, "class": "tail-score " + slug}, labelsG);
+    s.textContent = "clear in " + r[2] + " of 15";
+    var k = el("text", {x: cx + 22, y: y + 20, "class": "tail-kept"}, labelsG);
+    k.textContent = "labeled ✓";
+  });
+  el("text", {x: 446, y: 16, "class": "tail-head"}, labelsG).textContent = "Rare topics (≤ 10 posts)";
+  el("text", {x: 22, y: 16, "class": "tail-head"}, labelsG).textContent = "Common topics (24 to 241 posts)";
+
+  function place(clustered) {
+    dots.forEach(function (d) {
+      var p = clustered ? d.home : d.start;
+      d.el.style.transform = "translate(" + p[0].toFixed(1) + "px," + p[1].toFixed(1) + "px)";
+    });
+  }
+  place(false);
+
+  function show(step) {
+    tail.setAttribute("data-step", step);
+    place(Number(step) >= 1);
+    steps.forEach(function (s) { s.classList.toggle("is-active", s.getAttribute("data-step") === String(step)); });
+  }
+  // The active step is the last one whose top has passed the middle of the screen.
+  var current = null;
+  function update() {
+    var mid = window.innerHeight * 0.55, active = steps[0].getAttribute("data-step");
+    steps.forEach(function (s) { if (s.getBoundingClientRect().top < mid) active = s.getAttribute("data-step"); });
+    if (active !== current) { current = active; show(active); }
+  }
+  var queued = false;
+  window.addEventListener("scroll", function () {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(function () { queued = false; update(); });
+  }, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+})();
+</script>
+<section id="two-ways-to-turn-comments-into-an-overview" class="level2">
+<h2 data-anchor-id="two-ways-to-turn-comments-into-an-overview">Two ways to turn comments into an overview</h2>
+<p>The main benchmark was the <code>test_syn</code> portion of GermEval 2017: 2,095 German social and web posts about Deutsche Bahn. Human annotators had assigned topic categories to the posts, giving us a reference against which to check the models. After excluding the broad catch-all category <code>Allgemein</code>, 18 categories remained.</p>
+<p>We called a category <strong>rare if it appeared in ten or fewer documents</strong>. Seven met that definition, ranging from QR codes in one document to accessibility in nine. These small categories form the <em>long tail</em>: issues that occur infrequently but may still matter to the people affected.</p>
+<p>We compared two approaches. <strong>Corpus summarization</strong> asks the model to turn the collection into prose, either in one request or by summarizing chunks and then combining those summaries. <strong>Record-level labeling</strong> applies a known set of categories to each document separately and then aggregates the results.</p>
+<p>The distinction is easiest to see with luggage, which appeared in two human-annotated documents. A summary might discuss luggage explicitly, fold it into a broad statement about comfort, or leave it out. A labeling system can attach the luggage category to the individual posts, allowing a reader to count and inspect them later. It can also get those labels wrong, so both approaches need checking.</p>
+<p>For summaries, an LLM judge compared the final text with the human category inventory and classified each topic as <strong>clearly covered, vaguely covered, or absent</strong>. Positive verdicts required a supporting quotation. An independent audit checked those quotations and reproduced the aggregate results from the saved outputs, although some category matches remained open to interpretation.</p>
+<p>For labeling, a rare category counted as preserved only if the model assigned it to <strong>at least one document that also carried that category in the human annotations</strong>. Emitting a label on an unrelated document did not count. This measures whether a topic survives somewhere in the output; it does not measure whether every relevant document was found or every assigned label was correct.</p>
+</section>
+<section id="how-many-rare-topics-survived" class="level2">
+<h2 data-anchor-id="how-many-rare-topics-survived">How many rare topics survived?</h2>
+<p>The 15 GermEval summary variants clearly covered between one and three of the seven rare categories. The two labeling runs retained five and seven respectively: five with GPT-5.4 mini and seven with DeepSeek v4 flash.</p>
+<div class="chart-shell">
+<p><span class="chart-title">Summaries preserved 1–3 rare topics; individual labels preserved 5–7.</span> <span class="chart-subtitle">Observed ranges across 15 summary variants and two labeling runs. A topic survives in the labeling result only if at least one assigned document matches the human annotation.</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="0" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line -1;"><span id="cb3-0"><a href="#cb3-0" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span><span class="fu">chartBase</span>(<span class="dv">250</span>)<span class="op">,</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> narrow <span class="op">?</span> <span class="dv">16</span> <span class="op">:</span> <span class="dv">174</span><span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">24</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Rare topics preserved (out of 7)"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">7</span>]<span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">ticks</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span>]<span class="op">,</span> <span class="dt">tickFormat</span><span class="op">:</span> d <span class="kw">=&gt;</span> d}<span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="st">"Corpus summarization"</span><span class="op">,</span> <span class="st">"Record-level labeling"</span>]<span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">axis</span><span class="op">:</span> narrow <span class="op">?</span> <span class="kw">null</span> <span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">padding</span><span class="op">:</span> <span class="fl">0.5</span>}<span class="op">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>(conditionRange<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"condition"</span><span class="op">,</span> <span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(d<span class="op">.</span><span class="at">minimum</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">/</span> <span class="dv">100</span>)<span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(d<span class="op">.</span><span class="at">maximum</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">/</span> <span class="dv">100</span>)<span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">condition</span> <span class="op">===</span> <span class="st">"Record-level labeling"</span> <span class="op">?</span> C<span class="op">.</span><span class="at">accent</span> <span class="op">:</span> C<span class="op">.</span><span class="at">neutral</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">8</span>})<span class="op">,</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(conditionRange<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"condition"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(d<span class="op">.</span><span class="at">minimum</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">/</span> <span class="dv">100</span>)<span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> C<span class="op">.</span><span class="at">panel</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> C<span class="op">.</span><span class="at">ink</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">5</span>})<span class="op">,</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(conditionRange<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"condition"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(d<span class="op">.</span><span class="at">maximum</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">/</span> <span class="dv">100</span>)<span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> C<span class="op">.</span><span class="at">panel</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> C<span class="op">.</span><span class="at">ink</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">5</span>})<span class="op">,</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>(narrow <span class="op">?</span> [Plot<span class="op">.</span><span class="fu">text</span>(conditionRange<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"condition"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"condition"</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"start"</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">24</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> C<span class="op">.</span><span class="at">ink</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="dv">600</span>})] <span class="op">:</span> [])<span class="op">,</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> C<span class="op">.</span><span class="at">ink</span>})</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p><span class="chart-source">Source: GermEval summary coverage scores and labeling evaluations against human annotations. Ranges describe the tested configurations, not statistical confidence intervals.</span></p>
+</div>
+<p>The summary variants included different models, prompts, output lengths, input orders, and chunk sizes. None reached the rare-topic coverage of either labeling run. This is a comparison of the configurations we tested, rather than evidence that every possible summary would behave the same way.</p>
+<p>A second benchmark showed the same direction. M-ABSA contained 538 short restaurant-review sentences and three rare categories. Its summaries clearly preserved between zero and two of those categories; all three labeling models retained at least one correct example of all three.</p>
+<p>The main result is therefore about <strong>topic coverage</strong>, not overall model accuracy. Finding one correct luggage example keeps that category visible. It says nothing by itself about how many other luggage references the model missed or how often it applied the label incorrectly.</p>
+</section>
+<section id="what-disappeared-and-what-became-vague" class="level2">
+<h2 data-anchor-id="what-disappeared-and-what-became-vague">What disappeared, and what became vague?</h2>
+<p>A single coverage score hides an important distinction. A topic can be absent from the summary, or it can survive only as a vague reference that is hard to recognize as a separate issue. The table separates those outcomes for each rare GermEval category.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Rare topic</th>
+<th style="text-align: right;">Source documents</th>
+<th style="text-align: right;">Clear</th>
+<th style="text-align: right;">Vague</th>
+<th style="text-align: right;">Absent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>QR codes</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1*</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="even">
+<td>Luggage</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="odd">
+<td>Catering</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="even">
+<td>Design</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="odd">
+<td>Travelling with children</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td>Toilets</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td>Accessibility</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+<p><em>Source documents</em> counts human-annotated posts. <em>Clear</em>, <em>Vague</em>, and <em>Absent</em> count summaries and add up to 15 in each row. Topic names are translated from the German categories. The asterisk marks a borderline judgment discussed below.</p>
+<p>Travelling with children and toilets each appeared in seven documents, yet their outcomes differed sharply. Toilets received clear treatment in 13 summaries; travelling with children did so in only one. Frequency alone therefore does not explain which topics survived. Some issues may be easier to name distinctly, while others may be absorbed into broader themes, but this experiment does not isolate those causes.</p>
+<p>Catering and design never received clear treatment. Every rare category was absent from at least one summary. By contrast, every category represented by 24 or more documents appeared at least vaguely in all 15 summaries. The summaries could capture the major themes while still providing an incomplete view of the smaller ones.</p>
+<section id="the-qr-code-example" class="level3">
+<h3 data-anchor-id="the-qr-code-example">The QR-code example</h3>
+<p>The most extreme case was the category represented by a single document. Fourteen summaries omitted QR codes entirely. The fifteenth received credit for clear coverage because it mentioned “QR/PDF tickets” within a broader discussion of digital services. The audit flagged that verdict as borderline: the phrase named the subject, but did not clearly develop it as a distinct issue.</p>
+<p>We retain the original score in the table and headline results. A stricter judgment would count no clear QR-code coverage at all. This illustrates why the difference between a passing mention and meaningful coverage needs to be visible to the reader.</p>
+<p>The DeepSeek labeling run correctly labeled the source document; the other labeling model missed it. Individual labeling did not eliminate errors, but it left a result that could be checked against that specific post. A prose summary can also be audited, as we did here, but that requires returning to the source material to find out what is missing.</p>
+</section>
+</section>
+<section id="can-a-better-prompt-or-more-context-fix-it" class="level2">
+<h2 data-anchor-id="can-a-better-prompt-or-more-context-fix-it">Can a better prompt or more context fix it?</h2>
+<p>The experiment tested more than a short request for the main themes. Summary prompts ranged from a basic management overview to a detailed inventory and an explicit request to preserve rare, minority, and contradictory views. Output targets were roughly 300 or 1,200 words; some responses exceeded those targets.</p>
+<p>For larger workflows, we tested summarizing chunks and then combining their summaries, often called <em>map-reduce</em>. The variations included chunks of 50, 100, and 200 documents, as well as shuffled document order. We also tested putting all 2,095 documents into a single context, so there was no intermediate summary in which information could disappear.</p>
+<p>The chart below focuses on the long-output prompt comparisons. Within this subset, no result clearly preserved more than two of the seven rare categories. The three-category maximum reported earlier came from another configuration in the broader experiment.</p>
+<div class="chart-shell">
+<p><span class="chart-title">Explicit requests for rare issues did not consistently improve coverage.</span> <span class="chart-subtitle">Long-output prompt comparisons. “Rare-aware” asks for rare, minority, and contradictory views. GPT-5.1 received the full corpus in one request; its detailed-inventory variant was not tested here.</span></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="0" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line -1;"><span id="cb4-0"><a href="#cb4-0" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span><span class="fu">chartBase</span>(<span class="dv">350</span>)<span class="op">,</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">44</span><span class="op">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="st">"Naive"</span><span class="op">,</span> <span class="st">"Thorough"</span><span class="op">,</span> <span class="st">"Steelman"</span>]<span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">tickFormat</span><span class="op">:</span> d <span class="kw">=&gt;</span> ({<span class="dt">Naive</span><span class="op">:</span> <span class="st">"Basic"</span><span class="op">,</span> <span class="dt">Thorough</span><span class="op">:</span> <span class="st">"Detailed"</span><span class="op">,</span> <span class="dt">Steelman</span><span class="op">:</span> <span class="st">"Rare-aware"</span>}[d])}<span class="op">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">7</span>]<span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Rare topics preserved (out of 7)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">ticks</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span>]<span class="op">,</span> <span class="dt">tickFormat</span><span class="op">:</span> d <span class="kw">=&gt;</span> d}<span class="op">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="st">"DeepSeek v4 flash"</span><span class="op">,</span> <span class="st">"GPT-5.4 mini"</span><span class="op">,</span> <span class="st">"GPT-5.1 · full context"</span>]<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [C<span class="op">.</span><span class="at">accent</span><span class="op">,</span> C<span class="op">.</span><span class="at">ink</span><span class="op">,</span> C<span class="op">.</span><span class="at">positive</span>]<span class="op">,</span> <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">5</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> C<span class="op">.</span><span class="at">neutral</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,4"</span>})<span class="op">,</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>([{<span class="dt">prompt</span><span class="op">:</span> <span class="st">"Thorough"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Lower labeling result: 5 of 7"</span>}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"prompt"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"value"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"label"</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"middle"</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">9</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> C<span class="op">.</span><span class="at">sub</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">11</span>})<span class="op">,</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>[<span class="st">"DeepSeek v4 flash"</span><span class="op">,</span> <span class="st">"GPT-5.4 mini"</span><span class="op">,</span> <span class="st">"GPT-5.1 · full context"</span>]<span class="op">.</span><span class="fu">map</span>((model<span class="op">,</span> i) <span class="kw">=&gt;</span> Plot<span class="op">.</span><span class="fu">dot</span>(promptCells<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">model</span> <span class="op">===</span> model)<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"prompt"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(d<span class="op">.</span><span class="at">rare_clear</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">/</span> <span class="dv">100</span>)<span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"model"</span><span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> (i <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> <span class="dv">8</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="fl">4.5</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">model</span><span class="sc">}\n${</span>({<span class="dt">Naive</span><span class="op">:</span> <span class="st">"Basic"</span><span class="op">,</span> <span class="dt">Thorough</span><span class="op">:</span> <span class="st">"Detailed"</span><span class="op">,</span> <span class="dt">Steelman</span><span class="op">:</span> <span class="st">"Rare-aware"</span>})[d<span class="op">.</span><span class="at">prompt</span>]<span class="sc">}</span><span class="vs">: </span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(d<span class="op">.</span><span class="at">rare_clear</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">/</span> <span class="dv">100</span>)<span class="sc">}</span><span class="vs"> of 7 topics`</span>}))<span class="op">,</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> C<span class="op">.</span><span class="at">ink</span>})</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p><span class="chart-source">Source: long-output GermEval prompt comparisons. Each dot is one tested configuration; dots are offset slightly to keep overlapping results visible.</span></p>
+</div>
+<p>Compared with the basic prompt, the explicit rare-topic request recovered one additional category for DeepSeek and full-context GPT-5.1, but lost one for GPT-5.4 mini. With one run per configuration, these small differences are not a reliable ranking of prompt strategies. They do show that asking for rare issues was insufficient to produce a complete inventory in these tests.</p>
+<p>The full-context result matters because it rules out one explanation for those particular omissions: nothing had been discarded by an earlier chunk summary. In a map-reduce workflow, that is an additional risk: a final summary that only sees intermediate summaries cannot reliably recover an issue they omitted. When all documents are available, omissions can still occur. These results establish that behavior; they do not establish the model’s internal reason for selecting some topics over others.</p>
+</section>
+<section id="what-the-comparison-can-and-cannot-tell-us" class="level2">
+<h2 data-anchor-id="what-the-comparison-can-and-cannot-tell-us">What the comparison can and cannot tell us</h2>
+<p>The findings support a practical concern about completeness, with several limits on how far to take the numbers.</p>
+<p>First, this was a comparison on <strong>two public benchmarks with known categories</strong>. It does not test whether a topic-discovery process would find every rare issue, or establish expected coverage for another industry or dataset. Labeling can only preserve a category if the schema provides somewhere for it to go.</p>
+<p>Second, each summarization configuration was run once. The observed gap is worth investigating, but these ranges are not confidence intervals. More repeated runs would be needed to estimate how stable each configuration’s score is.</p>
+<p>Third, the outputs and their scoring differ. A summary gets credit for clearly discussing a category; labeling gets credit for at least one correct document assignment. This provides a useful comparison of whether topics remain visible, but <strong>100% category survival is not 100% labeling accuracy</strong>. Rare labels can still have low precision, meaning many documents assigned to a category do not belong there.</p>
+<p>Finally, an LLM judged the summaries. Supporting quotations and an independent audit make those judgments inspectable, but they do not remove ambiguity. The QR-code example shows that even a quoted phrase can support more than one reasonable interpretation.</p>
+</section>
+<section id="keep-the-evidence-before-writing-the-overview" class="level2">
+<h2 data-anchor-id="keep-the-evidence-before-writing-the-overview">Keep the evidence before writing the overview</h2>
+<p>A summary is useful when the task is to get oriented quickly. When the task involves counting issues, investigating small groups, or tracing a finding back to the people who raised it, the underlying records need to remain part of the analysis.</p>
+<p>A practical workflow is to define or discover the categories, label each document, retain the source references, and check the resulting assignments. Counts and filters can then identify both common themes and smaller groups for closer inspection. The written overview comes after that evidence is available.</p>
+<div class="flow">
+<div class="flow-step">
+<p><span class="flow-num">01</span> <span class="flow-title">Define the categories</span> <span class="flow-note">Give distinct issues a place in the schema.</span> <span class="flow-handoff">Apply to each document</span></p>
+</div>
+<div class="flow-step is-key">
+<p><span class="flow-num">02</span> <span class="flow-title">Label and retain evidence</span> <span class="flow-note">Keep each assignment linked to its source.</span> <span class="flow-handoff">Check assignments</span></p>
+</div>
+<div class="flow-step">
+<p><span class="flow-num">03</span> <span class="flow-title">Count and inspect</span> <span class="flow-note">Examine smaller groups as well as major themes.</span> <span class="flow-handoff">Select findings</span></p>
+</div>
+<div class="flow-step">
+<p><span class="flow-num">04</span> <span class="flow-title">Write the overview</span> <span class="flow-note">Explain the findings with counts and examples.</span></p>
+</div>
+</div>
+<p>For the rail-feedback example, this means a reader can open the posts labeled as travelling with children and check what they say. If that topic is missing from the final overview, its evidence is still available. Checking a sample of the original posts also helps reveal issues the labeling step missed.</p>
+<p>The goal is an overview whose omissions can be investigated. Keeping document-level evidence makes that possible without asking a few paragraphs to carry the entire dataset.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+// Article outline: a sticky list in the left margin on wide screens and a
+// sticky "current section" bar with a dropdown on narrow screens.
+(function () {
+  "use strict";
+
+  function init() {
+    if (!document.body.classList.contains("cat-article")) return;
+    var main = document.querySelector("main.content");
+    if (!main) return;
+    var headings = Array.prototype.filter.call(
+      main.querySelectorAll("h2[id], section.level2 > h2"),
+      function (h) { return !h.closest(".panel-tabset"); }
+    );
+    headings.forEach(function (h) {
+      if (!h.id && h.parentElement.id) h.id = h.parentElement.id + "-h";
+    });
+    headings = headings.filter(function (h) { return h.id; });
+    if (headings.length < 2) return;
+
+    var side = document.createElement("nav");
+    side.className = "cat-outline";
+    side.setAttribute("aria-label", "On this page");
+    var list = document.createElement("ol");
+    side.appendChild(list);
+
+    var bar = document.createElement("div");
+    bar.className = "cat-outline-bar";
+    var toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "cat-outline-toggle";
+    toggle.setAttribute("aria-expanded", "false");
+    var current = document.createElement("span");
+    current.className = "cat-outline-current";
+    toggle.appendChild(current);
+    var chevron = document.createElement("span");
+    chevron.className = "cat-outline-chevron";
+    chevron.setAttribute("aria-hidden", "true");
+    toggle.appendChild(chevron);
+    var menu = document.createElement("ol");
+    menu.className = "cat-outline-menu";
+    menu.hidden = true;
+    bar.appendChild(toggle);
+    bar.appendChild(menu);
+
+    var links = [];
+    headings.forEach(function (h) {
+      var label = h.textContent.trim();
+      [list, menu].forEach(function (target) {
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        a.href = "#" + h.id;
+        a.textContent = label;
+        a.dataset.target = h.id;
+        li.appendChild(a);
+        target.appendChild(li);
+        links.push(a);
+      });
+    });
+
+    document.body.appendChild(side);
+    var header = document.getElementById("title-block-header");
+    if (header && header.parentNode) header.parentNode.insertBefore(bar, header.nextSibling);
+
+    function setOpen(open) {
+      menu.hidden = !open;
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      bar.classList.toggle("is-open", open);
+    }
+    toggle.addEventListener("click", function () { setOpen(menu.hidden); });
+    menu.addEventListener("click", function (e) { if (e.target.tagName === "A") setOpen(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") setOpen(false); });
+
+    function setActive(id) {
+      links.forEach(function (a) { a.classList.toggle("is-active", a.dataset.target === id); });
+      var h = document.getElementById(id);
+      current.textContent = h ? h.textContent.trim() : "";
+    }
+
+    function update() {
+      var offset = 140;
+      var active = headings[0].id;
+      headings.forEach(function (h) {
+        if (h.getBoundingClientRect().top - offset <= 0) active = h.id;
+      });
+      setActive(active);
+      var nav = document.getElementById("quarto-header");
+      var navBottom = nav ? Math.max(0, nav.getBoundingClientRect().bottom) : 0;
+      bar.style.top = navBottom + "px";
+      var headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+      side.classList.toggle("is-visible", headerBottom < 80);
+    }
+
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
+
+  // Keep an in-page link target aligned while charts and diagrams render below
+  // or above it (they change the page height after the browser has scrolled).
+  function followHash(id) {
+    var target = document.getElementById(id);
+    if (!target) return;
+    var main = document.querySelector("main.content") || document.body;
+    var done = false;
+    function jump() { target.scrollIntoView({block: "start", behavior: "instant"}); }
+    function stop() {
+      if (done) return;
+      done = true;
+      observer.disconnect();
+      ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (ev) {
+        window.removeEventListener(ev, stop, true);
+      });
+    }
+    var observer = new ResizeObserver(function () { if (!done) jump(); });
+    jump();
+    observer.observe(main);
+    ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (ev) {
+      window.addEventListener(ev, stop, {capture: true, passive: true});
+    });
+    setTimeout(stop, 10000);
+  }
+
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || a.closest(".panel-tabset .nav") || a.hasAttribute("data-bs-toggle")) return;
+    var id = decodeURIComponent(a.getAttribute("href").slice(1));
+    if (!id || !document.getElementById(id)) return;
+    e.preventDefault();
+    if (history.pushState) history.pushState(null, "", "#" + id);
+    // Defer so this click's own mousedown listener registration does not stop it.
+    setTimeout(function () { followHash(id); }, 0);
+  });
+
+  if (location.hash) {
+    var initial = decodeURIComponent(location.hash.slice(1));
+    if (document.readyState === "complete") followHash(initial);
+    else window.addEventListener("load", function () { followHash(initial); });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+<script>
+// Article hero backgrounds. A post opts in with front matter:
+//   hero: spheres | cache | tail | arenas | review-lines | paired-bars | grouped-cards | polarity | travelers | cascade | gravity
+//   hero-palette: warm | cool | green   (spheres only)
+// Static concepts use SVG. Animated concepts use canvas, pause off-screen,
+// and show a still frame when the reader prefers reduced motion.
+(function () {
+  "use strict";
+
+  var PALETTES = {
+    warm: [[[247, 150, 70], [236, 90, 60]], [[70, 110, 220], [60, 150, 120]]],
+    cool: [[[70, 110, 220], [60, 150, 120]], [[247, 150, 70], [236, 90, 60]]],
+    green: [[[60, 150, 120], [70, 110, 220]], [[247, 150, 70], [236, 90, 60]]]
+  };
+  var GLYPHS = ["★", "1", "2", "3", "4", "5"];
+
+  function init() {
+    var header = document.getElementById("title-block-header");
+    if (!header || !header.dataset.hero) return;
+    var concept = header.dataset.hero;
+    var palette = PALETTES[header.dataset.heroPalette] || PALETTES.warm;
+    document.body.classList.add("cat-has-hero");
+
+    var wrap = document.createElement("div");
+    wrap.className = "cat-hero-bg";
+    wrap.setAttribute("aria-hidden", "true");
+
+    // Static illustrations use SVG shapes, with no canvas or animation loop.
+    if (concept === "review-lines" || concept === "paired-bars" || concept === "grouped-cards") {
+      wrap.classList.add("cat-hero-bg-static", "cat-hero-bg-" + concept);
+      var ns = "http://www.w3.org/2000/svg";
+      function shape(tag, attrs, parent) {
+        var node = document.createElementNS(ns, tag);
+        Object.keys(attrs).forEach(function (key) { node.setAttribute(key, attrs[key]); });
+        parent.appendChild(node);
+        return node;
+      }
+      var svg = shape("svg", {viewBox: "0 0 1440 800", preserveAspectRatio: "none", focusable: "false"}, wrap);
+      if (concept === "paired-bars") {
+        // Decorative comparisons, not measurements from the article.
+        var blocks = [
+          {x: 24, y: 110, width: 275, right: false},
+          {x: 1140, y: 100, width: 275, right: true},
+          {x: -20, y: 340, width: 290, right: false},
+          {x: 1180, y: 350, width: 280, right: true},
+          {x: 75, y: 590, width: 335, right: false},
+          {x: 1040, y: 590, width: 335, right: true}
+        ];
+        blocks.forEach(function (block, index) {
+          var group = shape("g", {transform: "translate(" + block.x + " " + block.y + ")"}, svg);
+          for (var row = 0; row < 4; row++) {
+            var before = block.width * [1, 0.72, 0.9, 0.61][row];
+            var after = before * [0.67, 0.46, 0.79, 0.53][(row + index) % 4];
+            shape("rect", {x: block.right ? block.width - before : 0, y: row * 34,
+              width: before, height: 7, rx: 3.5, fill: "var(--cat-sub)", opacity: 0.16}, group);
+            shape("rect", {x: block.right ? block.width - after : 0, y: row * 34 + 12,
+              width: after, height: 7, rx: 3.5,
+              fill: (row + index) % 2 ? "var(--cat-negative)" : "var(--cat-accent)", opacity: 0.24}, group);
+          }
+        });
+      } else if (concept === "grouped-cards") {
+        // Seven groups and 29 cards echo the taxonomy; text marks are abstract.
+        var categories = [
+          {x: 45, y: 115, count: 3, color: "--cat-accent"},
+          {x: 1140, y: 110, count: 4, color: "--cat-negative"},
+          {x: 10, y: 355, count: 2, color: "--cat-sub"},
+          {x: 1210, y: 350, count: 5, color: "--cat-accent"},
+          {x: 80, y: 600, count: 6, color: "--cat-negative"},
+          {x: 1130, y: 600, count: 4, color: "--cat-sub"},
+          {x: 615, y: 65, count: 5, color: "--cat-accent"}
+        ];
+        categories.forEach(function (category, index) {
+          var group = shape("g", {transform: "translate(" + category.x + " " + category.y + ")"}, svg);
+          shape("rect", {x: 0, y: 0, width: 38 + index % 3 * 12, height: 4, rx: 2,
+            fill: "var(" + category.color + ")", opacity: 0.25}, group);
+          for (var card = 0; card < category.count; card++) {
+            var item = shape("g", {transform: "translate(" + (card % 2 * 118) + " " + (18 + Math.floor(card / 2) * 38) + ")"}, group);
+            shape("rect", {x: 0, y: 0, width: 106, height: 28, rx: 6,
+              fill: "var(" + category.color + ")", "fill-opacity": 0.05,
+              stroke: "var(" + category.color + ")", "stroke-opacity": 0.2, "stroke-width": 1}, item);
+            shape("rect", {x: 6, y: 7, width: 3, height: 14, rx: 1.5,
+              fill: "var(" + category.color + ")", opacity: 0.3}, item);
+            var lineWidth = [59, 72, 48, 66][(card + index) % 4];
+            shape("rect", {x: 15, y: 9, width: lineWidth, height: 3, rx: 1.5,
+              fill: "var(--cat-sub)", opacity: 0.22}, item);
+            shape("rect", {x: 15, y: 16, width: lineWidth * 0.65, height: 3, rx: 1.5,
+              fill: "var(--cat-sub)", opacity: 0.15}, item);
+          }
+        });
+      } else {
+      var passages = [
+        {x: 36, y: 110, width: 320, angle: -4, color: "--cat-accent"},
+        {x: 1070, y: 80, width: 330, angle: 3, color: "--cat-negative"},
+        {x: 12, y: 340, width: 290, angle: 3, color: "--cat-negative"},
+        {x: 1150, y: 315, width: 280, angle: -4, color: "--cat-accent"},
+        {x: 90, y: 590, width: 390, angle: -3, color: "--cat-accent"},
+        {x: 980, y: 590, width: 360, angle: 4, color: "--cat-negative"}
+      ];
+      passages.forEach(function (passage, index) {
+        var group = shape("g", {transform: "translate(" + passage.x + " " + passage.y + ") rotate(" + passage.angle + ")"}, svg);
+        for (var row = 0; row < 5; row++) {
+          var y = row * 22, length = passage.width * [1, 0.86, 0.95, 0.72, 0.9][row];
+          if (row === 1 || row === 3) {
+            shape("rect", {x: row === 1 ? 0 : length * 0.25, y: y - 5,
+              width: length * (row === 1 ? 0.72 : 0.65), height: 15, rx: 3,
+              fill: "var(" + passage.color + ")", opacity: 0.2}, group);
+          }
+          var x = 0, word = 0, widths = [34, 52, 25, 46, 29, 41];
+          while (x < length - 12) {
+            var width = Math.min(widths[(word + row + index) % widths.length], length - x);
+            shape("rect", {x: x, y: y, width: width, height: 4, rx: 2,
+              fill: "var(--cat-sub)", opacity: 0.2}, group);
+            x += width + 8;
+            word++;
+          }
+        }
+      });
+      }
+      document.body.appendChild(wrap);
+      function sizeStaticHero() {
+        wrap.style.height = Math.round(header.getBoundingClientRect().bottom + window.scrollY + 72) + "px";
+      }
+      window.addEventListener("resize", sizeStaticHero);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(sizeStaticHero);
+      sizeStaticHero();
+      return;
+    }
+
+    var canvas = document.createElement("canvas");
+    wrap.appendChild(canvas);
+    document.body.appendChild(wrap);
+    var ctx = canvas.getContext("2d");
+
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var W = 0, H = 0, running = false, visible = true, t0 = performance.now(), last = t0;
+    var seed = 7;
+    // Background colour as "r, g, b", so the fades behind the title follow light/dark mode.
+    var bgRGB = "255, 255, 255", dark = false;
+    function readTheme() {
+      var css = getComputedStyle(document.documentElement);
+      bgRGB = css.getPropertyValue("--cat-bg-rgb").trim() || "255, 255, 255";
+      dark = bgRGB.replace(/\s/g, "") !== "255,255,255";
+    }
+    readTheme();
+    // Quarto switches themes by swapping stylesheet link attributes in <head>.
+    var themeObserver = new MutationObserver(function () {
+      // The swapped stylesheet can apply a moment after the switch, so re-read a few times.
+      [0, 150, 500, 1200].forEach(function (ms) {
+        setTimeout(function () { readTheme(); if (reduce || !running) render(performance.now(), true); }, ms);
+      });
+    });
+    themeObserver.observe(document.head, { subtree: true, attributes: true, attributeFilter: ["rel", "disabled"] });
+    themeObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+    function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+
+    function glow(x, y, r, color, alpha) {
+      var g = ctx.createRadialGradient(x, y, 0, x, y, r);
+      g.addColorStop(0, "rgba(" + color + "," + alpha + ")");
+      g.addColorStop(1, "rgba(" + color + ",0)");
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+    }
+
+    function centreFade(cy, radius, strength) {
+      var g = ctx.createRadialGradient(W / 2, cy, 0, W / 2, cy, radius);
+      g.addColorStop(0, "rgba(" + bgRGB + "," + strength + ")");
+      g.addColorStop(0.6, "rgba(" + bgRGB + "," + strength * 0.6 + ")");
+      g.addColorStop(1, "rgba(" + bgRGB + ",0)");
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    }
+
+    function titleCentre() {
+      var r = header.getBoundingClientRect(), w = wrap.getBoundingClientRect();
+      return r.top - w.top + r.height / 2;
+    }
+
+    /* ---------- spheres ---------- */
+    var spheres = [], loose = [];
+    function buildSpheres() {
+      seed = 11;
+      var narrow = W < 760, big = Math.min(W, H);
+      spheres = narrow ? [
+        { cx: W * 0.02, cy: H * 0.2, r: big * 0.42, n: 520, hue: palette[0], spin: 0.05 },
+        { cx: W * 1.0, cy: H * 0.86, r: big * 0.36, n: 380, hue: palette[1], spin: -0.07 }
+      ] : [
+        { cx: W * 0.13, cy: H * 0.6, r: big * 0.42, n: 900, hue: palette[0], spin: 0.05 },
+        { cx: W * 0.85, cy: H * 0.72, r: big * 0.25, n: 520, hue: palette[1], spin: -0.07 },
+        { cx: W * 0.88, cy: H * 0.2, r: big * 0.1, n: 160, hue: [[90, 90, 90], [140, 140, 140]], spin: 0.1 }
+      ];
+      var golden = Math.PI * (3 - Math.sqrt(5));
+      spheres.forEach(function (s) {
+        s.pts = [];
+        for (var i = 0; i < s.n; i++) {
+          var y = 1 - (i / (s.n - 1)) * 2, rad = Math.sqrt(1 - y * y), th = golden * i;
+          s.pts.push({ x: Math.cos(th) * rad, y: y, z: Math.sin(th) * rad, g: GLYPHS[(rnd() * GLYPHS.length) | 0] });
+        }
+      });
+      loose = [];
+      var count = Math.round(W * H / (narrow ? 14000 : 9000));
+      for (var k = 0; k < count; k++) {
+        loose.push({ x: rnd() * W, y: rnd() * H, g: GLYPHS[(rnd() * GLYPHS.length) | 0], a: 0.12 + rnd() * 0.25,
+          s: 9 + rnd() * 4, target: (rnd() * spheres.length) | 0, phase: rnd() });
+      }
+    }
+    function drawSpheres(t) {
+      spheres.forEach(function (s) { glow(s.cx - s.r * 0.25, s.cy - s.r * 0.2, s.r * 1.25, s.hue[0].join(","), 0.1); });
+      ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      loose.forEach(function (p) {
+        var s = spheres[p.target], k = (t * 0.018 + p.phase) % 1;
+        ctx.globalAlpha = p.a * (1 - k);
+        ctx.fillStyle = dark ? "#9a9a9a" : "#8a8a8a"; ctx.font = p.s + "px Inter, sans-serif";
+        ctx.fillText(p.g, p.x + (s.cx - p.x) * k * 0.9, p.y + (s.cy - p.y) * k * 0.9);
+      });
+      spheres.forEach(function (s) {
+        var a = t * s.spin, ca = Math.cos(a), sa = Math.sin(a), ct = Math.cos(0.35), st = Math.sin(0.35);
+        ctx.font = "600 " + Math.max(7, s.r / 26) + "px Inter, sans-serif";
+        var c0 = s.hue[0], c1 = s.hue[1];
+        s.pts.forEach(function (p) {
+          var x = p.x * ca - p.z * sa, z = p.x * sa + p.z * ca, y = p.y * ct - z * st;
+          z = p.y * st + z * ct;
+          var m = (x + 1) / 2;
+          ctx.globalAlpha = (dark ? 0.1 : 0.08) + ((z + 1) / 2) * (dark ? 0.85 : 0.75);
+          ctx.fillStyle = "rgb(" + ((c0[0] + (c1[0] - c0[0]) * m) | 0) + "," + ((c0[1] + (c1[1] - c0[1]) * m) | 0) + "," + ((c0[2] + (c1[2] - c0[2]) * m) | 0) + ")";
+          ctx.fillText(p.g, s.cx + x * s.r, s.cy + y * s.r);
+        });
+      });
+      ctx.globalAlpha = 1;
+      if (W < 900) centreFade(titleCentre(), Math.max(W, H) * 0.5, 0.75);
+    }
+
+    /* ---------- cache stream ---------- */
+    var rows = [];
+    function buildCache() {
+      seed = 23;
+      var rowH = 30, n = Math.ceil(H / rowH) + 1;
+      rows = [];
+      for (var i = 0; i < n; i++) {
+        rows.push({ y: i * rowH + 11, speed: 12 + rnd() * 18, offset: rnd() * 400,
+          prefix: 6 + ((rnd() * 10) | 0), broken: 0, nextBreak: 3 + rnd() * 14 });
+      }
+    }
+    function drawCache(t, dt) {
+      glow(W * 0.2, H * 0.3, Math.max(W, H) * 0.45, "42,91,215", 0.07);
+      glow(W * 0.85, H * 0.8, Math.max(W, H) * 0.35, "31,138,91", 0.06);
+      var bw = 14, gap = 3, block = 4, cy = titleCentre();
+      rows.forEach(function (r) {
+        var band = Math.min(1, Math.abs(r.y - cy) / (H * 0.42)), rowFade = 0.15 + 0.85 * band * band;
+        r.nextBreak -= dt;
+        if (r.nextBreak <= 0 && r.broken <= 0) { r.broken = 2.2; r.nextBreak = 6 + rnd() * 16; }
+        if (r.broken > 0) r.broken -= dt;
+        var shift = (t * r.speed + r.offset) % ((bw + gap) * block);
+        var cells = Math.ceil(W / (bw + gap)) + block * 2;
+        for (var i = 0; i < cells; i++) {
+          var x = i * (bw + gap) - shift - (bw + gap) * block, inPrefix = i < r.prefix * block, color, alpha;
+          if (inPrefix && r.broken <= 0) { color = "42,91,215"; alpha = 0.22 + 0.08 * Math.sin(i * 0.3); }
+          else if (inPrefix) { color = "150,150,150"; alpha = 0.1 + 0.1 * (r.broken / 2.2); }
+          else { color = "120,120,120"; alpha = 0.03 + 0.08 * Math.abs(Math.sin(i * 12.9898 + Math.floor(t * 3 + r.offset))); }
+          alpha *= rowFade;
+          ctx.fillStyle = "rgba(" + color + "," + alpha + ")";
+          ctx.fillRect(x, r.y - 4, bw, 8);
+          if (inPrefix && i % block === block - 1) ctx.fillRect(x + bw + 0.5, r.y - 4, 1, 8);
+        }
+      });
+      centreFade(cy, Math.max(W, H) * 0.42, 0.92);
+    }
+
+    /* ---------- long tail ---------- */
+    var dots = [];
+    function buildTail() {
+      seed = 31;
+      dots = [];
+      var base = H * 0.96, cols = W < 760 ? 90 : 150;
+      for (var c = 0; c < cols; c++) {
+        var u = c / cols, count = Math.round((Math.pow(1 - u, 2.6) * 0.85 + 0.035) * 90);
+        for (var k = 0; k < count; k++) {
+          dots.push({ x: u * W * 1.02 + (rnd() - 0.5) * 3, y: base - (k / 90) * H * 0.95 - rnd() * 3,
+            u: u, rare: u > 0.55 && rnd() < 0.55, phase: rnd() * 6.28 });
+        }
+      }
+    }
+    function drawTail(t) {
+      glow(W * 0.12, H * 0.7, Math.max(W, H) * 0.45, "247,150,70", 0.09);
+      glow(W * 0.88, H * 0.85, Math.max(W, H) * 0.3, "42,91,215", 0.08);
+      var sweep = ((t * 0.07) % 1.6) - 0.3;
+      dots.forEach(function (d) {
+        var near = Math.max(0, 1 - Math.abs(d.u - sweep) / 0.18), a, r, col;
+        if (d.rare) {
+          var pulse = 0.55 + 0.45 * Math.sin(t * 2 + d.phase);
+          a = (0.4 + 0.5 * pulse) * (1 - near * 0.9); r = 2.6; col = "42,91,215";
+          if (a > 0.05) glow(d.x, d.y, 16, col, a * 0.22);
+        } else {
+          a = (0.1 + (1 - d.u) * 0.28) * (1 - near * 0.5); r = 1.5; col = "120,120,120";
+        }
+        ctx.fillStyle = "rgba(" + col + "," + a + ")";
+        ctx.beginPath(); ctx.arc(d.x, d.y, r, 0, Math.PI * 2); ctx.fill();
+      });
+      centreFade(titleCentre(), Math.max(W, H) * 0.38, 0.85);
+    }
+
+    /* ---------- shared colours for the hospital concepts ---------- */
+    var HUES = {
+      warm: [236, 128, 64], red: [214, 86, 72], blue: [42, 91, 215], green: [31, 138, 91],
+      lilac: [140, 110, 214], teal: [34, 150, 140], ochre: [196, 150, 40], gray: [130, 130, 130]
+    };
+    function hue(name, a) {
+      var c = HUES[name];
+      if (dark && name === "blue") c = [122, 155, 255];
+      return "rgba(" + c.join(",") + "," + a + ")";
+    }
+    function rgb(name) { return (dark && name === "blue" ? [122, 155, 255] : HUES[name]).join(","); }
+
+    /* ---------- arenas: 7 topic arenas orbiting around the title ---------- */
+    var arenas = [];
+    function buildArenas() {
+      seed = 41;
+      var names = ["blue", "warm", "green", "lilac", "teal", "ochre", "red"];
+      var sizes = [5, 4, 4, 4, 4, 4, 4];
+      var narrow = W < 760, rx = W * (narrow ? 0.46 : 0.4), ry = H * 0.4, cy = titleCentre();
+      arenas = names.map(function (name, i) {
+        var a = -Math.PI / 2 + (i / names.length) * Math.PI * 2 + 0.25;
+        var cx = W / 2 + Math.cos(a) * rx, ccy = cy + Math.sin(a) * ry;
+        var r = Math.min(W, H) * (narrow ? 0.09 : 0.075);
+        var topics = [];
+        for (var k = 0; k < sizes[i]; k++) topics.push({ a: (k / sizes[i]) * Math.PI * 2 + rnd(), d: r * (0.55 + rnd() * 0.3), s: 3 + rnd() * 2.5 });
+        var dust = [];
+        for (var j = 0; j < 46; j++) dust.push({ a: rnd() * Math.PI * 2, d: r * (0.2 + rnd() * 1.1), s: 0.8 + rnd() * 1.4, v: (0.08 + rnd() * 0.12) * (rnd() < 0.5 ? -1 : 1) });
+        return { x: cx, y: ccy, r: r, name: name, topics: topics, dust: dust, spin: 0.05 + rnd() * 0.05 };
+      });
+    }
+    function drawArenas(t) {
+      arenas.forEach(function (ar) {
+        glow(ar.x, ar.y, ar.r * 2.2, rgb(ar.name), dark ? 0.16 : 0.1);
+        ar.dust.forEach(function (p) {
+          var a = p.a + t * p.v;
+          ctx.fillStyle = hue(ar.name, dark ? 0.55 : 0.4);
+          ctx.beginPath(); ctx.arc(ar.x + Math.cos(a) * p.d, ar.y + Math.sin(a) * p.d * 0.8, p.s, 0, Math.PI * 2); ctx.fill();
+        });
+        ar.topics.forEach(function (p, k) {
+          var a = p.a + t * ar.spin;
+          var x = ar.x + Math.cos(a) * p.d, y = ar.y + Math.sin(a) * p.d * 0.8;
+          ctx.strokeStyle = hue(ar.name, 0.25); ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(ar.x, ar.y); ctx.lineTo(x, y); ctx.stroke();
+          var pulse = 0.75 + 0.25 * Math.sin(t * 1.4 + k);
+          ctx.fillStyle = hue(ar.name, 0.9 * pulse);
+          ctx.beginPath(); ctx.arc(x, y, p.s, 0, Math.PI * 2); ctx.fill();
+        });
+        ctx.fillStyle = hue(ar.name, 0.95);
+        ctx.beginPath(); ctx.arc(ar.x, ar.y, 4.5, 0, Math.PI * 2); ctx.fill();
+      });
+      centreFade(titleCentre(), Math.max(W, H) * 0.34, 0.85);
+    }
+
+    /* ---------- polarity: star rows for 1 to 5 stars, thick at the extremes ---------- */
+    var starRows = [];
+    function buildPolarity() {
+      seed = 43;
+      // Approximate shares of 1..5 star reviews: polarized, most at 5 and 1.
+      var shares = [0.24, 0.05, 0.04, 0.06, 0.61], names = ["red", "warm", "gray", "teal", "green"];
+      var top = H * 0.08, span = H * 0.84;
+      starRows = [];
+      for (var star = 5; star >= 1; star--) {
+        var i = star - 1, band = shares[i];
+        var yc = top + ((5 - star) / 4) * span, thick = 10 + band * H * 0.5;
+        var count = Math.round(40 + band * W * 0.9), glyphs = [];
+        for (var k = 0; k < count; k++) glyphs.push({ x: rnd() * W, dy: (rnd() - 0.5) * thick, s: 9 + rnd() * 6, a: 0.25 + rnd() * 0.55 });
+        starRows.push({ y: yc, name: names[i], glyphs: glyphs, speed: (star % 2 ? 1 : -1) * (8 + star * 2) });
+      }
+    }
+    function drawPolarity(t) {
+      ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      starRows.forEach(function (row) {
+        glow(W * 0.5, row.y, Math.max(W, H) * 0.35, rgb(row.name), dark ? 0.06 : 0.04);
+        row.glyphs.forEach(function (g) {
+          var x = ((g.x + t * row.speed) % (W + 40) + W + 40) % (W + 40) - 20;
+          ctx.globalAlpha = g.a * (dark ? 1 : 0.85);
+          ctx.fillStyle = hue(row.name, 1);
+          ctx.font = g.s + "px Inter, sans-serif";
+          ctx.fillText("★", x, row.y + g.dy);
+        });
+      });
+      ctx.globalAlpha = 1;
+      centreFade(titleCentre(), Math.max(W, H) * 0.36, 0.9);
+    }
+
+    /* ---------- travelers: most reviewers stay local, a few hop between hospitals ---------- */
+    var nodes = [], travelers = [];
+    function buildTravelers() {
+      seed = 47;
+      var count = W < 760 ? 26 : 46;
+      nodes = [];
+      for (var i = 0; i < count; i++) {
+        var locals = [];
+        for (var k = 0; k < 6 + ((rnd() * 8) | 0); k++) locals.push({ a: rnd() * Math.PI * 2, d: 6 + rnd() * 14, v: 0.2 + rnd() * 0.4 });
+        nodes.push({ x: W * (0.03 + rnd() * 0.94), y: H * (0.06 + rnd() * 0.88), locals: locals });
+      }
+      travelers = [];
+      for (var j = 0; j < 7; j++) {
+        travelers.push({ path: [(rnd() * count) | 0], t: rnd(), speed: 0.18 + rnd() * 0.12, name: j === 0 ? "warm" : "blue", trail: [] });
+      }
+    }
+    function drawTravelers(t, dt) {
+      nodes.forEach(function (n) {
+        ctx.fillStyle = hue("gray", dark ? 0.55 : 0.45);
+        ctx.beginPath(); ctx.arc(n.x, n.y, 3.2, 0, Math.PI * 2); ctx.fill();
+        n.locals.forEach(function (l) {
+          var a = l.a + t * l.v;
+          ctx.fillStyle = hue("gray", dark ? 0.35 : 0.28);
+          ctx.beginPath(); ctx.arc(n.x + Math.cos(a) * l.d, n.y + Math.sin(a) * l.d, 1.2, 0, Math.PI * 2); ctx.fill();
+        });
+      });
+      travelers.forEach(function (tr) {
+        if (tr.path.length < 2) tr.path.push((rnd() * nodes.length) | 0);
+        tr.t += dt * tr.speed * (tr.name === "warm" ? 2.2 : 1);
+        if (tr.t >= 1) { tr.t = 0; tr.path.shift(); tr.path.push((rnd() * nodes.length) | 0); }
+        var a = nodes[tr.path[0]], b = nodes[tr.path[1]];
+        var mx = (a.x + b.x) / 2 + (b.y - a.y) * 0.25, my = (a.y + b.y) / 2 - (b.x - a.x) * 0.25;
+        var u = tr.t, x = (1 - u) * (1 - u) * a.x + 2 * (1 - u) * u * mx + u * u * b.x, y = (1 - u) * (1 - u) * a.y + 2 * (1 - u) * u * my + u * u * b.y;
+        tr.trail.push([x, y]); if (tr.trail.length > 70) tr.trail.shift();
+        for (var i = 1; i < tr.trail.length; i++) {
+          ctx.strokeStyle = hue(tr.name, (i / tr.trail.length) * 0.5); ctx.lineWidth = 1.4;
+          ctx.beginPath(); ctx.moveTo(tr.trail[i - 1][0], tr.trail[i - 1][1]); ctx.lineTo(tr.trail[i][0], tr.trail[i][1]); ctx.stroke();
+        }
+        glow(x, y, 14, rgb(tr.name), 0.3);
+        ctx.fillStyle = hue(tr.name, 0.95);
+        ctx.beginPath(); ctx.arc(x, y, 3.2, 0, Math.PI * 2); ctx.fill();
+      });
+      centreFade(titleCentre(), Math.max(W, H) * 0.36, 0.88);
+    }
+
+    /* ---------- cascade: one complaint lights up the topics reported with it ---------- */
+    var cNodes = [], cEdges = [], cWaves = [], nextWave = 0;
+    function buildCascade() {
+      seed = 53;
+      var n = 16, rx = W * (W < 760 ? 0.46 : 0.42), ry = H * 0.4, cy = titleCentre();
+      var names = ["warm", "red", "lilac", "teal", "blue", "ochre", "green", "gray"];
+      cNodes = [];
+      for (var i = 0; i < n; i++) {
+        var a = (i / n) * Math.PI * 2 + 0.2;
+        cNodes.push({ x: W / 2 + Math.cos(a) * rx * (0.85 + rnd() * 0.2), y: cy + Math.sin(a) * ry * (0.8 + rnd() * 0.3), name: names[(i / 2) | 0], lit: 0 });
+      }
+      // Eight bundles of neighbours, plus a few long links across the ring.
+      cEdges = [];
+      for (var b = 0; b < 8; b++) { cEdges.push([2 * b, 2 * b + 1]); cEdges.push([2 * b + 1, (2 * b + 2) % n]); }
+      [[0, 7], [3, 11], [5, 13], [9, 14], [1, 10]].forEach(function (e) { cEdges.push(e); });
+      cWaves = []; nextWave = 0.5;
+    }
+    function neighbours(i) {
+      var out = [];
+      cEdges.forEach(function (e) { if (e[0] === i) out.push(e[1]); else if (e[1] === i) out.push(e[0]); });
+      return out;
+    }
+    function drawCascade(t, dt) {
+      nextWave -= dt;
+      if (nextWave <= 0) { cWaves.push({ node: (rnd() * cNodes.length) | 0, step: 0, clock: 0, seen: {} }); nextWave = 3 + rnd() * 2; }
+      cWaves.forEach(function (w) {
+        w.clock += dt;
+        if (w.step === 0) { cNodes[w.node].lit = 1; w.seen[w.node] = 1; w.front = [w.node]; w.step = 1; }
+        if (w.clock > 0.55 && w.step < 4) {
+          w.clock = 0; w.step++;
+          var next = [];
+          w.front.forEach(function (i) { neighbours(i).forEach(function (j) { if (!w.seen[j]) { w.seen[j] = 1; cNodes[j].lit = Math.max(cNodes[j].lit, 1 - w.step * 0.2); next.push(j); } }); });
+          w.front = next;
+        }
+      });
+      cWaves = cWaves.filter(function (w) { return w.step < 4; });
+      cEdges.forEach(function (e) {
+        var a = cNodes[e[0]], b = cNodes[e[1]], lit = Math.min(a.lit, b.lit);
+        ctx.strokeStyle = lit > 0.05 ? hue("warm", 0.2 + lit * 0.6) : hue("gray", dark ? 0.3 : 0.22);
+        ctx.lineWidth = 1 + lit * 1.5;
+        ctx.beginPath(); ctx.moveTo(a.x, a.y);
+        ctx.quadraticCurveTo(W / 2 + (a.x + b.x - W) * 0.2, (a.y + b.y) / 2, b.x, b.y); ctx.stroke();
+      });
+      cNodes.forEach(function (nd) {
+        if (nd.lit > 0.02) glow(nd.x, nd.y, 26, rgb("warm"), nd.lit * 0.5);
+        ctx.fillStyle = nd.lit > 0.05 ? hue("warm", 0.6 + nd.lit * 0.4) : hue(nd.name, 0.7);
+        ctx.beginPath(); ctx.arc(nd.x, nd.y, 4 + nd.lit * 2, 0, Math.PI * 2); ctx.fill();
+        nd.lit = Math.max(0, nd.lit - dt * 0.35);
+      });
+      centreFade(titleCentre(), Math.max(W, H) * 0.34, 0.88);
+    }
+
+    /* ---------- gravity: driver wells pull stars down onto the one-star floor ---------- */
+    var gStars = [], wells = [];
+    function buildGravity() {
+      seed = 59;
+      var narrow = W < 760;
+      wells = [
+        { x: W * 0.12, y: H * 0.45, m: 1.0 }, { x: W * 0.86, y: H * 0.38, m: 0.9 },
+        { x: W * 0.24, y: H * 0.78, m: 0.8 }, { x: W * 0.76, y: H * 0.74, m: 0.8 }
+      ];
+      if (narrow) wells = wells.slice(0, 2);
+      gStars = [];
+      for (var i = 0; i < (narrow ? 90 : 170); i++) gStars.push(newStar(true));
+    }
+    function newStar(initial) {
+      return { x: rnd() * W, y: initial ? rnd() * H * 0.9 : -10, vx: 0, vy: 6 + rnd() * 8, s: 8 + rnd() * 6, rest: 0 };
+    }
+    function drawGravity(t, dt) {
+      var floor = H * 0.97;
+      wells.forEach(function (w) {
+        glow(w.x, w.y, 70, rgb("warm"), dark ? 0.22 : 0.14);
+        ctx.fillStyle = hue("warm", 0.55);
+        ctx.beginPath(); ctx.arc(w.x, w.y, 5, 0, Math.PI * 2); ctx.fill();
+      });
+      ctx.fillStyle = hue("red", 0.25); ctx.fillRect(0, floor + 4, W, 1);
+      ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      gStars.forEach(function (s, i) {
+        if (s.rest > 0) {
+          s.rest -= dt;
+          if (s.rest <= 0) gStars[i] = newStar(false);
+        } else {
+          wells.forEach(function (w) {
+            var dx = w.x - s.x, dy = w.y - s.y, d2 = dx * dx + dy * dy + 900;
+            var f = 5200 * w.m / d2;
+            s.vx += (dx / Math.sqrt(d2)) * f * dt * 6; s.vy += Math.max(0, (dy / Math.sqrt(d2))) * f * dt * 6 + f * dt * 2;
+          });
+          s.vx *= 0.97; s.vy = Math.min(s.vy + dt * 2, 90);
+          s.x += s.vx * dt; s.y += s.vy * dt;
+          if (s.y >= floor) { s.y = floor; s.vx = 0; s.vy = 0; s.rest = 2 + rnd() * 3; }
+        }
+        var u = Math.min(1, Math.max(0, s.y / floor));
+        var c = u < 0.5 ? "green" : (u < 0.8 ? "ochre" : "red");
+        ctx.globalAlpha = s.rest > 0 ? Math.min(1, s.rest) * 0.7 : 0.35 + u * 0.45;
+        ctx.fillStyle = hue(c, 1);
+        ctx.font = s.s + "px Inter, sans-serif";
+        ctx.fillText("★", s.x, s.y);
+      });
+      ctx.globalAlpha = 1;
+      centreFade(titleCentre(), Math.max(W, H) * 0.36, 0.88);
+    }
+
+    var build = {
+      spheres: buildSpheres, cache: buildCache, tail: buildTail, arenas: buildArenas,
+      polarity: buildPolarity, travelers: buildTravelers, cascade: buildCascade, gravity: buildGravity
+    }[concept];
+    var draw = {
+      spheres: drawSpheres, cache: drawCache, tail: drawTail, arenas: drawArenas,
+      polarity: drawPolarity, travelers: drawTravelers, cascade: drawCascade, gravity: drawGravity
+    }[concept];
+    if (!build) return;
+
+    function resize() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var bottom = header.getBoundingClientRect().bottom + window.scrollY;
+      wrap.style.height = Math.round(bottom + 72) + "px";
+      W = wrap.clientWidth; H = wrap.clientHeight;
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      canvas.style.width = W + "px"; canvas.style.height = H + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      build();
+      render(performance.now(), true);
+    }
+
+    function render(now, once) {
+      var t = (now - t0) / 1000, dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      ctx.clearRect(0, 0, W, H);
+      draw(t, dt);
+      if (once) return;
+      if (!reduce && visible) requestAnimationFrame(function (n) { render(n); });
+      else running = false;
+    }
+    function start() {
+      if (running || reduce) return;
+      running = true; last = performance.now();
+      requestAnimationFrame(function (n) { render(n); });
+    }
+
+    new IntersectionObserver(function (entries) {
+      visible = entries[0].isIntersecting;
+      if (visible) start();
+    }).observe(wrap);
+    window.addEventListener("resize", resize);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(resize);
+    resize();
+    start();
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImNvbmRpdGlvblJhbmdlID0gW3tcImNvbmRpdGlvblwiOlwiQ29ycHVzIHN1bW1hcml6YXRpb25cIixcIm1pbmltdW1cIjoxNC4zLFwibWVkaWFuXCI6MjguNixcIm1heGltdW1cIjo0Mi45LFwiblwiOjE1fSx7XCJjb25kaXRpb25cIjpcIlJlY29yZC1sZXZlbCBsYWJlbGluZ1wiLFwibWluaW11bVwiOjcxLjQsXCJtZWRpYW5cIjo4NS43LFwibWF4aW11bVwiOjEwMC4wLFwiblwiOjJ9XVxuY2F0ZWdvcnlTdXJ2aXZhbCA9IFt7XCJjYXRlZ29yeVwiOlwiUVItQ29kZVwiLFwiZ29sZF9kb2NzXCI6MSxcImJhbmRcIjpcInJhcmVcIixcImNsZWFyX3N1bW1hcmllc1wiOjEsXCJ2YWd1ZV9zdW1tYXJpZXNcIjowLFwibWlzc2VkX3N1bW1hcmllc1wiOjE0LFwidG90YWxfc3VtbWFyaWVzXCI6MTUsXCJjbGVhcl9yYXRlXCI6Ni43LFwibGFiZWxfZHhcIjo4LFwibGFiZWxfZHlcIjotMTB9LHtcImNhdGVnb3J5XCI6XCJHZXDDpGNrXCIsXCJnb2xkX2RvY3NcIjoyLFwiYmFuZFwiOlwicmFyZVwiLFwiY2xlYXJfc3VtbWFyaWVzXCI6MyxcInZhZ3VlX3N1bW1hcmllc1wiOjcsXCJtaXNzZWRfc3VtbWFyaWVzXCI6NSxcInRvdGFsX3N1bW1hcmllc1wiOjE1LFwiY2xlYXJfcmF0ZVwiOjIwLjAsXCJsYWJlbF9keFwiOjgsXCJsYWJlbF9keVwiOjEyfSx7XCJjYXRlZ29yeVwiOlwiR2FzdHJvbm9taXNjaGVzIEFuZ2Vib3RcIixcImdvbGRfZG9jc1wiOjMsXCJiYW5kXCI6XCJyYXJlXCIsXCJjbGVhcl9zdW1tYXJpZXNcIjowLFwidmFndWVfc3VtbWFyaWVzXCI6MSxcIm1pc3NlZF9zdW1tYXJpZXNcIjoxNCxcInRvdGFsX3N1bW1hcmllc1wiOjE1LFwiY2xlYXJfcmF0ZVwiOjAuMCxcImxhYmVsX2R4XCI6OCxcImxhYmVsX2R5XCI6LTEwfSx7XCJjYXRlZ29yeVwiOlwiRGVzaWduXCIsXCJnb2xkX2RvY3NcIjo0LFwiYmFuZFwiOlwicmFyZVwiLFwiY2xlYXJfc3VtbWFyaWVzXCI6MCxcInZhZ3VlX3N1bW1hcmllc1wiOjQsXCJtaXNzZWRfc3VtbWFyaWVzXCI6MTEsXCJ0b3RhbF9zdW1tYXJpZXNcIjoxNSxcImNsZWFyX3JhdGVcIjowLjAsXCJsYWJlbF9keFwiOjgsXCJsYWJlbF9keVwiOjEyfSx7XCJjYXRlZ29yeVwiOlwiUmVpc2VuIG1pdCBLaW5kZXJuXCIsXCJnb2xkX2RvY3NcIjo3LFwiYmFuZFwiOlwicmFyZVwiLFwiY2xlYXJfc3VtbWFyaWVzXCI6MSxcInZhZ3VlX3N1bW1hcmllc1wiOjEyLFwibWlzc2VkX3N1bW1hcmllc1wiOjIsXCJ0b3RhbF9zdW1tYXJpZXNcIjoxNSxcImNsZWFyX3JhdGVcIjo2LjcsXCJsYWJlbF9keFwiOjgsXCJsYWJlbF9keVwiOi0xMH0se1wiY2F0ZWdvcnlcIjpcIlRvaWxldHRlblwiLFwiZ29sZF9kb2NzXCI6NyxcImJhbmRcIjpcInJhcmVcIixcImNsZWFyX3N1bW1hcmllc1wiOjEzLFwidmFndWVfc3VtbWFyaWVzXCI6MSxcIm1pc3NlZF9zdW1tYXJpZXNcIjoxLFwidG90YWxfc3VtbWFyaWVzXCI6MTUsXCJjbGVhcl9yYXRlXCI6ODYuNyxcImxhYmVsX2R4XCI6OCxcImxhYmVsX2R5XCI6MTJ9LHtcImNhdGVnb3J5XCI6XCJCYXJyaWVyZWZyZWloZWl0XCIsXCJnb2xkX2RvY3NcIjo5LFwiYmFuZFwiOlwicmFyZVwiLFwiY2xlYXJfc3VtbWFyaWVzXCI6MTEsXCJ2YWd1ZV9zdW1tYXJpZXNcIjoyLFwibWlzc2VkX3N1bW1hcmllc1wiOjIsXCJ0b3RhbF9zdW1tYXJpZXNcIjoxNSxcImNsZWFyX3JhdGVcIjo3My4zLFwibGFiZWxfZHhcIjo4LFwibGFiZWxfZHlcIjotMTB9LHtcImNhdGVnb3J5XCI6XCJLb21mb3J0IHVuZCBBdXNzdGF0dHVuZ1wiLFwiZ29sZF9kb2NzXCI6MjQsXCJiYW5kXCI6XCJsb3dcIixcImNsZWFyX3N1bW1hcmllc1wiOjEzLFwidmFndWVfc3VtbWFyaWVzXCI6MixcIm1pc3NlZF9zdW1tYXJpZXNcIjowLFwidG90YWxfc3VtbWFyaWVzXCI6MTUsXCJjbGVhcl9yYXRlXCI6ODYuNyxcImxhYmVsX2R4XCI6MCxcImxhYmVsX2R5XCI6MH0se1wiY2F0ZWdvcnlcIjpcIkRCIEFwcCB1bmQgV2Vic2l0ZVwiLFwiZ29sZF9kb2NzXCI6MjgsXCJiYW5kXCI6XCJsb3dcIixcImNsZWFyX3N1bW1hcmllc1wiOjE0LFwidmFndWVfc3VtbWFyaWVzXCI6MSxcIm1pc3NlZF9zdW1tYXJpZXNcIjowLFwidG90YWxfc3VtbWFyaWVzXCI6MTUsXCJjbGVhcl9yYXRlXCI6OTMuMyxcImxhYmVsX2R4XCI6MCxcImxhYmVsX2R5XCI6MH0se1wiY2F0ZWdvcnlcIjpcIkF1c2xhc3R1bmcgdW5kIFBsYXR6YW5nZWJvdFwiLFwiZ29sZF9kb2NzXCI6MzUsXCJiYW5kXCI6XCJsb3dcIixcImNsZWFyX3N1bW1hcmllc1wiOjE1LFwidmFndWVfc3VtbWFyaWVzXCI6MCxcIm1pc3NlZF9zdW1tYXJpZXNcIjowLFwidG90YWxfc3VtbWFyaWVzXCI6MTUsXCJjbGVhcl9yYXRlXCI6MTAwLjAsXCJsYWJlbF9keFwiOjAsXCJsYWJlbF9keVwiOjB9LHtcImNhdGVnb3J5XCI6XCJDb25uZWN0aXZpdHlcIixcImdvbGRfZG9jc1wiOjM2LFwiYmFuZFwiOlwibG93XCIsXCJjbGVhcl9zdW1tYXJpZXNcIjoxMyxcInZhZ3VlX3N1bW1hcmllc1wiOjIsXCJtaXNzZWRfc3VtbWFyaWVzXCI6MCxcInRvdGFsX3N1bW1hcmllc1wiOjE1LFwiY2xlYXJfcmF0ZVwiOjg2LjcsXCJsYWJlbF9keFwiOjAsXCJsYWJlbF9keVwiOjB9LHtcImNhdGVnb3J5XCI6XCJJbmZvcm1hdGlvbmVuXCIsXCJnb2xkX2RvY3NcIjo1OCxcImJhbmRcIjpcIm1pZFwiLFwiY2xlYXJfc3VtbWFyaWVzXCI6MTUsXCJ2YWd1ZV9zdW1tYXJpZXNcIjowLFwibWlzc2VkX3N1bW1hcmllc1wiOjAsXCJ0b3RhbF9zdW1tYXJpZXNcIjoxNSxcImNsZWFyX3JhdGVcIjoxMDAuMCxcImxhYmVsX2R4XCI6MCxcImxhYmVsX2R5XCI6MH0se1wiY2F0ZWdvcnlcIjpcIlNlcnZpY2UgdW5kIEt1bmRlbmJldHJldXVuZ1wiLFwiZ29sZF9kb2NzXCI6NjMsXCJiYW5kXCI6XCJtaWRcIixcImNsZWFyX3N1bW1hcmllc1wiOjE1LFwidmFndWVfc3VtbWFyaWVzXCI6MCxcIm1pc3NlZF9zdW1tYXJpZXNcIjowLFwidG90YWxfc3VtbWFyaWVzXCI6MTUsXCJjbGVhcl9yYXRlXCI6MTAwLjAsXCJsYWJlbF9keFwiOjAsXCJsYWJlbF9keVwiOjB9LHtcImNhdGVnb3J5XCI6XCJTaWNoZXJoZWl0XCIsXCJnb2xkX2RvY3NcIjo4NCxcImJhbmRcIjpcIm1pZFwiLFwiY2xlYXJfc3VtbWFyaWVzXCI6MTUsXCJ2YWd1ZV9zdW1tYXJpZXNcIjowLFwibWlzc2VkX3N1bW1hcmllc1wiOjAsXCJ0b3RhbF9zdW1tYXJpZXNcIjoxNSxcImNsZWFyX3JhdGVcIjoxMDAuMCxcImxhYmVsX2R4XCI6MCxcImxhYmVsX2R5XCI6MH0se1wiY2F0ZWdvcnlcIjpcIlRpY2tldGthdWZcIixcImdvbGRfZG9jc1wiOjk1LFwiYmFuZFwiOlwibWlkXCIsXCJjbGVhcl9zdW1tYXJpZXNcIjoxMixcInZhZ3VlX3N1bW1hcmllc1wiOjMsXCJtaXNzZWRfc3VtbWFyaWVzXCI6MCxcInRvdGFsX3N1bW1hcmllc1wiOjE1LFwiY2xlYXJfcmF0ZVwiOjgwLjAsXCJsYWJlbF9keFwiOjAsXCJsYWJlbF9keVwiOjB9LHtcImNhdGVnb3J5XCI6XCJBdG1vc3Bow6RyZVwiLFwiZ29sZF9kb2NzXCI6MTQ4LFwiYmFuZFwiOlwibWlkXCIsXCJjbGVhcl9zdW1tYXJpZXNcIjoyLFwidmFndWVfc3VtbWFyaWVzXCI6MTMsXCJtaXNzZWRfc3VtbWFyaWVzXCI6MCxcInRvdGFsX3N1bW1hcmllc1wiOjE1LFwiY2xlYXJfcmF0ZVwiOjEzLjMsXCJsYWJlbF9keFwiOjAsXCJsYWJlbF9keVwiOjB9LHtcImNhdGVnb3J5XCI6XCJTb25zdGlnZSBVbnJlZ2VsbcOkc3NpZ2tlaXRlblwiLFwiZ29sZF9kb2NzXCI6MjI0LFwiYmFuZFwiOlwibWlkXCIsXCJjbGVhcl9zdW1tYXJpZXNcIjozLFwidmFndWVfc3VtbWFyaWVzXCI6MTIsXCJtaXNzZWRfc3VtbWFyaWVzXCI6MCxcInRvdGFsX3N1bW1hcmllc1wiOjE1LFwiY2xlYXJfcmF0ZVwiOjIwLjAsXCJsYWJlbF9keFwiOjAsXCJsYWJlbF9keVwiOjB9LHtcImNhdGVnb3J5XCI6XCJadWdmYWhydFwiLFwiZ29sZF9kb2NzXCI6MjQxLFwiYmFuZFwiOlwibWlkXCIsXCJjbGVhcl9zdW1tYXJpZXNcIjo5LFwidmFndWVfc3VtbWFyaWVzXCI6NixcIm1pc3NlZF9zdW1tYXJpZXNcIjowLFwidG90YWxfc3VtbWFyaWVzXCI6MTUsXCJjbGVhcl9yYXRlXCI6NjAuMCxcImxhYmVsX2R4XCI6MCxcImxhYmVsX2R5XCI6MH1dXG5wcm9tcHRDZWxscyA9IFt7XCJtb2RlbFwiOlwiRGVlcFNlZWsgdjQgZmxhc2hcIixcInByb21wdFwiOlwiTmFpdmVcIixcInJhcmVfY2xlYXJcIjoxNC4zfSx7XCJtb2RlbFwiOlwiRGVlcFNlZWsgdjQgZmxhc2hcIixcInByb21wdFwiOlwiU3RlZWxtYW5cIixcInJhcmVfY2xlYXJcIjoyOC42fSx7XCJtb2RlbFwiOlwiRGVlcFNlZWsgdjQgZmxhc2hcIixcInByb21wdFwiOlwiVGhvcm91Z2hcIixcInJhcmVfY2xlYXJcIjoyOC42fSx7XCJtb2RlbFwiOlwiR1BULTUuMSDCtyBmdWxsIGNvbnRleHRcIixcInByb21wdFwiOlwiTmFpdmVcIixcInJhcmVfY2xlYXJcIjoxNC4zfSx7XCJtb2RlbFwiOlwiR1BULTUuMSDCtyBmdWxsIGNvbnRleHRcIixcInByb21wdFwiOlwiU3RlZWxtYW5cIixcInJhcmVfY2xlYXJcIjoyOC42fSx7XCJtb2RlbFwiOlwiR1BULTUuNCBtaW5pXCIsXCJwcm9tcHRcIjpcIk5haXZlXCIsXCJyYXJlX2NsZWFyXCI6MjguNn0se1wibW9kZWxcIjpcIkdQVC01LjQgbWluaVwiLFwicHJvbXB0XCI6XCJTdGVlbG1hblwiLFwicmFyZV9jbGVhclwiOjE0LjN9LHtcIm1vZGVsXCI6XCJHUFQtNS40IG1pbmlcIixcInByb21wdFwiOlwiVGhvcm91Z2hcIixcInJhcmVfY2xlYXJcIjoxNC4zfV1cbmRhdGFzZXRSYW5nZSA9IFt7XCJkYXRhc2V0XCI6XCJHZXJtRXZhbFwiLFwiY29uZGl0aW9uXCI6XCJDb3JwdXMgc3VtbWFyaXphdGlvblwiLFwibWluaW11bVwiOjE0LjMsXCJtYXhpbXVtXCI6NDIuOX0se1wiZGF0YXNldFwiOlwiR2VybUV2YWxcIixcImNvbmRpdGlvblwiOlwiUmVjb3JkLWxldmVsIGxhYmVsaW5nXCIsXCJtaW5pbXVtXCI6NzEuNCxcIm1heGltdW1cIjoxMDAuMH0se1wiZGF0YXNldFwiOlwiTS1BQlNBXCIsXCJjb25kaXRpb25cIjpcIkNvcnB1cyBzdW1tYXJpemF0aW9uXCIsXCJtaW5pbXVtXCI6MC4wLFwibWF4aW11bVwiOjY2Ljd9LHtcImRhdGFzZXRcIjpcIk0tQUJTQVwiLFwiY29uZGl0aW9uXCI6XCJSZWNvcmQtbGV2ZWwgbGFiZWxpbmdcIixcIm1pbmltdW1cIjoxMDAuMCxcIm1heGltdW1cIjoxMDAuMH1dXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiIvLyBLZWVwIE9ic2VydmFibGUncyBuYXRpdmUgc2VsZWN0cyByZWFkYWJsZSBpbiBTYWZhcmkgYXMgd2VsbCBhcyBvdGhlciBicm93c2Vycy5cbnRoZW1lZFNlbGVjdCA9ICh2YWx1ZXMsIG9wdGlvbnMpID0+IHtcbiAgY29uc3QgZm9ybSA9IElucHV0cy5zZWxlY3QodmFsdWVzLCBvcHRpb25zKTtcbiAgY29uc3Qgc2VsZWN0ID0gZm9ybS5xdWVyeVNlbGVjdG9yKFwic2VsZWN0XCIpO1xuICBpZiAoc2VsZWN0KSB7XG4gICAgZm9yIChjb25zdCBbcHJvcGVydHksIHZhbHVlXSBvZiBPYmplY3QuZW50cmllcyh7XG4gICAgICBcImFwcGVhcmFuY2VcIjogXCJub25lXCIsXG4gICAgICBcIi13ZWJraXQtYXBwZWFyYW5jZVwiOiBcIm5vbmVcIixcbiAgICAgIFwiYmFja2dyb3VuZC1jb2xvclwiOiBcInZhcigtLWNhdC1wYW5lbClcIixcbiAgICAgIFwiY29sb3JcIjogXCJ2YXIoLS1jYXQtaW5rKVwiLFxuICAgICAgXCItd2Via2l0LXRleHQtZmlsbC1jb2xvclwiOiBcInZhcigtLWNhdC1pbmspXCIsXG4gICAgICBcImJvcmRlclwiOiBcIjFweCBzb2xpZCB2YXIoLS1jYXQtc3ViKVwiLFxuICAgICAgXCJib3JkZXItcmFkaXVzXCI6IFwiNnB4XCIsXG4gICAgICBcInBhZGRpbmdcIjogXCIwLjM1ZW0gMS43NXJlbSAwLjM1ZW0gMC41ZW1cIlxuICAgIH0pKSBzZWxlY3Quc3R5bGUuc2V0UHJvcGVydHkocHJvcGVydHksIHZhbHVlLCBcImltcG9ydGFudFwiKTtcbiAgICBmb3IgKGNvbnN0IG9wdGlvbiBvZiBzZWxlY3Qub3B0aW9ucykge1xuICAgICAgb3B0aW9uLnN0eWxlLmJhY2tncm91bmRDb2xvciA9IFwidmFyKC0tY2F0LXBhbmVsKVwiO1xuICAgICAgb3B0aW9uLnN0eWxlLmNvbG9yID0gXCJ2YXIoLS1jYXQtaW5rKVwiO1xuICAgIH1cbiAgfVxuICByZXR1cm4gZm9ybTtcbn1cblxuLy8gQ29sb3VycyBjb21lIGZyb20gdGhlIHBhZ2UncyBDU1MgdG9rZW5zIGFuZCB1cGRhdGUgd2hlbiB0aGUgcmVhZGVyIHN3aXRjaGVzIGxpZ2h0L2RhcmsuXG5DID0gR2VuZXJhdG9ycy5vYnNlcnZlKG5vdGlmeSA9PiB7XG4gIGNvbnN0IHJlYWQgPSAoKSA9PiB7XG4gICAgY29uc3QgY3NzID0gZ2V0Q29tcHV0ZWRTdHlsZShkb2N1bWVudC5kb2N1bWVudEVsZW1lbnQpO1xuICAgIGNvbnN0IHYgPSBuYW1lID0+IGNzcy5nZXRQcm9wZXJ0eVZhbHVlKG5hbWUpLnRyaW0oKTtcbiAgICByZXR1cm4ge2luazogdihcIi0tY2F0LWlua1wiKSwgc3ViOiB2KFwiLS1jYXQtc3ViXCIpLCBtdXRlZDogdihcIi0tY2F0LW11dGVkXCIpLCBuZXV0cmFsOiB2KFwiLS1jYXQtbmV1dHJhbFwiKSwgcGFuZWw6IHYoXCItLWNhdC1wYW5lbFwiKSwgYWNjZW50OiB2KFwiLS1jYXQtYWNjZW50XCIpLCBhY2NlbnRTb2Z0OiB2KFwiLS1jYXQtYWNjZW50LXNvZnRcIiksIHBvc2l0aXZlOiB2KFwiLS1jYXQtcG9zaXRpdmVcIiksIGJnOiB2KFwiLS1jYXQtYmdcIil9O1xuICB9O1xuICBsZXQgbGFzdCA9IEpTT04uc3RyaW5naWZ5KHJlYWQoKSk7XG4gIG5vdGlmeShKU09OLnBhcnNlKGxhc3QpKTtcbiAgLy8gUmUtcmVhZCBhIGZldyB0aW1lczogdGhlIHN3YXBwZWQgc3R5bGVzaGVldCBjYW4gYXBwbHkgYSBtb21lbnQgYWZ0ZXIgdGhlIHN3aXRjaC5cbiAgY29uc3QgcmVmcmVzaCA9ICgpID0+IFswLCAxNTAsIDUwMCwgMTIwMF0uZm9yRWFjaChtcyA9PiBzZXRUaW1lb3V0KCgpID0+IHtcbiAgICBjb25zdCBuZXh0ID0gSlNPTi5zdHJpbmdpZnkocmVhZCgpKTtcbiAgICBpZiAobmV4dCAhPT0gbGFzdCkgeyBsYXN0ID0gbmV4dDsgbm90aWZ5KEpTT04ucGFyc2UobmV4dCkpOyB9XG4gIH0sIG1zKSk7XG4gIC8vIFF1YXJ0byBzd2l0Y2hlcyB0aGVtZXMgYnkgc3dhcHBpbmcgc3R5bGVzaGVldCBsaW5rIGF0dHJpYnV0ZXMgaW4gPGhlYWQ+LlxuICBjb25zdCBvYnNlcnZlciA9IG5ldyBNdXRhdGlvbk9ic2VydmVyKHJlZnJlc2gpO1xuICBvYnNlcnZlci5vYnNlcnZlKGRvY3VtZW50LmhlYWQsIHtzdWJ0cmVlOiB0cnVlLCBhdHRyaWJ1dGVzOiB0cnVlLCBhdHRyaWJ1dGVGaWx0ZXI6IFtcInJlbFwiLCBcImRpc2FibGVkXCJdfSk7XG4gIG9ic2VydmVyLm9ic2VydmUoZG9jdW1lbnQuYm9keSwge2F0dHJpYnV0ZXM6IHRydWUsIGF0dHJpYnV0ZUZpbHRlcjogW1wiY2xhc3NcIl19KTtcbiAgcmV0dXJuICgpID0+IG9ic2VydmVyLmRpc2Nvbm5lY3QoKTtcbn0pXG5jaGFydFdpZHRoID0gTWF0aC5taW4oOTYwLCAoZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5jaGFydC1zaGVsbFwiKSB8fCBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwibWFpbi5jb250ZW50XCIpKS5jbGllbnRXaWR0aClcbm5hcnJvdyA9IGNoYXJ0V2lkdGggPCA1MjBcbmZtdCA9IGQzLmZvcm1hdChcIixcIilcbnVzZCA9IGQgPT4gXCIkXCIgKyBkMy5mb3JtYXQoXCIsLjJmXCIpKGQpXG4vLyBMYWJlbCBkcmF3biBhYm92ZSBlYWNoIGhvcml6b250YWwgYmFyIG9uIG5hcnJvdyBzY3JlZW5zIChjaGFydEJhc2UgbWFyZ2luczogMzQgdG9wLCA0NCBib3R0b20pLlxubGFiZWxBYm92ZSA9IChkYXRhLCB5LCB0ZXh0LCBoLCBwYWQpID0+IFBsb3QudGV4dChkYXRhLCB7eSwgZnJhbWVBbmNob3I6IFwibGVmdFwiLCB0ZXh0LCB0ZXh0QW5jaG9yOiBcInN0YXJ0XCIsIGxpbmVBbmNob3I6IFwiYm90dG9tXCIsIGR5OiAtKChoIC0gNzgpIC8gZGF0YS5sZW5ndGggKiAoMSAtIHBhZCkpIC8gMiAtIDQsIGZpbGw6IEMuaW5rLCBmb250U2l6ZTogMTJ9KVxuY2hhcnRCYXNlID0gaCA9PiAoe1xuICB3aWR0aDogY2hhcnRXaWR0aCxcbiAgaGVpZ2h0OiBoLFxuICBtYXJnaW5Ub3A6IDM0LFxuICBtYXJnaW5SaWdodDogMTYsXG4gIG1hcmdpbkJvdHRvbTogNDQsXG4gIG1hcmdpbkxlZnQ6IDU2LFxuICBzdHlsZToge2ZvbnRGYW1pbHk6IFwiSW50ZXIsIC1hcHBsZS1zeXN0ZW0sIHNhbnMtc2VyaWZcIiwgZm9udFNpemU6IFwiMTNweFwiLCBjb2xvcjogQy5zdWIsIGJhY2tncm91bmQ6IFwidHJhbnNwYXJlbnRcIiwgb3ZlcmZsb3c6IFwidmlzaWJsZVwifVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QucGxvdCh7XG4gIC4uLmNoYXJ0QmFzZSgyNTApLFxuICBtYXJnaW5MZWZ0OiBuYXJyb3cgPyAxNiA6IDE3NCxcbiAgbWFyZ2luUmlnaHQ6IDI0LFxuICB4OiB7bGFiZWw6IFwiUmFyZSB0b3BpY3MgcHJlc2VydmVkIChvdXQgb2YgNylcIiwgZG9tYWluOiBbMCwgN10sIGdyaWQ6IHRydWUsIHRpY2tzOiBbMCwgMSwgMiwgMywgNCwgNSwgNiwgN10sIHRpY2tGb3JtYXQ6IGQgPT4gZH0sXG4gIHk6IHtkb21haW46IFtcIkNvcnB1cyBzdW1tYXJpemF0aW9uXCIsIFwiUmVjb3JkLWxldmVsIGxhYmVsaW5nXCJdLCBsYWJlbDogbnVsbCwgYXhpczogbmFycm93ID8gbnVsbCA6IFwibGVmdFwiLCBwYWRkaW5nOiAwLjV9LFxuICBtYXJrczogW1xuICAgIFBsb3QucnVsZVkoY29uZGl0aW9uUmFuZ2UsIHt5OiBcImNvbmRpdGlvblwiLCB4MTogZCA9PiBNYXRoLnJvdW5kKGQubWluaW11bSAqIDcgLyAxMDApLCB4MjogZCA9PiBNYXRoLnJvdW5kKGQubWF4aW11bSAqIDcgLyAxMDApLCBzdHJva2U6IGQgPT4gZC5jb25kaXRpb24gPT09IFwiUmVjb3JkLWxldmVsIGxhYmVsaW5nXCIgPyBDLmFjY2VudCA6IEMubmV1dHJhbCwgc3Ryb2tlV2lkdGg6IDh9KSxcbiAgICBQbG90LmRvdChjb25kaXRpb25SYW5nZSwge3k6IFwiY29uZGl0aW9uXCIsIHg6IGQgPT4gTWF0aC5yb3VuZChkLm1pbmltdW0gKiA3IC8gMTAwKSwgZmlsbDogQy5wYW5lbCwgc3Ryb2tlOiBDLmluaywgcjogNX0pLFxuICAgIFBsb3QuZG90KGNvbmRpdGlvblJhbmdlLCB7eTogXCJjb25kaXRpb25cIiwgeDogZCA9PiBNYXRoLnJvdW5kKGQubWF4aW11bSAqIDcgLyAxMDApLCBmaWxsOiBDLnBhbmVsLCBzdHJva2U6IEMuaW5rLCByOiA1fSksXG4gICAgLi4uKG5hcnJvdyA/IFtQbG90LnRleHQoY29uZGl0aW9uUmFuZ2UsIHt5OiBcImNvbmRpdGlvblwiLCB4OiAwLCB0ZXh0OiBcImNvbmRpdGlvblwiLCB0ZXh0QW5jaG9yOiBcInN0YXJ0XCIsIGR5OiAtMjQsIGZpbGw6IEMuaW5rLCBmb250V2VpZ2h0OiA2MDB9KV0gOiBbXSksXG4gICAgUGxvdC5ydWxlWChbMF0sIHtzdHJva2U6IEMuaW5rfSlcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QucGxvdCh7XG4gIC4uLmNoYXJ0QmFzZSgzNTApLFxuICBtYXJnaW5MZWZ0OiA0NCxcbiAgbWFyZ2luUmlnaHQ6IDIwLFxuICB4OiB7ZG9tYWluOiBbXCJOYWl2ZVwiLCBcIlRob3JvdWdoXCIsIFwiU3RlZWxtYW5cIl0sIGxhYmVsOiBudWxsLCB0aWNrRm9ybWF0OiBkID0+ICh7TmFpdmU6IFwiQmFzaWNcIiwgVGhvcm91Z2g6IFwiRGV0YWlsZWRcIiwgU3RlZWxtYW46IFwiUmFyZS1hd2FyZVwifVtkXSl9LFxuICB5OiB7ZG9tYWluOiBbMCwgN10sIGxhYmVsOiBcIlJhcmUgdG9waWNzIHByZXNlcnZlZCAob3V0IG9mIDcpXCIsIGdyaWQ6IHRydWUsIHRpY2tzOiBbMCwgMSwgMiwgMywgNCwgNSwgNiwgN10sIHRpY2tGb3JtYXQ6IGQgPT4gZH0sXG4gIGNvbG9yOiB7ZG9tYWluOiBbXCJEZWVwU2VlayB2NCBmbGFzaFwiLCBcIkdQVC01LjQgbWluaVwiLCBcIkdQVC01LjEgwrcgZnVsbCBjb250ZXh0XCJdLCByYW5nZTogW0MuYWNjZW50LCBDLmluaywgQy5wb3NpdGl2ZV0sIGxlZ2VuZDogdHJ1ZX0sXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5ydWxlWShbNV0sIHtzdHJva2U6IEMubmV1dHJhbCwgc3Ryb2tlRGFzaGFycmF5OiBcIjQsNFwifSksXG4gICAgUGxvdC50ZXh0KFt7cHJvbXB0OiBcIlRob3JvdWdoXCIsIHZhbHVlOiA1LCBsYWJlbDogXCJMb3dlciBsYWJlbGluZyByZXN1bHQ6IDUgb2YgN1wifV0sIHt4OiBcInByb21wdFwiLCB5OiBcInZhbHVlXCIsIHRleHQ6IFwibGFiZWxcIiwgdGV4dEFuY2hvcjogXCJtaWRkbGVcIiwgZHk6IC05LCBmaWxsOiBDLnN1YiwgZm9udFNpemU6IDExfSksXG4gICAgLi4uW1wiRGVlcFNlZWsgdjQgZmxhc2hcIiwgXCJHUFQtNS40IG1pbmlcIiwgXCJHUFQtNS4xIMK3IGZ1bGwgY29udGV4dFwiXS5tYXAoKG1vZGVsLCBpKSA9PiBQbG90LmRvdChwcm9tcHRDZWxscy5maWx0ZXIoZCA9PiBkLm1vZGVsID09PSBtb2RlbCksIHt4OiBcInByb21wdFwiLCB5OiBkID0+IE1hdGgucm91bmQoZC5yYXJlX2NsZWFyICogNyAvIDEwMCksIGZpbGw6IFwibW9kZWxcIiwgZHg6IChpIC0gMSkgKiA4LCByOiA0LjUsIHRpcDogdHJ1ZSwgdGl0bGU6IGQgPT4gYCR7ZC5tb2RlbH1cXG4keyh7TmFpdmU6IFwiQmFzaWNcIiwgVGhvcm91Z2g6IFwiRGV0YWlsZWRcIiwgU3RlZWxtYW46IFwiUmFyZS1hd2FyZVwifSlbZC5wcm9tcHRdfTogJHtNYXRoLnJvdW5kKGQucmFyZV9jbGVhciAqIDcgLyAxMDApfSBvZiA3IHRvcGljc2B9KSksXG4gICAgUGxvdC5ydWxlWShbMF0sIHtzdHJva2U6IEMuaW5rfSlcbiAgXVxufSlcbiJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../posts/2026-09-26-the-average-trap";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/consumer-insights-lab\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Consumer Insights Lab</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://github.com/consumer-insights-lab">
+<p>GitHub</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

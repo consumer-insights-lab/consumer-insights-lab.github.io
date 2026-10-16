@@ -1,0 +1,181 @@
+{
+  "source": "Preserved report.html: topics array",
+  "note": "Counts describe taxonomy structure, not review prevalence. Definitions are unchanged.",
+  "topics": [
+    {
+      "category": "Access & Timeliness",
+      "topic": "Wait times and timeliness of care",
+      "description": "Speed from arrival through discharge or admission, including emergency, urgent and scheduled care."
+    },
+    {
+      "category": "Access & Timeliness",
+      "topic": "Appointment scheduling and access",
+      "description": "Ability to obtain, change or cancel appointments and reach the facility for non-emergency care."
+    },
+    {
+      "category": "Access & Timeliness",
+      "topic": "Accessibility and accommodations",
+      "description": "Physical access, mobility support, interpretation and sensory accommodations."
+    },
+    {
+      "category": "Staff, Communication & Nursing",
+      "topic": "Front desk, reception and administrative staff conduct",
+      "description": "Courtesy, helpfulness and professionalism at registration and administrative contact."
+    },
+    {
+      "category": "Staff, Communication & Nursing",
+      "topic": "Clinical staff bedside manner and empathy",
+      "description": "Respect, listening, compassion and professionalism from doctors, nurses and technicians."
+    },
+    {
+      "category": "Staff, Communication & Nursing",
+      "topic": "Communication and information sharing",
+      "description": "Clinical updates, explanations, test results, callbacks and message consistency."
+    },
+    {
+      "category": "Staff, Communication & Nursing",
+      "topic": "Nursing responsiveness and basic care needs",
+      "description": "Response to call buttons, assistance requests, toileting, positioning and comfort needs."
+    },
+    {
+      "category": "Financial & Administrative",
+      "topic": "Billing, charges and collections",
+      "description": "Charge accuracy, surprise bills, disputes, payment handling and collections."
+    },
+    {
+      "category": "Financial & Administrative",
+      "topic": "Insurance coverage, denials and network issues",
+      "description": "Coverage checks, claim denials, authorization and out-of-network issues."
+    },
+    {
+      "category": "Facility & Environment",
+      "topic": "Cleanliness and housekeeping",
+      "description": "Visible sanitation, odors and tidiness in rooms, bathrooms and waiting areas."
+    },
+    {
+      "category": "Facility & Environment",
+      "topic": "Infection control and health safety practices",
+      "description": "Masks, entry testing, isolation protocols and protective equipment."
+    },
+    {
+      "category": "Facility & Environment",
+      "topic": "Food, parking and facility amenities",
+      "description": "Meals, parking, wayfinding and comfort amenities."
+    },
+    {
+      "category": "Facility & Environment",
+      "topic": "Facility condition, comfort and environment",
+      "description": "Maintenance, noise, temperature and general physical comfort."
+    },
+    {
+      "category": "Facility & Environment",
+      "topic": "Visitor access, security and property safety",
+      "description": "Visitor policies, security interactions and personal-property safety."
+    },
+    {
+      "category": "Clinical Care & Safety",
+      "topic": "Pain management",
+      "description": "Whether pain was taken seriously, treated promptly and controlled effectively."
+    },
+    {
+      "category": "Clinical Care & Safety",
+      "topic": "Medication, prescriptions and pharmacy",
+      "description": "Prescribing, administration, refills, pharmacy coordination and medication errors."
+    },
+    {
+      "category": "Clinical Care & Safety",
+      "topic": "Clinical assessment and diagnostic accuracy",
+      "description": "Evaluation thoroughness, diagnosis quality, testing decisions and physician involvement."
+    },
+    {
+      "category": "Clinical Care & Safety",
+      "topic": "Patient safety and medical errors",
+      "description": "Preventable adverse events, procedural mistakes, neglect and safety lapses."
+    },
+    {
+      "category": "Clinical Care & Safety",
+      "topic": "Diagnostic testing and imaging services",
+      "description": "Ordering, scheduling, completion and results for labs, CT, MRI, X-ray and other tests."
+    },
+    {
+      "category": "Clinical Care & Safety",
+      "topic": "Surgical and procedural care",
+      "description": "Preparation, anesthesia, procedural quality, recovery and related communication."
+    },
+    {
+      "category": "Care Process & Coordination",
+      "topic": "Staffing levels and operational capacity",
+      "description": "Staffing, beds, equipment and the effects of overcrowding or under-resourcing."
+    },
+    {
+      "category": "Care Process & Coordination",
+      "topic": "Discharge process and aftercare planning",
+      "description": "Discharge timing, instructions, paperwork and immediate follow-up arrangements."
+    },
+    {
+      "category": "Care Process & Coordination",
+      "topic": "Care coordination and referrals",
+      "description": "Continuity across providers, referrals, transfers, handoffs and follow-up care."
+    },
+    {
+      "category": "Care Process & Coordination",
+      "topic": "Medical records and administrative documentation",
+      "description": "Accuracy, availability and access to records, charts and administrative paperwork."
+    },
+    {
+      "category": "Rights, Equity & Specialty Care",
+      "topic": "Privacy and confidentiality",
+      "description": "Protection of health information and physical privacy during care."
+    },
+    {
+      "category": "Rights, Equity & Specialty Care",
+      "topic": "Discrimination and equitable treatment",
+      "description": "Perceived bias or unfair treatment based on personal characteristics."
+    },
+    {
+      "category": "Rights, Equity & Specialty Care",
+      "topic": "Behavioral health and psychiatric care",
+      "description": "Quality, safety, environment and patient rights in mental-health and substance-use care."
+    },
+    {
+      "category": "Rights, Equity & Specialty Care",
+      "topic": "Maternity and pediatric care",
+      "description": "Labor, delivery, NICU, pediatric emergency care and family-inclusive treatment."
+    },
+    {
+      "category": "Rights, Equity & Specialty Care",
+      "topic": "Rehabilitation and long-term care / therapy services",
+      "description": "Physical, occupational and speech therapy plus rehabilitation and long-term care settings."
+    }
+  ],
+  "categories": [
+    {
+      "category": "Access & Timeliness",
+      "count": 3
+    },
+    {
+      "category": "Staff, Communication & Nursing",
+      "count": 4
+    },
+    {
+      "category": "Financial & Administrative",
+      "count": 2
+    },
+    {
+      "category": "Facility & Environment",
+      "count": 5
+    },
+    {
+      "category": "Clinical Care & Safety",
+      "count": 6
+    },
+    {
+      "category": "Care Process & Coordination",
+      "count": 4
+    },
+    {
+      "category": "Rights, Equity & Specialty Care",
+      "count": 5
+    }
+  ]
+}

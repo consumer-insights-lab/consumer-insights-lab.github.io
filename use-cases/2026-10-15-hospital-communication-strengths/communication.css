@@ -1,0 +1,26 @@
+.communication-benchmark { margin: 1.5rem 0 .5rem; }
+.communication-group { margin-bottom: 1.5rem; }
+body.cat-article .content .communication-group-title {
+  margin: 0 0 .65rem; font-size: .95rem; font-weight: 600;
+}
+.communication-row {
+  display: grid; grid-template-columns: 105px minmax(0, 1fr) 88px;
+  align-items: center; gap: 12px; min-height: 43px;
+}
+.communication-label { font-size: .82rem; color: var(--cat-sub); }
+.communication-track { display: block; height: 9px; background: color-mix(in srgb, var(--cat-sub) 9%, transparent); }
+.communication-bar { display: block; height: 100%; }
+.communication-bar.case { background: var(--cat-accent); }
+.communication-bar.peers { background: var(--cat-neutral); }
+.communication-value { font-size: .9rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.communication-value small { display: block; color: var(--cat-sub); font-size: .68rem; font-weight: 400; }
+.communication-scale { display: flex; justify-content: space-between; margin: 0 100px 0 117px; color: var(--cat-sub); font-size: .72rem; font-variant-numeric: tabular-nums; }
+body.cat-article .content .communication-axis { text-align: center; margin: .5rem 0 0; color: var(--cat-sub); font-size: .8rem; }
+@media (max-width: 520px) {
+  .communication-row { grid-template-columns: 80px minmax(0, 1fr) 76px; gap: 8px; }
+  .communication-label { font-size: .74rem; }
+  .communication-value { font-size: .84rem; }
+  .communication-value small { font-size: .64rem; }
+  .communication-scale { margin-left: 88px; margin-right: 84px; font-size: .65rem; }
+  body.cat-article .content .communication-group-title { font-size: .88rem; }
+}

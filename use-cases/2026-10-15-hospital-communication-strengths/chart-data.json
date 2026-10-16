@@ -1,0 +1,129 @@
+{
+  "reporting_period": "2023–2025",
+  "definition": "Share of labeled sampled reviews with at least one valid positive communication label; distinct listing-plus-review keys.",
+  "peer_scope": "Other listings with the exact Google category Hospital.",
+  "comparisons": [
+    {
+      "group": "Hospital A, all labeled reviews",
+      "reviews": 104,
+      "communication_positive": 26,
+      "reach_pct": 25.0
+    },
+    {
+      "group": "Other Hospital-category listings, all labeled reviews",
+      "reviews": 26561,
+      "communication_positive": 2179,
+      "reach_pct": 8.203757388652535
+    },
+    {
+      "group": "Hospital A, 4–5 stars",
+      "reviews": 97,
+      "communication_positive": 26,
+      "reach_pct": 26.804123711340207
+    },
+    {
+      "group": "Other Hospital-category listings, 4–5 stars",
+      "reviews": 17131,
+      "communication_positive": 2134,
+      "reach_pct": 12.456949389994746
+    },
+    {
+      "group": "Hospital A, 4–5 stars and at least 25 words",
+      "reviews": 44,
+      "communication_positive": 19,
+      "reach_pct": 43.18181818181818
+    },
+    {
+      "group": "Other Hospital-category listings, 4–5 stars and at least 25 words",
+      "reviews": 10170,
+      "communication_positive": 1696,
+      "reach_pct": 16.676499508357914
+    }
+  ],
+  "yearly_comparisons": [
+    {
+      "year": 2023,
+      "case_n": 36,
+      "case_positive": 6,
+      "peer_n": 7452,
+      "peer_positive": 524
+    },
+    {
+      "year": 2024,
+      "case_n": 42,
+      "case_positive": 13,
+      "peer_n": 7977,
+      "peer_positive": 639
+    },
+    {
+      "year": 2025,
+      "case_n": 26,
+      "case_positive": 7,
+      "peer_n": 11132,
+      "peer_positive": 1016
+    }
+  ],
+  "sampling_weighted_reach": [
+    {
+      "group": "Hospital A",
+      "weighted_positive_reach_pct": 24.958444128223853,
+      "weight_min": 15.51063829787234,
+      "weight_max": 15.761904761904763
+    },
+    {
+      "group": "Peers",
+      "weighted_positive_reach_pct": 8.586861008608231,
+      "weight_min": 1.0,
+      "weight_max": 21.4
+    }
+  ],
+  "rating_length_standardization": {
+    "expected_communication_praise_count_at_peer_rating_length_rates": 10.289757393141098,
+    "expected_reach_pct": 9.893997493404902,
+    "observed_reach_pct": 25.0
+  },
+  "manual_reading": [
+    {
+      "behavior": "Explains steps, procedures, results, or the care plan",
+      "reviews": 13
+    },
+    {
+      "behavior": "Answers questions or listens to concerns/preferences",
+      "reviews": 15
+    },
+    {
+      "behavior": "Explicitly describes understandable language",
+      "reviews": 4
+    },
+    {
+      "behavior": "Mentions comfort, ease, relief, being heard, or not feeling rushed",
+      "reviews": 6
+    },
+    {
+      "behavior": "Explicitly includes family in updates or answers",
+      "reviews": 2
+    }
+  ],
+  "manual_reading_population": 26,
+  "bedside_manner_overlap": [
+    {
+      "positive_communication": true,
+      "n": 26,
+      "positive_bedside": 11
+    },
+    {
+      "positive_communication": false,
+      "n": 78,
+      "positive_bedside": 41
+    }
+  ],
+  "qualifications": [
+    "Google listings can aggregate outpatient, inpatient, and specialty services. Category and coarse service-topic controls do not match acuity or actual service mix.",
+    "Case selection used the same data; intervals do not account for selection, clustering, label error, or review self-selection.",
+    "Positive communication and feelings of reassurance are co-reported. No intervention date, actual waiting records, anxiety scale, or causal effect is observed.",
+    "The manual reading covers all 26 model-selected communication-positive case reviews, not an independent audit of the full labeling dataset.",
+    "Sample inclusion weights address the sampling design, not propensity to write a review.",
+    "The hospital identity and identifying review details are omitted from the proposed public narrative. Verbatim review quotes can be searched; use de-identified paraphrases."
+  ],
+  "selection": "Exploratory shortlist of Hospital/General hospital/University hospital categories with >=100 recent labeled reviews; selected communication-rich case after inspection, not a held-out test or validated best hospital."
+}

@@ -1,0 +1,894 @@
+{
+  "sources": {
+    "report": "report.html",
+    "charts": {
+      "rawPairs": "6",
+      "topPairs": "11",
+      "pairMatrix": "16"
+    },
+    "adjustedPairs": "../2026-07-25-hospital-rating-drivers/_chart_data.qmd — holdout estimates, copied without refitting.",
+    "scope": "Co-mentions of any sentiment in 1–2-star reviews, 2019–early June 2026. Each review counts once per topic.",
+    "transformations": "Three focal pairs selected to distinguish association strength from volume. Staffing expected count recovered as observed / saved lift. Overlap counts from saved notebook output: 31 low-rating pairs, 16 high-rating pairs, 11 shared.",
+    "labelCount": "196,183 in executed source notebook output; 196,567 in the older narrative is not used."
+  },
+  "data": {
+    "rawPairs": [
+      {
+        "a": "Front desk",
+        "b": "Wait times",
+        "count": 4436,
+        "pair": "Front desk  ×  Wait times",
+        "lab": "4,436"
+      },
+      {
+        "a": "Bedside manner",
+        "b": "Wait times",
+        "count": 3925,
+        "pair": "Bedside manner  ×  Wait times",
+        "lab": "3,925"
+      },
+      {
+        "a": "Bedside manner",
+        "b": "Front desk",
+        "count": 2958,
+        "pair": "Bedside manner  ×  Front desk",
+        "lab": "2,958"
+      },
+      {
+        "a": "Bedside manner",
+        "b": "Communication",
+        "count": 2850,
+        "pair": "Bedside manner  ×  Communication",
+        "lab": "2,850"
+      },
+      {
+        "a": "Bedside manner",
+        "b": "Nursing responsiveness",
+        "count": 2809,
+        "pair": "Bedside manner  ×  Nursing responsiveness",
+        "lab": "2,809"
+      },
+      {
+        "a": "Nursing responsiveness",
+        "b": "Wait times",
+        "count": 2699,
+        "pair": "Nursing responsiveness  ×  Wait times",
+        "lab": "2,699"
+      },
+      {
+        "a": "Diagnostic accuracy",
+        "b": "Bedside manner",
+        "count": 2692,
+        "pair": "Diagnostic accuracy  ×  Bedside manner",
+        "lab": "2,692"
+      },
+      {
+        "a": "Communication",
+        "b": "Wait times",
+        "count": 2552,
+        "pair": "Communication  ×  Wait times",
+        "lab": "2,552"
+      },
+      {
+        "a": "Diagnostic accuracy",
+        "b": "Wait times",
+        "count": 2092,
+        "pair": "Diagnostic accuracy  ×  Wait times",
+        "lab": "2,092"
+      },
+      {
+        "a": "Staffing",
+        "b": "Wait times",
+        "count": 2075,
+        "pair": "Staffing  ×  Wait times",
+        "lab": "2,075"
+      },
+      {
+        "a": "Communication",
+        "b": "Front desk",
+        "count": 2029,
+        "pair": "Communication  ×  Front desk",
+        "lab": "2,029"
+      },
+      {
+        "a": "Bedside manner",
+        "b": "Patient safety",
+        "count": 1736,
+        "pair": "Bedside manner  ×  Patient safety",
+        "lab": "1,736"
+      }
+    ],
+    "topPairs": [
+      {
+        "topic_a": "Billing, charges and collections",
+        "topic_b": "Insurance coverage, denials and network issues",
+        "obs": 908.0,
+        "exp": 198.86573146292585,
+        "lift": 4.5658947538142165,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Billing × Insurance",
+        "lab": "4.6×"
+      },
+      {
+        "topic_a": "Cleanliness and housekeeping",
+        "topic_b": "Infection control and health safety practices",
+        "obs": 480.0,
+        "exp": 152.33066132264528,
+        "lift": 3.151039953692132,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Cleanliness  ×  Infection control",
+        "lab": "3.2×"
+      },
+      {
+        "topic_a": "Facility condition, comfort and environment",
+        "topic_b": "Food, parking and facility amenities",
+        "obs": 329.0,
+        "exp": 150.28056112224448,
+        "lift": 2.189238565142019,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Facility condition  ×  Food & amenities",
+        "lab": "2.2×"
+      },
+      {
+        "topic_a": "Accessibility and accommodations",
+        "topic_b": "Food, parking and facility amenities",
+        "obs": 85.0,
+        "exp": 39.82164328657315,
+        "lift": 2.134517638770067,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Accessibility  ×  Food & amenities",
+        "lab": "2.1×"
+      },
+      {
+        "topic_a": "Behavioral health and psychiatric care",
+        "topic_b": "Visitor access, security, and property safety",
+        "obs": 118.0,
+        "exp": 59.11022044088176,
+        "lift": 1.996270680770274,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Behavioral health  ×  Visitors & security",
+        "lab": "2.0×"
+      },
+      {
+        "topic_a": "Behavioral health and psychiatric care",
+        "topic_b": "Discrimination and equitable treatment",
+        "obs": 212.0,
+        "exp": 106.64729458917836,
+        "lift": 1.9878610218539188,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Behavioral health × Discrimination",
+        "lab": "2.0×"
+      },
+      {
+        "topic_a": "Cleanliness and housekeeping",
+        "topic_b": "Facility condition, comfort and environment",
+        "obs": 495.0,
+        "exp": 268.8637274549098,
+        "lift": 1.841081371167908,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Cleanliness  ×  Facility condition",
+        "lab": "1.8×"
+      },
+      {
+        "topic_a": "Appointment scheduling and access",
+        "topic_b": "Care coordination and referrals",
+        "obs": 385.0,
+        "exp": 211.2264529058116,
+        "lift": 1.8226883740346485,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Scheduling  ×  Care coordination",
+        "lab": "1.8×"
+      },
+      {
+        "topic_a": "Food, parking and facility amenities",
+        "topic_b": "Visitor access, security, and property safety",
+        "obs": 150.0,
+        "exp": 83.92585170340682,
+        "lift": 1.7872919601709687,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Food & amenities  ×  Visitors & security",
+        "lab": "1.8×"
+      },
+      {
+        "topic_a": "Discharge process and aftercare planning",
+        "topic_b": "Rehabilitation and long-term care / therapy services",
+        "obs": 37.0,
+        "exp": 20.707414829659317,
+        "lift": 1.7867995741798124,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Discharge  ×  Rehabilitation",
+        "lab": "1.8×"
+      },
+      {
+        "topic_a": "Accessibility and accommodations",
+        "topic_b": "Visitor access, security, and property safety",
+        "obs": 62.0,
+        "exp": 35.879759519038075,
+        "lift": 1.727993744414656,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Accessibility  ×  Visitors & security",
+        "lab": "1.7×"
+      },
+      {
+        "topic_a": "Cleanliness and housekeeping",
+        "topic_b": "Food, parking and facility amenities",
+        "obs": 294.0,
+        "exp": 177.27054108216433,
+        "lift": 1.6584819914535711,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Cleanliness  ×  Food & amenities",
+        "lab": "1.7×"
+      },
+      {
+        "topic_a": "Accessibility and accommodations",
+        "topic_b": "Discrimination and equitable treatment",
+        "obs": 107.0,
+        "exp": 64.59118236472946,
+        "lift": 1.6565728646334275,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Accessibility  ×  Discrimination",
+        "lab": "1.7×"
+      },
+      {
+        "topic_a": "Clinical assessment and diagnostic accuracy",
+        "topic_b": "Diagnostic testing and imaging services",
+        "obs": 467.0,
+        "exp": 292.9458917835671,
+        "lift": 1.5941510466548092,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Diagnostic accuracy  ×  Testing & imaging",
+        "lab": "1.6×"
+      },
+      {
+        "topic_a": "Patient safety and medical errors",
+        "topic_b": "Surgical and procedural care",
+        "obs": 226.0,
+        "exp": 143.3687374749499,
+        "lift": 1.5763548175172277,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Patient safety  ×  Surgical care",
+        "lab": "1.6×"
+      }
+    ],
+    "focalPairs": [
+      {
+        "topic_a": "Billing, charges and collections",
+        "topic_b": "Insurance coverage, denials and network issues",
+        "obs": 908.0,
+        "exp": 198.86573146292585,
+        "lift": 4.5658947538142165,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Billing × Insurance",
+        "lab": "4.6×"
+      },
+      {
+        "pair": "Staffing × Wait times",
+        "obs": 2075,
+        "lift": 1.3573718957127276,
+        "exp": 1528.689378757515
+      },
+      {
+        "topic_a": "Behavioral health and psychiatric care",
+        "topic_b": "Discrimination and equitable treatment",
+        "obs": 212.0,
+        "exp": 106.64729458917836,
+        "lift": 1.9878610218539188,
+        "p": 0.002,
+        "q": 0.0220625,
+        "pair": "Behavioral health × Discrimination",
+        "lab": "2.0×"
+      }
+    ],
+    "pairMatrix": [
+      {
+        "a": "Billing",
+        "b": "Insurance",
+        "lift": 4.5658947538142165,
+        "same_bundle": true,
+        "bundle": "Financial friction"
+      },
+      {
+        "a": "Insurance",
+        "b": "Billing",
+        "lift": 4.5658947538142165,
+        "same_bundle": true,
+        "bundle": "Financial friction"
+      },
+      {
+        "a": "Cleanliness",
+        "b": "Infection control",
+        "lift": 3.151039953692132,
+        "same_bundle": true,
+        "bundle": "Environment"
+      },
+      {
+        "a": "Infection control",
+        "b": "Cleanliness",
+        "lift": 3.151039953692132,
+        "same_bundle": true,
+        "bundle": "Environment"
+      },
+      {
+        "a": "Facility condition",
+        "b": "Food & amenities",
+        "lift": 2.189238565142019,
+        "same_bundle": true,
+        "bundle": "Environment"
+      },
+      {
+        "a": "Food & amenities",
+        "b": "Facility condition",
+        "lift": 2.189238565142019,
+        "same_bundle": true,
+        "bundle": "Environment"
+      },
+      {
+        "a": "Accessibility",
+        "b": "Food & amenities",
+        "lift": 2.134517638770067,
+        "same_bundle": false,
+        "bundle": "cross-bundle"
+      },
+      {
+        "a": "Food & amenities",
+        "b": "Accessibility",
+        "lift": 2.134517638770067,
+        "same_bundle": false,
+        "bundle": "cross-bundle"
+      },
+      {
+        "a": "Behavioral health",
+        "b": "Visitors & security",
+        "lift": 1.996270680770274,
+        "same_bundle": true,
+        "bundle": "Dignity & vulnerability"
+      },
+      {
+        "a": "Visitors & security",
+        "b": "Behavioral health",
+        "lift": 1.996270680770274,
+        "same_bundle": true,
+        "bundle": "Dignity & vulnerability"
+      },
+      {
+        "a": "Behavioral health",
+        "b": "Discrimination",
+        "lift": 1.9878610218539188,
+        "same_bundle": true,
+        "bundle": "Dignity & vulnerability"
+      },
+      {
+        "a": "Discrimination",
+        "b": "Behavioral health",
+        "lift": 1.9878610218539188,
+        "same_bundle": true,
+        "bundle": "Dignity & vulnerability"
+      },
+      {
+        "a": "Cleanliness",
+        "b": "Facility condition",
+        "lift": 1.841081371167908,
+        "same_bundle": true,
+        "bundle": "Environment"
+      },
+      {
+        "a": "Facility condition",
+        "b": "Cleanliness",
+        "lift": 1.841081371167908,
+        "same_bundle": true,
+        "bundle": "Environment"
+      },
+      {
+        "a": "Scheduling",
+        "b": "Care coordination",
+        "lift": 1.8226883740346485,
+        "same_bundle": true,
+        "bundle": "Administrative access"
+      },
+      {
+        "a": "Care coordination",
+        "b": "Scheduling",
+        "lift": 1.8226883740346485,
+        "same_bundle": true,
+        "bundle": "Administrative access"
+      },
+      {
+        "a": "Food & amenities",
+        "b": "Visitors & security",
+        "lift": 1.7872919601709687,
+        "same_bundle": false,
+        "bundle": "cross-bundle"
+      },
+      {
+        "a": "Visitors & security",
+        "b": "Food & amenities",
+        "lift": 1.7872919601709687,
+        "same_bundle": false,
+        "bundle": "cross-bundle"
+      },
+      {
+        "a": "Discharge",
+        "b": "Rehabilitation",
+        "lift": 1.7867995741798124,
+        "same_bundle": true,
+        "bundle": "Inpatient recovery"
+      },
+      {
+        "a": "Rehabilitation",
+        "b": "Discharge",
+        "lift": 1.7867995741798124,
+        "same_bundle": true,
+        "bundle": "Inpatient recovery"
+      },
+      {
+        "a": "Accessibility",
+        "b": "Visitors & security",
+        "lift": 1.727993744414656,
+        "same_bundle": true,
+        "bundle": "Dignity & vulnerability"
+      },
+      {
+        "a": "Visitors & security",
+        "b": "Accessibility",
+        "lift": 1.727993744414656,
+        "same_bundle": true,
+        "bundle": "Dignity & vulnerability"
+      },
+      {
+        "a": "Cleanliness",
+        "b": "Food & amenities",
+        "lift": 1.6584819914535711,
+        "same_bundle": true,
+        "bundle": "Environment"
+      },
+      {
+        "a": "Food & amenities",
+        "b": "Cleanliness",
+        "lift": 1.6584819914535711,
+        "same_bundle": true,
+        "bundle": "Environment"
+      },
+      {
+        "a": "Accessibility",
+        "b": "Discrimination",
+        "lift": 1.6565728646334275,
+        "same_bundle": true,
+        "bundle": "Dignity & vulnerability"
+      },
+      {
+        "a": "Discrimination",
+        "b": "Accessibility",
+        "lift": 1.6565728646334275,
+        "same_bundle": true,
+        "bundle": "Dignity & vulnerability"
+      },
+      {
+        "a": "Diagnostic accuracy",
+        "b": "Testing & imaging",
+        "lift": 1.5941510466548092,
+        "same_bundle": true,
+        "bundle": "Diagnostic journey"
+      },
+      {
+        "a": "Testing & imaging",
+        "b": "Diagnostic accuracy",
+        "lift": 1.5941510466548092,
+        "same_bundle": true,
+        "bundle": "Diagnostic journey"
+      },
+      {
+        "a": "Patient safety",
+        "b": "Surgical care",
+        "lift": 1.5763548175172277,
+        "same_bundle": true,
+        "bundle": "Clinical harm"
+      },
+      {
+        "a": "Surgical care",
+        "b": "Patient safety",
+        "lift": 1.5763548175172277,
+        "same_bundle": true,
+        "bundle": "Clinical harm"
+      },
+      {
+        "a": "Behavioral health",
+        "b": "Food & amenities",
+        "lift": 1.550309145159802,
+        "same_bundle": false,
+        "bundle": "cross-bundle"
+      },
+      {
+        "a": "Food & amenities",
+        "b": "Behavioral health",
+        "lift": 1.550309145159802,
+        "same_bundle": false,
+        "bundle": "cross-bundle"
+      },
+      {
+        "a": "Behavioral health",
+        "b": "Medication",
+        "lift": 1.542349068721901,
+        "same_bundle": true,
+        "bundle": "Dignity & vulnerability"
+      },
+      {
+        "a": "Medication",
+        "b": "Behavioral health",
+        "lift": 1.542349068721901,
+        "same_bundle": true,
+        "bundle": "Dignity & vulnerability"
+      },
+      {
+        "a": "Nursing responsiveness",
+        "b": "Rehabilitation",
+        "lift": 1.4468385071688878,
+        "same_bundle": true,
+        "bundle": "Inpatient recovery"
+      },
+      {
+        "a": "Rehabilitation",
+        "b": "Nursing responsiveness",
+        "lift": 1.4468385071688878,
+        "same_bundle": true,
+        "bundle": "Inpatient recovery"
+      },
+      {
+        "a": "Behavioral health",
+        "b": "Privacy",
+        "lift": 1.4404618715419772,
+        "same_bundle": true,
+        "bundle": "Dignity & vulnerability"
+      },
+      {
+        "a": "Privacy",
+        "b": "Behavioral health",
+        "lift": 1.4404618715419772,
+        "same_bundle": true,
+        "bundle": "Dignity & vulnerability"
+      },
+      {
+        "a": "Scheduling",
+        "b": "Medical records",
+        "lift": 1.4176676962971437,
+        "same_bundle": true,
+        "bundle": "Administrative access"
+      },
+      {
+        "a": "Medical records",
+        "b": "Scheduling",
+        "lift": 1.4176676962971437,
+        "same_bundle": true,
+        "bundle": "Administrative access"
+      },
+      {
+        "a": "Scheduling",
+        "b": "Front desk",
+        "lift": 1.4101145019507377,
+        "same_bundle": true,
+        "bundle": "Administrative access"
+      },
+      {
+        "a": "Front desk",
+        "b": "Scheduling",
+        "lift": 1.4101145019507377,
+        "same_bundle": true,
+        "bundle": "Administrative access"
+      },
+      {
+        "a": "Pain management",
+        "b": "Surgical care",
+        "lift": 1.3584851994067573,
+        "same_bundle": true,
+        "bundle": "Clinical harm"
+      },
+      {
+        "a": "Surgical care",
+        "b": "Pain management",
+        "lift": 1.3584851994067573,
+        "same_bundle": true,
+        "bundle": "Clinical harm"
+      },
+      {
+        "a": "Staffing",
+        "b": "Wait times",
+        "lift": 1.3573718957127276,
+        "same_bundle": true,
+        "bundle": "Capacity & flow"
+      },
+      {
+        "a": "Wait times",
+        "b": "Staffing",
+        "lift": 1.3573718957127276,
+        "same_bundle": true,
+        "bundle": "Capacity & flow"
+      },
+      {
+        "a": "Behavioral health",
+        "b": "Discharge",
+        "lift": 1.3254506537380406,
+        "same_bundle": false,
+        "bundle": "cross-bundle"
+      },
+      {
+        "a": "Discharge",
+        "b": "Behavioral health",
+        "lift": 1.3254506537380406,
+        "same_bundle": false,
+        "bundle": "cross-bundle"
+      },
+      {
+        "a": "Discrimination",
+        "b": "Visitors & security",
+        "lift": 1.2994602615767343,
+        "same_bundle": true,
+        "bundle": "Dignity & vulnerability"
+      },
+      {
+        "a": "Visitors & security",
+        "b": "Discrimination",
+        "lift": 1.2994602615767343,
+        "same_bundle": true,
+        "bundle": "Dignity & vulnerability"
+      },
+      {
+        "a": "Facility condition",
+        "b": "Visitors & security",
+        "lift": 1.294332354814159,
+        "same_bundle": false,
+        "bundle": "cross-bundle"
+      },
+      {
+        "a": "Visitors & security",
+        "b": "Facility condition",
+        "lift": 1.294332354814159,
+        "same_bundle": false,
+        "bundle": "cross-bundle"
+      },
+      {
+        "a": "Discrimination",
+        "b": "Privacy",
+        "lift": 1.287222893994357,
+        "same_bundle": true,
+        "bundle": "Dignity & vulnerability"
+      },
+      {
+        "a": "Privacy",
+        "b": "Discrimination",
+        "lift": 1.287222893994357,
+        "same_bundle": true,
+        "bundle": "Dignity & vulnerability"
+      },
+      {
+        "a": "Care coordination",
+        "b": "Medical records",
+        "lift": 1.2811490017216902,
+        "same_bundle": true,
+        "bundle": "Administrative access"
+      },
+      {
+        "a": "Medical records",
+        "b": "Care coordination",
+        "lift": 1.2811490017216902,
+        "same_bundle": true,
+        "bundle": "Administrative access"
+      },
+      {
+        "a": "Behavioral health",
+        "b": "Facility condition",
+        "lift": 1.266267899220591,
+        "same_bundle": false,
+        "bundle": "cross-bundle"
+      },
+      {
+        "a": "Facility condition",
+        "b": "Behavioral health",
+        "lift": 1.266267899220591,
+        "same_bundle": false,
+        "bundle": "cross-bundle"
+      },
+      {
+        "a": "Maternity & peds",
+        "b": "Patient safety",
+        "lift": 1.217741443475078,
+        "same_bundle": true,
+        "bundle": "Clinical harm"
+      },
+      {
+        "a": "Patient safety",
+        "b": "Maternity & peds",
+        "lift": 1.217741443475078,
+        "same_bundle": true,
+        "bundle": "Clinical harm"
+      },
+      {
+        "a": "Food & amenities",
+        "b": "Nursing responsiveness",
+        "lift": 1.1597150271380092,
+        "same_bundle": false,
+        "bundle": "cross-bundle"
+      },
+      {
+        "a": "Nursing responsiveness",
+        "b": "Food & amenities",
+        "lift": 1.1597150271380092,
+        "same_bundle": false,
+        "bundle": "cross-bundle"
+      }
+    ],
+    "topicOrder": [
+      "Billing",
+      "Insurance",
+      "Staffing",
+      "Wait times",
+      "Scheduling",
+      "Care coordination",
+      "Front desk",
+      "Medical records",
+      "Diagnostic accuracy",
+      "Testing & imaging",
+      "Maternity & peds",
+      "Pain management",
+      "Patient safety",
+      "Surgical care",
+      "Cleanliness",
+      "Facility condition",
+      "Food & amenities",
+      "Infection control",
+      "Accessibility",
+      "Behavioral health",
+      "Discrimination",
+      "Medication",
+      "Privacy",
+      "Visitors & security",
+      "Discharge",
+      "Nursing responsiveness",
+      "Rehabilitation"
+    ],
+    "topicBundles": [
+      {
+        "name": "Financial friction",
+        "topics": [
+          "Billing",
+          "Insurance"
+        ]
+      },
+      {
+        "name": "Capacity & flow",
+        "topics": [
+          "Staffing",
+          "Wait times"
+        ]
+      },
+      {
+        "name": "Administrative access",
+        "topics": [
+          "Scheduling",
+          "Care coordination",
+          "Front desk",
+          "Medical records"
+        ]
+      },
+      {
+        "name": "Diagnostic journey",
+        "topics": [
+          "Diagnostic accuracy",
+          "Testing & imaging"
+        ]
+      },
+      {
+        "name": "Clinical harm",
+        "topics": [
+          "Maternity & peds",
+          "Pain management",
+          "Patient safety",
+          "Surgical care"
+        ]
+      },
+      {
+        "name": "Environment",
+        "topics": [
+          "Cleanliness",
+          "Facility condition",
+          "Food & amenities",
+          "Infection control"
+        ]
+      },
+      {
+        "name": "Dignity & vulnerability",
+        "topics": [
+          "Accessibility",
+          "Behavioral health",
+          "Discrimination",
+          "Medication",
+          "Privacy",
+          "Visitors & security"
+        ]
+      },
+      {
+        "name": "Inpatient recovery",
+        "topics": [
+          "Discharge",
+          "Nursing responsiveness",
+          "Rehabilitation"
+        ]
+      }
+    ],
+    "adjustedPairs": [
+      {
+        "pair": "Wait times × Staffing",
+        "fold": "holdout",
+        "est": 0.4516,
+        "lo": 0.3648,
+        "hi": 0.5384,
+        "p": 0.0,
+        "n_co": 1171
+      },
+      {
+        "pair": "Billing × Insurance",
+        "fold": "holdout",
+        "est": 0.4737,
+        "lo": 0.3383,
+        "hi": 0.6091,
+        "p": 0.0,
+        "n_co": 461
+      },
+      {
+        "pair": "Cleanliness × Infection control",
+        "fold": "holdout",
+        "est": 0.1928,
+        "lo": 0.0348,
+        "hi": 0.3509,
+        "p": 0.0168,
+        "n_co": 289
+      },
+      {
+        "pair": "Behavioral health × Discrimination",
+        "fold": "holdout",
+        "est": 0.7437,
+        "lo": 0.5427,
+        "hi": 0.9446,
+        "p": 0.0,
+        "n_co": 112
+      },
+      {
+        "pair": "Diagnostic accuracy × Testing & imaging",
+        "fold": "holdout",
+        "est": 0.3411,
+        "lo": 0.1573,
+        "hi": 0.5248,
+        "p": 0.0003,
+        "n_co": 192
+      }
+    ],
+    "ratingBandOverlap": [
+      {
+        "group": "Low ratings only",
+        "pairs": 20
+      },
+      {
+        "group": "Both rating bands",
+        "pairs": 11
+      },
+      {
+        "group": "High ratings only",
+        "pairs": 5
+      }
+    ]
+  }
+}

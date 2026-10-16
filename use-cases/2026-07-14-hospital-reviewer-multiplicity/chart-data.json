@@ -1,0 +1,629 @@
+{
+  "sources": {
+    "report": "report.html",
+    "charts": {
+      "reviewerGroups": "8",
+      "ratingGap": "11",
+      "shiftBins": "16",
+      "selectedTopics": "29"
+    },
+    "scope": "Text reviews (at least 15 characters), 2007–early June 2026. Topic comparison uses the separately labeled 2019+ sample at listings with both groups.",
+    "transformations": "Groups 2–10 combined by sums; ratings weighted by review count. Histogram bins cover the full saved shift range. Topic examples selected for coverage of both larger and smaller group shares."
+  },
+  "data": {
+    "reviewerGroups": [
+      {
+        "group": "1 listing",
+        "profiles": 2059030,
+        "reviews": 2059031,
+        "profileShare": 94.75461030375796,
+        "reviewShare": 89.26886475472025,
+        "rating": 3.736626597656859
+      },
+      {
+        "group": "2–10 listings",
+        "profiles": 113937,
+        "reviews": 246555,
+        "profileShare": 5.243272819812859,
+        "reviewShare": 10.689341223905833,
+        "rating": 3.499357141408611
+      },
+      {
+        "group": "11+ listings",
+        "profiles": 46,
+        "reviews": 964,
+        "profileShare": 0.002116876429179209,
+        "reviewShare": 0.04179402137391342,
+        "rating": 3.995850622406639
+      }
+    ],
+    "ratingGap": [
+      {
+        "label": "Overall rating gap",
+        "value": -0.23726945624824802
+      },
+      {
+        "label": "Different listing mix",
+        "value": -0.17293885755315852
+      },
+      {
+        "label": "Within-listing difference",
+        "value": -0.061153264686883466
+      },
+      {
+        "label": "Remaining component",
+        "value": -0.003177334008206023
+      }
+    ],
+    "shiftBins": [
+      {
+        "lo": -0.5,
+        "hi": -0.48,
+        "count": 1
+      },
+      {
+        "lo": -0.48,
+        "hi": -0.46,
+        "count": 0
+      },
+      {
+        "lo": -0.46,
+        "hi": -0.44,
+        "count": 0
+      },
+      {
+        "lo": -0.44,
+        "hi": -0.42,
+        "count": 1
+      },
+      {
+        "lo": -0.42,
+        "hi": -0.4,
+        "count": 0
+      },
+      {
+        "lo": -0.4,
+        "hi": -0.38,
+        "count": 0
+      },
+      {
+        "lo": -0.38,
+        "hi": -0.36,
+        "count": 0
+      },
+      {
+        "lo": -0.36,
+        "hi": -0.34,
+        "count": 3
+      },
+      {
+        "lo": -0.34,
+        "hi": -0.32,
+        "count": 5
+      },
+      {
+        "lo": -0.32,
+        "hi": -0.3,
+        "count": 7
+      },
+      {
+        "lo": -0.3,
+        "hi": -0.28,
+        "count": 10
+      },
+      {
+        "lo": -0.28,
+        "hi": -0.26,
+        "count": 5
+      },
+      {
+        "lo": -0.26,
+        "hi": -0.24,
+        "count": 6
+      },
+      {
+        "lo": -0.24,
+        "hi": -0.22,
+        "count": 14
+      },
+      {
+        "lo": -0.22,
+        "hi": -0.2,
+        "count": 15
+      },
+      {
+        "lo": -0.2,
+        "hi": -0.18,
+        "count": 27
+      },
+      {
+        "lo": -0.18,
+        "hi": -0.16,
+        "count": 43
+      },
+      {
+        "lo": -0.16,
+        "hi": -0.14,
+        "count": 67
+      },
+      {
+        "lo": -0.14,
+        "hi": -0.12,
+        "count": 75
+      },
+      {
+        "lo": -0.12,
+        "hi": -0.1,
+        "count": 127
+      },
+      {
+        "lo": -0.1,
+        "hi": -0.08,
+        "count": 166
+      },
+      {
+        "lo": -0.08,
+        "hi": -0.06,
+        "count": 251
+      },
+      {
+        "lo": -0.06,
+        "hi": -0.04,
+        "count": 380
+      },
+      {
+        "lo": -0.04,
+        "hi": -0.02,
+        "count": 648
+      },
+      {
+        "lo": -0.02,
+        "hi": 0.0,
+        "count": 986
+      },
+      {
+        "lo": 0.0,
+        "hi": 0.02,
+        "count": 1280
+      },
+      {
+        "lo": 0.02,
+        "hi": 0.04,
+        "count": 883
+      },
+      {
+        "lo": 0.04,
+        "hi": 0.06,
+        "count": 478
+      },
+      {
+        "lo": 0.06,
+        "hi": 0.08,
+        "count": 297
+      },
+      {
+        "lo": 0.08,
+        "hi": 0.1,
+        "count": 182
+      },
+      {
+        "lo": 0.1,
+        "hi": 0.12,
+        "count": 86
+      },
+      {
+        "lo": 0.12,
+        "hi": 0.14,
+        "count": 68
+      },
+      {
+        "lo": 0.14,
+        "hi": 0.16,
+        "count": 39
+      },
+      {
+        "lo": 0.16,
+        "hi": 0.18,
+        "count": 25
+      },
+      {
+        "lo": 0.18,
+        "hi": 0.2,
+        "count": 16
+      },
+      {
+        "lo": 0.2,
+        "hi": 0.22,
+        "count": 7
+      },
+      {
+        "lo": 0.22,
+        "hi": 0.24,
+        "count": 4
+      },
+      {
+        "lo": 0.24,
+        "hi": 0.26,
+        "count": 10
+      },
+      {
+        "lo": 0.26,
+        "hi": 0.28,
+        "count": 3
+      },
+      {
+        "lo": 0.28,
+        "hi": 0.3,
+        "count": 2
+      },
+      {
+        "lo": 0.3,
+        "hi": 0.32,
+        "count": 4
+      },
+      {
+        "lo": 0.32,
+        "hi": 0.34,
+        "count": 2
+      },
+      {
+        "lo": 0.34,
+        "hi": 0.36,
+        "count": 1
+      },
+      {
+        "lo": 0.36,
+        "hi": 0.38,
+        "count": 0
+      },
+      {
+        "lo": 0.38,
+        "hi": 0.4,
+        "count": 0
+      }
+    ],
+    "shiftSummary": {
+      "n": 6224,
+      "atLeastPointOne": 677,
+      "atLeastPointTwoFive": 48,
+      "precision": "Shifts retained to four decimal places in the original chart export."
+    },
+    "selectedTopics": [
+      {
+        "sub_topic_label": "Accessibility and accommodations",
+        "reach_multi": 0.013664596273291925,
+        "reach_single": 0.009076442506041138,
+        "n_multi": 330,
+        "ratio": 1.5055013309671694,
+        "label": "1.51×",
+        "short": "Accessibility"
+      },
+      {
+        "sub_topic_label": "Discrimination and equitable treatment",
+        "reach_multi": 0.032836438923395446,
+        "reach_single": 0.022232700077929053,
+        "n_multi": 793,
+        "ratio": 1.4769433675756272,
+        "label": "1.48×",
+        "short": "Equitable treatment"
+      },
+      {
+        "sub_topic_label": "Food, parking and facility amenities",
+        "reach_multi": 0.05420289855072464,
+        "reach_single": 0.0374190421930152,
+        "n_multi": 1309,
+        "ratio": 1.448537839935475,
+        "label": "1.45×",
+        "short": "Food, parking & amenities"
+      },
+      {
+        "sub_topic_label": "Privacy and confidentiality",
+        "reach_multi": 0.015527950310559006,
+        "reach_single": 0.011676260453298233,
+        "n_multi": 375,
+        "ratio": 1.3298735817573144,
+        "label": "1.33×",
+        "short": "Privacy"
+      },
+      {
+        "sub_topic_label": "Patient safety and medical errors",
+        "reach_multi": 0.05097308488612837,
+        "reach_single": 0.039141339724825315,
+        "n_multi": 1231,
+        "ratio": 1.3022825801181963,
+        "label": "1.30×",
+        "short": "Patient safety"
+      },
+      {
+        "sub_topic_label": "Care coordination and referrals",
+        "reach_multi": 0.02906832298136646,
+        "reach_single": 0.024426501116546498,
+        "n_multi": 702,
+        "ratio": 1.1900322048856844,
+        "label": "1.19×",
+        "short": "Care coordination"
+      },
+      {
+        "sub_topic_label": "Wait times and timeliness of care",
+        "reach_multi": 0.24803312629399585,
+        "reach_single": 0.2708984106402625,
+        "n_multi": 5990,
+        "ratio": 0.915594616106366,
+        "label": "0.92×",
+        "short": "Wait times"
+      },
+      {
+        "sub_topic_label": "Maternity and pediatric care",
+        "reach_multi": 0.023726708074534163,
+        "reach_single": 0.028879589791949076,
+        "n_multi": 573,
+        "ratio": 0.8215735834706555,
+        "label": "0.82×",
+        "short": "Maternity & pediatric care"
+      }
+    ],
+    "allTopics": [
+      {
+        "sub_topic_label": "Accessibility and accommodations",
+        "reach_multi": 0.013664596273291925,
+        "reach_single": 0.009076442506041138,
+        "n_multi": 330,
+        "ratio": 1.5055013309671694,
+        "label": "1.51×",
+        "short": "Accessibility"
+      },
+      {
+        "sub_topic_label": "Discrimination and equitable treatment",
+        "reach_multi": 0.032836438923395446,
+        "reach_single": 0.022232700077929053,
+        "n_multi": 793,
+        "ratio": 1.4769433675756272,
+        "label": "1.48×",
+        "short": "Equitable treatment"
+      },
+      {
+        "sub_topic_label": "Food, parking and facility amenities",
+        "reach_multi": 0.05420289855072464,
+        "reach_single": 0.0374190421930152,
+        "n_multi": 1309,
+        "ratio": 1.448537839935475,
+        "label": "1.45×",
+        "short": "Food, parking & amenities"
+      },
+      {
+        "sub_topic_label": "Privacy and confidentiality",
+        "reach_multi": 0.015527950310559006,
+        "reach_single": 0.011676260453298233,
+        "n_multi": 375,
+        "ratio": 1.3298735817573144,
+        "label": "1.33×",
+        "short": "Privacy"
+      },
+      {
+        "sub_topic_label": "Behavioral health and psychiatric care",
+        "reach_multi": 0.017018633540372672,
+        "reach_single": 0.013051479014819617,
+        "n_multi": 411,
+        "ratio": 1.3039620659887246,
+        "label": "1.30×",
+        "short": "Behavioral health and psychiatric care"
+      },
+      {
+        "sub_topic_label": "Patient safety and medical errors",
+        "reach_multi": 0.05097308488612837,
+        "reach_single": 0.039141339724825315,
+        "n_multi": 1231,
+        "ratio": 1.3022825801181963,
+        "label": "1.30×",
+        "short": "Patient safety"
+      },
+      {
+        "sub_topic_label": "Infection control and health safety practices",
+        "reach_multi": 0.017142857142857144,
+        "reach_single": 0.013352717366390968,
+        "n_multi": 414,
+        "ratio": 1.2838478245638618,
+        "label": "1.28×",
+        "short": "Infection control and health safety practices"
+      },
+      {
+        "sub_topic_label": "Pain management",
+        "reach_multi": 0.04322981366459627,
+        "reach_single": 0.03445904795583584,
+        "n_multi": 1044,
+        "ratio": 1.2545272208333038,
+        "label": "1.25×",
+        "short": "Pain management"
+      },
+      {
+        "sub_topic_label": "Medical records and administrative documentation",
+        "reach_multi": 0.019751552795031057,
+        "reach_single": 0.015985278612731905,
+        "n_multi": 477,
+        "ratio": 1.2356089170256563,
+        "label": "1.24×",
+        "short": "Medical records and administrative documentation"
+      },
+      {
+        "sub_topic_label": "Facility condition, comfort and environment",
+        "reach_multi": 0.05834368530020704,
+        "reach_single": 0.0482701715094006,
+        "n_multi": 1409,
+        "ratio": 1.2086902423548387,
+        "label": "1.21×",
+        "short": "Facility condition, comfort and environment"
+      },
+      {
+        "sub_topic_label": "Care coordination and referrals",
+        "reach_multi": 0.02906832298136646,
+        "reach_single": 0.024426501116546498,
+        "n_multi": 702,
+        "ratio": 1.1900322048856844,
+        "label": "1.19×",
+        "short": "Care coordination"
+      },
+      {
+        "sub_topic_label": "Medication, prescriptions and pharmacy",
+        "reach_multi": 0.04161490683229813,
+        "reach_single": 0.035480638887251725,
+        "n_multi": 1005,
+        "ratio": 1.172890571800004,
+        "label": "1.17×",
+        "short": "Medication, prescriptions and pharmacy"
+      },
+      {
+        "sub_topic_label": "Staffing levels and operational capacity",
+        "reach_multi": 0.03561076604554866,
+        "reach_single": 0.03053640072559151,
+        "n_multi": 860,
+        "ratio": 1.1661743099835764,
+        "label": "1.17×",
+        "short": "Staffing levels and operational capacity"
+      },
+      {
+        "sub_topic_label": "Clinical assessment and diagnostic accuracy",
+        "reach_multi": 0.09213250517598344,
+        "reach_single": 0.07959896007282109,
+        "n_multi": 2225,
+        "ratio": 1.1574586538780913,
+        "label": "1.16×",
+        "short": "Clinical assessment and diagnostic accuracy"
+      },
+      {
+        "sub_topic_label": "Discharge process and aftercare planning",
+        "reach_multi": 0.020993788819875778,
+        "reach_single": 0.018644034498339915,
+        "n_multi": 507,
+        "ratio": 1.126032502339828,
+        "label": "1.13×",
+        "short": "Discharge process and aftercare planning"
+      },
+      {
+        "sub_topic_label": "Cleanliness and housekeeping",
+        "reach_multi": 0.06393374741200829,
+        "reach_single": 0.05705192432368716,
+        "n_multi": 1544,
+        "ratio": 1.12062385572267,
+        "label": "1.12×",
+        "short": "Cleanliness and housekeeping"
+      },
+      {
+        "sub_topic_label": "Insurance coverage, denials and network issues",
+        "reach_multi": 0.014865424430641821,
+        "reach_single": 0.013280682108406515,
+        "n_multi": 359,
+        "ratio": 1.1193268771362417,
+        "label": "1.12×",
+        "short": "Insurance coverage, denials and network issues"
+      },
+      {
+        "sub_topic_label": "Visitor access, security, and property safety",
+        "reach_multi": 0.01772256728778468,
+        "reach_single": 0.016240676345585875,
+        "n_multi": 428,
+        "ratio": 1.0912456421558807,
+        "label": "1.09×",
+        "short": "Visitor access, security, and property safety"
+      },
+      {
+        "sub_topic_label": "Nursing responsiveness and basic care needs",
+        "reach_multi": 0.1256728778467909,
+        "reach_single": 0.11979463402814614,
+        "n_multi": 3035,
+        "ratio": 1.049069341597251,
+        "label": "1.05×",
+        "short": "Nursing responsiveness and basic care needs"
+      },
+      {
+        "sub_topic_label": "Diagnostic testing and imaging services",
+        "reach_multi": 0.0263768115942029,
+        "reach_single": 0.025264729573092868,
+        "n_multi": 637,
+        "ratio": 1.0440171749273108,
+        "label": "1.04×",
+        "short": "Diagnostic testing and imaging services"
+      },
+      {
+        "sub_topic_label": "Billing, charges and collections",
+        "reach_multi": 0.04708074534161491,
+        "reach_single": 0.04556557500507521,
+        "n_multi": 1137,
+        "ratio": 1.0332525231245504,
+        "label": "1.03×",
+        "short": "Billing, charges and collections"
+      },
+      {
+        "sub_topic_label": "Appointment scheduling and access",
+        "reach_multi": 0.061821946169772254,
+        "reach_single": 0.0608894389763135,
+        "n_multi": 1493,
+        "ratio": 1.015314760804768,
+        "label": "1.02×",
+        "short": "Appointment scheduling and access"
+      },
+      {
+        "sub_topic_label": "Clinical staff bedside manner and empathy",
+        "reach_multi": 0.4147826086956522,
+        "reach_single": 0.41584644702461643,
+        "n_multi": 10017,
+        "ratio": 0.9974417520299236,
+        "label": "1.00×",
+        "short": "Clinical staff bedside manner and empathy"
+      },
+      {
+        "sub_topic_label": "Surgical and procedural care",
+        "reach_multi": 0.03648033126293996,
+        "reach_single": 0.03745178549209904,
+        "n_multi": 881,
+        "ratio": 0.974061203854646,
+        "label": "0.97×",
+        "short": "Surgical and procedural care"
+      },
+      {
+        "sub_topic_label": "Rehabilitation and long-term care / therapy services",
+        "reach_multi": 0.014575569358178053,
+        "reach_single": 0.015042271599117241,
+        "n_multi": 352,
+        "ratio": 0.9689739519816557,
+        "label": "0.97×",
+        "short": "Rehabilitation and long-term care / therapy services"
+      },
+      {
+        "sub_topic_label": "Communication and information sharing",
+        "reach_multi": 0.13871635610766045,
+        "reach_single": 0.14463370071314904,
+        "n_multi": 3350,
+        "ratio": 0.9590873733001936,
+        "label": "0.96×",
+        "short": "Communication and information sharing"
+      },
+      {
+        "sub_topic_label": "Front desk, reception and administrative staff conduct",
+        "reach_multi": 0.23648033126293996,
+        "reach_single": 0.25258180913276096,
+        "n_multi": 5711,
+        "ratio": 0.9362524248080043,
+        "label": "0.94×",
+        "short": "Front desk, reception and administrative staff conduct"
+      },
+      {
+        "sub_topic_label": "Wait times and timeliness of care",
+        "reach_multi": 0.24803312629399585,
+        "reach_single": 0.2708984106402625,
+        "n_multi": 5990,
+        "ratio": 0.915594616106366,
+        "label": "0.92×",
+        "short": "Wait times"
+      },
+      {
+        "sub_topic_label": "Maternity and pediatric care",
+        "reach_multi": 0.023726708074534163,
+        "reach_single": 0.028879589791949076,
+        "n_multi": 573,
+        "ratio": 0.8215735834706555,
+        "label": "0.82×",
+        "short": "Maternity & pediatric care"
+      }
+    ]
+  }
+}

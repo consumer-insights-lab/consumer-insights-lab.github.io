@@ -1,0 +1,294 @@
+{
+  "source": "Frozen hospital labeling run: topic-labeling-hospitals-usa-deepseek-v4-flash-b25-combined/review_topic_labels.parquet",
+  "period": "2019 to early June 2026",
+  "validity": "Topic name, topic ID, phrase and review resolution checks pass; sentiment is positive, negative or neutral.",
+  "note": "Model-derived labels await human validation. Reviews use listing-plus-review keys; negative tone excludes neutral statements. Recommendations in the article are proposed applications, not evaluated intervention effects.",
+  "valid_statements": 425667,
+  "directional_statements": 421747,
+  "negative_statements": 192195,
+  "topics": [
+    {
+      "topic": "Wait times and timeliness of care",
+      "reach_pct": 26.245903059898158,
+      "negative_tone_pct": 52.39548959748716,
+      "negative_statements": 29692,
+      "directional_statements": 56669,
+      "share_of_negative_statements_pct": 15.448893051328078
+    },
+    {
+      "topic": "Front desk, reception and administrative staff conduct",
+      "reach_pct": 25.260598522807786,
+      "negative_tone_pct": 36.7505264324504,
+      "negative_statements": 19896,
+      "directional_statements": 54138,
+      "share_of_negative_statements_pct": 10.351986263950677
+    },
+    {
+      "topic": "Clinical staff bedside manner and empathy",
+      "reach_pct": 41.702390115351484,
+      "negative_tone_pct": 20.94984842844227,
+      "negative_statements": 19696,
+      "directional_statements": 94015,
+      "share_of_negative_statements_pct": 10.247925284216551
+    },
+    {
+      "topic": "Communication and information sharing",
+      "reach_pct": 14.44722529475031,
+      "negative_tone_pct": 42.472771798672426,
+      "negative_statements": 13181,
+      "directional_statements": 31034,
+      "share_of_negative_statements_pct": 6.858138869377456
+    },
+    {
+      "topic": "Billing, charges and collections",
+      "reach_pct": 4.599277205466325,
+      "negative_tone_pct": 93.62921156148452,
+      "negative_statements": 10949,
+      "directional_statements": 11694,
+      "share_of_negative_statements_pct": 5.696818335544629
+    },
+    {
+      "topic": "Nursing responsiveness and basic care needs",
+      "reach_pct": 11.844043571563285,
+      "negative_tone_pct": 40.604687441964124,
+      "negative_statements": 10932,
+      "directional_statements": 26923,
+      "share_of_negative_statements_pct": 5.6879731522672285
+    },
+    {
+      "topic": "Clinical assessment and diagnostic accuracy",
+      "reach_pct": 8.088876202321302,
+      "negative_tone_pct": 62.24149816176471,
+      "negative_statements": 10835,
+      "directional_statements": 17408,
+      "share_of_negative_statements_pct": 5.6375035770961786
+    },
+    {
+      "topic": "Patient safety and medical errors",
+      "reach_pct": 4.011560634713508,
+      "negative_tone_pct": 94.45681211041853,
+      "negative_statements": 8486,
+      "directional_statements": 8984,
+      "share_of_negative_statements_pct": 4.41530737011889
+    },
+    {
+      "topic": "Appointment scheduling and access",
+      "reach_pct": 6.173317769633455,
+      "negative_tone_pct": 63.592598164585525,
+      "negative_statements": 8454,
+      "directional_statements": 13294,
+      "share_of_negative_statements_pct": 4.39865761336143
+    },
+    {
+      "topic": "Staffing levels and operational capacity",
+      "reach_pct": 3.058368971827324,
+      "negative_tone_pct": 89.84152139461172,
+      "negative_statements": 5669,
+      "directional_statements": 6310,
+      "share_of_negative_statements_pct": 2.94960847056375
+    },
+    {
+      "topic": "Medication, prescriptions and pharmacy",
+      "reach_pct": 3.644046629932257,
+      "negative_tone_pct": 73.1900604432505,
+      "negative_statements": 5449,
+      "directional_statements": 7445,
+      "share_of_negative_statements_pct": 2.8351413928562135
+    },
+    {
+      "topic": "Pain management",
+      "reach_pct": 3.4926573658268047,
+      "negative_tone_pct": 74.08466040560772,
+      "negative_statements": 5443,
+      "directional_statements": 7347,
+      "share_of_negative_statements_pct": 2.8320195634641903
+    },
+    {
+      "topic": "Discrimination and equitable treatment",
+      "reach_pct": 2.35494410830704,
+      "negative_tone_pct": 92.91824149592202,
+      "negative_statements": 4671,
+      "directional_statements": 5027,
+      "share_of_negative_statements_pct": 2.4303441816904705
+    },
+    {
+      "topic": "Cleanliness and housekeeping",
+      "reach_pct": 5.774200618809989,
+      "negative_tone_pct": 36.0377358490566,
+      "negative_statements": 4393,
+      "directional_statements": 12190,
+      "share_of_negative_statements_pct": 2.285699419860038
+    },
+    {
+      "topic": "Facility condition, comfort and environment",
+      "reach_pct": 4.979534414296856,
+      "negative_tone_pct": 41.7766303308472,
+      "negative_statements": 4369,
+      "directional_statements": 10458,
+      "share_of_negative_statements_pct": 2.273212102291943
+    },
+    {
+      "topic": "Food, parking and facility amenities",
+      "reach_pct": 3.954980808734702,
+      "negative_tone_pct": 45.38896236623783,
+      "negative_statements": 3775,
+      "directional_statements": 8317,
+      "share_of_negative_statements_pct": 1.964150992481594
+    },
+    {
+      "topic": "Medical records and administrative documentation",
+      "reach_pct": 1.634698215441705,
+      "negative_tone_pct": 90.28387474392741,
+      "negative_statements": 3085,
+      "directional_statements": 3417,
+      "share_of_negative_statements_pct": 1.6051406123988656
+    },
+    {
+      "topic": "Visitor access, security, and property safety",
+      "reach_pct": 1.6122701763149714,
+      "negative_tone_pct": 83.79840546697038,
+      "negative_statements": 2943,
+      "directional_statements": 3512,
+      "share_of_negative_statements_pct": 1.5312573167876375
+    },
+    {
+      "topic": "Discharge process and aftercare planning",
+      "reach_pct": 1.8503132279555312,
+      "negative_tone_pct": 75.86297071129707,
+      "negative_statements": 2901,
+      "directional_statements": 3824,
+      "share_of_negative_statements_pct": 1.5094045110434715
+    },
+    {
+      "topic": "Care coordination and referrals",
+      "reach_pct": 2.5313100523490824,
+      "negative_tone_pct": 56.24755189972581,
+      "negative_statements": 2872,
+      "directional_statements": 5106,
+      "share_of_negative_statements_pct": 1.4943156689820234
+    },
+    {
+      "topic": "Privacy and confidentiality",
+      "reach_pct": 1.2141724818154478,
+      "negative_tone_pct": 94.31425278524779,
+      "negative_statements": 2455,
+      "directional_statements": 2603,
+      "share_of_negative_statements_pct": 1.2773485262363744
+    },
+    {
+      "topic": "Infection control and health safety practices",
+      "reach_pct": 1.3589352798152745,
+      "negative_tone_pct": 78.31782144088245,
+      "negative_statements": 2272,
+      "directional_statements": 2901,
+      "share_of_negative_statements_pct": 1.182132729779651
+    },
+    {
+      "topic": "Insurance coverage, denials and network issues",
+      "reach_pct": 1.3660714740828714,
+      "negative_tone_pct": 85.00187476565429,
+      "negative_statements": 2267,
+      "directional_statements": 2667,
+      "share_of_negative_statements_pct": 1.1795312052862978
+    },
+    {
+      "topic": "Behavioral health and psychiatric care",
+      "reach_pct": 1.4343750477870152,
+      "negative_tone_pct": 66.08903495667762,
+      "negative_statements": 2212,
+      "directional_statements": 3347,
+      "share_of_negative_statements_pct": 1.1509144358594137
+    },
+    {
+      "topic": "Diagnostic testing and imaging services",
+      "reach_pct": 2.4920609838772982,
+      "negative_tone_pct": 33.7823616080825,
+      "negative_statements": 1605,
+      "directional_statements": 4751,
+      "share_of_negative_statements_pct": 0.8350893623663467
+    },
+    {
+      "topic": "Accessibility and accommodations",
+      "reach_pct": 0.9802072554706575,
+      "negative_tone_pct": 65.26946107784431,
+      "negative_statements": 1308,
+      "directional_statements": 2004,
+      "share_of_negative_statements_pct": 0.6805588074611723
+    },
+    {
+      "topic": "Maternity and pediatric care",
+      "reach_pct": 2.7596682689121894,
+      "negative_tone_pct": 20.02048131080389,
+      "negative_statements": 1173,
+      "directional_statements": 5859,
+      "share_of_negative_statements_pct": 0.6103176461406384
+    },
+    {
+      "topic": "Surgical and procedural care",
+      "reach_pct": 3.693999989805437,
+      "negative_tone_pct": 12.694524495677234,
+      "negative_statements": 881,
+      "directional_statements": 6940,
+      "share_of_negative_statements_pct": 0.45838861572881706
+    },
+    {
+      "topic": "Rehabilitation and long-term care / therapy services",
+      "reach_pct": 1.6352079436036762,
+      "negative_tone_pct": 9.289924221161943,
+      "negative_statements": 331,
+      "directional_statements": 3563,
+      "share_of_negative_statements_pct": 0.17222092145997556
+    }
+  ],
+  "mixed_experiences": {
+    "labeled_reviews": 196183,
+    "mixed_reviews": 14639,
+    "mixed_share_pct": 7.4619105630967,
+    "labeled_one_star_reviews": 64283,
+    "one_star_with_positive_topic": 3951,
+    "one_star_with_positive_topic_pct": 6.146259508734813
+  },
+  "annual": [
+    {
+      "year": 2022,
+      "directional_statements": 50728,
+      "negative_share_pct": 52.40104084529255
+    },
+    {
+      "year": 2025,
+      "directional_statements": 89490,
+      "negative_share_pct": 40.442507542742206
+    }
+  ],
+  "within_topic_annual": [
+    {
+      "year": 2022,
+      "topic": "Wait times and timeliness of care",
+      "directional_statements": 7556,
+      "negative_share_pct": 61.64637374272102,
+      "contribution_pp": 9.18230563002681
+    },
+    {
+      "year": 2022,
+      "topic": "Front desk, reception and administrative staff conduct",
+      "directional_statements": 6744,
+      "negative_share_pct": 45.1067615658363,
+      "contribution_pp": 5.996688219523735
+    },
+    {
+      "year": 2025,
+      "topic": "Wait times and timeliness of care",
+      "directional_statements": 11224,
+      "negative_share_pct": 44.868139700641485,
+      "contribution_pp": 5.627444407196334
+    },
+    {
+      "year": 2025,
+      "topic": "Front desk, reception and administrative staff conduct",
+      "directional_statements": 11175,
+      "negative_share_pct": 29.369127516778526,
+      "contribution_pp": 3.6674488769694937
+    }
+  ],
+  "waiting_front_desk_share_of_negative_statements_pct": 25.800879315278753
+}

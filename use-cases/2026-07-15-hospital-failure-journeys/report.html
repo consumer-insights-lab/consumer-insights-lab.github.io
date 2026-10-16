@@ -1,0 +1,1492 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Hospital Failure Journeys</title>
+<style>:root {
+  color-scheme: light dark;
+  background-color: var(--background) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: light-dark(rgb(255 255 255), rgb(24 24 24));
+  --foreground: light-dark(rgb(26 28 31), rgb(255 255 255));
+  --card: color-mix(in oklab, var(--foreground) 5%, transparent);
+  --card-foreground: var(--foreground);
+  --popover: light-dark(rgb(255 255 255), rgb(45 45 45));
+  --popover-foreground: var(--foreground);
+  --primary: light-dark(rgb(51 156 255), rgb(131 195 255));
+  --primary-foreground: light-dark(rgb(255 255 255), rgb(13 13 13));
+  --secondary: light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%));
+  --secondary-foreground: var(--foreground);
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: light-dark(
+    rgb(26 28 31 / 49.4%),
+    rgb(255 255 255 / 49.8%)
+  );
+  --accent: light-dark(rgb(229 242 255), rgb(13 39 63));
+  --accent-foreground: var(--primary);
+  --destructive: light-dark(rgb(226 85 7), rgb(255 133 73));
+  --border: light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%));
+  --input: light-dark(
+    rgb(26 28 31 / 11.8%),
+    color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+  );
+  --ring: light-dark(rgb(51 156 255), rgb(131 195 255 / 76%));
+  --font-size-base: 14px;
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, "Segoe UI", sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: 12.5px;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17'%3E%3Cpath d='M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z'/%3E%3C/svg%3E");
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+  --color-background-primary: var(--background);
+  --color-text-primary: var(--foreground);
+  --color-border-secondary: var(--border);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html > body {
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--viz-font-weight-medium);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget > :not(.card) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls > .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls > .form-label > :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type="file"] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type="file"]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type="file"]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type="color"] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type="checkbox"]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: "";
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type="radio"] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type="radio"]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: "";
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+    [aria-pressed="true"],
+    [aria-selected="true"],
+    .is-selected
+  ) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed="true"], [aria-selected="true"], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget > svg {
+  width: 100%;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html>body{padding:0}</style>
+
+<style id="cat-frame-style">
+@font-face{font-family:"Inter";font-weight:400;font-display:swap;src:url("../../site_libs/bootstrap/assets/fonts/inter-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-weight:500;font-display:swap;src:url("../../site_libs/bootstrap/assets/fonts/inter-latin-500-normal.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-weight:600;font-display:swap;src:url("../../site_libs/bootstrap/assets/fonts/inter-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-weight:700;font-display:swap;src:url("../../site_libs/bootstrap/assets/fonts/inter-latin-700-normal.woff2") format("woff2")}
+html,body{font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif !important;overflow:hidden}
+</style>
+</head>
+<body>
+<aside id="editorial-archive-note" style="margin:24px auto;padding:18px;max-width:1100px;border:1px solid currentColor;font:16px/1.6 system-ui,sans-serif;">
+<strong>Earlier exploratory report.</strong> These plots are retained as supporting material. Some counts and interpretations in this export have been superseded. Use the <a href="./">revised article</a> for current definitions and conclusions. In particular, co-mentions do not establish care journeys or an additional rating penalty, and reviewer groups count listings rather than verified patients or physical hospitals.
+</aside>
+
+
+<div id="failure-journeys-full-report">
+  <style>
+    #failure-journeys-full-report{color:var(--foreground)}
+    #failure-journeys-full-report *{box-sizing:border-box}
+    #failure-journeys-full-report .report{display:grid;gap:1.5rem;width:100%;max-width:1180px;margin:0 auto;padding:clamp(28px,5vw,68px)}
+    #failure-journeys-full-report .hero{padding:1rem 0 0}
+    #failure-journeys-full-report .hero h1{max-width:18ch;margin:.5rem 0 1rem;font-size:clamp(2rem,6vw,4.4rem);line-height:1.02;letter-spacing:-.05em;font-weight:500}
+    #failure-journeys-full-report .hero p{max-width:76ch;color:var(--muted-foreground)}
+    #failure-journeys-full-report .section{display:grid;gap:1rem;padding-top:3rem}
+    #failure-journeys-full-report .section>h2{margin:0;padding:1rem 0;border-top:3px solid var(--foreground);border-bottom:1px solid var(--border);font-size:clamp(1.55rem,3vw,2.2rem);font-weight:500;letter-spacing:-.025em}
+    #failure-journeys-full-report .section>h3{margin:1.4rem 0 .2rem;padding:.8rem 0;border-bottom:1px solid var(--border);font-size:1.3rem;font-weight:500}
+    #failure-journeys-full-report .narrative{max-width:94ch;line-height:1.65}
+    #failure-journeys-full-report .narrative p,#failure-journeys-full-report .narrative ul,#failure-journeys-full-report .narrative ol{max-width:90ch}
+    #failure-journeys-full-report .narrative li{margin:.35rem 0}
+    #failure-journeys-full-report .reading-note{padding:.9rem 1rem;border-left:3px solid var(--viz-series-1);background:var(--muted)}
+    #failure-journeys-full-report .report-stats{margin:.4rem 0}
+    #failure-journeys-full-report .chart-shell{position:relative;width:100%;min-width:0;overflow-x:auto;padding:.7rem 0 1.2rem}
+    #failure-journeys-full-report .chart-host{min-height:120px;width:100%;display:flex;justify-content:center}
+    #failure-journeys-full-report .vega-embed{width:100%;max-width:100%}
+    #failure-journeys-full-report .table-wrap{width:100%;overflow-x:auto}
+    #failure-journeys-full-report table{width:100%;border-collapse:collapse;margin:.8rem 0 1.2rem}
+    #failure-journeys-full-report th{text-align:left;font-weight:500;background:var(--muted)}
+    #failure-journeys-full-report th,#failure-journeys-full-report td{padding:.75rem .8rem;border:1px solid var(--border);vertical-align:top}
+    #failure-journeys-full-report .toc{display:flex;gap:.45rem .9rem;flex-wrap:wrap;padding:.8rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    #failure-journeys-full-report .toc a{color:var(--muted-foreground);text-decoration:none}
+    #failure-journeys-full-report .toc a:hover{color:var(--foreground);text-decoration:underline}
+    #failure-journeys-full-report span[style*="background:#fbe7e7"]{background:color-mix(in srgb,var(--viz-series-5) 18%,transparent)!important;border-bottom-color:var(--viz-series-5)!important;color:var(--foreground)!important}
+    #failure-journeys-full-report span[style*="background:#eeedea"]{background:color-mix(in srgb,var(--muted-foreground) 18%,transparent)!important;border-bottom-color:var(--muted-foreground)!important;color:var(--foreground)!important}
+    #failure-journeys-full-report .appendix{color:var(--muted-foreground)}
+    @media(max-width:620px){#failure-journeys-full-report .report{padding:24px 18px}}
+  </style>
+  <article class="report">
+    <header class="hero narrative">
+
+<p>A bad hospital review is rarely about one thing. The five-hour wait comes with the
+understaffed ward; the surprise bill comes with the insurance denial; the billing
+office and the front desk share a paragraph. This notebook treats those
+co-mentions as data: <strong>which complaint topics appear together in the same review
+more often than chance and review length explain - and what do the resulting
+bundles look like?</strong></p>
+<p>Using the topic-labeled 10% coverage sample of our U.S. hospital corpus, a
+stratified permutation test finds <strong>31 topic pairs</strong> that co-occur above chance in
+1–2★ reviews. They organize into <strong>eight coherent failure bundles</strong>:</p>
+<ol>
+<li><strong>Financial friction</strong> - billing × insurance, the strongest association in the
+corpus (4.6× chance). Two topics, one experience.</li>
+<li><strong>Capacity &amp; flow</strong> - wait times × staffing, the highest-volume pair, and the
+most <em>severe</em> compound: reviews naming both average <strong>1.67★</strong>, versus 3.19★
+for either alone.</li>
+<li><strong>Administrative access</strong> - scheduling, front desk, medical records, referrals:
+the paperwork journey.</li>
+<li><strong>Diagnostic journey</strong> - assessment accuracy × testing and imaging.</li>
+<li><strong>Clinical harm</strong> - safety errors, surgery, pain management, maternity.</li>
+<li><strong>Environment</strong> - cleanliness, facility condition, amenities, infection control.</li>
+<li><strong>Dignity &amp; vulnerability</strong> - the finding we did not go looking for: behavioral
+health clusters with discrimination, privacy, security, and accessibility -
+complaints about <em>how institutions treat people at their most vulnerable</em>.</li>
+<li><strong>Inpatient recovery</strong> - nursing responsiveness, discharge, rehabilitation.</li>
+</ol>
+<p>The bundles also pass a second, independent test: their members move together
+in <em>calendar time</em> (section 7) - and the pandemic ran through them in a
+measurable sequence, infection-control attention leading the staffing and
+wait-time surge by roughly a year.</p>
+<p>Throughout: a co-mention is an association within one written review - not a
+sequence of events and not a causal chain. Every number is a topic-level
+aggregate; four verbatim example reviews (shown as anonymous cards, with no
+reviewer information and facilities identified only by category) illustrate what
+the strongest bundles read like in practice.</p>
+</header>
+    <div class="reading-note narrative"><h2>How to read this analysis</h2>
+<ul>
+<li>A review <strong>mentions</strong> a topic if at least one validity-gated labeled statement
+in it carries that topic; a review counts once per topic.</li>
+<li><strong>Lift</strong> is observed ÷ expected co-mentions of a topic pair, where &quot;expected&quot;
+comes from a null model that keeps everything about the reviews except which
+topics travel together (next section). Lift 2.0 = the pair appears together
+twice as often as its topics' popularity predicts.</li>
+<li><strong>q-value</strong> is the Benjamini–Hochberg-corrected permutation p-value; we accept
+pairs at q &lt; 0.05 with lift &gt; 1.15 and at least 30 observed co-mentions.</li>
+<li>The main analysis lives inside <strong>1–2★ reviews</strong> (72,038 labeled): failure
+bundles are a property of complaints. The praise side appears once, as a
+robustness mirror.</li>
+<li>Estimates come from the 10% coverage sample of the full corpus; rare pairs
+carry wide uncertainty and everything is descriptive, not causal.</li>
+</ul>
+</div>
+    <div class="viz-grid report-stats">
+      <div class="card viz-stat"><span class="text-muted">Labeled reviews</span><span class="viz-stat-value">196,183</span><span class="text-small">Validity-gated statements</span></div>
+      <div class="card viz-stat"><span class="text-muted">Low-rating reviews</span><span class="viz-stat-value">72,038</span><span class="text-small">Rated one or two stars</span></div>
+      <div class="card viz-stat"><span class="text-muted">Journey candidates</span><span class="viz-stat-value">47,405</span><span class="text-small">Low-rating reviews with 2+ topics</span></div>
+    </div>
+    <nav class="toc text-small" aria-label="Report sections"><a href="#fj1">Raw pairs</a><a href="#fj2">Null model</a><a href="#fj3">Associations</a><a href="#fj4">Bundles</a><a href="#fj5">Severity</a><a href="#fj6">Robustness</a><a href="#fj7">Calendar time</a><a href="#fj8">Meaning</a></nav>
+    <section id="fj1" class="section narrative"><h2>1. The raw view - and why it misleads</h2>
+<p>Start where every co-occurrence analysis is tempted to stop: just count how often
+topics appear together in angry reviews.</p>
+<div class="chart-shell"><div id="fj-chart-6" class="chart-host" aria-label="Interactive analysis chart"></div></div><p><strong>Why this is misleading.</strong> The raw ranking is wait times × bedside manner × front
+desk in every combination - the three most common complaint topics paired with
+each other and with everything else. Two mechanical forces produce this without
+any real affinity: <strong>popularity</strong> (common topics co-occur with everything) and
+<strong>review length</strong> (a review with five topics contains ten pairs; one with two
+topics, a single pair - and angrier reviews are longer). A meaningful &quot;journey&quot;
+claim needs a null model that grants the critic both of those facts and asks what
+<em>still</em> stands out.</p>
+</section>
+    <section id="fj2" class="section narrative"><h2>2. A null that concedes popularity and length</h2>
+<p>The null model conditions on everything except togetherness:</p>
+<ol>
+<li><strong>Condition on the rating band</strong> - all comparisons live inside 1–2★ reviews,
+so &quot;angry reviews share angry topics&quot; cannot create associations.</li>
+<li><strong>Stratify by topics-per-review</strong> (2, 3, 4, 5+) - so review length is held
+fixed; within a stratum, every review has the same number of topics.</li>
+<li><strong>Permute each topic's column within each stratum</strong> (B = 499) - each topic
+keeps exactly its prevalence among reviews of that length; only <em>which</em> review
+it lands in is shuffled. Co-mention counts under this shuffle are what
+popularity + length alone produce.</li>
+</ol>
+<p>A pair is accepted when its observed count exceeds the null at <strong>q &lt; 0.05</strong>
+(Benjamini–Hochberg over all 353 testable pairs), with <strong>lift &gt; 1.15</strong> and at
+least 30 observed co-mentions.</p>
+</section>
+    <section id="fj3" class="section narrative"><h2>3. What survives: 31 real associations</h2>
+<div class="chart-shell"><div id="fj-chart-11" class="chart-host" aria-label="Interactive analysis chart"></div></div><p><strong>Reading the survivors.</strong> The corrected ranking looks nothing like the raw one.
+The popular topics have vanished; what remains are <em>specific</em> pairings:
+<strong>billing × insurance at 4.6× chance</strong> - by a wide margin the strongest
+association in the corpus - followed by <strong>cleanliness × infection control</strong>
+(3.2×), facility condition × amenities, and a striking cluster of behavioral
+health with discrimination, security, and privacy. Wait times, the most common
+complaint of all, earns exactly one strong partner: <strong>staffing</strong> (1.36×, but on
+2,075 observed co-mentions - the highest-volume true pair in the corpus).
+Patients connect the wait to the empty nurses' station.</p>
+<div style="max-width:680px;background:var(--background);border:1px solid rgba(11,11,11,0.10);border-radius:10px;padding:16px 20px;font-family:system-ui,-apple-system,sans-serif;margin:6px 0;"><div style="font-size:12px;color:var(--muted-foreground);margin-bottom:8px;"><span style="color:#eda100;letter-spacing:1px;">★☆☆☆☆</span>&nbsp;&nbsp;Medical Center · 2020 · quoted verbatim</div><div style="font-size:14.5px;line-height:1.6;color:var(--foreground);">“<span style="background:#eeedea;border-bottom:2px solid var(--muted-foreground);border-radius:2px;padding:0 1px;">I had no insurance coverage which I explained up front.</span> I was going specifically to see a provider so I was willing to pay out of pocket. I saw the provider, paid my bill and left. <span style="background:#fbe7e7;border-bottom:2px solid #e34948;border-radius:2px;padding:0 1px;">I later received a bill in the mail stating that I owed additional money.</span> I called customer service asking why I was not charged upfront when I paid the original bill. She had no good explanation and just went in circles not answering my question directly. I am very disappointed as it seems that they are not upfront about payments.”</div><div style="margin-top:10px;"><span style="display:inline-flex;align-items:center;gap:6px;margin:3px 8px 3px 0;padding:3px 10px;border:1px solid rgba(11,11,11,0.12);border-radius:99px;font-size:11.5px;color:var(--foreground);"><span style="width:8px;height:8px;border-radius:50%;background:#e34948;"></span>Insurance coverage, denials and network issues<span style="color:var(--muted-foreground);font-weight:600;">· neutral</span></span><span style="display:inline-flex;align-items:center;gap:6px;margin:3px 8px 3px 0;padding:3px 10px;border:1px solid rgba(11,11,11,0.12);border-radius:99px;font-size:11.5px;color:var(--foreground);"><span style="width:8px;height:8px;border-radius:50%;background:#e34948;"></span>Billing, charges and collections<span style="color:#e34948;font-weight:600;">· negative</span></span></div><div style="font-size:11px;color:var(--muted-foreground);margin-top:8px;">The 4.6× pair in one story: the insurance conversation happens up front, the billing surprise arrives by mail. To the patient these are not two departments - they are one experience, which is why the topics refuse to separate.</div></div></section>
+    <section id="fj4" class="section narrative"><h2>4. Eight failure bundles</h2>
+<p>Treat the 31 significant pairs as a weighted network (edge weight = log₂ lift)
+and let greedy modularity clustering find its natural communities.</p>
+<p><strong>The eight bundles</strong> (greedy modularity on the significant-edge network):</p>
+<div class="table-wrap"><style type="text/css">
+</style>
+<table id="T_81d8a">
+  <thead>
+    <tr>
+      <th id="T_81d8a_level0_col0" class="col_heading level0 col0" >bundle</th>
+      <th id="T_81d8a_level0_col1" class="col_heading level0 col1" >topics</th>
+      <th id="T_81d8a_level0_col2" class="col_heading level0 col2" >n_topics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_81d8a_row0_col0" class="data row0 col0" >Financial friction</td>
+      <td id="T_81d8a_row0_col1" class="data row0 col1" >Billing, Insurance</td>
+      <td id="T_81d8a_row0_col2" class="data row0 col2" >2</td>
+    </tr>
+    <tr>
+      <td id="T_81d8a_row1_col0" class="data row1 col0" >Capacity & flow</td>
+      <td id="T_81d8a_row1_col1" class="data row1 col1" >Staffing, Wait times</td>
+      <td id="T_81d8a_row1_col2" class="data row1 col2" >2</td>
+    </tr>
+    <tr>
+      <td id="T_81d8a_row2_col0" class="data row2 col0" >Administrative access</td>
+      <td id="T_81d8a_row2_col1" class="data row2 col1" >Scheduling, Care coordination, Front desk, Medical records</td>
+      <td id="T_81d8a_row2_col2" class="data row2 col2" >4</td>
+    </tr>
+    <tr>
+      <td id="T_81d8a_row3_col0" class="data row3 col0" >Diagnostic journey</td>
+      <td id="T_81d8a_row3_col1" class="data row3 col1" >Diagnostic accuracy, Testing & imaging</td>
+      <td id="T_81d8a_row3_col2" class="data row3 col2" >2</td>
+    </tr>
+    <tr>
+      <td id="T_81d8a_row4_col0" class="data row4 col0" >Clinical harm</td>
+      <td id="T_81d8a_row4_col1" class="data row4 col1" >Maternity & peds, Pain management, Patient safety, Surgical care</td>
+      <td id="T_81d8a_row4_col2" class="data row4 col2" >4</td>
+    </tr>
+    <tr>
+      <td id="T_81d8a_row5_col0" class="data row5 col0" >Environment</td>
+      <td id="T_81d8a_row5_col1" class="data row5 col1" >Cleanliness, Facility condition, Food & amenities, Infection control</td>
+      <td id="T_81d8a_row5_col2" class="data row5 col2" >4</td>
+    </tr>
+    <tr>
+      <td id="T_81d8a_row6_col0" class="data row6 col0" >Dignity & vulnerability</td>
+      <td id="T_81d8a_row6_col1" class="data row6 col1" >Accessibility, Behavioral health, Discrimination, Medication, Privacy, Visitors & security</td>
+      <td id="T_81d8a_row6_col2" class="data row6 col2" >6</td>
+    </tr>
+    <tr>
+      <td id="T_81d8a_row7_col0" class="data row7 col0" >Inpatient recovery</td>
+      <td id="T_81d8a_row7_col1" class="data row7 col1" >Discharge, Nursing responsiveness, Rehabilitation</td>
+      <td id="T_81d8a_row7_col2" class="data row7 col2" >3</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="chart-shell"><div id="fj-chart-16" class="chart-host" aria-label="Interactive analysis chart"></div></div><p><strong>Reading the bundles.</strong> The blocks along the diagonal are the journeys, and
+every one of them has a face:</p>
+<ul>
+<li><strong>Financial friction</strong> is the tightest bundle in the corpus - billing and
+insurance are, to patients, a single experience that begins after discharge.</li>
+<li><strong>Capacity &amp; flow</strong> links what patients see (the wait) to what causes it (the
+staffing). This is the plan's hypothesized <em>access breakdown</em>, confirmed.</li>
+<li><strong>Administrative access</strong> is the paperwork journey - scheduling, front desk,
+records, referrals - failure that happens before and between treatments.</li>
+<li><strong>Diagnostic journey</strong> (assessment × imaging) is the <em>diagnostic cascade</em>
+hypothesis, confirmed at 1.6×.</li>
+<li><strong>Clinical harm</strong> collects the operating room's failure modes: safety errors
+with surgery (1.6×), pain management, and maternity - where the stakes make
+reviews name safety explicitly (1.2×).</li>
+<li><strong>Environment</strong> ties housekeeping to infection fears (3.2×): patients treat a
+dirty ward as a <em>clinical</em> risk signal, not a comfort issue.</li>
+<li><strong>Dignity &amp; vulnerability</strong> is the discovery. Behavioral-health complaints
+cluster with discrimination (2.0×), security/visitor control (2.0×), privacy
+(1.4×), and accessibility - a bundle about <em>being processed by an institution
+while powerless</em>. It is invisible in any per-topic ranking.</li>
+<li><strong>Inpatient recovery</strong> joins nursing responsiveness to discharge and
+rehabilitation - the plan's <em>responsiveness spiral</em>, in weaker form (1.3–1.8×).</li>
+</ul>
+<p>The faded off-diagonal cells matter too: bundles are not islands. Behavioral
+health links outward to medication and facility topics, and the administrative
+bundle touches records everywhere - journeys share stations.</p>
+<p>Two of the bundles, in the reviewers' own words:</p>
+<div style="max-width:680px;background:var(--background);border:1px solid rgba(11,11,11,0.10);border-radius:10px;padding:16px 20px;font-family:system-ui,-apple-system,sans-serif;margin:6px 0;"><div style="font-size:12px;color:var(--muted-foreground);margin-bottom:8px;"><span style="color:#eda100;letter-spacing:1px;">★☆☆☆☆</span>&nbsp;&nbsp;General hospital · 2023 · quoted verbatim</div><div style="font-size:14.5px;line-height:1.6;color:var(--foreground);">“<span style="background:#fbe7e7;border-bottom:2px solid #e34948;border-radius:2px;padding:0 1px;">Racist upper management in HR directors sr directors managers nursing staff security</span> Iv seen first hand them <span style="background:#fbe7e7;border-bottom:2px solid #e34948;border-radius:2px;padding:0 1px;">forcing medication on mental health patients</span>. Them <span style="background:#fbe7e7;border-bottom:2px solid #e34948;border-radius:2px;padding:0 1px;">holding people against their will when wanting to leave</span>”</div><div style="margin-top:10px;"><span style="display:inline-flex;align-items:center;gap:6px;margin:3px 8px 3px 0;padding:3px 10px;border:1px solid rgba(11,11,11,0.12);border-radius:99px;font-size:11.5px;color:var(--foreground);"><span style="width:8px;height:8px;border-radius:50%;background:#e34948;"></span>Discrimination and equitable treatment<span style="color:#e34948;font-weight:600;">· negative</span></span><span style="display:inline-flex;align-items:center;gap:6px;margin:3px 8px 3px 0;padding:3px 10px;border:1px solid rgba(11,11,11,0.12);border-radius:99px;font-size:11.5px;color:var(--foreground);"><span style="width:8px;height:8px;border-radius:50%;background:#e34948;"></span>Behavioral health and psychiatric care<span style="color:#e34948;font-weight:600;">· negative</span></span><span style="display:inline-flex;align-items:center;gap:6px;margin:3px 8px 3px 0;padding:3px 10px;border:1px solid rgba(11,11,11,0.12);border-radius:99px;font-size:11.5px;color:var(--foreground);"><span style="width:8px;height:8px;border-radius:50%;background:#e34948;"></span>Behavioral health and psychiatric care<span style="color:#e34948;font-weight:600;">· negative</span></span></div><div style="font-size:11px;color:var(--muted-foreground);margin-top:8px;">The dignity & vulnerability bundle in a single review: a behavioral-health complaint that is simultaneously a discrimination and an autonomy complaint. One reviewer's allegation, shown as written - the analysis claims only that these topics arrive together far above chance, and only in anger.</div></div><div style="max-width:680px;background:var(--background);border:1px solid rgba(11,11,11,0.10);border-radius:10px;padding:16px 20px;font-family:system-ui,-apple-system,sans-serif;margin:6px 0;"><div style="font-size:12px;color:var(--muted-foreground);margin-bottom:8px;"><span style="color:#eda100;letter-spacing:1px;">★★☆☆☆</span>&nbsp;&nbsp;Emergency room · 2019 · quoted verbatim</div><div style="font-size:14.5px;line-height:1.6;color:var(--foreground);">“<span style="background:#fbe7e7;border-bottom:2px solid #e34948;border-radius:2px;padding:0 1px;">The waiting room is disgusting!!!! A ocean of germs!!! They don&#x27;t clean the waiting area at all</span>. It&#x27;s flu season!!!! You go for what might be strep and <span style="background:#fbe7e7;border-bottom:2px solid #e34948;border-radius:2px;padding:0 1px;">come home with flu germs and PINK EYE!!!!</span> This place is so unclean for a hospital”</div><div style="margin-top:10px;"><span style="display:inline-flex;align-items:center;gap:6px;margin:3px 8px 3px 0;padding:3px 10px;border:1px solid rgba(11,11,11,0.12);border-radius:99px;font-size:11.5px;color:var(--foreground);"><span style="width:8px;height:8px;border-radius:50%;background:#e34948;"></span>Cleanliness and housekeeping<span style="color:#e34948;font-weight:600;">· negative</span></span><span style="display:inline-flex;align-items:center;gap:6px;margin:3px 8px 3px 0;padding:3px 10px;border:1px solid rgba(11,11,11,0.12);border-radius:99px;font-size:11.5px;color:var(--foreground);"><span style="width:8px;height:8px;border-radius:50%;background:#e34948;"></span>Infection control and health safety practices<span style="color:#e34948;font-weight:600;">· negative</span></span></div><div style="font-size:11px;color:var(--muted-foreground);margin-top:8px;">Cleanliness × infection control (3.2×): the dirty waiting room is read as a clinical hazard - 'flu germs and pink eye' - not as a housekeeping lapse. This is why the environment bundle contains infection control rather than leaving it with clinical topics.</div></div></section>
+    <section id="fj5" class="section narrative"><h2>5. Journeys are worse than incidents</h2>
+<p>If these bundles are real journeys and not just vocabulary, a review that spans
+<em>more</em> of a bundle should be angrier than a review that touches it once. It is -
+across every bundle, on all 196,183 labeled reviews.</p>
+<div class="chart-shell"><div id="fj-chart-20" class="chart-host" aria-label="Interactive analysis chart"></div></div><p><strong>Reading the severity gradient.</strong> Every bundle gets angrier as it completes, but
+the slopes differ tellingly. <strong>Capacity &amp; flow is the steepest cliff</strong>: a review
+mentioning waits <em>or</em> staffing averages 3.19★; one mentioning both averages
+<strong>1.67★</strong> - a −1.51★ compound penalty, the difference between a complaint and a
+catastrophe. Administrative access, the diagnostic journey, dignity &amp;
+vulnerability, and clinical harm all lose another ~0.6–0.7★ when the journey
+completes. <strong>Financial friction starts at the bottom</strong> (1.76★ with one topic -
+billing alone is already rage) and still finds another −0.38★ when insurance
+joins. Environment and inpatient recovery are gentler slopes: annoyances that
+compound, not cascades.</p>
+<p>This is the strongest evidence that the bundles describe <em>experiences</em> rather
+than writing style: co-mention is not just adjacent vocabulary - it marks
+measurably worse outcomes.</p>
+<div style="max-width:680px;background:var(--background);border:1px solid rgba(11,11,11,0.10);border-radius:10px;padding:16px 20px;font-family:system-ui,-apple-system,sans-serif;margin:6px 0;"><div style="font-size:12px;color:var(--muted-foreground);margin-bottom:8px;"><span style="color:#eda100;letter-spacing:1px;">★☆☆☆☆</span>&nbsp;&nbsp;Emergency room · 2026 · quoted verbatim</div><div style="font-size:14.5px;line-height:1.6;color:var(--foreground);">“<span style="background:#fbe7e7;border-bottom:2px solid #e34948;border-radius:2px;padding:0 1px;">I have been in the ER waiting room for 5 hours not being seen despite 10/10 pain</span>. <span style="background:#fbe7e7;border-bottom:2px solid #e34948;border-radius:2px;padding:0 1px;">There are three people taking registration who are idle 95 percent of the time and yet even that part took several hours</span>. No one in here is in any hurry whatsoever.”</div><div style="margin-top:10px;"><span style="display:inline-flex;align-items:center;gap:6px;margin:3px 8px 3px 0;padding:3px 10px;border:1px solid rgba(11,11,11,0.12);border-radius:99px;font-size:11.5px;color:var(--foreground);"><span style="width:8px;height:8px;border-radius:50%;background:#e34948;"></span>Wait times and timeliness of care<span style="color:#e34948;font-weight:600;">· negative</span></span><span style="display:inline-flex;align-items:center;gap:6px;margin:3px 8px 3px 0;padding:3px 10px;border:1px solid rgba(11,11,11,0.12);border-radius:99px;font-size:11.5px;color:var(--foreground);"><span style="width:8px;height:8px;border-radius:50%;background:#e34948;"></span>Staffing levels and operational capacity<span style="color:#e34948;font-weight:600;">· negative</span></span></div><div style="font-size:11px;color:var(--muted-foreground);margin-top:8px;">The −1.51★ compound in the wild: the five-hour wait and the idle registration desk in the same field of view. Reviews naming both wait times and staffing average 1.67★ - the patient is no longer reporting a delay, but diagnosing the hospital.</div></div></section>
+    <section id="fj6" class="section narrative"><h2>6. Robustness: the praise mirror and the ER check</h2>
+<p>Two ways the finding could be an artifact - and what the data says.</p>
+<p><strong>Could the bundles just be vocabulary adjacency?</strong> If two topics simply share
+sentences (billing and insurance live in the same paragraph whatever the
+sentiment), they should pair in <em>praise</em> too. Running the identical machinery
+inside 4–5★ reviews tests this.</p>
+<p>Inside 4–5★ reviews the same test finds <strong>16 significant pairs</strong>
+(vs 31 in 1–2★). <strong>11 of the 31 failure pairs also pair in
+praise</strong> - these are partly structural vocabulary: <em>billing × insurance</em> (5.6× in
+praise - people also thank hospitals for handling both), <em>cleanliness × infection
+control</em>, <em>facility × amenities</em>, <em>scheduling × records</em>.</p>
+<p><strong>20 pairs are complaint-specific</strong> - they simply do not pair when
+people are happy. The complaint-only list is where the failure-journey reading is
+strongest, and it contains almost the entire <strong>dignity &amp; vulnerability</strong> bundle
+(behavioral health × discrimination, × security, × privacy), the <strong>capacity</strong>
+pair (wait × staffing), <em>patient safety × surgery</em>, and <em>scheduling × front
+desk</em>. Institutional indifference, it turns out, has no praise-side mirror.</p>
+<p><strong>Top-pair stability across facility types</strong> (stratified lift, point estimates):</p>
+<div class="table-wrap"><style type="text/css">
+</style>
+<table id="T_5b9fe">
+  <thead>
+    <tr>
+      <th id="T_5b9fe_level0_col0" class="col_heading level0 col0" >pair</th>
+      <th id="T_5b9fe_level0_col1" class="col_heading level0 col1" >all 1–2★</th>
+      <th id="T_5b9fe_level0_col2" class="col_heading level0 col2" >ER / urgent care</th>
+      <th id="T_5b9fe_level0_col3" class="col_heading level0 col3" >other facilities</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_5b9fe_row0_col0" class="data row0 col0" >Billing × Insurance</td>
+      <td id="T_5b9fe_row0_col1" class="data row0 col1" >4.6×</td>
+      <td id="T_5b9fe_row0_col2" class="data row0 col2" >4.8×</td>
+      <td id="T_5b9fe_row0_col3" class="data row0 col3" >4.5×</td>
+    </tr>
+    <tr>
+      <td id="T_5b9fe_row1_col0" class="data row1 col0" >Cleanliness × Infection control</td>
+      <td id="T_5b9fe_row1_col1" class="data row1 col1" >3.2×</td>
+      <td id="T_5b9fe_row1_col2" class="data row1 col2" >3.0×</td>
+      <td id="T_5b9fe_row1_col3" class="data row1 col3" >3.2×</td>
+    </tr>
+    <tr>
+      <td id="T_5b9fe_row2_col0" class="data row2 col0" >Facility condition × Food & amenities</td>
+      <td id="T_5b9fe_row2_col1" class="data row2 col1" >2.2×</td>
+      <td id="T_5b9fe_row2_col2" class="data row2 col2" >2.4×</td>
+      <td id="T_5b9fe_row2_col3" class="data row2 col3" >2.1×</td>
+    </tr>
+    <tr>
+      <td id="T_5b9fe_row3_col0" class="data row3 col0" >Accessibility × Food & amenities</td>
+      <td id="T_5b9fe_row3_col1" class="data row3 col1" >2.1×</td>
+      <td id="T_5b9fe_row3_col2" class="data row3 col2" >1.3×</td>
+      <td id="T_5b9fe_row3_col3" class="data row3 col3" >2.2×</td>
+    </tr>
+    <tr>
+      <td id="T_5b9fe_row4_col0" class="data row4 col0" >Behavioral health × Visitors & security</td>
+      <td id="T_5b9fe_row4_col1" class="data row4 col1" >2.0×</td>
+      <td id="T_5b9fe_row4_col2" class="data row4 col2" >1.1×</td>
+      <td id="T_5b9fe_row4_col3" class="data row4 col3" >2.0×</td>
+    </tr>
+    <tr>
+      <td id="T_5b9fe_row5_col0" class="data row5 col0" >Behavioral health × Discrimination</td>
+      <td id="T_5b9fe_row5_col1" class="data row5 col1" >2.0×</td>
+      <td id="T_5b9fe_row5_col2" class="data row5 col2" >3.2×</td>
+      <td id="T_5b9fe_row5_col3" class="data row5 col3" >1.9×</td>
+    </tr>
+    <tr>
+      <td id="T_5b9fe_row6_col0" class="data row6 col0" >Cleanliness × Facility condition</td>
+      <td id="T_5b9fe_row6_col1" class="data row6 col1" >1.8×</td>
+      <td id="T_5b9fe_row6_col2" class="data row6 col2" >1.7×</td>
+      <td id="T_5b9fe_row6_col3" class="data row6 col3" >1.9×</td>
+    </tr>
+    <tr>
+      <td id="T_5b9fe_row7_col0" class="data row7 col0" >Scheduling × Care coordination</td>
+      <td id="T_5b9fe_row7_col1" class="data row7 col1" >1.8×</td>
+      <td id="T_5b9fe_row7_col2" class="data row7 col2" >1.6×</td>
+      <td id="T_5b9fe_row7_col3" class="data row7 col3" >1.7×</td>
+    </tr>
+  </tbody>
+</table>
+</div><p><strong>Reading the robustness.</strong> The strongest pairs replicate on both sides of the
+ER divide with similar magnitudes - the bundles are a property of hospital
+complaints generally, not an emergency-department artifact. And the praise
+mirror sharpens rather than weakens the story: it separates the pairs that are
+partly <em>how people write</em> (billing–insurance, cleanliness–infection) from the
+pairs that only exist <em>when things go wrong</em> - which is precisely the list an
+operations or equity team should read.</p>
+<p>One caveat stands regardless: a co-mention is one person describing one visit.
+The data cannot say the wait <em>caused</em> the staffing complaint, or which came
+first - only that they arrive together, at scale, above chance.</p>
+</section>
+    <section id="fj7" class="section narrative"><h2>7. Do the journeys breathe in calendar time?</h2>
+<p>Everything above lives inside single reviews. A second, independent test of the
+bundles: if two topics belong to one underlying experience, months in which one
+of them worsens (or draws more attention) should also be months in which the
+other does. And if anything <em>leads</em> - one topic rising before another - the
+review stream would work as an early-warning instrument.</p>
+<p>Method: monthly series per topic, 2019–2026 (89 months). Two signals per topic -
+<strong>tone</strong> (negative share of directional statements, months with ≥30 statements)
+and <strong>attention</strong> (share of the month's labeled reviews mentioning the topic).
+Both are first-differenced before correlating, so shared long-run trends (the
+corpus-wide tone improvement) contribute nothing; what remains is genuine
+month-to-month co-movement.</p>
+<p><strong>Within-bundle vs cross-bundle month-to-month co-movement (mean pairwise
+correlation of first differences):</strong></p>
+<table>
+<thead>
+<tr>
+  <th>Signal</th>
+  <th>Within-bundle pairs</th>
+  <th>Cross-bundle pairs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Tone (topics with ≥70 usable months)</td>
+  <td><strong>+0.105</strong> (14 pairs)</td>
+  <td>+0.091 (157 pairs)</td>
+</tr>
+<tr>
+  <td>Attention</td>
+  <td><strong>+0.119</strong> (39 pairs)</td>
+  <td>-0.001 (367 pairs)</td>
+</tr>
+</tbody>
+</table>
+<div class="chart-shell"><div id="fj-chart-28" class="chart-host" aria-label="Interactive analysis chart"></div></div><p><strong>Reading the co-movement.</strong> The bundles pass the calendar test where the data
+is thick enough to run it. <strong>Attention co-moves four times more strongly within
+bundles than across them</strong> (+0.14 vs +0.04): when billing complaints take up
+more of a month's reviews, insurance complaints rise with them (+0.72), and the
+dignity-bundle topics rise and fall as a block. Tone is measurable monthly only
+for the high-volume topics, and there the same two pairs that anchor the
+co-occurrence map co-move again: <strong>scheduling × front desk (+0.44)</strong> and
+<strong>staffing × wait times (+0.31)</strong> - bad months at the front door are bad months
+on both of its topics at once.</p>
+<p>One honest caveat: part of the attention co-movement is a <em>composition</em> factor -
+the mix of facilities writing reviews shifts over time (most dramatically in
+spring 2020, when ER-heavy topics collapsed and outpatient topics surged
+together). The within-vs-cross gap survives this shared factor, but individual
+attention correlations should not be read as pure operational coupling.</p>
+<p>The same co-movement, seen raw - the actual monthly series behind the three
+strongest pairs:</p>
+<div class="chart-shell"><div id="fj-chart-30" class="chart-host" aria-label="Interactive analysis chart"></div></div><p><strong>Reading the raw series.</strong> The financial-friction panel is the cleanest: billing
+and insurance attention trace each other month by month for seven years - the
+same peaks, the same troughs, including a joint spike in spring 2020 (billing
+briefly reaching ~12% of all reviews amid pandemic cancellation and coverage
+chaos). That is what a +0.72 change-correlation looks like in the flesh.</p>
+<p>The tone panels show co-movement as shared <em>direction</em> on different levels.
+The most striking joint feature is the <strong>early-2021 trough</strong>: staffing
+negativity - structurally pinned at 85–95% - plunges to ~67% while wait-time
+negativity dips in step, the corpus's brief window of pandemic gratitude toward
+visibly overwhelmed staff. Both then climb back together through the 2021–22
+capacity crisis, and drift downward together from 2023. Scheduling and front
+desk ride the same waves throughout. The formal statement of &quot;together&quot; is the
+differenced correlation printed in each subtitle; the levels are structural to
+each topic.</p>
+<h3>The pandemic ran through the bundles in sequence</h3>
+<p>The window contains one natural experiment, and it produces the closest thing
+this corpus has to a leading indicator.</p>
+<div class="chart-shell"><div id="fj-chart-33" class="chart-host" aria-label="Interactive analysis chart"></div></div><p><strong>Reading the sequence.</strong> Three phases, in order:</p>
+<ol>
+<li><strong>The shock (spring–winter 2020).</strong> Infection-control attention jumps from
+under 1% of reviews to <strong>5–6%</strong> - and, uniquely, its <em>tone improves</em> while it
+spikes (negativity falls from ~80% to ~54% at the peak: reviewers praising
+masks, screening, and cleaning). Visitor restrictions and scheduling chaos
+spike in the same quarter; wait-time mentions <em>collapse</em> from 28% to 17% of
+reviews - the emptied ERs of early COVID.</li>
+<li><strong>The hangover (from late 2021).</strong> Staffing attention climbs to its corpus
+maximum (≈4.1% of reviews) and wait times overshoot their pre-pandemic level
+(≈31%), both staying elevated through 2022.</li>
+<li><strong>The lag between them is measurable.</strong> Infection-control attention
+correlates with staffing attention at <strong>+0.5 to +0.6 when shifted forward
+8–12 months</strong> (and near zero contemporaneously) - the capacity crisis
+followed the infection shock by about a year.</li>
+</ol>
+<p>The honest framing: this is <strong>one macro event, not a validated early-warning
+system</strong> - a single pandemic cannot establish that infection-control chatter
+<em>generally</em> predicts staffing strain. What it does establish is that the review
+stream picks up system-level shocks in the right order and roughly in real
+time, which is exactly the property the official survey pipeline (with its
+rolling multi-quarter windows) cannot offer. With the full corpus labeled,
+weekly series and facility-level event studies become feasible.</p>
+</section>
+    <section id="fj8" class="section narrative"><h2>8. What it means</h2>
+<p><strong>For hospital operations.</strong> Complaints arrive in bundles, so fixes that target a
+single topic under-deliver: the wait-time complaint is a staffing complaint; the
+billing complaint is an insurance-navigation complaint. The severity gradient
+gives a triage rule - the compound forms of <em>capacity &amp; flow</em> and <em>financial
+friction</em> mark the reviews that end relationships (1.4–1.7★), and preventing the
+second failure in a journey is worth more than preventing the first.</p>
+<p><strong>For the equity conversation.</strong> The dignity &amp; vulnerability bundle is the
+analysis's most consequential finding: behavioral-health complaints travel with
+discrimination, privacy, and security complaints - and only in anger, never in
+praise. Psychiatric patients experience institutional failures as a <em>package</em>.
+Any hospital equity review that reads discrimination complaints in isolation
+will miss the setting where they cluster.</p>
+<p><strong>For the measurement program.</strong> The bundles are natural composite indicators
+for the upcoming HCAHPS comparison: several (financial friction, administrative
+access, dignity &amp; vulnerability) live largely outside HCAHPS's domains, making
+them concrete candidates for the blind-spot analysis. And because bundles are
+defined by co-occurrence, not frequency, they are exactly the kind of structure
+a star rating cannot carry.</p>
+<p>When more of the corpus is labeled, two extensions become possible: per-facility
+bundle profiles (which hospitals produce which journeys) and a temporal check on
+whether journeys strengthen under system stress (e.g., winter capacity).</p>
+</section>
+    <section class="section narrative appendix"><h2>Appendix - methodology and caveats</h2>
+<p><strong>Data.</strong> Topic labels from the 10%, year- and facility-stratified coverage
+sample (217,343 reviews; 196,567 with ≥1 validity-gated label; DeepSeek V4
+Flash; 29-topic bottom-up taxonomy). Main analysis: the 72,038 labeled reviews
+rated 1–2★, of which 47,405 mention ≥2 topics and carry pair information.</p>
+<p><strong>Test.</strong> Review × topic incidence matrix (a review counts once per topic).
+Within the rating band, reviews are stratified by distinct-topic count
+(2 / 3 / 4 / 5+); within each stratum every topic column is independently
+permuted (B = 499, fixed seed), preserving each topic's prevalence per stratum
+and destroying only co-membership. Observed pair counts are compared with the
+pooled null; p-values are empirical, one-sided, with the standard +1
+correction; Benjamini–Hochberg FDR over all pairs with ≥30 observed
+co-mentions. Acceptance: q &lt; 0.05 and lift &gt; 1.15.</p>
+<p><strong>Clustering.</strong> Greedy modularity merging (Clauset–Newman–Moore) on the
+significant-edge network, edge weight log₂ lift. Bundle names are editorial;
+membership is algorithmic. With 29 nodes the clustering is exact enough that
+alternative algorithms yield the same blocks.</p>
+<p><strong>Time series (section 7).</strong> Monthly topic series, January 2019 – May 2026.
+Tone = negative share of directional statements (months with ≥30 statements;
+topics with ≥70 usable months). Attention = share of the month's labeled
+reviews mentioning the topic. Co-movement is measured on first differences, so
+shared trends cancel; ±0.21 is the rough 95% band for a single pair at n = 89
+months. Attention series share a facility-mix composition factor (visible in
+spring 2020), so the within-vs-cross <em>comparison</em>, not any single correlation,
+is the supported claim. The lead–lag result is a cross-correlation of levels
+driven by one macro event (COVID-19) and is presented as an event narrative,
+not a validated forecasting relationship.</p>
+<p><strong>Known limitations.</strong> Co-mention ≠ sequence ≠ causation; one review is one
+person's account of (usually) one visit. The 10% sample bounds rare-pair
+precision - pairs below 30 co-mentions are not tested at all, so absence from
+the map is not evidence of independence. Negative associations (&quot;avoidances&quot;)
+are not reported: conditioning on topic count makes the lower tail conservative,
+and none passed FDR. Topic granularity shapes bundles - a finer taxonomy could
+split or merge them. Estimates are descriptive for the public review record,
+not for hospital populations.</p>
+<p><strong>Privacy.</strong> All findings are topic-level aggregates; no reviewer information
+and no per-facility results appear. Four example reviews are quoted verbatim as
+illustration cards (the same presentation as the sibling notebooks): they carry
+no reviewer identifiers, the facility appears only as its category, and the
+selected texts name no people or institutions.</p>
+</section>
+  </article>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0"></script>
+  <script>
+    (()=>{
+      const root=document.getElementById('failure-journeys-full-report');
+      const specs={"6":{"config":{"background":null,"view":{"stroke":null},"axis":{"domain":false,"tickColor":"#c3c2b7","gridColor":"#e1e0d9","gridWidth":1,"labelColor":"#52514e","titleColor":"#52514e","labelFontSize":11,"titleFontSize":12,"titleFontWeight":"normal","labelLimit":320},"axisX":{"labelAngle":0},"legend":{"labelColor":"#52514e","titleColor":"#52514e","labelFontSize":11,"titleFontSize":12},"title":{"anchor":"start","color":"#0b0b0b","fontSize":16,"fontWeight":"bold","subtitleFontSize":12,"subtitleColor":"#898781","offset":12}},"layer":[{"mark":{"type":"bar","color":"#898781","cornerRadiusEnd":4,"height":15},"encoding":{"tooltip":[{"field":"pair","type":"nominal"},{"field":"count","format":",","type":"quantitative"}],"x":{"axis":{"tickCount":6},"field":"count","title":"1\u20132\u2605 reviews mentioning both topics","type":"quantitative"},"y":{"field":"pair","sort":"-x","title":null,"type":"nominal"}}},{"mark":{"type":"text","align":"left","color":"#52514e","dx":4,"fontSize":10},"encoding":{"text":{"field":"lab","type":"nominal"},"x":{"field":"count","type":"quantitative"},"y":{"field":"pair","sort":"-x","type":"nominal"}}}],"data":{"name":"data-35f72ade5d782f2fb45455a1c8e9beac"},"height":320,"title":{"text":"The raw count ranking only measures popularity","subtitle":"Most-frequent topic pairs inside 1\u20132\u2605 reviews, before any correction."},"width":620,"$schema":"https://vega.github.io/schema/vega-lite/v5.20.1.json","datasets":{"data-35f72ade5d782f2fb45455a1c8e9beac":[{"a":"Front desk","b":"Wait times","count":4436,"pair":"Front desk  \u00d7  Wait times","lab":"4,436"},{"a":"Bedside manner","b":"Wait times","count":3925,"pair":"Bedside manner  \u00d7  Wait times","lab":"3,925"},{"a":"Bedside manner","b":"Front desk","count":2958,"pair":"Bedside manner  \u00d7  Front desk","lab":"2,958"},{"a":"Bedside manner","b":"Communication","count":2850,"pair":"Bedside manner  \u00d7  Communication","lab":"2,850"},{"a":"Bedside manner","b":"Nursing responsiveness","count":2809,"pair":"Bedside manner  \u00d7  Nursing responsiveness","lab":"2,809"},{"a":"Nursing responsiveness","b":"Wait times","count":2699,"pair":"Nursing responsiveness  \u00d7  Wait times","lab":"2,699"},{"a":"Diagnostic accuracy","b":"Bedside manner","count":2692,"pair":"Diagnostic accuracy  \u00d7  Bedside manner","lab":"2,692"},{"a":"Communication","b":"Wait times","count":2552,"pair":"Communication  \u00d7  Wait times","lab":"2,552"},{"a":"Diagnostic accuracy","b":"Wait times","count":2092,"pair":"Diagnostic accuracy  \u00d7  Wait times","lab":"2,092"},{"a":"Staffing","b":"Wait times","count":2075,"pair":"Staffing  \u00d7  Wait times","lab":"2,075"},{"a":"Communication","b":"Front desk","count":2029,"pair":"Communication  \u00d7  Front desk","lab":"2,029"},{"a":"Bedside manner","b":"Patient safety","count":1736,"pair":"Bedside manner  \u00d7  Patient safety","lab":"1,736"}]}},"11":{"config":{"background":null,"view":{"stroke":null},"axis":{"domain":false,"tickColor":"#c3c2b7","gridColor":"#e1e0d9","gridWidth":1,"labelColor":"#52514e","titleColor":"#52514e","labelFontSize":11,"titleFontSize":12,"titleFontWeight":"normal","labelLimit":320},"axisX":{"labelAngle":0},"legend":{"labelColor":"#52514e","titleColor":"#52514e","labelFontSize":11,"titleFontSize":12},"title":{"anchor":"start","color":"#0b0b0b","fontSize":16,"fontWeight":"bold","subtitleFontSize":12,"subtitleColor":"#898781","offset":12}},"layer":[{"data":{"name":"data-13398ab0a07e8bbd08d61e367b6a8f62"},"mark":{"type":"rule","color":"#c3c2b7","strokeWidth":1},"encoding":{"x":{"field":"x","type":"quantitative"}}},{"data":{"name":"data-51e1d04fd5e5fc708f325556d979f136"},"mark":{"type":"bar","color":"#e34948","cornerRadiusEnd":4,"height":15},"encoding":{"tooltip":[{"field":"pair","type":"nominal"},{"field":"lift","format":".2f","type":"quantitative"},{"field":"obs","format":",.0f","title":"Observed","type":"quantitative"},{"field":"exp","format":",.0f","title":"Expected","type":"quantitative"},{"field":"q","format":".3f","title":"q-value","type":"quantitative"}],"x":{"axis":{"tickCount":6},"field":"lift","scale":{"domain":[0,5]},"title":"lift: observed \u00f7 expected co-mentions","type":"quantitative"},"y":{"field":"pair","sort":"-x","title":null,"type":"nominal"}}},{"data":{"name":"data-51e1d04fd5e5fc708f325556d979f136"},"mark":{"type":"text","align":"left","color":"#52514e","dx":4,"fontSize":10},"encoding":{"text":{"field":"lab","type":"nominal"},"x":{"field":"lift","type":"quantitative"},"y":{"field":"pair","sort":"-x","type":"nominal"}}}],"height":380,"title":{"text":"The strongest true associations in angry reviews","subtitle":"Top 15 of 31 significant pairs (q<0.05, \u226530 co-mentions), after conceding popularity and length."},"width":620,"$schema":"https://vega.github.io/schema/vega-lite/v5.20.1.json","datasets":{"data-13398ab0a07e8bbd08d61e367b6a8f62":[{"x":1.0}],"data-51e1d04fd5e5fc708f325556d979f136":[{"topic_a":"Billing, charges and collections","topic_b":"Insurance coverage, denials and network issues","obs":908.0,"exp":198.86573146292585,"lift":4.5658947538142165,"p":0.002,"q":0.0220625,"pair":"Billing  \u00d7  Insurance","lab":"4.6\u00d7"},{"topic_a":"Cleanliness and housekeeping","topic_b":"Infection control and health safety practices","obs":480.0,"exp":152.33066132264528,"lift":3.151039953692132,"p":0.002,"q":0.0220625,"pair":"Cleanliness  \u00d7  Infection control","lab":"3.2\u00d7"},{"topic_a":"Facility condition, comfort and environment","topic_b":"Food, parking and facility amenities","obs":329.0,"exp":150.28056112224448,"lift":2.189238565142019,"p":0.002,"q":0.0220625,"pair":"Facility condition  \u00d7  Food & amenities","lab":"2.2\u00d7"},{"topic_a":"Accessibility and accommodations","topic_b":"Food, parking and facility amenities","obs":85.0,"exp":39.82164328657315,"lift":2.134517638770067,"p":0.002,"q":0.0220625,"pair":"Accessibility  \u00d7  Food & amenities","lab":"2.1\u00d7"},{"topic_a":"Behavioral health and psychiatric care","topic_b":"Visitor access, security, and property safety","obs":118.0,"exp":59.11022044088176,"lift":1.996270680770274,"p":0.002,"q":0.0220625,"pair":"Behavioral health  \u00d7  Visitors & security","lab":"2.0\u00d7"},{"topic_a":"Behavioral health and psychiatric care","topic_b":"Discrimination and equitable treatment","obs":212.0,"exp":106.64729458917836,"lift":1.9878610218539188,"p":0.002,"q":0.0220625,"pair":"Behavioral health  \u00d7  Discrimination","lab":"2.0\u00d7"},{"topic_a":"Cleanliness and housekeeping","topic_b":"Facility condition, comfort and environment","obs":495.0,"exp":268.8637274549098,"lift":1.841081371167908,"p":0.002,"q":0.0220625,"pair":"Cleanliness  \u00d7  Facility condition","lab":"1.8\u00d7"},{"topic_a":"Appointment scheduling and access","topic_b":"Care coordination and referrals","obs":385.0,"exp":211.2264529058116,"lift":1.8226883740346485,"p":0.002,"q":0.0220625,"pair":"Scheduling  \u00d7  Care coordination","lab":"1.8\u00d7"},{"topic_a":"Food, parking and facility amenities","topic_b":"Visitor access, security, and property safety","obs":150.0,"exp":83.92585170340682,"lift":1.7872919601709687,"p":0.002,"q":0.0220625,"pair":"Food & amenities  \u00d7  Visitors & security","lab":"1.8\u00d7"},{"topic_a":"Discharge process and aftercare planning","topic_b":"Rehabilitation and long-term care / therapy services","obs":37.0,"exp":20.707414829659317,"lift":1.7867995741798124,"p":0.002,"q":0.0220625,"pair":"Discharge  \u00d7  Rehabilitation","lab":"1.8\u00d7"},{"topic_a":"Accessibility and accommodations","topic_b":"Visitor access, security, and property safety","obs":62.0,"exp":35.879759519038075,"lift":1.727993744414656,"p":0.002,"q":0.0220625,"pair":"Accessibility  \u00d7  Visitors & security","lab":"1.7\u00d7"},{"topic_a":"Cleanliness and housekeeping","topic_b":"Food, parking and facility amenities","obs":294.0,"exp":177.27054108216433,"lift":1.6584819914535711,"p":0.002,"q":0.0220625,"pair":"Cleanliness  \u00d7  Food & amenities","lab":"1.7\u00d7"},{"topic_a":"Accessibility and accommodations","topic_b":"Discrimination and equitable treatment","obs":107.0,"exp":64.59118236472946,"lift":1.6565728646334275,"p":0.002,"q":0.0220625,"pair":"Accessibility  \u00d7  Discrimination","lab":"1.7\u00d7"},{"topic_a":"Clinical assessment and diagnostic accuracy","topic_b":"Diagnostic testing and imaging services","obs":467.0,"exp":292.9458917835671,"lift":1.5941510466548092,"p":0.002,"q":0.0220625,"pair":"Diagnostic accuracy  \u00d7  Testing & imaging","lab":"1.6\u00d7"},{"topic_a":"Patient safety and medical errors","topic_b":"Surgical and procedural care","obs":226.0,"exp":143.3687374749499,"lift":1.5763548175172277,"p":0.002,"q":0.0220625,"pair":"Patient safety  \u00d7  Surgical care","lab":"1.6\u00d7"}]}},"16":{"config":{"background":null,"view":{"stroke":null},"axis":{"domain":false,"tickColor":"#c3c2b7","gridColor":"#e1e0d9","gridWidth":1,"labelColor":"#52514e","titleColor":"#52514e","labelFontSize":11,"titleFontSize":12,"titleFontWeight":"normal","labelLimit":320},"axisX":{"labelAngle":0},"legend":{"labelColor":"#52514e","titleColor":"#52514e","labelFontSize":11,"titleFontSize":12},"title":{"anchor":"start","color":"#0b0b0b","fontSize":16,"fontWeight":"bold","subtitleFontSize":12,"subtitleColor":"#898781","offset":12}},"data":{"name":"data-0f17dea8ff466fdc706ee7b0947b76a5"},"mark":{"type":"rect","stroke":"#fcfcfb","strokeWidth":1.5},"encoding":{"color":{"field":"lift","legend":{"gradientLength":200,"orient":"right"},"scale":{"domain":[1,4.6],"scheme":"reds","type":"sqrt"},"title":"Lift","type":"quantitative"},"opacity":{"condition":{"test":"datum.same_bundle","value":1.0},"value":0.45},"tooltip":[{"field":"a","title":"Topic A","type":"nominal"},{"field":"b","title":"Topic B","type":"nominal"},{"field":"lift","format":".2f","type":"quantitative"},{"field":"bundle","title":"Bundle","type":"nominal"}],"x":{"axis":{"labelAngle":-45,"labelFontSize":10},"field":"a","sort":["Billing","Insurance","Staffing","Wait times","Scheduling","Care coordination","Front desk","Medical records","Diagnostic accuracy","Testing & imaging","Maternity & peds","Pain management","Patient safety","Surgical care","Cleanliness","Facility condition","Food & amenities","Infection control","Accessibility","Behavioral health","Discrimination","Medication","Privacy","Visitors & security","Discharge","Nursing responsiveness","Rehabilitation"],"title":null,"type":"nominal"},"y":{"axis":{"labelFontSize":10},"field":"b","sort":["Billing","Insurance","Staffing","Wait times","Scheduling","Care coordination","Front desk","Medical records","Diagnostic accuracy","Testing & imaging","Maternity & peds","Pain management","Patient safety","Surgical care","Cleanliness","Facility condition","Food & amenities","Infection control","Accessibility","Behavioral health","Discrimination","Medication","Privacy","Visitors & security","Discharge","Nursing responsiveness","Rehabilitation"],"title":null,"type":"nominal"}},"height":560,"title":{"text":"The association map, ordered by bundle","subtitle":"Only significant pairs are drawn (q<0.05). Full-opacity cells: both topics in the same bundle; faded cells: significant cross-bundle links. Blank = no evidence of association."},"width":560,"$schema":"https://vega.github.io/schema/vega-lite/v5.20.1.json","datasets":{"data-0f17dea8ff466fdc706ee7b0947b76a5":[{"a":"Billing","b":"Insurance","lift":4.5658947538142165,"same_bundle":true,"bundle":"Financial friction"},{"a":"Insurance","b":"Billing","lift":4.5658947538142165,"same_bundle":true,"bundle":"Financial friction"},{"a":"Cleanliness","b":"Infection control","lift":3.151039953692132,"same_bundle":true,"bundle":"Environment"},{"a":"Infection control","b":"Cleanliness","lift":3.151039953692132,"same_bundle":true,"bundle":"Environment"},{"a":"Facility condition","b":"Food & amenities","lift":2.189238565142019,"same_bundle":true,"bundle":"Environment"},{"a":"Food & amenities","b":"Facility condition","lift":2.189238565142019,"same_bundle":true,"bundle":"Environment"},{"a":"Accessibility","b":"Food & amenities","lift":2.134517638770067,"same_bundle":false,"bundle":"cross-bundle"},{"a":"Food & amenities","b":"Accessibility","lift":2.134517638770067,"same_bundle":false,"bundle":"cross-bundle"},{"a":"Behavioral health","b":"Visitors & security","lift":1.996270680770274,"same_bundle":true,"bundle":"Dignity & vulnerability"},{"a":"Visitors & security","b":"Behavioral health","lift":1.996270680770274,"same_bundle":true,"bundle":"Dignity & vulnerability"},{"a":"Behavioral health","b":"Discrimination","lift":1.9878610218539188,"same_bundle":true,"bundle":"Dignity & vulnerability"},{"a":"Discrimination","b":"Behavioral health","lift":1.9878610218539188,"same_bundle":true,"bundle":"Dignity & vulnerability"},{"a":"Cleanliness","b":"Facility condition","lift":1.841081371167908,"same_bundle":true,"bundle":"Environment"},{"a":"Facility condition","b":"Cleanliness","lift":1.841081371167908,"same_bundle":true,"bundle":"Environment"},{"a":"Scheduling","b":"Care coordination","lift":1.8226883740346485,"same_bundle":true,"bundle":"Administrative access"},{"a":"Care coordination","b":"Scheduling","lift":1.8226883740346485,"same_bundle":true,"bundle":"Administrative access"},{"a":"Food & amenities","b":"Visitors & security","lift":1.7872919601709687,"same_bundle":false,"bundle":"cross-bundle"},{"a":"Visitors & security","b":"Food & amenities","lift":1.7872919601709687,"same_bundle":false,"bundle":"cross-bundle"},{"a":"Discharge","b":"Rehabilitation","lift":1.7867995741798124,"same_bundle":true,"bundle":"Inpatient recovery"},{"a":"Rehabilitation","b":"Discharge","lift":1.7867995741798124,"same_bundle":true,"bundle":"Inpatient recovery"},{"a":"Accessibility","b":"Visitors & security","lift":1.727993744414656,"same_bundle":true,"bundle":"Dignity & vulnerability"},{"a":"Visitors & security","b":"Accessibility","lift":1.727993744414656,"same_bundle":true,"bundle":"Dignity & vulnerability"},{"a":"Cleanliness","b":"Food & amenities","lift":1.6584819914535711,"same_bundle":true,"bundle":"Environment"},{"a":"Food & amenities","b":"Cleanliness","lift":1.6584819914535711,"same_bundle":true,"bundle":"Environment"},{"a":"Accessibility","b":"Discrimination","lift":1.6565728646334275,"same_bundle":true,"bundle":"Dignity & vulnerability"},{"a":"Discrimination","b":"Accessibility","lift":1.6565728646334275,"same_bundle":true,"bundle":"Dignity & vulnerability"},{"a":"Diagnostic accuracy","b":"Testing & imaging","lift":1.5941510466548092,"same_bundle":true,"bundle":"Diagnostic journey"},{"a":"Testing & imaging","b":"Diagnostic accuracy","lift":1.5941510466548092,"same_bundle":true,"bundle":"Diagnostic journey"},{"a":"Patient safety","b":"Surgical care","lift":1.5763548175172277,"same_bundle":true,"bundle":"Clinical harm"},{"a":"Surgical care","b":"Patient safety","lift":1.5763548175172277,"same_bundle":true,"bundle":"Clinical harm"},{"a":"Behavioral health","b":"Food & amenities","lift":1.550309145159802,"same_bundle":false,"bundle":"cross-bundle"},{"a":"Food & amenities","b":"Behavioral health","lift":1.550309145159802,"same_bundle":false,"bundle":"cross-bundle"},{"a":"Behavioral health","b":"Medication","lift":1.542349068721901,"same_bundle":true,"bundle":"Dignity & vulnerability"},{"a":"Medication","b":"Behavioral health","lift":1.542349068721901,"same_bundle":true,"bundle":"Dignity & vulnerability"},{"a":"Nursing responsiveness","b":"Rehabilitation","lift":1.4468385071688878,"same_bundle":true,"bundle":"Inpatient recovery"},{"a":"Rehabilitation","b":"Nursing responsiveness","lift":1.4468385071688878,"same_bundle":true,"bundle":"Inpatient recovery"},{"a":"Behavioral health","b":"Privacy","lift":1.4404618715419772,"same_bundle":true,"bundle":"Dignity & vulnerability"},{"a":"Privacy","b":"Behavioral health","lift":1.4404618715419772,"same_bundle":true,"bundle":"Dignity & vulnerability"},{"a":"Scheduling","b":"Medical records","lift":1.4176676962971437,"same_bundle":true,"bundle":"Administrative access"},{"a":"Medical records","b":"Scheduling","lift":1.4176676962971437,"same_bundle":true,"bundle":"Administrative access"},{"a":"Scheduling","b":"Front desk","lift":1.4101145019507377,"same_bundle":true,"bundle":"Administrative access"},{"a":"Front desk","b":"Scheduling","lift":1.4101145019507377,"same_bundle":true,"bundle":"Administrative access"},{"a":"Pain management","b":"Surgical care","lift":1.3584851994067573,"same_bundle":true,"bundle":"Clinical harm"},{"a":"Surgical care","b":"Pain management","lift":1.3584851994067573,"same_bundle":true,"bundle":"Clinical harm"},{"a":"Staffing","b":"Wait times","lift":1.3573718957127276,"same_bundle":true,"bundle":"Capacity & flow"},{"a":"Wait times","b":"Staffing","lift":1.3573718957127276,"same_bundle":true,"bundle":"Capacity & flow"},{"a":"Behavioral health","b":"Discharge","lift":1.3254506537380406,"same_bundle":false,"bundle":"cross-bundle"},{"a":"Discharge","b":"Behavioral health","lift":1.3254506537380406,"same_bundle":false,"bundle":"cross-bundle"},{"a":"Discrimination","b":"Visitors & security","lift":1.2994602615767343,"same_bundle":true,"bundle":"Dignity & vulnerability"},{"a":"Visitors & security","b":"Discrimination","lift":1.2994602615767343,"same_bundle":true,"bundle":"Dignity & vulnerability"},{"a":"Facility condition","b":"Visitors & security","lift":1.294332354814159,"same_bundle":false,"bundle":"cross-bundle"},{"a":"Visitors & security","b":"Facility condition","lift":1.294332354814159,"same_bundle":false,"bundle":"cross-bundle"},{"a":"Discrimination","b":"Privacy","lift":1.287222893994357,"same_bundle":true,"bundle":"Dignity & vulnerability"},{"a":"Privacy","b":"Discrimination","lift":1.287222893994357,"same_bundle":true,"bundle":"Dignity & vulnerability"},{"a":"Care coordination","b":"Medical records","lift":1.2811490017216902,"same_bundle":true,"bundle":"Administrative access"},{"a":"Medical records","b":"Care coordination","lift":1.2811490017216902,"same_bundle":true,"bundle":"Administrative access"},{"a":"Behavioral health","b":"Facility condition","lift":1.266267899220591,"same_bundle":false,"bundle":"cross-bundle"},{"a":"Facility condition","b":"Behavioral health","lift":1.266267899220591,"same_bundle":false,"bundle":"cross-bundle"},{"a":"Maternity & peds","b":"Patient safety","lift":1.217741443475078,"same_bundle":true,"bundle":"Clinical harm"},{"a":"Patient safety","b":"Maternity & peds","lift":1.217741443475078,"same_bundle":true,"bundle":"Clinical harm"},{"a":"Food & amenities","b":"Nursing responsiveness","lift":1.1597150271380092,"same_bundle":false,"bundle":"cross-bundle"},{"a":"Nursing responsiveness","b":"Food & amenities","lift":1.1597150271380092,"same_bundle":false,"bundle":"cross-bundle"}]}},"20":{"config":{"background":null,"view":{"stroke":null},"axis":{"domain":false,"tickColor":"#c3c2b7","gridColor":"#e1e0d9","gridWidth":1,"labelColor":"#52514e","titleColor":"#52514e","labelFontSize":11,"titleFontSize":12,"titleFontWeight":"normal","labelLimit":320},"axisX":{"labelAngle":0},"legend":{"labelColor":"#52514e","titleColor":"#52514e","labelFontSize":11,"titleFontSize":12},"title":{"anchor":"start","color":"#0b0b0b","fontSize":16,"fontWeight":"bold","subtitleFontSize":12,"subtitleColor":"#898781","offset":12}},"layer":[{"data":{"name":"data-8151555b440a386c231b0ad42fcda5f4"},"mark":{"type":"rule","color":"#c3c2b7","strokeWidth":2},"encoding":{"x":{"field":"1 bundle topic","scale":{"domain":[1,4]},"title":"mean star rating of reviews touching the bundle","type":"quantitative"},"x2":{"field":"2+ bundle topics"},"y":{"field":"bundle","sort":["Capacity & flow","Dignity & vulnerability","Diagnostic journey","Administrative access","Clinical harm","Financial friction","Environment","Inpatient recovery"],"title":null,"type":"nominal"}}},{"data":{"name":"data-344917cbea772ca0cfaa80e378ecd86e"},"mark":{"type":"point","filled":true,"size":95,"stroke":"white","strokeWidth":0.8},"encoding":{"color":{"field":"band","legend":{"orient":"bottom"},"scale":{"domain":["1 bundle topic","2+ bundle topics"],"range":["#898781","#e34948"]},"title":null,"type":"nominal"},"tooltip":[{"field":"bundle","type":"nominal"},{"field":"band","title":"Coverage","type":"nominal"},{"field":"mean_rating","format":".2f","title":"Mean rating","type":"quantitative"},{"field":"reviews","format":",","title":"Reviews","type":"quantitative"}],"x":{"field":"mean_rating","scale":{"domain":[1,4]},"type":"quantitative"},"y":{"field":"bundle","sort":["Capacity & flow","Dignity & vulnerability","Diagnostic journey","Administrative access","Clinical harm","Financial friction","Environment","Inpatient recovery"],"title":null,"type":"nominal"}}},{"data":{"name":"data-8151555b440a386c231b0ad42fcda5f4"},"mark":{"type":"text","align":"right","color":"#52514e","dx":-10,"fontSize":10},"encoding":{"text":{"field":"drop","format":"+.2f","type":"quantitative"},"x":{"field":"2+ bundle topics","type":"quantitative"},"y":{"field":"bundle","sort":["Capacity & flow","Dignity & vulnerability","Diagnostic journey","Administrative access","Clinical harm","Financial friction","Environment","Inpatient recovery"],"type":"nominal"}}}],"height":300,"title":{"text":"Compound failures rate far below single failures","subtitle":"Mean rating of reviews mentioning exactly one vs two-or-more topics of each bundle (all labeled reviews; \u0394 printed left of each red point)."},"width":640,"$schema":"https://vega.github.io/schema/vega-lite/v5.20.1.json","datasets":{"data-8151555b440a386c231b0ad42fcda5f4":[{"bundle":"Administrative access","1 bundle topic":3.476239758516602,"2+ bundle topics":2.804389148090548,"drop":-0.6718506104260542},{"bundle":"Capacity & flow","1 bundle topic":3.187900518767165,"2+ bundle topics":1.6737841043890866,"drop":-1.5141164143780785},{"bundle":"Clinical harm","1 bundle topic":3.121174004192872,"2+ bundle topics":2.501450957632037,"drop":-0.6197230465608352},{"bundle":"Diagnostic journey","1 bundle topic":2.986422302529685,"2+ bundle topics":2.298270893371758,"drop":-0.688151409157927},{"bundle":"Dignity & vulnerability","1 bundle topic":2.2296915725456126,"2+ bundle topics":1.5380184331797235,"drop":-0.691673139365889},{"bundle":"Environment","1 bundle topic":3.6595937378703582,"2+ bundle topics":3.392201257861635,"drop":-0.26739248000872307},{"bundle":"Financial friction","1 bundle topic":1.7562183919909176,"2+ bundle topics":1.3733862959285006,"drop":-0.38283209606241697},{"bundle":"Inpatient recovery","1 bundle topic":3.420864913062862,"2+ bundle topics":3.223145780051151,"drop":-0.19771913301171118}],"data-344917cbea772ca0cfaa80e378ecd86e":[{"bundle":"Financial friction","band":"1 bundle topic","mean_rating":1.7562183919909176,"reviews":9689,"lab":"1.76"},{"bundle":"Financial friction","band":"2+ bundle topics","mean_rating":1.3733862959285006,"reviews":1007,"lab":"1.37"},{"bundle":"Capacity & flow","band":"1 bundle topic","mean_rating":3.187900518767165,"reviews":52432,"lab":"3.19"},{"bundle":"Capacity & flow","band":"2+ bundle topics","mean_rating":1.6737841043890866,"reviews":2529,"lab":"1.67"},{"bundle":"Administrative access","band":"1 bundle topic","mean_rating":3.476239758516602,"reviews":57975,"lab":"3.48"},{"bundle":"Administrative access","band":"2+ bundle topics","mean_rating":2.804389148090548,"reviews":5787,"lab":"2.80"},{"bundle":"Diagnostic journey","band":"1 bundle topic","mean_rating":2.986422302529685,"reviews":19370,"lab":"2.99"},{"bundle":"Diagnostic journey","band":"2+ bundle topics","mean_rating":2.298270893371758,"reviews":694,"lab":"2.30"},{"bundle":"Clinical harm","band":"1 bundle topic","mean_rating":3.121174004192872,"reviews":23850,"lab":"3.12"},{"bundle":"Clinical harm","band":"2+ bundle topics","mean_rating":2.501450957632037,"reviews":1723,"lab":"2.50"},{"bundle":"Environment","band":"1 bundle topic","mean_rating":3.6595937378703582,"reviews":23187,"lab":"3.66"},{"bundle":"Environment","band":"2+ bundle topics","mean_rating":3.392201257861635,"reviews":3975,"lab":"3.39"},{"bundle":"Dignity & vulnerability","band":"1 bundle topic","mean_rating":2.2296915725456126,"reviews":18416,"lab":"2.23"},{"bundle":"Dignity & vulnerability","band":"2+ bundle topics","mean_rating":1.5380184331797235,"reviews":1736,"lab":"1.54"},{"bundle":"Inpatient recovery","band":"1 bundle topic","mean_rating":3.420864913062862,"reviews":26916,"lab":"3.42"},{"bundle":"Inpatient recovery","band":"2+ bundle topics","mean_rating":3.223145780051151,"reviews":1564,"lab":"3.22"}]}},"28":{"config":{"background":null,"view":{"stroke":null},"axis":{"domain":false,"tickColor":"#c3c2b7","gridColor":"#e1e0d9","gridWidth":1,"labelColor":"#52514e","titleColor":"#52514e","labelFontSize":11,"titleFontSize":12,"titleFontWeight":"normal","labelLimit":320},"axisX":{"labelAngle":0},"legend":{"labelColor":"#52514e","titleColor":"#52514e","labelFontSize":11,"titleFontSize":12},"title":{"anchor":"start","color":"#0b0b0b","fontSize":16,"fontWeight":"bold","subtitleFontSize":12,"subtitleColor":"#898781","offset":12}},"layer":[{"data":{"name":"data-8df85bd030a3fb194d865dd25f822bfd"},"mark":{"type":"bar","cornerRadiusEnd":4,"height":14},"encoding":{"color":{"field":"signal","legend":{"orient":"bottom"},"scale":{"domain":["attention","tone"],"range":["#2a78d6","#e34948"]},"title":null,"type":"nominal"},"tooltip":[{"field":"pair","type":"nominal"},{"field":"signal","type":"nominal"},{"field":"bundle","type":"nominal"},{"field":"r","format":"+.2f","type":"quantitative"}],"x":{"field":"r","scale":{"domain":[0,0.85]},"title":"correlation of monthly first differences","type":"quantitative"},"y":{"field":"pair","sort":"-x","title":null,"type":"nominal"}}},{"data":{"name":"data-9341141e26de3b81c61e16ac18bb6369"},"mark":{"type":"rule","color":"#c3c2b7","strokeDash":[4,3]},"encoding":{"x":{"field":"x","type":"quantitative"}}}],"height":300,"title":{"text":"Bundle partners move together across months, too","subtitle":"Within-bundle topic pairs whose monthly changes correlate above the ~95% noise band (dashed, \u00b10.21)."},"width":620,"$schema":"https://vega.github.io/schema/vega-lite/v5.20.1.json","datasets":{"data-8df85bd030a3fb194d865dd25f822bfd":[{"signal":"attention","pair":"Accessibility \u00d7 Medication","r":0.7922487259193346,"bundle":"Dignity & vulnerability"},{"signal":"attention","pair":"Billing \u00d7 Insurance","r":0.7233579269190401,"bundle":"Financial friction"},{"signal":"attention","pair":"Behavioral health \u00d7 Medication","r":0.6897121433102171,"bundle":"Dignity & vulnerability"},{"signal":"attention","pair":"Patient safety \u00d7 Surgical care","r":0.6543902956303749,"bundle":"Clinical harm"},{"signal":"attention","pair":"Maternity & peds \u00d7 Surgical care","r":0.616418314858679,"bundle":"Clinical harm"},{"signal":"attention","pair":"Maternity & peds \u00d7 Patient safety","r":0.6077154223223858,"bundle":"Clinical harm"},{"signal":"attention","pair":"Accessibility \u00d7 Behavioral health","r":0.5956109281608118,"bundle":"Dignity & vulnerability"},{"signal":"attention","pair":"Cleanliness \u00d7 Facility condition","r":0.5922087802671351,"bundle":"Environment"},{"signal":"attention","pair":"Discrimination \u00d7 Visitors & security","r":0.5912376898958808,"bundle":"Dignity & vulnerability"},{"signal":"attention","pair":"Cleanliness \u00d7 Food & amenities","r":0.5335755139966918,"bundle":"Environment"}],"data-9341141e26de3b81c61e16ac18bb6369":[{"x":0.211999576001272}]}},"30":{"config":{"background":null,"view":{"stroke":null},"axis":{"domain":false,"tickColor":"#c3c2b7","gridColor":"#e1e0d9","gridWidth":1,"labelColor":"#52514e","titleColor":"#52514e","labelFontSize":11,"titleFontSize":12,"titleFontWeight":"normal","labelLimit":320},"axisX":{"labelAngle":0},"legend":{"labelColor":"#52514e","titleColor":"#52514e","labelFontSize":11,"titleFontSize":12},"title":{"anchor":"start","color":"#0b0b0b","fontSize":16,"fontWeight":"bold","subtitleFontSize":12,"subtitleColor":"#898781","offset":12}},"vconcat":[{"data":{"name":"data-86195ff80e4f9d087d0c9767d3583613"},"mark":{"type":"line","strokeWidth":2},"encoding":{"color":{"field":"topic","legend":{"orient":"right"},"scale":{"domain":["Wait times","Staffing"],"range":["#2a78d6","#eda100"]},"title":null,"type":"nominal"},"tooltip":[{"field":"topic","type":"nominal"},{"field":"date","format":"%Y-%m","type":"temporal"},{"field":"value","format":".1f","title":"negative share (%)","type":"quantitative"}],"x":{"field":"date","title":null,"type":"temporal"},"y":{"field":"value","scale":{"zero":false},"title":"negative share (%)","type":"quantitative"}},"height":150,"title":{"text":"Capacity & flow - tone","subtitle":"Negative share of monthly statements, 3-month centered average. Monthly-change correlation r = +0.31."},"width":640},{"data":{"name":"data-242caa527adb1700bd8a5cb607444d09"},"mark":{"type":"line","strokeWidth":2},"encoding":{"color":{"field":"topic","legend":{"orient":"right"},"scale":{"domain":["Scheduling","Front desk"],"range":["#008300","#4a3aa7"]},"title":null,"type":"nominal"},"tooltip":[{"field":"topic","type":"nominal"},{"field":"date","format":"%Y-%m","type":"temporal"},{"field":"value","format":".1f","title":"negative share (%)","type":"quantitative"}],"x":{"field":"date","title":null,"type":"temporal"},"y":{"field":"value","scale":{"zero":false},"title":"negative share (%)","type":"quantitative"}},"height":150,"title":{"text":"Administrative access - tone","subtitle":"Same definition. Monthly-change correlation r = +0.44."},"width":640},{"data":{"name":"data-b8b94f345b4553ffdac3da162154089e"},"mark":{"type":"line","strokeWidth":2},"encoding":{"color":{"field":"topic","legend":{"orient":"right"},"scale":{"domain":["Billing","Insurance"],"range":["#e34948","#1baf7a"]},"title":null,"type":"nominal"},"tooltip":[{"field":"topic","type":"nominal"},{"field":"date","format":"%Y-%m","type":"temporal"},{"field":"value","format":".1f","title":"share of reviews (%)","type":"quantitative"}],"x":{"field":"date","title":null,"type":"temporal"},"y":{"field":"value","scale":{"zero":false},"title":"share of reviews (%)","type":"quantitative"}},"height":150,"title":{"text":"Financial friction - attention","subtitle":"Share of the month's labeled reviews mentioning the topic. Monthly-change correlation r = +0.72."},"width":640}],"resolve":{"scale":{"color":"independent"}},"spacing":18,"$schema":"https://vega.github.io/schema/vega-lite/v5.20.1.json","datasets":{"data-86195ff80e4f9d087d0c9767d3583613":[{"topic":"Wait times","value":59.27215189873418,"date":"2019-01-01T00:00:00"},{"topic":"Wait times","value":62.458490876212394,"date":"2019-02-01T00:00:00"},{"topic":"Wait times","value":63.269778354166526,"date":"2019-03-01T00:00:00"},{"topic":"Wait times","value":63.63504469759825,"date":"2019-04-01T00:00:00"},{"topic":"Wait times","value":61.08933170412406,"date":"2019-05-01T00:00:00"},{"topic":"Wait times","value":62.50026644839214,"date":"2019-06-01T00:00:00"},{"topic":"Wait times","value":61.88546514738137,"date":"2019-07-01T00:00:00"},{"topic":"Wait times","value":62.064736388938954,"date":"2019-08-01T00:00:00"},{"topic":"Wait times","value":58.20578761981054,"date":"2019-09-01T00:00:00"},{"topic":"Wait times","value":59.408390902210094,"date":"2019-10-01T00:00:00"},{"topic":"Wait times","value":57.86744462351591,"date":"2019-11-01T00:00:00"},{"topic":"Wait times","value":59.56889608951595,"date":"2019-12-01T00:00:00"},{"topic":"Wait times","value":58.96500541043731,"date":"2020-01-01T00:00:00"},{"topic":"Wait times","value":58.590189158843806,"date":"2020-02-01T00:00:00"},{"topic":"Wait times","value":57.78819635962493,"date":"2020-03-01T00:00:00"},{"topic":"Wait times","value":49.24227799227799,"date":"2020-04-01T00:00:00"},{"topic":"Wait times","value":49.44905213270142,"date":"2020-05-01T00:00:00"},{"topic":"Wait times","value":51.688978478078,"date":"2020-06-01T00:00:00"},{"topic":"Wait times","value":54.66859478503244,"date":"2020-07-01T00:00:00"},{"topic":"Wait times","value":53.21938442527144,"date":"2020-08-01T00:00:00"},{"topic":"Wait times","value":52.75885204984546,"date":"2020-09-01T00:00:00"},{"topic":"Wait times","value":50.842454133695625,"date":"2020-10-01T00:00:00"},{"topic":"Wait times","value":48.45213576241871,"date":"2020-11-01T00:00:00"},{"topic":"Wait times","value":45.092722651232556,"date":"2020-12-01T00:00:00"},{"topic":"Wait times","value":44.04934553026922,"date":"2021-01-01T00:00:00"},{"topic":"Wait times","value":44.49627363144282,"date":"2021-02-01T00:00:00"},{"topic":"Wait times","value":47.16190284609165,"date":"2021-03-01T00:00:00"},{"topic":"Wait times","value":51.21025997158224,"date":"2021-04-01T00:00:00"},{"topic":"Wait times","value":57.32730203678847,"date":"2021-05-01T00:00:00"},{"topic":"Wait times","value":61.74564526984715,"date":"2021-06-01T00:00:00"},{"topic":"Wait times","value":66.52892729476359,"date":"2021-07-01T00:00:00"},{"topic":"Wait times","value":67.75543462773483,"date":"2021-08-01T00:00:00"},{"topic":"Wait times","value":66.02629083135687,"date":"2021-09-01T00:00:00"},{"topic":"Wait times","value":65.42996676506729,"date":"2021-10-01T00:00:00"},{"topic":"Wait times","value":63.439018744578476,"date":"2021-11-01T00:00:00"},{"topic":"Wait times","value":62.58678626251174,"date":"2021-12-01T00:00:00"},{"topic":"Wait times","value":57.13466021158329,"date":"2022-01-01T00:00:00"},{"topic":"Wait times","value":55.10617822544428,"date":"2022-02-01T00:00:00"},{"topic":"Wait times","value":55.87964718073142,"date":"2022-03-01T00:00:00"},{"topic":"Wait times","value":62.10386656084433,"date":"2022-04-01T00:00:00"},{"topic":"Wait times","value":63.00385219391291,"date":"2022-05-01T00:00:00"},{"topic":"Wait times","value":63.97515115187195,"date":"2022-06-01T00:00:00"},{"topic":"Wait times","value":60.95327781281475,"date":"2022-07-01T00:00:00"},{"topic":"Wait times","value":62.088893743140495,"date":"2022-08-01T00:00:00"},{"topic":"Wait times","value":62.14271990597532,"date":"2022-09-01T00:00:00"},{"topic":"Wait times","value":63.62343811890162,"date":"2022-10-01T00:00:00"},{"topic":"Wait times","value":63.701394149798816,"date":"2022-11-01T00:00:00"},{"topic":"Wait times","value":61.01039511656467,"date":"2022-12-01T00:00:00"},{"topic":"Wait times","value":57.34286596039624,"date":"2023-01-01T00:00:00"},{"topic":"Wait times","value":55.321422414424404,"date":"2023-02-01T00:00:00"},{"topic":"Wait times","value":55.164259188877764,"date":"2023-03-01T00:00:00"},{"topic":"Wait times","value":55.162136907755674,"date":"2023-04-01T00:00:00"},{"topic":"Wait times","value":52.92681373440157,"date":"2023-05-01T00:00:00"},{"topic":"Wait times","value":50.84498949999466,"date":"2023-06-01T00:00:00"},{"topic":"Wait times","value":50.394621580948815,"date":"2023-07-01T00:00:00"},{"topic":"Wait times","value":51.81994292732522,"date":"2023-08-01T00:00:00"},{"topic":"Wait times","value":52.28156389872688,"date":"2023-09-01T00:00:00"},{"topic":"Wait times","value":52.33486635010183,"date":"2023-10-01T00:00:00"},{"topic":"Wait times","value":52.775732615265284,"date":"2023-11-01T00:00:00"},{"topic":"Wait times","value":54.383343998810275,"date":"2023-12-01T00:00:00"},{"topic":"Wait times","value":54.14516525684111,"date":"2024-01-01T00:00:00"},{"topic":"Wait times","value":53.28389251277535,"date":"2024-02-01T00:00:00"},{"topic":"Wait times","value":51.79924779470123,"date":"2024-03-01T00:00:00"},{"topic":"Wait times","value":50.910752035531594,"date":"2024-04-01T00:00:00"},{"topic":"Wait times","value":49.84477008719671,"date":"2024-05-01T00:00:00"},{"topic":"Wait times","value":49.230987119626086,"date":"2024-06-01T00:00:00"},{"topic":"Wait times","value":50.574178227284825,"date":"2024-07-01T00:00:00"},{"topic":"Wait times","value":51.38090091636046,"date":"2024-08-01T00:00:00"},{"topic":"Wait times","value":51.82401094668753,"date":"2024-09-01T00:00:00"},{"topic":"Wait times","value":49.06152545756506,"date":"2024-10-01T00:00:00"},{"topic":"Wait times","value":49.13200370280058,"date":"2024-11-01T00:00:00"},{"topic":"Wait times","value":49.5050309989048,"date":"2024-12-01T00:00:00"},{"topic":"Wait times","value":51.74630435098787,"date":"2025-01-01T00:00:00"},{"topic":"Wait times","value":49.797357542352266,"date":"2025-02-01T00:00:00"},{"topic":"Wait times","value":47.93878074625812,"date":"2025-03-01T00:00:00"},{"topic":"Wait times","value":44.83745661897247,"date":"2025-04-01T00:00:00"},{"topic":"Wait times","value":43.52874268921115,"date":"2025-05-01T00:00:00"},{"topic":"Wait times","value":42.88794223676417,"date":"2025-06-01T00:00:00"},{"topic":"Wait times","value":43.29758322934716,"date":"2025-07-01T00:00:00"},{"topic":"Wait times","value":43.37948486142547,"date":"2025-08-01T00:00:00"},{"topic":"Wait times","value":43.35672521794427,"date":"2025-09-01T00:00:00"},{"topic":"Wait times","value":42.963137995821384,"date":"2025-10-01T00:00:00"},{"topic":"Wait times","value":42.585501036036504,"date":"2025-11-01T00:00:00"},{"topic":"Wait times","value":41.4925486942405,"date":"2025-12-01T00:00:00"},{"topic":"Wait times","value":41.59471587690304,"date":"2026-01-01T00:00:00"},{"topic":"Wait times","value":41.788439086134424,"date":"2026-02-01T00:00:00"},{"topic":"Wait times","value":42.045483846335436,"date":"2026-03-01T00:00:00"},{"topic":"Wait times","value":41.61544887470454,"date":"2026-04-01T00:00:00"},{"topic":"Wait times","value":41.356965229511665,"date":"2026-05-01T00:00:00"},{"topic":"Staffing","value":92.22222222222223,"date":"2019-01-01T00:00:00"},{"topic":"Staffing","value":94.23001949317738,"date":"2019-02-01T00:00:00"},{"topic":"Staffing","value":92.98109615123079,"date":"2019-03-01T00:00:00"},{"topic":"Staffing","value":93.75032692046156,"date":"2019-04-01T00:00:00"},{"topic":"Staffing","value":91.39394577151076,"date":"2019-05-01T00:00:00"},{"topic":"Staffing","value":92.94433336840999,"date":"2019-06-01T00:00:00"},{"topic":"Staffing","value":91.34176926584588,"date":"2019-07-01T00:00:00"},{"topic":"Staffing","value":89.7784412319296,"date":"2019-08-01T00:00:00"},{"topic":"Staffing","value":89.00324743348,"date":"2019-09-01T00:00:00"},{"topic":"Staffing","value":92.33658076681333,"date":"2019-10-01T00:00:00"},{"topic":"Staffing","value":94.34108527131784,"date":"2019-11-01T00:00:00"},{"topic":"Staffing","value":92.77777777777777,"date":"2019-12-01T00:00:00"},{"topic":"Staffing","value":90.78625235404897,"date":"2020-01-01T00:00:00"},{"topic":"Staffing","value":89.92937853107344,"date":"2020-02-01T00:00:00"},{"topic":"Staffing","value":91.38888888888889,"date":"2020-08-01T00:00:00"},{"topic":"Staffing","value":88.4126984126984,"date":"2020-09-01T00:00:00"},{"topic":"Staffing","value":90.05291005291006,"date":"2020-10-01T00:00:00"},{"topic":"Staffing","value":89.98556998556998,"date":"2020-11-01T00:00:00"},{"topic":"Staffing","value":83.63636363636363,"date":"2020-12-01T00:00:00"},{"topic":"Staffing","value":78.78787878787877,"date":"2021-01-01T00:00:00"},{"topic":"Staffing","value":66.95402298850574,"date":"2021-02-01T00:00:00"},{"topic":"Staffing","value":69.79090242112986,"date":"2021-03-01T00:00:00"},{"topic":"Staffing","value":77.08282383630879,"date":"2021-04-01T00:00:00"},{"topic":"Staffing","value":84.91594431310743,"date":"2021-05-01T00:00:00"},{"topic":"Staffing","value":92.58541487223658,"date":"2021-06-01T00:00:00"},{"topic":"Staffing","value":93.8650653091904,"date":"2021-07-01T00:00:00"},{"topic":"Staffing","value":93.97529458608633,"date":"2021-08-01T00:00:00"},{"topic":"Staffing","value":91.57087992309854,"date":"2021-09-01T00:00:00"},{"topic":"Staffing","value":89.89440408931935,"date":"2021-10-01T00:00:00"},{"topic":"Staffing","value":88.10868980360506,"date":"2021-11-01T00:00:00"},{"topic":"Staffing","value":89.18283362727807,"date":"2021-12-01T00:00:00"},{"topic":"Staffing","value":88.00961071492472,"date":"2022-01-01T00:00:00"},{"topic":"Staffing","value":89.50354162062033,"date":"2022-02-01T00:00:00"},{"topic":"Staffing","value":90.39415030559054,"date":"2022-03-01T00:00:00"},{"topic":"Staffing","value":91.89644793726252,"date":"2022-04-01T00:00:00"},{"topic":"Staffing","value":88.38476077652251,"date":"2022-05-01T00:00:00"},{"topic":"Staffing","value":89.16999125065786,"date":"2022-06-01T00:00:00"},{"topic":"Staffing","value":88.84091653133925,"date":"2022-07-01T00:00:00"},{"topic":"Staffing","value":93.76872569643653,"date":"2022-08-01T00:00:00"},{"topic":"Staffing","value":93.12169312169311,"date":"2022-09-01T00:00:00"},{"topic":"Staffing","value":94.25547996976569,"date":"2022-10-01T00:00:00"},{"topic":"Staffing","value":93.01454831646289,"date":"2022-11-01T00:00:00"},{"topic":"Staffing","value":92.1532218737411,"date":"2022-12-01T00:00:00"},{"topic":"Staffing","value":91.78439964605487,"date":"2023-01-01T00:00:00"},{"topic":"Staffing","value":92.55160175586066,"date":"2023-02-01T00:00:00"},{"topic":"Staffing","value":93.91342869908294,"date":"2023-03-01T00:00:00"},{"topic":"Staffing","value":94.52126545149801,"date":"2023-04-01T00:00:00"},{"topic":"Staffing","value":94.14414414414415,"date":"2023-05-01T00:00:00"},{"topic":"Staffing","value":92.282644089873,"date":"2023-06-01T00:00:00"},{"topic":"Staffing","value":90.098938645298,"date":"2023-07-01T00:00:00"},{"topic":"Staffing","value":88.88007272054973,"date":"2023-08-01T00:00:00"},{"topic":"Staffing","value":87.58841962166771,"date":"2023-09-01T00:00:00"},{"topic":"Staffing","value":88.87122416534181,"date":"2023-10-01T00:00:00"},{"topic":"Staffing","value":90.30058095478655,"date":"2023-11-01T00:00:00"},{"topic":"Staffing","value":94.08044777813164,"date":"2023-12-01T00:00:00"},{"topic":"Staffing","value":95.44981714750101,"date":"2024-01-01T00:00:00"},{"topic":"Staffing","value":96.39164138860804,"date":"2024-02-01T00:00:00"},{"topic":"Staffing","value":93.36627906976744,"date":"2024-03-01T00:00:00"},{"topic":"Staffing","value":90.13340235743867,"date":"2024-04-01T00:00:00"},{"topic":"Staffing","value":90.07736425152665,"date":"2024-05-01T00:00:00"},{"topic":"Staffing","value":91.65345120804838,"date":"2024-06-01T00:00:00"},{"topic":"Staffing","value":93.25669829074754,"date":"2024-07-01T00:00:00"},{"topic":"Staffing","value":93.70033329588435,"date":"2024-08-01T00:00:00"},{"topic":"Staffing","value":92.2510579335655,"date":"2024-09-01T00:00:00"},{"topic":"Staffing","value":90.3251320076396,"date":"2024-10-01T00:00:00"},{"topic":"Staffing","value":87.82491904231034,"date":"2024-11-01T00:00:00"},{"topic":"Staffing","value":88.08419307501877,"date":"2024-12-01T00:00:00"},{"topic":"Staffing","value":91.42269436700842,"date":"2025-01-01T00:00:00"},{"topic":"Staffing","value":90.61834407812205,"date":"2025-02-01T00:00:00"},{"topic":"Staffing","value":88.01734617050899,"date":"2025-03-01T00:00:00"},{"topic":"Staffing","value":87.03608819778795,"date":"2025-04-01T00:00:00"},{"topic":"Staffing","value":85.36309127248501,"date":"2025-05-01T00:00:00"},{"topic":"Staffing","value":87.72439994958316,"date":"2025-06-01T00:00:00"},{"topic":"Staffing","value":87.0981507823613,"date":"2025-07-01T00:00:00"},{"topic":"Staffing","value":90.90516832622096,"date":"2025-08-01T00:00:00"},{"topic":"Staffing","value":90.52326468344775,"date":"2025-09-01T00:00:00"},{"topic":"Staffing","value":89.31608005521049,"date":"2025-10-01T00:00:00"},{"topic":"Staffing","value":87.44773271627491,"date":"2025-11-01T00:00:00"},{"topic":"Staffing","value":87.19595182705851,"date":"2025-12-01T00:00:00"},{"topic":"Staffing","value":87.11658674769342,"date":"2026-01-01T00:00:00"},{"topic":"Staffing","value":86.30351815742546,"date":"2026-02-01T00:00:00"},{"topic":"Staffing","value":85.60253468808042,"date":"2026-03-01T00:00:00"},{"topic":"Staffing","value":86.02806660297404,"date":"2026-04-01T00:00:00"},{"topic":"Staffing","value":86.56422379826635,"date":"2026-05-01T00:00:00"}],"data-242caa527adb1700bd8a5cb607444d09":[{"topic":"Scheduling","value":62.61072261072261,"date":"2019-01-01T00:00:00"},{"topic":"Scheduling","value":67.04168655975884,"date":"2019-02-01T00:00:00"},{"topic":"Scheduling","value":67.72544724351954,"date":"2019-03-01T00:00:00"},{"topic":"Scheduling","value":70.63453815261043,"date":"2019-04-01T00:00:00"},{"topic":"Scheduling","value":72.00000000000001,"date":"2019-05-01T00:00:00"},{"topic":"Scheduling","value":73.51515151515152,"date":"2019-06-01T00:00:00"},{"topic":"Scheduling","value":72.76690960235264,"date":"2019-07-01T00:00:00"},{"topic":"Scheduling","value":72.12764019595994,"date":"2019-08-01T00:00:00"},{"topic":"Scheduling","value":69.9588939095666,"date":"2019-09-01T00:00:00"},{"topic":"Scheduling","value":69.50078661601626,"date":"2019-10-01T00:00:00"},{"topic":"Scheduling","value":64.19411007646302,"date":"2019-11-01T00:00:00"},{"topic":"Scheduling","value":64.93731058247188,"date":"2019-12-01T00:00:00"},{"topic":"Scheduling","value":66.84207248723378,"date":"2020-01-01T00:00:00"},{"topic":"Scheduling","value":64.72600292930376,"date":"2020-02-01T00:00:00"},{"topic":"Scheduling","value":63.62126245847176,"date":"2020-03-01T00:00:00"},{"topic":"Scheduling","value":72.67391304347825,"date":"2020-06-01T00:00:00"},{"topic":"Scheduling","value":70.43509096515571,"date":"2020-07-01T00:00:00"},{"topic":"Scheduling","value":70.17422139993833,"date":"2020-08-01T00:00:00"},{"topic":"Scheduling","value":60.867803180476635,"date":"2020-09-01T00:00:00"},{"topic":"Scheduling","value":60.67685937251155,"date":"2020-10-01T00:00:00"},{"topic":"Scheduling","value":60.40665549140125,"date":"2020-11-01T00:00:00"},{"topic":"Scheduling","value":66.01512109986686,"date":"2020-12-01T00:00:00"},{"topic":"Scheduling","value":63.64282148347276,"date":"2021-01-01T00:00:00"},{"topic":"Scheduling","value":59.64377444787273,"date":"2021-02-01T00:00:00"},{"topic":"Scheduling","value":56.53069459060682,"date":"2021-03-01T00:00:00"},{"topic":"Scheduling","value":55.98717845932678,"date":"2021-04-01T00:00:00"},{"topic":"Scheduling","value":62.141894410510155,"date":"2021-05-01T00:00:00"},{"topic":"Scheduling","value":65.98191238601852,"date":"2021-06-01T00:00:00"},{"topic":"Scheduling","value":73.1591943669899,"date":"2021-07-01T00:00:00"},{"topic":"Scheduling","value":73.64807407503919,"date":"2021-08-01T00:00:00"},{"topic":"Scheduling","value":72.30911668806105,"date":"2021-09-01T00:00:00"},{"topic":"Scheduling","value":69.55901172222264,"date":"2021-10-01T00:00:00"},{"topic":"Scheduling","value":69.28166317434041,"date":"2021-11-01T00:00:00"},{"topic":"Scheduling","value":70.8109987450078,"date":"2021-12-01T00:00:00"},{"topic":"Scheduling","value":70.42143234934383,"date":"2022-01-01T00:00:00"},{"topic":"Scheduling","value":74.36308349769888,"date":"2022-02-01T00:00:00"},{"topic":"Scheduling","value":73.79675467546754,"date":"2022-03-01T00:00:00"},{"topic":"Scheduling","value":74.61342134213422,"date":"2022-04-01T00:00:00"},{"topic":"Scheduling","value":70.64516737388024,"date":"2022-05-01T00:00:00"},{"topic":"Scheduling","value":70.52265512265512,"date":"2022-06-01T00:00:00"},{"topic":"Scheduling","value":68.52044517790374,"date":"2022-07-01T00:00:00"},{"topic":"Scheduling","value":67.31628535305425,"date":"2022-08-01T00:00:00"},{"topic":"Scheduling","value":68.8220840810752,"date":"2022-09-01T00:00:00"},{"topic":"Scheduling","value":72.1360057375383,"date":"2022-10-01T00:00:00"},{"topic":"Scheduling","value":71.68750449796202,"date":"2022-11-01T00:00:00"},{"topic":"Scheduling","value":66.78524112347642,"date":"2022-12-01T00:00:00"},{"topic":"Scheduling","value":65.83929517753047,"date":"2023-01-01T00:00:00"},{"topic":"Scheduling","value":66.97788697788698,"date":"2023-02-01T00:00:00"},{"topic":"Scheduling","value":67.76492401492402,"date":"2023-03-01T00:00:00"},{"topic":"Scheduling","value":67.10016835016836,"date":"2023-04-01T00:00:00"},{"topic":"Scheduling","value":67.34783734783734,"date":"2023-05-01T00:00:00"},{"topic":"Scheduling","value":67.61238761238761,"date":"2023-06-01T00:00:00"},{"topic":"Scheduling","value":66.63174788174788,"date":"2023-07-01T00:00:00"},{"topic":"Scheduling","value":64.24630896936286,"date":"2023-08-01T00:00:00"},{"topic":"Scheduling","value":65.43678515983905,"date":"2023-09-01T00:00:00"},{"topic":"Scheduling","value":62.19876773064515,"date":"2023-10-01T00:00:00"},{"topic":"Scheduling","value":62.431457431457424,"date":"2023-11-01T00:00:00"},{"topic":"Scheduling","value":60.33700231009648,"date":"2023-12-01T00:00:00"},{"topic":"Scheduling","value":61.23304787916209,"date":"2024-01-01T00:00:00"},{"topic":"Scheduling","value":63.546377251315,"date":"2024-02-01T00:00:00"},{"topic":"Scheduling","value":66.65494172011863,"date":"2024-03-01T00:00:00"},{"topic":"Scheduling","value":66.14027947361282,"date":"2024-04-01T00:00:00"},{"topic":"Scheduling","value":63.198480531813864,"date":"2024-05-01T00:00:00"},{"topic":"Scheduling","value":62.379176379176386,"date":"2024-06-01T00:00:00"},{"topic":"Scheduling","value":63.570637248056606,"date":"2024-07-01T00:00:00"},{"topic":"Scheduling","value":64.6666559834196,"date":"2024-08-01T00:00:00"},{"topic":"Scheduling","value":66.54295320218256,"date":"2024-09-01T00:00:00"},{"topic":"Scheduling","value":65.30997829178831,"date":"2024-10-01T00:00:00"},{"topic":"Scheduling","value":62.649262473403624,"date":"2024-11-01T00:00:00"},{"topic":"Scheduling","value":57.80038228205767,"date":"2024-12-01T00:00:00"},{"topic":"Scheduling","value":58.45208061251248,"date":"2025-01-01T00:00:00"},{"topic":"Scheduling","value":57.341569495662306,"date":"2025-02-01T00:00:00"},{"topic":"Scheduling","value":59.16482131891412,"date":"2025-03-01T00:00:00"},{"topic":"Scheduling","value":57.13938561472194,"date":"2025-04-01T00:00:00"},{"topic":"Scheduling","value":57.37812349186757,"date":"2025-05-01T00:00:00"},{"topic":"Scheduling","value":57.020073133817206,"date":"2025-06-01T00:00:00"},{"topic":"Scheduling","value":57.49854203333874,"date":"2025-07-01T00:00:00"},{"topic":"Scheduling","value":57.51936082413439,"date":"2025-08-01T00:00:00"},{"topic":"Scheduling","value":57.284318089091656,"date":"2025-09-01T00:00:00"},{"topic":"Scheduling","value":56.848330073172505,"date":"2025-10-01T00:00:00"},{"topic":"Scheduling","value":58.08354171614303,"date":"2025-11-01T00:00:00"},{"topic":"Scheduling","value":56.57119603713069,"date":"2025-12-01T00:00:00"},{"topic":"Scheduling","value":56.58589068240195,"date":"2026-01-01T00:00:00"},{"topic":"Scheduling","value":56.0520448570763,"date":"2026-02-01T00:00:00"},{"topic":"Scheduling","value":54.62483009652821,"date":"2026-03-01T00:00:00"},{"topic":"Scheduling","value":55.488400488400494,"date":"2026-04-01T00:00:00"},{"topic":"Scheduling","value":54.66117216117217,"date":"2026-05-01T00:00:00"},{"topic":"Front desk","value":47.18456102201685,"date":"2019-01-01T00:00:00"},{"topic":"Front desk","value":48.32145337975726,"date":"2019-02-01T00:00:00"},{"topic":"Front desk","value":48.036520253325584,"date":"2019-03-01T00:00:00"},{"topic":"Front desk","value":48.02083774732786,"date":"2019-04-01T00:00:00"},{"topic":"Front desk","value":47.408346373966914,"date":"2019-05-01T00:00:00"},{"topic":"Front desk","value":46.26647796350533,"date":"2019-06-01T00:00:00"},{"topic":"Front desk","value":44.837795542783596,"date":"2019-07-01T00:00:00"},{"topic":"Front desk","value":44.78567375153138,"date":"2019-08-01T00:00:00"},{"topic":"Front desk","value":41.92032299627236,"date":"2019-09-01T00:00:00"},{"topic":"Front desk","value":42.99315189990431,"date":"2019-10-01T00:00:00"},{"topic":"Front desk","value":41.33169279163669,"date":"2019-11-01T00:00:00"},{"topic":"Front desk","value":44.59718351981399,"date":"2019-12-01T00:00:00"},{"topic":"Front desk","value":44.62385417461594,"date":"2020-01-01T00:00:00"},{"topic":"Front desk","value":43.93944241849418,"date":"2020-02-01T00:00:00"},{"topic":"Front desk","value":42.526079050626855,"date":"2020-03-01T00:00:00"},{"topic":"Front desk","value":49.04276256933262,"date":"2020-04-01T00:00:00"},{"topic":"Front desk","value":53.36635479728491,"date":"2020-05-01T00:00:00"},{"topic":"Front desk","value":52.48861580816061,"date":"2020-06-01T00:00:00"},{"topic":"Front desk","value":51.02045737923176,"date":"2020-07-01T00:00:00"},{"topic":"Front desk","value":48.457465269485866,"date":"2020-08-01T00:00:00"},{"topic":"Front desk","value":45.62614790972724,"date":"2020-09-01T00:00:00"},{"topic":"Front desk","value":42.1748403176063,"date":"2020-10-01T00:00:00"},{"topic":"Front desk","value":41.467176437229035,"date":"2020-11-01T00:00:00"},{"topic":"Front desk","value":40.142549894499986,"date":"2020-12-01T00:00:00"},{"topic":"Front desk","value":36.9514274103301,"date":"2021-01-01T00:00:00"},{"topic":"Front desk","value":34.93703598602787,"date":"2021-02-01T00:00:00"},{"topic":"Front desk","value":36.36633110833211,"date":"2021-03-01T00:00:00"},{"topic":"Front desk","value":39.8338707676044,"date":"2021-04-01T00:00:00"},{"topic":"Front desk","value":45.35581435604314,"date":"2021-05-01T00:00:00"},{"topic":"Front desk","value":46.72246519833163,"date":"2021-06-01T00:00:00"},{"topic":"Front desk","value":50.16129797049773,"date":"2021-07-01T00:00:00"},{"topic":"Front desk","value":47.63695292617636,"date":"2021-08-01T00:00:00"},{"topic":"Front desk","value":48.033885755811795,"date":"2021-09-01T00:00:00"},{"topic":"Front desk","value":45.81223260458118,"date":"2021-10-01T00:00:00"},{"topic":"Front desk","value":47.29737600486219,"date":"2021-11-01T00:00:00"},{"topic":"Front desk","value":47.539871360293894,"date":"2021-12-01T00:00:00"},{"topic":"Front desk","value":46.87309165017968,"date":"2022-01-01T00:00:00"},{"topic":"Front desk","value":46.5611571454806,"date":"2022-02-01T00:00:00"},{"topic":"Front desk","value":47.31628764956508,"date":"2022-03-01T00:00:00"},{"topic":"Front desk","value":49.53442473881773,"date":"2022-04-01T00:00:00"},{"topic":"Front desk","value":48.801380441185074,"date":"2022-05-01T00:00:00"},{"topic":"Front desk","value":46.01812262399918,"date":"2022-06-01T00:00:00"},{"topic":"Front desk","value":43.260511003582195,"date":"2022-07-01T00:00:00"},{"topic":"Front desk","value":43.331435042489105,"date":"2022-08-01T00:00:00"},{"topic":"Front desk","value":44.12843575861025,"date":"2022-09-01T00:00:00"},{"topic":"Front desk","value":44.46641000321525,"date":"2022-10-01T00:00:00"},{"topic":"Front desk","value":42.743419635384434,"date":"2022-11-01T00:00:00"},{"topic":"Front desk","value":39.93312568252148,"date":"2022-12-01T00:00:00"},{"topic":"Front desk","value":37.948884248788374,"date":"2023-01-01T00:00:00"},{"topic":"Front desk","value":37.383828521789326,"date":"2023-02-01T00:00:00"},{"topic":"Front desk","value":37.351000951331784,"date":"2023-03-01T00:00:00"},{"topic":"Front desk","value":36.935704551972655,"date":"2023-04-01T00:00:00"},{"topic":"Front desk","value":35.24858114557498,"date":"2023-05-01T00:00:00"},{"topic":"Front desk","value":35.16325815266224,"date":"2023-06-01T00:00:00"},{"topic":"Front desk","value":34.743925262743815,"date":"2023-07-01T00:00:00"},{"topic":"Front desk","value":37.48996050376305,"date":"2023-08-01T00:00:00"},{"topic":"Front desk","value":38.25622285189237,"date":"2023-09-01T00:00:00"},{"topic":"Front desk","value":38.25182692825148,"date":"2023-10-01T00:00:00"},{"topic":"Front desk","value":37.82545585582239,"date":"2023-11-01T00:00:00"},{"topic":"Front desk","value":37.78723381649442,"date":"2023-12-01T00:00:00"},{"topic":"Front desk","value":37.80440146639921,"date":"2024-01-01T00:00:00"},{"topic":"Front desk","value":37.2191686233789,"date":"2024-02-01T00:00:00"},{"topic":"Front desk","value":35.98164125799434,"date":"2024-03-01T00:00:00"},{"topic":"Front desk","value":35.42580998644896,"date":"2024-04-01T00:00:00"},{"topic":"Front desk","value":34.372584907513456,"date":"2024-05-01T00:00:00"},{"topic":"Front desk","value":34.78195012909264,"date":"2024-06-01T00:00:00"},{"topic":"Front desk","value":34.65230222960042,"date":"2024-07-01T00:00:00"},{"topic":"Front desk","value":34.63565933849249,"date":"2024-08-01T00:00:00"},{"topic":"Front desk","value":35.00434133687554,"date":"2024-09-01T00:00:00"},{"topic":"Front desk","value":35.19386682729488,"date":"2024-10-01T00:00:00"},{"topic":"Front desk","value":34.32435189175341,"date":"2024-11-01T00:00:00"},{"topic":"Front desk","value":33.2575635293028,"date":"2024-12-01T00:00:00"},{"topic":"Front desk","value":33.152214193920244,"date":"2025-01-01T00:00:00"},{"topic":"Front desk","value":32.29278765379026,"date":"2025-02-01T00:00:00"},{"topic":"Front desk","value":30.822015537503916,"date":"2025-03-01T00:00:00"},{"topic":"Front desk","value":28.8028596225248,"date":"2025-04-01T00:00:00"},{"topic":"Front desk","value":28.311601884041043,"date":"2025-05-01T00:00:00"},{"topic":"Front desk","value":28.02091532829425,"date":"2025-06-01T00:00:00"},{"topic":"Front desk","value":29.851952482631848,"date":"2025-07-01T00:00:00"},{"topic":"Front desk","value":30.306755298839818,"date":"2025-08-01T00:00:00"},{"topic":"Front desk","value":30.777622034766793,"date":"2025-09-01T00:00:00"},{"topic":"Front desk","value":28.27316782497545,"date":"2025-10-01T00:00:00"},{"topic":"Front desk","value":26.746075135973207,"date":"2025-11-01T00:00:00"},{"topic":"Front desk","value":26.104401716522013,"date":"2025-12-01T00:00:00"},{"topic":"Front desk","value":26.124826553123313,"date":"2026-01-01T00:00:00"},{"topic":"Front desk","value":26.892059089839965,"date":"2026-02-01T00:00:00"},{"topic":"Front desk","value":26.11016608572474,"date":"2026-03-01T00:00:00"},{"topic":"Front desk","value":26.823528826337295,"date":"2026-04-01T00:00:00"},{"topic":"Front desk","value":26.548142401517115,"date":"2026-05-01T00:00:00"}],"data-b8b94f345b4553ffdac3da162154089e":[{"topic":"Billing","value":6.505140378131936,"date":"2019-01-01T00:00:00"},{"topic":"Billing","value":6.855651939745389,"date":"2019-02-01T00:00:00"},{"topic":"Billing","value":6.600285676664565,"date":"2019-03-01T00:00:00"},{"topic":"Billing","value":6.729676001382921,"date":"2019-04-01T00:00:00"},{"topic":"Billing","value":6.421059104645442,"date":"2019-05-01T00:00:00"},{"topic":"Billing","value":7.022163104103603,"date":"2019-06-01T00:00:00"},{"topic":"Billing","value":7.061387001367701,"date":"2019-07-01T00:00:00"},{"topic":"Billing","value":7.357150857790744,"date":"2019-08-01T00:00:00"},{"topic":"Billing","value":6.862665546589534,"date":"2019-09-01T00:00:00"},{"topic":"Billing","value":6.577567791382613,"date":"2019-10-01T00:00:00"},{"topic":"Billing","value":6.226466405359857,"date":"2019-11-01T00:00:00"},{"topic":"Billing","value":5.976467722385328,"date":"2019-12-01T00:00:00"},{"topic":"Billing","value":5.8279650245463,"date":"2020-01-01T00:00:00"},{"topic":"Billing","value":6.196568252868245,"date":"2020-02-01T00:00:00"},{"topic":"Billing","value":10.439769994466392,"date":"2020-03-01T00:00:00"},{"topic":"Billing","value":11.494199460301155,"date":"2020-04-01T00:00:00"},{"topic":"Billing","value":10.963186990584251,"date":"2020-05-01T00:00:00"},{"topic":"Billing","value":7.029645021777799,"date":"2020-06-01T00:00:00"},{"topic":"Billing","value":5.8313038234366,"date":"2020-07-01T00:00:00"},{"topic":"Billing","value":5.813689067455809,"date":"2020-08-01T00:00:00"},{"topic":"Billing","value":5.450784678534567,"date":"2020-09-01T00:00:00"},{"topic":"Billing","value":5.360146928322348,"date":"2020-10-01T00:00:00"},{"topic":"Billing","value":5.19682786727641,"date":"2020-11-01T00:00:00"},{"topic":"Billing","value":5.500049481396513,"date":"2020-12-01T00:00:00"},{"topic":"Billing","value":5.16405288679972,"date":"2021-01-01T00:00:00"},{"topic":"Billing","value":5.242385994389228,"date":"2021-02-01T00:00:00"},{"topic":"Billing","value":5.056725107498286,"date":"2021-03-01T00:00:00"},{"topic":"Billing","value":5.432920664004431,"date":"2021-04-01T00:00:00"},{"topic":"Billing","value":5.211827337044764,"date":"2021-05-01T00:00:00"},{"topic":"Billing","value":4.997743129547282,"date":"2021-06-01T00:00:00"},{"topic":"Billing","value":5.09820053929734,"date":"2021-07-01T00:00:00"},{"topic":"Billing","value":5.103006723132966,"date":"2021-08-01T00:00:00"},{"topic":"Billing","value":5.235057511477539,"date":"2021-09-01T00:00:00"},{"topic":"Billing","value":5.397235522460441,"date":"2021-10-01T00:00:00"},{"topic":"Billing","value":5.511458514800738,"date":"2021-11-01T00:00:00"},{"topic":"Billing","value":5.506225011187069,"date":"2021-12-01T00:00:00"},{"topic":"Billing","value":5.217000391281224,"date":"2022-01-01T00:00:00"},{"topic":"Billing","value":5.284543501570511,"date":"2022-02-01T00:00:00"},{"topic":"Billing","value":4.78661864333036,"date":"2022-03-01T00:00:00"},{"topic":"Billing","value":4.699134292380727,"date":"2022-04-01T00:00:00"},{"topic":"Billing","value":4.381911156661464,"date":"2022-05-01T00:00:00"},{"topic":"Billing","value":4.508814386177907,"date":"2022-06-01T00:00:00"},{"topic":"Billing","value":4.669177073445458,"date":"2022-07-01T00:00:00"},{"topic":"Billing","value":4.64479625439819,"date":"2022-08-01T00:00:00"},{"topic":"Billing","value":4.6797916799457395,"date":"2022-09-01T00:00:00"},{"topic":"Billing","value":4.265586468304262,"date":"2022-10-01T00:00:00"},{"topic":"Billing","value":4.340499817516688,"date":"2022-11-01T00:00:00"},{"topic":"Billing","value":4.184618398491036,"date":"2022-12-01T00:00:00"},{"topic":"Billing","value":4.467416356070516,"date":"2023-01-01T00:00:00"},{"topic":"Billing","value":4.643324840581973,"date":"2023-02-01T00:00:00"},{"topic":"Billing","value":4.898275316432648,"date":"2023-03-01T00:00:00"},{"topic":"Billing","value":4.899363151822187,"date":"2023-04-01T00:00:00"},{"topic":"Billing","value":4.6478676188035895,"date":"2023-05-01T00:00:00"},{"topic":"Billing","value":4.587825585456786,"date":"2023-06-01T00:00:00"},{"topic":"Billing","value":4.44467697026198,"date":"2023-07-01T00:00:00"},{"topic":"Billing","value":4.388061046797375,"date":"2023-08-01T00:00:00"},{"topic":"Billing","value":4.589469577080111,"date":"2023-09-01T00:00:00"},{"topic":"Billing","value":4.497007638913547,"date":"2023-10-01T00:00:00"},{"topic":"Billing","value":4.285888261987799,"date":"2023-11-01T00:00:00"},{"topic":"Billing","value":4.336260878068172,"date":"2023-12-01T00:00:00"},{"topic":"Billing","value":4.807079538169078,"date":"2024-01-01T00:00:00"},{"topic":"Billing","value":5.2614396934977155,"date":"2024-02-01T00:00:00"},{"topic":"Billing","value":4.830033676855939,"date":"2024-03-01T00:00:00"},{"topic":"Billing","value":4.494828579890923,"date":"2024-04-01T00:00:00"},{"topic":"Billing","value":4.318812673558757,"date":"2024-05-01T00:00:00"},{"topic":"Billing","value":4.449701164912365,"date":"2024-06-01T00:00:00"},{"topic":"Billing","value":4.580326883546796,"date":"2024-07-01T00:00:00"},{"topic":"Billing","value":4.395428157847165,"date":"2024-08-01T00:00:00"},{"topic":"Billing","value":4.225631264820414,"date":"2024-09-01T00:00:00"},{"topic":"Billing","value":3.949045096782981,"date":"2024-10-01T00:00:00"},{"topic":"Billing","value":3.8062715385164654,"date":"2024-11-01T00:00:00"},{"topic":"Billing","value":4.099199179711992,"date":"2024-12-01T00:00:00"},{"topic":"Billing","value":4.158099681370243,"date":"2025-01-01T00:00:00"},{"topic":"Billing","value":4.547902111326876,"date":"2025-02-01T00:00:00"},{"topic":"Billing","value":4.427118558002979,"date":"2025-03-01T00:00:00"},{"topic":"Billing","value":4.389679652935238,"date":"2025-04-01T00:00:00"},{"topic":"Billing","value":4.181057451388318,"date":"2025-05-01T00:00:00"},{"topic":"Billing","value":4.078428122280721,"date":"2025-06-01T00:00:00"},{"topic":"Billing","value":4.0400590058407015,"date":"2025-07-01T00:00:00"},{"topic":"Billing","value":3.944175504027124,"date":"2025-08-01T00:00:00"},{"topic":"Billing","value":3.838504415482686,"date":"2025-09-01T00:00:00"},{"topic":"Billing","value":3.740743943761745,"date":"2025-10-01T00:00:00"},{"topic":"Billing","value":3.5959383403252625,"date":"2025-11-01T00:00:00"},{"topic":"Billing","value":3.477254894137772,"date":"2025-12-01T00:00:00"},{"topic":"Billing","value":3.583389006206602,"date":"2026-01-01T00:00:00"},{"topic":"Billing","value":3.5698545524491023,"date":"2026-02-01T00:00:00"},{"topic":"Billing","value":3.5932683748808514,"date":"2026-03-01T00:00:00"},{"topic":"Billing","value":3.430058823574066,"date":"2026-04-01T00:00:00"},{"topic":"Billing","value":3.460555310399384,"date":"2026-05-01T00:00:00"},{"topic":"Insurance","value":2.2110506360742646,"date":"2019-01-01T00:00:00"},{"topic":"Insurance","value":2.341652005353736,"date":"2019-02-01T00:00:00"},{"topic":"Insurance","value":2.1517817788960683,"date":"2019-03-01T00:00:00"},{"topic":"Insurance","value":2.1996059450104926,"date":"2019-04-01T00:00:00"},{"topic":"Insurance","value":2.108570731687151,"date":"2019-05-01T00:00:00"},{"topic":"Insurance","value":1.9058288607845686,"date":"2019-06-01T00:00:00"},{"topic":"Insurance","value":1.853065041689091,"date":"2019-07-01T00:00:00"},{"topic":"Insurance","value":1.891699398345888,"date":"2019-08-01T00:00:00"},{"topic":"Insurance","value":2.138220588162802,"date":"2019-09-01T00:00:00"},{"topic":"Insurance","value":2.257739491254743,"date":"2019-10-01T00:00:00"},{"topic":"Insurance","value":1.9880758369934943,"date":"2019-11-01T00:00:00"},{"topic":"Insurance","value":1.8007130687767154,"date":"2019-12-01T00:00:00"},{"topic":"Insurance","value":1.6433266202181342,"date":"2020-01-01T00:00:00"},{"topic":"Insurance","value":1.8887333351524367,"date":"2020-02-01T00:00:00"},{"topic":"Insurance","value":2.8265917136779093,"date":"2020-03-01T00:00:00"},{"topic":"Insurance","value":2.7029373639543133,"date":"2020-04-01T00:00:00"},{"topic":"Insurance","value":2.410108916958232,"date":"2020-05-01T00:00:00"},{"topic":"Insurance","value":1.6226372226855301,"date":"2020-06-01T00:00:00"},{"topic":"Insurance","value":2.0065926066409143,"date":"2020-07-01T00:00:00"},{"topic":"Insurance","value":2.042220943266213,"date":"2020-08-01T00:00:00"},{"topic":"Insurance","value":1.7555810481069907,"date":"2020-09-01T00:00:00"},{"topic":"Insurance","value":1.3040809157557947,"date":"2020-10-01T00:00:00"},{"topic":"Insurance","value":1.3396787522030063,"date":"2020-11-01T00:00:00"},{"topic":"Insurance","value":1.2814872185201684,"date":"2020-12-01T00:00:00"},{"topic":"Insurance","value":1.214467257213584,"date":"2021-01-01T00:00:00"},{"topic":"Insurance","value":1.081246150810844,"date":"2021-02-01T00:00:00"},{"topic":"Insurance","value":1.2136307336844847,"date":"2021-03-01T00:00:00"},{"topic":"Insurance","value":1.4907443723435774,"date":"2021-04-01T00:00:00"},{"topic":"Insurance","value":1.6614560219755385,"date":"2021-05-01T00:00:00"},{"topic":"Insurance","value":1.572827662151435,"date":"2021-06-01T00:00:00"},{"topic":"Insurance","value":1.486968075598367,"date":"2021-07-01T00:00:00"},{"topic":"Insurance","value":1.3782265469831774,"date":"2021-08-01T00:00:00"},{"topic":"Insurance","value":1.3624200539626148,"date":"2021-09-01T00:00:00"},{"topic":"Insurance","value":1.6006476407171608,"date":"2021-10-01T00:00:00"},{"topic":"Insurance","value":1.5495062379753775,"date":"2021-11-01T00:00:00"},{"topic":"Insurance","value":1.5556013549888594,"date":"2021-12-01T00:00:00"},{"topic":"Insurance","value":1.2429161244802944,"date":"2022-01-01T00:00:00"},{"topic":"Insurance","value":1.585031162022759,"date":"2022-02-01T00:00:00"},{"topic":"Insurance","value":1.6700199806599858,"date":"2022-03-01T00:00:00"},{"topic":"Insurance","value":1.682658929054937,"date":"2022-04-01T00:00:00"},{"topic":"Insurance","value":1.4183699944564623,"date":"2022-05-01T00:00:00"},{"topic":"Insurance","value":1.3701090848707937,"date":"2022-06-01T00:00:00"},{"topic":"Insurance","value":1.5093356984839763,"date":"2022-07-01T00:00:00"},{"topic":"Insurance","value":1.4594621790184785,"date":"2022-08-01T00:00:00"},{"topic":"Insurance","value":1.3366183576054973,"date":"2022-09-01T00:00:00"},{"topic":"Insurance","value":1.1584293861893773,"date":"2022-10-01T00:00:00"},{"topic":"Insurance","value":1.1289453112257861,"date":"2022-11-01T00:00:00"},{"topic":"Insurance","value":1.2422177180781593,"date":"2022-12-01T00:00:00"},{"topic":"Insurance","value":1.3264378397514645,"date":"2023-01-01T00:00:00"},{"topic":"Insurance","value":1.311738569794575,"date":"2023-02-01T00:00:00"},{"topic":"Insurance","value":1.2752579774180106,"date":"2023-03-01T00:00:00"},{"topic":"Insurance","value":1.3311924952656313,"date":"2023-04-01T00:00:00"},{"topic":"Insurance","value":1.3009915121753992,"date":"2023-05-01T00:00:00"},{"topic":"Insurance","value":1.357633212551136,"date":"2023-06-01T00:00:00"},{"topic":"Insurance","value":1.2139156065042804,"date":"2023-07-01T00:00:00"},{"topic":"Insurance","value":1.2988857919330048,"date":"2023-08-01T00:00:00"},{"topic":"Insurance","value":1.4785987755452044,"date":"2023-09-01T00:00:00"},{"topic":"Insurance","value":1.5858595912738238,"date":"2023-10-01T00:00:00"},{"topic":"Insurance","value":1.3799334516953639,"date":"2023-11-01T00:00:00"},{"topic":"Insurance","value":1.2864683421101621,"date":"2023-12-01T00:00:00"},{"topic":"Insurance","value":1.3685185509959559,"date":"2024-01-01T00:00:00"},{"topic":"Insurance","value":1.6209243704823382,"date":"2024-02-01T00:00:00"},{"topic":"Insurance","value":1.4968222440332948,"date":"2024-03-01T00:00:00"},{"topic":"Insurance","value":1.2085191989485564,"date":"2024-04-01T00:00:00"},{"topic":"Insurance","value":1.0417285888099168,"date":"2024-05-01T00:00:00"},{"topic":"Insurance","value":1.038448922739553,"date":"2024-06-01T00:00:00"},{"topic":"Insurance","value":1.2442337465869548,"date":"2024-07-01T00:00:00"},{"topic":"Insurance","value":1.3920534590081028,"date":"2024-08-01T00:00:00"},{"topic":"Insurance","value":1.3410262975868013,"date":"2024-09-01T00:00:00"},{"topic":"Insurance","value":1.3714939062610565,"date":"2024-10-01T00:00:00"},{"topic":"Insurance","value":1.2385390197850432,"date":"2024-11-01T00:00:00"},{"topic":"Insurance","value":1.363396265532322,"date":"2024-12-01T00:00:00"},{"topic":"Insurance","value":1.2296988200069197,"date":"2025-01-01T00:00:00"},{"topic":"Insurance","value":1.3113490142568316,"date":"2025-02-01T00:00:00"},{"topic":"Insurance","value":1.0717230606771275,"date":"2025-03-01T00:00:00"},{"topic":"Insurance","value":1.0391050292982535,"date":"2025-04-01T00:00:00"},{"topic":"Insurance","value":1.0963587843596454,"date":"2025-05-01T00:00:00"},{"topic":"Insurance","value":1.2705771911621233,"date":"2025-06-01T00:00:00"},{"topic":"Insurance","value":1.3707047410519464,"date":"2025-07-01T00:00:00"},{"topic":"Insurance","value":1.3266530594688757,"date":"2025-08-01T00:00:00"},{"topic":"Insurance","value":1.3718304800144647,"date":"2025-09-01T00:00:00"},{"topic":"Insurance","value":1.367017542498811,"date":"2025-10-01T00:00:00"},{"topic":"Insurance","value":1.2568230091326449,"date":"2025-11-01T00:00:00"},{"topic":"Insurance","value":1.1260172909531672,"date":"2025-12-01T00:00:00"},{"topic":"Insurance","value":1.1036331312226744,"date":"2026-01-01T00:00:00"},{"topic":"Insurance","value":0.9941495316814428,"date":"2026-02-01T00:00:00"},{"topic":"Insurance","value":1.00512135777446,"date":"2026-03-01T00:00:00"},{"topic":"Insurance","value":1.0242015427030464,"date":"2026-04-01T00:00:00"},{"topic":"Insurance","value":1.1534539220178162,"date":"2026-05-01T00:00:00"}]}},"33":{"config":{"background":null,"view":{"stroke":null},"axis":{"domain":false,"tickColor":"#c3c2b7","gridColor":"#e1e0d9","gridWidth":1,"labelColor":"#52514e","titleColor":"#52514e","labelFontSize":11,"titleFontSize":12,"titleFontWeight":"normal","labelLimit":320},"axisX":{"labelAngle":0},"legend":{"labelColor":"#52514e","titleColor":"#52514e","labelFontSize":11,"titleFontSize":12},"title":{"anchor":"start","color":"#0b0b0b","fontSize":16,"fontWeight":"bold","subtitleFontSize":12,"subtitleColor":"#898781","offset":12}},"data":{"name":"data-cd6a304f3a31ab94f35ed604ba9e1cfb"},"mark":{"type":"line","point":{"size":45},"strokeWidth":2},"encoding":{"color":{"field":"target","legend":{"orient":"bottom"},"scale":{"domain":["Staffing","Wait times","Visitors & security"],"range":["#eda100","#2a78d6","#4a3aa7"]},"title":null,"type":"nominal"},"tooltip":[{"field":"target","type":"nominal"},{"field":"lag","type":"quantitative"},{"field":"r","format":"+.2f","type":"quantitative"}],"x":{"axis":{"tickCount":7},"field":"lag","title":"months by which infection-control attention leads","type":"quantitative"},"y":{"field":"r","scale":{"domain":[-0.2,0.7]},"title":"correlation (levels)","type":"quantitative"}},"height":260,"title":{"text":"Infection-control attention led the capacity complaints by ~a year","subtitle":"Cross-correlation of monthly attention levels: infection control shifted forward k months vs each target."},"width":620,"$schema":"https://vega.github.io/schema/vega-lite/v5.20.1.json","datasets":{"data-cd6a304f3a31ab94f35ed604ba9e1cfb":[{"target":"Staffing","lag":0,"r":0.05331560300213353},{"target":"Staffing","lag":1,"r":-0.006101645135435901},{"target":"Staffing","lag":2,"r":0.07078742639296808},{"target":"Staffing","lag":3,"r":0.15371198401685887},{"target":"Staffing","lag":4,"r":0.21465014056694653},{"target":"Staffing","lag":5,"r":0.22277718748157285},{"target":"Staffing","lag":6,"r":0.3043286917588251},{"target":"Staffing","lag":7,"r":0.3715809824217061},{"target":"Staffing","lag":8,"r":0.47285641967504977},{"target":"Staffing","lag":9,"r":0.47514075098646447},{"target":"Staffing","lag":10,"r":0.5035838855920812},{"target":"Staffing","lag":11,"r":0.5159199257033976},{"target":"Staffing","lag":12,"r":0.5676718392511859},{"target":"Wait times","lag":0,"r":-0.04474473968459154},{"target":"Wait times","lag":1,"r":-0.018612360321706795},{"target":"Wait times","lag":2,"r":-0.002092998311921541},{"target":"Wait times","lag":3,"r":0.0726554532515166},{"target":"Wait times","lag":4,"r":0.10450801304899189},{"target":"Wait times","lag":5,"r":0.1675200670299859},{"target":"Wait times","lag":6,"r":0.24916428434297375},{"target":"Wait times","lag":7,"r":0.3509617808561038},{"target":"Wait times","lag":8,"r":0.4469143555515821},{"target":"Wait times","lag":9,"r":0.4637115135200227},{"target":"Wait times","lag":10,"r":0.5134975838348529},{"target":"Wait times","lag":11,"r":0.5408106113848743},{"target":"Wait times","lag":12,"r":0.568351540482188},{"target":"Visitors & security","lag":0,"r":0.5311146293703721},{"target":"Visitors & security","lag":1,"r":0.41738223407225516},{"target":"Visitors & security","lag":2,"r":0.44162052211697145},{"target":"Visitors & security","lag":3,"r":0.4195351780468408},{"target":"Visitors & security","lag":4,"r":0.37122877836576323},{"target":"Visitors & security","lag":5,"r":0.40311093274300613},{"target":"Visitors & security","lag":6,"r":0.4238248973818818},{"target":"Visitors & security","lag":7,"r":0.35464977837905043},{"target":"Visitors & security","lag":8,"r":0.3313314517254281},{"target":"Visitors & security","lag":9,"r":0.31193640651925},{"target":"Visitors & security","lag":10,"r":0.26183657071396105},{"target":"Visitors & security","lag":11,"r":0.2932467573221258},{"target":"Visitors & security","lag":12,"r":0.20493857087289832}]}}};
+      const style=getComputedStyle(root);
+      const theme={ink:style.getPropertyValue('--foreground').trim(),muted:style.getPropertyValue('--muted-foreground').trim(),grid:style.getPropertyValue('--border').trim(),blue:style.getPropertyValue('--viz-series-1').trim(),red:style.getPropertyValue('--viz-series-5').trim()};
+      const replacements={'#0b0b0b':theme.ink,'#52514e':theme.muted,'#898781':theme.muted,'#e1e0d9':theme.grid,'#c3c2b7':theme.grid,'#fcfcfb':'transparent','#2a78d6':theme.blue,'#e34948':theme.red};
+      function retheme(value){if(Array.isArray(value))return value.map(retheme);if(value&&typeof value==='object'){for(const key of Object.keys(value))value[key]=retheme(value[key]);return value}return typeof value==='string'&&replacements[value]?replacements[value]:value}
+      function responsive(spec){if(spec.hconcat)return spec;if(spec.vconcat)spec.vconcat.forEach(child=>child.width='container');else spec.width='container';spec.autosize={type:'fit-x',contains:'padding',resize:false};return spec}
+      for(const [id,raw] of Object.entries(specs)){const spec=responsive(retheme(raw));spec.background='transparent';spec.config=spec.config||{};spec.config.view={...(spec.config.view||{}),stroke:null};spec.config.axis={...(spec.config.axis||{}),labelColor:theme.muted,titleColor:theme.muted,gridColor:theme.grid,labelLimit:520};spec.config.title={...(spec.config.title||{}),color:theme.ink,subtitleColor:theme.muted};vegaEmbed(root.querySelector(`#fj-chart-${id}`),spec,{actions:false,renderer:'svg'}).catch(error=>{root.querySelector(`#fj-chart-${id}`).textContent='Chart could not be rendered: '+error.message})}
+    })();
+  </script>
+</div>
+
+<script src="https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js"></script>
+<script src="https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js"></script>
+<script>
+(() => {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set(["top", "right", "bottom", "left"]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =>
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest("[data-tooltip]")
+      : null;
+  const containsTarget = (trigger, target) =>
+    target?.nodeType != null && trigger.contains(target);
+  const getContent = (trigger) =>
+    trigger.getAttribute("data-tooltip")?.trim() ?? "";
+  const getPlacement = (trigger) => {
+    const placement = trigger.getAttribute("data-tooltip-placement");
+    return tooltipPlacements.has(placement) ? placement : "top";
+  };
+  const getTooltip = () => {
+    if (tooltip == null) {
+      tooltip = document.createElement("div");
+      tooltip.id = tooltipId;
+      tooltip.className = "tooltip";
+      tooltip.setAttribute("role", "tooltip");
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) => {
+    const ids = new Set(
+      (trigger.getAttribute("aria-describedby") ?? "")
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute("aria-describedby");
+    } else {
+      trigger.setAttribute("aria-describedby", [...ids].join(" "));
+    }
+  };
+  const clearOpenTimeout = () => {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) => {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) => {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              "--tooltip-available-width",
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              "--tooltip-available-height",
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: "fixed",
+    })
+      .then(({ x, y }) => {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = "visible";
+      })
+      .catch(() => {
+        if (activeTrigger === trigger && request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) => {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = "hidden";
+    floating.style.transform = "translate(0, 0)";
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () => {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) => {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() < skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() => {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) => {
+    if (event.pointerType === "touch") {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) => {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) => {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(":focus-visible")) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) => {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () => {
+    closeTooltip(false);
+    document.removeEventListener("pointerover", handlePointerOpen);
+    document.removeEventListener("pointerout", handleLeave);
+    document.removeEventListener("focusin", handleFocusIn);
+    document.removeEventListener("focusout", handleLeave);
+    document.removeEventListener("keydown", handleKeyDown);
+    document.removeEventListener("contextmenu", handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener("pointerover", handlePointerOpen);
+  document.addEventListener("pointerout", handleLeave);
+  document.addEventListener("focusin", handleFocusIn);
+  document.addEventListener("focusout", handleLeave);
+  document.addEventListener("keydown", handleKeyDown);
+  document.addEventListener("contextmenu", handleContextMenu);
+  window.addEventListener("pagehide", destroy, { once: true });
+})();
+</script>
+<script id="codex-visualization-lucide" async src="https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js"></script>
+<script>
+(() => {
+  const initialize = () => {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById("codex-visualization-lucide")
+    ?.addEventListener("load", initialize, { once: true });
+})();
+</script>
+
+</body>
+</html>

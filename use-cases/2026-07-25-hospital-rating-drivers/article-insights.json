@@ -1,0 +1,1316 @@
+{
+  "quality": {
+    "label_rows": 425667,
+    "labeled_reviews": 196183,
+    "listings": 9904,
+    "unknown_sentiments": 0
+  },
+  "model_reviews": 195616,
+  "r_squared": 0.7820810174628162,
+  "primary_coefficients": [
+    {
+      "topic": "Wait times and timeliness of care",
+      "direction": "negative",
+      "est": -0.8997699854408274,
+      "lo": -0.9183774592496298,
+      "hi": -0.8811625116320251,
+      "n": 26006
+    },
+    {
+      "topic": "Wait times and timeliness of care",
+      "direction": "positive",
+      "est": 0.613636904206653,
+      "lo": 0.5991980106721085,
+      "hi": 0.6280757977411974,
+      "n": 25451
+    },
+    {
+      "topic": "Front desk, reception and administrative staff conduct",
+      "direction": "negative",
+      "est": -0.9737212576186249,
+      "lo": -0.9942477749872484,
+      "hi": -0.9531947402500015,
+      "n": 16965
+    },
+    {
+      "topic": "Front desk, reception and administrative staff conduct",
+      "direction": "positive",
+      "est": 0.76634380915723,
+      "lo": 0.7513030657048864,
+      "hi": 0.7813845526095736,
+      "n": 32850
+    },
+    {
+      "topic": "Clinical staff bedside manner and empathy",
+      "direction": "negative",
+      "est": -0.8351939250595876,
+      "lo": -0.8559455889791651,
+      "hi": -0.8144422611400101,
+      "n": 16691
+    },
+    {
+      "topic": "Clinical staff bedside manner and empathy",
+      "direction": "positive",
+      "est": 1.0230911132986094,
+      "lo": 1.0062754657373232,
+      "hi": 1.0399067608598955,
+      "n": 66094
+    },
+    {
+      "topic": "Communication and information sharing",
+      "direction": "negative",
+      "est": -0.5195456324753475,
+      "lo": -0.5420907823356526,
+      "hi": -0.49700048261504237,
+      "n": 11568
+    },
+    {
+      "topic": "Communication and information sharing",
+      "direction": "positive",
+      "est": 0.5578164552928073,
+      "lo": 0.5429915100615933,
+      "hi": 0.5726414005240213,
+      "n": 16843
+    },
+    {
+      "topic": "Billing, charges and collections",
+      "direction": "negative",
+      "est": -1.0455428765172128,
+      "lo": -1.0755913257872092,
+      "hi": -1.0154944272472164,
+      "n": 8227
+    },
+    {
+      "topic": "Billing, charges and collections",
+      "direction": "positive",
+      "est": 0.4991320713624407,
+      "lo": 0.42576170146316356,
+      "hi": 0.5725024412617178,
+      "n": 729
+    },
+    {
+      "topic": "Insurance coverage, denials and network issues",
+      "direction": "negative",
+      "est": -0.6124700207632309,
+      "lo": -0.6625177733168194,
+      "hi": -0.5624222682096424,
+      "n": 2169
+    },
+    {
+      "topic": "Insurance coverage, denials and network issues",
+      "direction": "positive",
+      "est": 0.4563161495144211,
+      "lo": 0.36829545042254636,
+      "hi": 0.5443368486062958,
+      "n": 397
+    },
+    {
+      "topic": "Cleanliness and housekeeping",
+      "direction": "negative",
+      "est": -0.43459528633166067,
+      "lo": -0.4734081501243248,
+      "hi": -0.39578242253899654,
+      "n": 3619
+    },
+    {
+      "topic": "Cleanliness and housekeeping",
+      "direction": "positive",
+      "est": 0.33386296489643486,
+      "lo": 0.3132520314722916,
+      "hi": 0.35447389832057813,
+      "n": 7729
+    },
+    {
+      "topic": "Infection control and health safety practices",
+      "direction": "negative",
+      "est": -0.5069419742077034,
+      "lo": -0.5577309579861344,
+      "hi": -0.4561529904292724,
+      "n": 2014
+    },
+    {
+      "topic": "Infection control and health safety practices",
+      "direction": "positive",
+      "est": 0.4963278780732507,
+      "lo": 0.42357464091361374,
+      "hi": 0.5690811152328876,
+      "n": 609
+    },
+    {
+      "topic": "Food, parking and facility amenities",
+      "direction": "negative",
+      "est": -0.25452453663158114,
+      "lo": -0.29860786772490566,
+      "hi": -0.21044120553825665,
+      "n": 3367
+    },
+    {
+      "topic": "Food, parking and facility amenities",
+      "direction": "positive",
+      "est": 0.42281071084133715,
+      "lo": 0.3939707970425849,
+      "hi": 0.45165062464008937,
+      "n": 4320
+    },
+    {
+      "topic": "Facility condition, comfort and environment",
+      "direction": "negative",
+      "est": -0.320481169577093,
+      "lo": -0.35864026586659614,
+      "hi": -0.28232207328758985,
+      "n": 3881
+    },
+    {
+      "topic": "Facility condition, comfort and environment",
+      "direction": "positive",
+      "est": 0.4246088335066531,
+      "lo": 0.40122638653589543,
+      "hi": 0.4479912804774108,
+      "n": 5882
+    },
+    {
+      "topic": "Pain management",
+      "direction": "negative",
+      "est": -0.3519664733331353,
+      "lo": -0.3836337333912325,
+      "hi": -0.3202992132750381,
+      "n": 5002
+    },
+    {
+      "topic": "Pain management",
+      "direction": "positive",
+      "est": 0.4389522576824641,
+      "lo": 0.39742004003725756,
+      "hi": 0.48048447532767063,
+      "n": 1864
+    },
+    {
+      "topic": "Medication, prescriptions and pharmacy",
+      "direction": "negative",
+      "est": -0.4771520252340468,
+      "lo": -0.5102797470595164,
+      "hi": -0.4440243034085772,
+      "n": 5016
+    },
+    {
+      "topic": "Medication, prescriptions and pharmacy",
+      "direction": "positive",
+      "est": 0.41732613346208686,
+      "lo": 0.3754655620440349,
+      "hi": 0.4591867048801388,
+      "n": 1955
+    },
+    {
+      "topic": "Clinical assessment and diagnostic accuracy",
+      "direction": "negative",
+      "est": -0.7294719178544254,
+      "lo": -0.7549478693914492,
+      "hi": -0.7039959663174017,
+      "n": 9448
+    },
+    {
+      "topic": "Clinical assessment and diagnostic accuracy",
+      "direction": "positive",
+      "est": 0.6152516442772856,
+      "lo": 0.5922087426622694,
+      "hi": 0.6382945458923018,
+      "n": 6416
+    },
+    {
+      "topic": "Patient safety and medical errors",
+      "direction": "negative",
+      "est": -0.644215249726666,
+      "lo": -0.6722564504707973,
+      "hi": -0.6161740489825347,
+      "n": 7377
+    },
+    {
+      "topic": "Patient safety and medical errors",
+      "direction": "positive",
+      "est": 0.46623442443761814,
+      "lo": 0.3823595876736268,
+      "hi": 0.5501092612016095,
+      "n": 494
+    },
+    {
+      "topic": "Diagnostic testing and imaging services",
+      "direction": "negative",
+      "est": -0.370302302902643,
+      "lo": -0.4293209915659571,
+      "hi": -0.3112836142393289,
+      "n": 1553
+    },
+    {
+      "topic": "Diagnostic testing and imaging services",
+      "direction": "positive",
+      "est": 0.49289057149192594,
+      "lo": 0.45916075693175823,
+      "hi": 0.5266203860520937,
+      "n": 3050
+    },
+    {
+      "topic": "Nursing responsiveness and basic care needs",
+      "direction": "negative",
+      "est": -0.5345844666006337,
+      "lo": -0.5599660472436384,
+      "hi": -0.5092028859576291,
+      "n": 8872
+    },
+    {
+      "topic": "Nursing responsiveness and basic care needs",
+      "direction": "positive",
+      "est": 0.6137331848844484,
+      "lo": 0.5953579774015807,
+      "hi": 0.6321083923673161,
+      "n": 14724
+    },
+    {
+      "topic": "Staffing levels and operational capacity",
+      "direction": "negative",
+      "est": -0.40596175288763303,
+      "lo": -0.437528184758956,
+      "hi": -0.37439532101631007,
+      "n": 5318
+    },
+    {
+      "topic": "Staffing levels and operational capacity",
+      "direction": "positive",
+      "est": 0.5424001340065937,
+      "lo": 0.4760378590346681,
+      "hi": 0.6087624089785193,
+      "n": 632
+    },
+    {
+      "topic": "Discharge process and aftercare planning",
+      "direction": "negative",
+      "est": -0.4636944197866377,
+      "lo": -0.5076704361240827,
+      "hi": -0.4197184034491928,
+      "n": 2696
+    },
+    {
+      "topic": "Discharge process and aftercare planning",
+      "direction": "positive",
+      "est": 0.2558669409428718,
+      "lo": 0.19931386298877996,
+      "hi": 0.3124200188969637,
+      "n": 917
+    },
+    {
+      "topic": "Care coordination and referrals",
+      "direction": "negative",
+      "est": -0.4640092808300082,
+      "lo": -0.5084162593012589,
+      "hi": -0.41960230235875745,
+      "n": 2708
+    },
+    {
+      "topic": "Care coordination and referrals",
+      "direction": "positive",
+      "est": 0.5114405053547247,
+      "lo": 0.47326882216922034,
+      "hi": 0.5496121885402291,
+      "n": 2178
+    },
+    {
+      "topic": "Privacy and confidentiality",
+      "direction": "negative",
+      "est": -0.421214182765936,
+      "lo": -0.47088476274101687,
+      "hi": -0.3715436027908551,
+      "n": 2222
+    },
+    {
+      "topic": "Privacy and confidentiality",
+      "direction": "positive",
+      "est": 0.3337333753857294,
+      "lo": 0.19541321478933052,
+      "hi": 0.4720535359821283,
+      "n": 142
+    },
+    {
+      "topic": "Visitor access, security, and property safety",
+      "direction": "negative",
+      "est": -0.7410867172836398,
+      "lo": -0.7895967295971956,
+      "hi": -0.6925767049700841,
+      "n": 2580
+    },
+    {
+      "topic": "Visitor access, security, and property safety",
+      "direction": "positive",
+      "est": 0.4725105083976916,
+      "lo": 0.38710754971596273,
+      "hi": 0.5579134670794205,
+      "n": 554
+    },
+    {
+      "topic": "Discrimination and equitable treatment",
+      "direction": "negative",
+      "est": -0.7410800249178157,
+      "lo": -0.7772934230531896,
+      "hi": -0.7048666267824417,
+      "n": 4266
+    },
+    {
+      "topic": "Discrimination and equitable treatment",
+      "direction": "positive",
+      "est": 0.6027539430055324,
+      "lo": 0.5091931237008978,
+      "hi": 0.6963147623101671,
+      "n": 350
+    },
+    {
+      "topic": "Behavioral health and psychiatric care",
+      "direction": "negative",
+      "est": -0.6746655007130062,
+      "lo": -0.7347205174413511,
+      "hi": -0.6146104839846613,
+      "n": 1727
+    },
+    {
+      "topic": "Behavioral health and psychiatric care",
+      "direction": "positive",
+      "est": 1.0726655478630696,
+      "lo": 1.0028636541301512,
+      "hi": 1.142467441595988,
+      "n": 979
+    },
+    {
+      "topic": "Maternity and pediatric care",
+      "direction": "negative",
+      "est": -0.8461256990044489,
+      "lo": -0.9145069565878671,
+      "hi": -0.7777444414210307,
+      "n": 1034
+    },
+    {
+      "topic": "Maternity and pediatric care",
+      "direction": "positive",
+      "est": 0.9538488084942667,
+      "lo": 0.9240792818363366,
+      "hi": 0.9836183351521968,
+      "n": 4216
+    },
+    {
+      "topic": "Surgical and procedural care",
+      "direction": "negative",
+      "est": -0.5839803370875265,
+      "lo": -0.6611326637170057,
+      "hi": -0.5068280104580473,
+      "n": 845
+    },
+    {
+      "topic": "Surgical and procedural care",
+      "direction": "positive",
+      "est": 0.6738355342084028,
+      "lo": 0.6489527980671397,
+      "hi": 0.6987182703496659,
+      "n": 5781
+    },
+    {
+      "topic": "Rehabilitation and long-term care / therapy services",
+      "direction": "negative",
+      "est": -0.44319693341791283,
+      "lo": -0.5754752035069852,
+      "hi": -0.3109186633288405,
+      "n": 304
+    },
+    {
+      "topic": "Rehabilitation and long-term care / therapy services",
+      "direction": "positive",
+      "est": 0.7357558103239914,
+      "lo": 0.696031987323756,
+      "hi": 0.7754796333242268,
+      "n": 2854
+    },
+    {
+      "topic": "Appointment scheduling and access",
+      "direction": "negative",
+      "est": -0.9188100320915626,
+      "lo": -0.9484712782157374,
+      "hi": -0.8891487859673879,
+      "n": 7279
+    },
+    {
+      "topic": "Appointment scheduling and access",
+      "direction": "positive",
+      "est": 0.4649022604282493,
+      "lo": 0.4387115451154771,
+      "hi": 0.49109297574102145,
+      "n": 4723
+    },
+    {
+      "topic": "Medical records and administrative documentation",
+      "direction": "negative",
+      "est": -0.43935239888977046,
+      "lo": -0.48247387657578045,
+      "hi": -0.39623092120376047,
+      "n": 2865
+    },
+    {
+      "topic": "Medical records and administrative documentation",
+      "direction": "positive",
+      "est": 0.4577638220557956,
+      "lo": 0.34416197116852953,
+      "hi": 0.5713656729430616,
+      "n": 322
+    },
+    {
+      "topic": "Accessibility and accommodations",
+      "direction": "negative",
+      "est": -0.4086173697268856,
+      "lo": -0.47972699043590605,
+      "hi": -0.3375077490178652,
+      "n": 1230
+    },
+    {
+      "topic": "Accessibility and accommodations",
+      "direction": "positive",
+      "est": 0.5739086074112513,
+      "lo": 0.5079512900229073,
+      "hi": 0.6398659247995953,
+      "n": 677
+    }
+  ],
+  "topic_context": [
+    {
+      "topic": "Wait times and timeliness of care",
+      "negative_reviews": 26006,
+      "negative_reach_pct": 13.255990580223568,
+      "low_rated_negative_reviews": 22145,
+      "low_share_of_negative_pct": 85.15342613243098,
+      "one_star_share_of_negative_pct": 76.97838960239945,
+      "positive_reviews": 25451,
+      "positive_reach_pct": 12.973091450329537,
+      "high_share_of_positive_pct": 96.62881615653609,
+      "both_directions": 453,
+      "reference_reviews": 145179,
+      "negative_mean": 1.5316465431054371,
+      "reference_mean": 3.579891031071987,
+      "raw_gap": -2.0482444879665502
+    },
+    {
+      "topic": "Front desk, reception and administrative staff conduct",
+      "negative_reviews": 16965,
+      "negative_reach_pct": 8.64753826784176,
+      "low_rated_negative_reviews": 15474,
+      "low_share_of_negative_pct": 91.21131741821397,
+      "one_star_share_of_negative_pct": 83.24786324786325,
+      "positive_reviews": 32850,
+      "positive_reach_pct": 16.744570120754602,
+      "high_share_of_positive_pct": 95.50380517503805,
+      "both_directions": 310,
+      "reference_reviews": 146678,
+      "negative_mean": 1.3260241674034778,
+      "reference_mean": 3.4214537967520693,
+      "raw_gap": -2.0954296293485912
+    },
+    {
+      "topic": "Clinical staff bedside manner and empathy",
+      "negative_reviews": 16691,
+      "negative_reach_pct": 8.507872751461646,
+      "low_rated_negative_reviews": 15299,
+      "low_share_of_negative_pct": 91.66017614283146,
+      "one_star_share_of_negative_pct": 83.00281588880235,
+      "positive_reviews": 66094,
+      "positive_reach_pct": 33.689973137325865,
+      "high_share_of_positive_pct": 95.01316307077798,
+      "both_directions": 995,
+      "reference_reviews": 114393,
+      "negative_mean": 1.3149002456413637,
+      "reference_mean": 3.013471104001119,
+      "raw_gap": -1.6985708583597552
+    },
+    {
+      "topic": "Communication and information sharing",
+      "negative_reviews": 11568,
+      "negative_reach_pct": 5.896535377683081,
+      "low_rated_negative_reviews": 10286,
+      "low_share_of_negative_pct": 88.917704011065,
+      "one_star_share_of_negative_pct": 77.83540802213001,
+      "positive_reviews": 16843,
+      "positive_reach_pct": 8.585351432081271,
+      "high_share_of_positive_pct": 98.42664608442676,
+      "both_directions": 107,
+      "reference_reviews": 167879,
+      "negative_mean": 1.4072441217150762,
+      "reference_mean": 3.470166012425616,
+      "raw_gap": -2.0629218907105398
+    },
+    {
+      "topic": "Billing, charges and collections",
+      "negative_reviews": 8227,
+      "negative_reach_pct": 4.193533588537233,
+      "low_rated_negative_reviews": 7549,
+      "low_share_of_negative_pct": 91.7588428345691,
+      "one_star_share_of_negative_pct": 83.37182448036951,
+      "positive_reviews": 729,
+      "positive_reach_pct": 0.37159183007701996,
+      "high_share_of_positive_pct": 94.51303155006858,
+      "both_directions": 37,
+      "reference_reviews": 187264,
+      "negative_mean": 1.3104412300960253,
+      "reference_mean": 3.562767002734108,
+      "raw_gap": -2.2523257726380828
+    },
+    {
+      "topic": "Insurance coverage, denials and network issues",
+      "negative_reviews": 2169,
+      "negative_reach_pct": 1.1056003833155779,
+      "low_rated_negative_reviews": 1896,
+      "low_share_of_negative_pct": 87.41355463347165,
+      "one_star_share_of_negative_pct": 79.94467496542185,
+      "positive_reviews": 397,
+      "positive_reach_pct": 0.20236208030257463,
+      "high_share_of_positive_pct": 91.68765743073047,
+      "both_directions": 17,
+      "reference_reviews": 193634,
+      "negative_mean": 1.458275703088981,
+      "reference_mean": 3.4929661113234247,
+      "raw_gap": -2.034690408234444
+    },
+    {
+      "topic": "Cleanliness and housekeeping",
+      "negative_reviews": 3619,
+      "negative_reach_pct": 1.8447062181738478,
+      "low_rated_negative_reviews": 3190,
+      "low_share_of_negative_pct": 88.14589665653494,
+      "one_star_share_of_negative_pct": 77.70102238187344,
+      "positive_reviews": 7729,
+      "positive_reach_pct": 3.939688963875565,
+      "high_share_of_positive_pct": 95.57510674084617,
+      "both_directions": 27,
+      "reference_reviews": 184862,
+      "negative_mean": 1.419452887537994,
+      "reference_mean": 3.4576657182114228,
+      "raw_gap": -2.038212830673429
+    },
+    {
+      "topic": "Infection control and health safety practices",
+      "negative_reviews": 2014,
+      "negative_reach_pct": 1.0265925182100386,
+      "low_rated_negative_reviews": 1771,
+      "low_share_of_negative_pct": 87.93445878848064,
+      "one_star_share_of_negative_pct": 76.86196623634558,
+      "positive_reviews": 609,
+      "positive_reach_pct": 0.31042445064047347,
+      "high_share_of_positive_pct": 95.89490968801314,
+      "both_directions": 6,
+      "reference_reviews": 193566,
+      "negative_mean": 1.439424031777557,
+      "reference_mean": 3.4897605984522073,
+      "raw_gap": -2.05033656667465
+    },
+    {
+      "topic": "Food, parking and facility amenities",
+      "negative_reviews": 3367,
+      "negative_reach_pct": 1.7162547213571002,
+      "low_rated_negative_reviews": 1965,
+      "low_share_of_negative_pct": 58.36055836055836,
+      "one_star_share_of_negative_pct": 47.75764775764776,
+      "positive_reviews": 4320,
+      "positive_reach_pct": 2.2020256597156735,
+      "high_share_of_positive_pct": 94.21296296296296,
+      "both_directions": 99,
+      "reference_reviews": 188595,
+      "negative_mean": 2.401247401247401,
+      "reference_mean": 3.4633898035472837,
+      "raw_gap": -1.0621424022998824
+    },
+    {
+      "topic": "Facility condition, comfort and environment",
+      "negative_reviews": 3881,
+      "negative_reach_pct": 1.9782549966103076,
+      "low_rated_negative_reviews": 2811,
+      "low_share_of_negative_pct": 72.4297861375934,
+      "one_star_share_of_negative_pct": 60.783303272352484,
+      "positive_reviews": 5882,
+      "positive_reach_pct": 2.9982210487147203,
+      "high_share_of_positive_pct": 96.22577354641278,
+      "both_directions": 53,
+      "reference_reviews": 186473,
+      "negative_mean": 1.9420252512239113,
+      "reference_mean": 3.462152697709588,
+      "raw_gap": -1.5201274464856767
+    },
+    {
+      "topic": "Pain management",
+      "negative_reviews": 5002,
+      "negative_reach_pct": 2.5496602661800463,
+      "low_rated_negative_reviews": 4193,
+      "low_share_of_negative_pct": 83.8264694122351,
+      "one_star_share_of_negative_pct": 75.0499800079968,
+      "positive_reviews": 1864,
+      "positive_reach_pct": 0.9501332939143554,
+      "high_share_of_positive_pct": 95.7618025751073,
+      "both_directions": 101,
+      "reference_reviews": 189418,
+      "negative_mean": 1.6101559376249501,
+      "reference_mean": 3.509122681054599,
+      "raw_gap": -1.8989667434296489
+    },
+    {
+      "topic": "Medication, prescriptions and pharmacy",
+      "negative_reviews": 5016,
+      "negative_reach_pct": 2.5567964604476434,
+      "low_rated_negative_reviews": 4475,
+      "low_share_of_negative_pct": 89.21451355661883,
+      "one_star_share_of_negative_pct": 78.80781499202551,
+      "positive_reviews": 1955,
+      "positive_reach_pct": 0.9965185566537366,
+      "high_share_of_positive_pct": 95.44757033248081,
+      "both_directions": 24,
+      "reference_reviews": 189236,
+      "negative_mean": 1.4033094098883572,
+      "reference_mean": 3.5139455494726164,
+      "raw_gap": -2.110636139584259
+    },
+    {
+      "topic": "Clinical assessment and diagnostic accuracy",
+      "negative_reviews": 9448,
+      "negative_reach_pct": 4.815911674304093,
+      "low_rated_negative_reviews": 8780,
+      "low_share_of_negative_pct": 92.92972057578324,
+      "one_star_share_of_negative_pct": 84.59991532599493,
+      "positive_reviews": 6416,
+      "positive_reach_pct": 3.2704158872073523,
+      "high_share_of_positive_pct": 95.97880299251871,
+      "both_directions": 107,
+      "reference_reviews": 180426,
+      "negative_mean": 1.2747671464860288,
+      "reference_mean": 3.5392460066730957,
+      "raw_gap": -2.264478860187067
+    },
+    {
+      "topic": "Patient safety and medical errors",
+      "negative_reviews": 7377,
+      "negative_reach_pct": 3.760264650861696,
+      "low_rated_negative_reviews": 6787,
+      "low_share_of_negative_pct": 92.00216890334825,
+      "one_star_share_of_negative_pct": 84.23478378744747,
+      "positive_reviews": 494,
+      "positive_reach_pct": 0.25180571201378305,
+      "high_share_of_positive_pct": 97.57085020242914,
+      "both_directions": 6,
+      "reference_reviews": 188318,
+      "negative_mean": 1.2898197099091773,
+      "reference_mean": 3.554721269342283,
+      "raw_gap": -2.2649015594331057
+    },
+    {
+      "topic": "Diagnostic testing and imaging services",
+      "negative_reviews": 1553,
+      "negative_reach_pct": 0.7916078355413059,
+      "low_rated_negative_reviews": 1335,
+      "low_share_of_negative_pct": 85.96265292981326,
+      "one_star_share_of_negative_pct": 75.33805537669028,
+      "positive_reviews": 3050,
+      "positive_reach_pct": 1.5546708940122234,
+      "high_share_of_positive_pct": 95.27868852459017,
+      "both_directions": 11,
+      "reference_reviews": 191591,
+      "negative_mean": 1.5028976175144881,
+      "reference_mean": 3.4676785443992673,
+      "raw_gap": -1.9647809268847791
+    },
+    {
+      "topic": "Nursing responsiveness and basic care needs",
+      "negative_reviews": 8872,
+      "negative_reach_pct": 4.52230825300867,
+      "low_rated_negative_reviews": 7932,
+      "low_share_of_negative_pct": 89.404869251578,
+      "one_star_share_of_negative_pct": 78.66321009918846,
+      "positive_reviews": 14724,
+      "positive_reach_pct": 7.505237456864254,
+      "high_share_of_positive_pct": 89.1130127682695,
+      "both_directions": 384,
+      "reference_reviews": 172971,
+      "negative_mean": 1.3894274120829577,
+      "reference_mean": 3.4824508154546137,
+      "raw_gap": -2.0930234033716557
+    },
+    {
+      "topic": "Staffing levels and operational capacity",
+      "negative_reviews": 5318,
+      "negative_reach_pct": 2.7107343653629523,
+      "low_rated_negative_reviews": 4388,
+      "low_share_of_negative_pct": 82.51222264009026,
+      "one_star_share_of_negative_pct": 71.30500188040617,
+      "positive_reviews": 632,
+      "positive_reach_pct": 0.3221481983658115,
+      "high_share_of_positive_pct": 98.10126582278481,
+      "both_directions": 5,
+      "reference_reviews": 190238,
+      "negative_mean": 1.6177134261000377,
+      "reference_mean": 3.519996005004258,
+      "raw_gap": -1.9022825789042201
+    },
+    {
+      "topic": "Discharge process and aftercare planning",
+      "negative_reviews": 2696,
+      "negative_reach_pct": 1.374227124674411,
+      "low_rated_negative_reviews": 2274,
+      "low_share_of_negative_pct": 84.34718100890207,
+      "one_star_share_of_negative_pct": 72.4406528189911,
+      "positive_reviews": 917,
+      "positive_reach_pct": 0.4674207245276094,
+      "high_share_of_positive_pct": 98.36423118865866,
+      "both_directions": 7,
+      "reference_reviews": 192577,
+      "negative_mean": 1.5519287833827893,
+      "reference_mean": 3.4929976061523442,
+      "raw_gap": -1.941068822769555
+    },
+    {
+      "topic": "Care coordination and referrals",
+      "negative_reviews": 2708,
+      "negative_reach_pct": 1.3803438626180657,
+      "low_rated_negative_reviews": 2361,
+      "low_share_of_negative_pct": 87.1861152141802,
+      "one_star_share_of_negative_pct": 75.14771048744461,
+      "positive_reviews": 2178,
+      "positive_reach_pct": 1.1101879367733187,
+      "high_share_of_positive_pct": 97.93388429752066,
+      "both_directions": 10,
+      "reference_reviews": 191307,
+      "negative_mean": 1.465288035450517,
+      "reference_mean": 3.4851207744619903,
+      "raw_gap": -2.0198327390114734
+    },
+    {
+      "topic": "Privacy and confidentiality",
+      "negative_reviews": 2222,
+      "negative_reach_pct": 1.1326159759000525,
+      "low_rated_negative_reviews": 2010,
+      "low_share_of_negative_pct": 90.45904590459047,
+      "one_star_share_of_negative_pct": 81.5031503150315,
+      "positive_reviews": 142,
+      "positive_reach_pct": 0.07238139899991335,
+      "high_share_of_positive_pct": 97.1830985915493,
+      "both_directions": 1,
+      "reference_reviews": 193820,
+      "negative_mean": 1.3514851485148516,
+      "reference_mean": 3.4962026622639564,
+      "raw_gap": -2.1447175137491046
+    },
+    {
+      "topic": "Visitor access, security, and property safety",
+      "negative_reviews": 2580,
+      "negative_reach_pct": 1.3150986578857495,
+      "low_rated_negative_reviews": 2292,
+      "low_share_of_negative_pct": 88.83720930232558,
+      "one_star_share_of_negative_pct": 80.46511627906978,
+      "positive_reviews": 554,
+      "positive_reach_pct": 0.2823894017320563,
+      "high_share_of_positive_pct": 88.98916967509025,
+      "both_directions": 12,
+      "reference_reviews": 193061,
+      "negative_mean": 1.3976744186046512,
+      "reference_mean": 3.497381656574865,
+      "raw_gap": -2.0997072379702137
+    },
+    {
+      "topic": "Discrimination and equitable treatment",
+      "negative_reviews": 4266,
+      "negative_reach_pct": 2.174500338969228,
+      "low_rated_negative_reviews": 4011,
+      "low_share_of_negative_pct": 94.02250351617441,
+      "one_star_share_of_negative_pct": 87.4355368026254,
+      "positive_reviews": 350,
+      "positive_reach_pct": 0.17840485668992725,
+      "high_share_of_positive_pct": 98.0,
+      "both_directions": 3,
+      "reference_reviews": 191570,
+      "negative_mean": 1.2313642756680732,
+      "reference_mean": 3.5202067129508796,
+      "raw_gap": -2.2888424372828062
+    },
+    {
+      "topic": "Behavioral health and psychiatric care",
+      "negative_reviews": 1727,
+      "negative_reach_pct": 0.8803005357242982,
+      "low_rated_negative_reviews": 1577,
+      "low_share_of_negative_pct": 91.31441806601043,
+      "one_star_share_of_negative_pct": 83.43949044585987,
+      "positive_reviews": 979,
+      "positive_reach_pct": 0.4990238705698251,
+      "high_share_of_positive_pct": 91.82839632277835,
+      "both_directions": 37,
+      "reference_reviews": 193514,
+      "negative_mean": 1.3242617255356108,
+      "reference_mean": 3.485809812209969,
+      "raw_gap": -2.161548086674358
+    },
+    {
+      "topic": "Maternity and pediatric care",
+      "negative_reviews": 1034,
+      "negative_reach_pct": 0.5270589194782422,
+      "low_rated_negative_reviews": 945,
+      "low_share_of_negative_pct": 91.3926499032882,
+      "one_star_share_of_negative_pct": 83.17214700193423,
+      "positive_reviews": 4216,
+      "positive_reach_pct": 2.149013930870667,
+      "high_share_of_positive_pct": 95.73055028462998,
+      "both_directions": 45,
+      "reference_reviews": 190978,
+      "negative_mean": 1.321083172147002,
+      "reference_mean": 3.4544450146090124,
+      "raw_gap": -2.13336184246201
+    },
+    {
+      "topic": "Surgical and procedural care",
+      "negative_reviews": 845,
+      "negative_reach_pct": 0.4307202968656815,
+      "low_rated_negative_reviews": 726,
+      "low_share_of_negative_pct": 85.9171597633136,
+      "one_star_share_of_negative_pct": 76.33136094674556,
+      "positive_reviews": 5781,
+      "positive_reach_pct": 2.9467385043556273,
+      "high_share_of_positive_pct": 95.45061408060889,
+      "both_directions": 18,
+      "reference_reviews": 189575,
+      "negative_mean": 1.511242603550296,
+      "reference_mean": 3.4405591454569433,
+      "raw_gap": -1.9293165419066474
+    },
+    {
+      "topic": "Rehabilitation and long-term care / therapy services",
+      "negative_reviews": 304,
+      "negative_reach_pct": 0.1549573612392511,
+      "low_rated_negative_reviews": 252,
+      "low_share_of_negative_pct": 82.89473684210526,
+      "one_star_share_of_negative_pct": 73.35526315789474,
+      "positive_reviews": 2854,
+      "positive_reach_pct": 1.454764174265864,
+      "high_share_of_positive_pct": 96.49614576033638,
+      "both_directions": 12,
+      "reference_reviews": 193037,
+      "negative_mean": 1.6019736842105263,
+      "reference_mean": 3.4556743007817152,
+      "raw_gap": -1.853700616571189
+    },
+    {
+      "topic": "Appointment scheduling and access",
+      "negative_reviews": 7279,
+      "negative_reach_pct": 3.710311290988516,
+      "low_rated_negative_reviews": 6291,
+      "low_share_of_negative_pct": 86.42670696524249,
+      "one_star_share_of_negative_pct": 76.54897650776206,
+      "positive_reviews": 4723,
+      "positive_reach_pct": 2.4074461089900754,
+      "high_share_of_positive_pct": 97.41689604065212,
+      "both_directions": 58,
+      "reference_reviews": 184239,
+      "negative_mean": 1.5010303613133673,
+      "reference_mean": 3.5149615445155478,
+      "raw_gap": -2.0139311832021805
+    },
+    {
+      "topic": "Medical records and administrative documentation",
+      "negative_reviews": 2865,
+      "negative_reach_pct": 1.4603711840475475,
+      "low_rated_negative_reviews": 2481,
+      "low_share_of_negative_pct": 86.59685863874346,
+      "one_star_share_of_negative_pct": 76.195462478185,
+      "positive_reviews": 322,
+      "positive_reach_pct": 0.16413246815473306,
+      "high_share_of_positive_pct": 96.58385093167702,
+      "both_directions": 6,
+      "reference_reviews": 193002,
+      "negative_mean": 1.4855148342059337,
+      "reference_mean": 3.500051812934581,
+      "raw_gap": -2.014536978728647
+    },
+    {
+      "topic": "Accessibility and accommodations",
+      "negative_reviews": 1230,
+      "negative_reach_pct": 0.6269656392246016,
+      "low_rated_negative_reviews": 938,
+      "low_share_of_negative_pct": 76.260162601626,
+      "one_star_share_of_negative_pct": 66.34146341463415,
+      "positive_reviews": 677,
+      "positive_reach_pct": 0.34508596565451644,
+      "high_share_of_positive_pct": 98.07976366322009,
+      "both_directions": 8,
+      "reference_reviews": 194284,
+      "negative_mean": 1.816260162601626,
+      "reference_mean": 3.4785365753227233,
+      "raw_gap": -1.6622764127210974
+    }
+  ],
+  "co_complaint_context": [
+    {
+      "topic": "Wait times and timeliness of care",
+      "negative_reviews": 26006,
+      "only_negative_topic": 8459,
+      "only_negative_topic_pct": 32.527109128662616,
+      "median_other_negative_topics": 1.0,
+      "positive_bedside": 1782,
+      "any_other_negative_clinical_topic": 7482,
+      "top_other_negative_topics": [
+        {
+          "topic": "Front desk, reception and administrative staff conduct",
+          "reviews": 4252
+        },
+        {
+          "topic": "Clinical staff bedside manner and empathy",
+          "reviews": 3498
+        },
+        {
+          "topic": "Communication and information sharing",
+          "reviews": 2605
+        },
+        {
+          "topic": "Nursing responsiveness and basic care needs",
+          "reviews": 2518
+        }
+      ]
+    },
+    {
+      "topic": "Front desk, reception and administrative staff conduct",
+      "negative_reviews": 16965,
+      "only_negative_topic": 4742,
+      "only_negative_topic_pct": 27.951665193044505,
+      "median_other_negative_topics": 1.0,
+      "positive_bedside": 1137,
+      "any_other_negative_clinical_topic": 3840,
+      "top_other_negative_topics": [
+        {
+          "topic": "Wait times and timeliness of care",
+          "reviews": 4252
+        },
+        {
+          "topic": "Clinical staff bedside manner and empathy",
+          "reviews": 2144
+        },
+        {
+          "topic": "Communication and information sharing",
+          "reviews": 1913
+        },
+        {
+          "topic": "Appointment scheduling and access",
+          "reviews": 1730
+        }
+      ]
+    },
+    {
+      "topic": "Billing, charges and collections",
+      "negative_reviews": 8227,
+      "only_negative_topic": 2804,
+      "only_negative_topic_pct": 34.08289777561687,
+      "median_other_negative_topics": 1.0,
+      "positive_bedside": 391,
+      "any_other_negative_clinical_topic": 2300,
+      "top_other_negative_topics": [
+        {
+          "topic": "Wait times and timeliness of care",
+          "reviews": 1201
+        },
+        {
+          "topic": "Front desk, reception and administrative staff conduct",
+          "reviews": 1022
+        },
+        {
+          "topic": "Clinical assessment and diagnostic accuracy",
+          "reviews": 1012
+        },
+        {
+          "topic": "Insurance coverage, denials and network issues",
+          "reviews": 902
+        }
+      ]
+    },
+    {
+      "topic": "Facility condition, comfort and environment",
+      "negative_reviews": 3881,
+      "only_negative_topic": 944,
+      "only_negative_topic_pct": 24.323627930945634,
+      "median_other_negative_topics": 1.0,
+      "positive_bedside": 462,
+      "any_other_negative_clinical_topic": 1155,
+      "top_other_negative_topics": [
+        {
+          "topic": "Wait times and timeliness of care",
+          "reviews": 987
+        },
+        {
+          "topic": "Nursing responsiveness and basic care needs",
+          "reviews": 625
+        },
+        {
+          "topic": "Cleanliness and housekeeping",
+          "reviews": 550
+        },
+        {
+          "topic": "Clinical staff bedside manner and empathy",
+          "reviews": 516
+        }
+      ]
+    },
+    {
+      "topic": "Patient safety and medical errors",
+      "negative_reviews": 7377,
+      "only_negative_topic": 1095,
+      "only_negative_topic_pct": 14.843432289548597,
+      "median_other_negative_topics": 2.0,
+      "positive_bedside": 337,
+      "any_other_negative_clinical_topic": 3686,
+      "top_other_negative_topics": [
+        {
+          "topic": "Clinical staff bedside manner and empathy",
+          "reviews": 1678
+        },
+        {
+          "topic": "Nursing responsiveness and basic care needs",
+          "reviews": 1450
+        },
+        {
+          "topic": "Clinical assessment and diagnostic accuracy",
+          "reviews": 1285
+        },
+        {
+          "topic": "Communication and information sharing",
+          "reviews": 1155
+        }
+      ]
+    },
+    {
+      "topic": "Discrimination and equitable treatment",
+      "negative_reviews": 4266,
+      "only_negative_topic": 832,
+      "only_negative_topic_pct": 19.503047351148616,
+      "median_other_negative_topics": 1.0,
+      "positive_bedside": 147,
+      "any_other_negative_clinical_topic": 1961,
+      "top_other_negative_topics": [
+        {
+          "topic": "Clinical staff bedside manner and empathy",
+          "reviews": 1021
+        },
+        {
+          "topic": "Front desk, reception and administrative staff conduct",
+          "reviews": 749
+        },
+        {
+          "topic": "Wait times and timeliness of care",
+          "reviews": 619
+        },
+        {
+          "topic": "Clinical assessment and diagnostic accuracy",
+          "reviews": 482
+        }
+      ]
+    },
+    {
+      "topic": "Visitor access, security, and property safety",
+      "negative_reviews": 2580,
+      "only_negative_topic": 752,
+      "only_negative_topic_pct": 29.147286821705425,
+      "median_other_negative_topics": 1.0,
+      "positive_bedside": 134,
+      "any_other_negative_clinical_topic": 777,
+      "top_other_negative_topics": [
+        {
+          "topic": "Front desk, reception and administrative staff conduct",
+          "reviews": 495
+        },
+        {
+          "topic": "Clinical staff bedside manner and empathy",
+          "reviews": 420
+        },
+        {
+          "topic": "Wait times and timeliness of care",
+          "reviews": 376
+        },
+        {
+          "topic": "Nursing responsiveness and basic care needs",
+          "reviews": 266
+        }
+      ]
+    },
+    {
+      "topic": "Clinical staff bedside manner and empathy",
+      "negative_reviews": 16691,
+      "only_negative_topic": 3161,
+      "only_negative_topic_pct": 18.93835000898688,
+      "median_other_negative_topics": 1.0,
+      "positive_bedside": 995,
+      "any_other_negative_clinical_topic": 5925,
+      "top_other_negative_topics": [
+        {
+          "topic": "Wait times and timeliness of care",
+          "reviews": 3498
+        },
+        {
+          "topic": "Communication and information sharing",
+          "reviews": 2693
+        },
+        {
+          "topic": "Clinical assessment and diagnostic accuracy",
+          "reviews": 2583
+        },
+        {
+          "topic": "Nursing responsiveness and basic care needs",
+          "reviews": 2266
+        }
+      ]
+    }
+  ],
+  "robustness": {
+    "weighted_correlation": 0.988735550081714,
+    "weighted_max_change": 0.10003801948539826,
+    "lowhigh_correlation": -0.9955311428024594,
+    "weighted_top_six": [
+      "Billing, charges and collections",
+      "Front desk, reception and administrative staff conduct",
+      "Wait times and timeliness of care",
+      "Appointment scheduling and access",
+      "Clinical staff bedside manner and empathy",
+      "Maternity and pediatric care"
+    ]
+  },
+  "contributor_contrasts": [
+    {
+      "model": "within_listing",
+      "comparison": "multi (2\u201310) minus single",
+      "reported_multi_term_vs_omitted": -0.8685010723200636,
+      "reported_single_term_vs_omitted": -0.8616735100386241,
+      "omitted": "extreme",
+      "est": -0.0068275622814394366,
+      "se": 0.012584197511888391,
+      "lo": -0.03149533422263003,
+      "hi": 0.01784020965975116,
+      "degrees_of_freedom": 9336.0
+    },
+    {
+      "model": "full_adjustment",
+      "comparison": "multi (2\u201310) minus single",
+      "reported_multi_term_vs_omitted": 0.12304317731868458,
+      "reported_single_term_vs_omitted": 0.09531695087206916,
+      "omitted": "extreme",
+      "est": 0.027726226446615418,
+      "se": 0.006669600740737598,
+      "lo": 0.014652354246510195,
+      "hi": 0.04080009864672064,
+      "degrees_of_freedom": 9336.0
+    }
+  ],
+  "contributor_counts": {
+    "single": 171528,
+    "multi": 24514,
+    "extreme": 141
+  },
+  "interaction_models": [
+    {
+      "pair": "Wait times \u00d7 Staffing",
+      "fold": "holdout",
+      "est": 0.45160929894616153,
+      "lo": 0.36479425367517737,
+      "hi": 0.5384243442171457,
+      "n_co": 1171
+    },
+    {
+      "pair": "Billing \u00d7 Insurance",
+      "fold": "holdout",
+      "est": 0.47367096394985525,
+      "lo": 0.33827244806709544,
+      "hi": 0.6090694798326151,
+      "n_co": 461
+    },
+    {
+      "pair": "Cleanliness \u00d7 Infection control",
+      "fold": "holdout",
+      "est": 0.19284348092253562,
+      "lo": 0.03481930149697679,
+      "hi": 0.35086766034809447,
+      "n_co": 289
+    },
+    {
+      "pair": "Behavioral health \u00d7 Discrimination",
+      "fold": "holdout",
+      "est": 0.7436650076434955,
+      "lo": 0.5426836051541423,
+      "hi": 0.9446464101328488,
+      "n_co": 112
+    },
+    {
+      "pair": "Diagnostic accuracy \u00d7 Testing & imaging",
+      "fold": "holdout",
+      "est": 0.34106625837534377,
+      "lo": 0.1572924221849766,
+      "hi": 0.5248400945657109,
+      "n_co": 192
+    },
+    {
+      "pair": "Wait times \u00d7 Staffing",
+      "fold": "discovery",
+      "est": 0.38349618491666443,
+      "lo": 0.29613673915533173,
+      "hi": 0.47085563067799713,
+      "n_co": 1118
+    },
+    {
+      "pair": "Billing \u00d7 Insurance",
+      "fold": "discovery",
+      "est": 0.4528015005354601,
+      "lo": 0.31494195700294647,
+      "hi": 0.5906610440679737,
+      "n_co": 441
+    },
+    {
+      "pair": "Cleanliness \u00d7 Infection control",
+      "fold": "discovery",
+      "est": 0.47570189942287194,
+      "lo": 0.2904171629675964,
+      "hi": 0.6609866358781475,
+      "n_co": 226
+    },
+    {
+      "pair": "Behavioral health \u00d7 Discrimination",
+      "fold": "discovery",
+      "est": 0.7357519018407158,
+      "lo": 0.4904046365009854,
+      "hi": 0.9810991671804462,
+      "n_co": 106
+    },
+    {
+      "pair": "Diagnostic accuracy \u00d7 Testing & imaging",
+      "fold": "discovery",
+      "est": 0.30623084214273055,
+      "lo": 0.13286675606595763,
+      "hi": 0.47959492821950345,
+      "n_co": 225
+    }
+  ],
+  "human_audit": {
+    "human_topic_correct": 0,
+    "human_sentiment_correct": 0
+  },
+  "checks": {
+    "raw_gaps": 29,
+    "primary_estimates_and_intervals": 58,
+    "weighted_estimates": 29,
+    "lowhigh_estimates": 29,
+    "interaction_estimates_and_intervals": 10
+  },
+  "limits": [
+    "The ordinal model is not refitted by this generator; the article retains its separately inspected source-notebook result.",
+    "Label/rating associations describe the same account; not causal, representative patient rates or measures of clinical severity.",
+    "Individual intervals are not formal tests of differences between topic coefficients.",
+    "Contributor contrast is model-conditional, not evidence about identical experiences or contributor identity."
+  ],
+  "sources": {
+    "labels": "topic-labeling-hospitals-usa-deepseek-v4-flash-b25-combined/review_topic_labels.parquet",
+    "coverage_reviews": "hospitals_usa_2019plus_coverage_10pct/reviews_clean.labelorder.parquet",
+    "contributor_reviews": "data/reviews.parquet",
+    "original_charts": "chart-data.json",
+    "generator": "scripts/generate_hospital_rating_insights.py"
+  },
+  "definitions": {
+    "counts": "Distinct listing-plus-review keys in the 196,183-review labeled frame; at most one flag per topic and sentiment.",
+    "low_share": "Among reviews mentioning a topic negatively, share rated one or two stars.",
+    "co_complaint": "Among reviews mentioning a topic negatively, share with any other topic also mentioned negatively.",
+    "model": "Primary regression retains 195,616 reviews after singleton removal. Associations are conditional on all 58 topic-sentiment indicators, length, year, contributor group and listing effects. Intervals are 95% and clustered by listing."
+  }
+}

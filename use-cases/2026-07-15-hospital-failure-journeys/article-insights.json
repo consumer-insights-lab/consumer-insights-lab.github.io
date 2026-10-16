@@ -1,0 +1,201 @@
+{
+  "scope": {
+    "sample_reviews": 217343,
+    "valid_labeled_reviews": 196183,
+    "low_rated_reviews": 72038,
+    "low_rated_multi_topic_reviews": 47405,
+    "high_rated_reviews": 118754
+  },
+  "pairs": [
+    {
+      "a": "Billing",
+      "b": "Insurance",
+      "band": "1\u20132 stars",
+      "band_reviews": 72038,
+      "a_reviews": 7607,
+      "b_reviews": 1989,
+      "co_mentions": 908,
+      "b_given_a_pct": 11.936374392007362,
+      "a_given_b_pct": 45.65108094519859,
+      "both_have_negative": 843,
+      "both_have_positive": 0,
+      "one_has_negative": 64,
+      "neither_has_negative": 1,
+      "both_negative_pct": 92.84140969162996,
+      "analytic_expected": 199.00399299050332,
+      "analytic_lift": 4.56272251805184,
+      "saved_lift": 4.5658947538142165,
+      "saved_expected": 198.86573146292585
+    },
+    {
+      "a": "Staffing",
+      "b": "Wait times",
+      "band": "1\u20132 stars",
+      "band_reviews": 72038,
+      "a_reviews": 4398,
+      "b_reviews": 22622,
+      "co_mentions": 2075,
+      "b_given_a_pct": 47.18053660754889,
+      "a_given_b_pct": 9.172486959596853,
+      "both_have_negative": 2042,
+      "both_have_positive": 0,
+      "one_has_negative": 33,
+      "neither_has_negative": 0,
+      "both_negative_pct": 98.40963855421687,
+      "analytic_expected": 1529.07591337768,
+      "analytic_lift": 1.3570287660972902,
+      "saved_lift": 1.3573718957127276,
+      "saved_expected": 1528.689378757515
+    },
+    {
+      "a": "Behavioral health",
+      "b": "Discrimination",
+      "band": "1\u20132 stars",
+      "band_reviews": 72038,
+      "a_reviews": 1685,
+      "b_reviews": 4017,
+      "co_mentions": 212,
+      "b_given_a_pct": 12.581602373887241,
+      "a_given_b_pct": 5.277570326114015,
+      "both_have_negative": 203,
+      "both_have_positive": 0,
+      "one_has_negative": 9,
+      "neither_has_negative": 0,
+      "both_negative_pct": 95.75471698113208,
+      "analytic_expected": 106.15271230392779,
+      "analytic_lift": 1.997122780932991,
+      "saved_lift": 1.9878610218539188,
+      "saved_expected": 106.64729458917836,
+      "additional_topics": [
+        {
+          "topic": "Clinical staff bedside manner and empathy",
+          "reviews": 51
+        },
+        {
+          "topic": "Medication, prescriptions and pharmacy",
+          "reviews": 34
+        },
+        {
+          "topic": "Patient safety and medical errors",
+          "reviews": 32
+        }
+      ]
+    },
+    {
+      "a": "Front desk",
+      "b": "Wait times",
+      "band": "1\u20132 stars",
+      "band_reviews": 72038,
+      "a_reviews": 16424,
+      "b_reviews": 22622,
+      "co_mentions": 4436,
+      "b_given_a_pct": 27.009254749147587,
+      "a_given_b_pct": 19.609229953142957,
+      "both_have_negative": 4054,
+      "both_have_positive": 48,
+      "one_has_negative": 336,
+      "neither_has_negative": 46,
+      "both_negative_pct": 91.38863841298466,
+      "analytic_expected": 4631.046122430128,
+      "analytic_lift": 0.9578829237986992
+    },
+    {
+      "a": "Billing",
+      "b": "Insurance",
+      "band": "4\u20135 stars",
+      "band_reviews": 118754,
+      "a_reviews": 1071,
+      "b_reviews": 577,
+      "co_mentions": 58,
+      "b_given_a_pct": 5.415499533146592,
+      "a_given_b_pct": 10.051993067590988,
+      "both_have_negative": 21,
+      "both_have_positive": 21,
+      "one_has_negative": 12,
+      "neither_has_negative": 25,
+      "both_negative_pct": 36.206896551724135,
+      "analytic_expected": 10.465539722518894,
+      "analytic_lift": 5.5419979798271015
+    },
+    {
+      "a": "Staffing",
+      "b": "Wait times",
+      "band": "4\u20135 stars",
+      "band_reviews": 118754,
+      "a_reviews": 1218,
+      "b_reviews": 27343,
+      "co_mentions": 310,
+      "b_given_a_pct": 25.451559934318556,
+      "a_given_b_pct": 1.1337453827304977,
+      "both_have_negative": 116,
+      "both_have_positive": 121,
+      "one_has_negative": 62,
+      "neither_has_negative": 132,
+      "both_negative_pct": 37.41935483870968,
+      "analytic_expected": 401.1763345225868,
+      "analytic_lift": 0.7727275348106222
+    },
+    {
+      "a": "Behavioral health",
+      "b": "Discrimination",
+      "band": "4\u20135 stars",
+      "band_reviews": 118754,
+      "a_reviews": 1020,
+      "b_reviews": 471,
+      "co_mentions": 26,
+      "b_given_a_pct": 2.549019607843137,
+      "a_given_b_pct": 5.520169851380043,
+      "both_have_negative": 6,
+      "both_have_positive": 14,
+      "one_has_negative": 5,
+      "neither_has_negative": 15,
+      "both_negative_pct": 23.076923076923077,
+      "analytic_expected": 4.676827174498367,
+      "analytic_lift": 5.5593245227815675
+    },
+    {
+      "a": "Front desk",
+      "b": "Wait times",
+      "band": "4\u20135 stars",
+      "band_reviews": 118754,
+      "a_reviews": 32087,
+      "b_reviews": 27343,
+      "co_mentions": 8133,
+      "b_given_a_pct": 25.346713622339266,
+      "a_given_b_pct": 29.744358702410125,
+      "both_have_negative": 91,
+      "both_have_positive": 7378,
+      "one_has_negative": 602,
+      "neither_has_negative": 7440,
+      "both_negative_pct": 1.1188983155047338,
+      "analytic_expected": 8103.754428293891,
+      "analytic_lift": 1.0036088916519976
+    }
+  ],
+  "definitions": {
+    "unit": "Distinct (place_id, review_id); each topic counted at most once per key.",
+    "conditional_shares": "Co-mentions divided by all labeled reviews in the rating band mentioning the starting topic; no event direction or sequence.",
+    "sentiments": "Any valid statement with the named sentiment flags a topic. Positive and negative flags can overlap.",
+    "analytic_expectation": "Exact expectation of independent topic-column shuffles within original 2,3,4,5+ topic-count strata, skipping strata below 50 rows. Original chart estimates use finite shuffles."
+  },
+  "topics": {
+    "Billing": "Billing, charges and collections",
+    "Insurance": "Insurance coverage, denials and network issues",
+    "Staffing": "Staffing levels and operational capacity",
+    "Wait times": "Wait times and timeliness of care",
+    "Behavioral health": "Behavioral health and psychiatric care",
+    "Discrimination": "Discrimination and equitable treatment",
+    "Front desk": "Front desk, reception and administrative staff conduct"
+  },
+  "sources": {
+    "labels": "topic-labeling-hospitals-usa-deepseek-v4-flash-b25-combined/review_topic_labels.parquet",
+    "coverage_reviews": "hospitals_usa_2019plus_coverage_10pct/reviews_clean.labelorder.parquet",
+    "original_charts": "chart-data.json",
+    "generator": "scripts/generate_hospital_pair_insights.py"
+  },
+  "limitations": [
+    "Self-selected public feedback; pending human label validation.",
+    "Co-mentions can have any sentiment. Selected pair sentiment checks do not generalize to every pair.",
+    "No permutation significance screen, clustering or interaction model refit. No causal or intervention-effect estimates."
+  ]
+}

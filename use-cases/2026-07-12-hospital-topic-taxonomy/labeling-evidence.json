@@ -1,0 +1,48 @@
+{
+  "source": "Hospital overview chart-data.json, saved topic reach and directional-statement aggregates",
+  "period": "2019 to early June 2026",
+  "labeled_reviews": 196183,
+  "note": "Reach counts distinct listing-and-review keys. Negative share is negative / (positive + negative) statements. Examples are model-derived and await human validation; they do not estimate patient incidence.",
+  "data": [
+    {
+      "group": "Staff interactions",
+      "topic": "Clinical staff bedside manner and empathy",
+      "label": "Clinical bedside manner",
+      "reach": 41.702390115351484,
+      "neg_share": 20.94984842844227,
+      "directional_statements": 94015
+    },
+    {
+      "group": "Staff interactions",
+      "topic": "Front desk, reception and administrative staff conduct",
+      "label": "Front-desk conduct",
+      "reach": 25.260598522807786,
+      "neg_share": 36.7505264324504,
+      "directional_statements": 54138
+    },
+    {
+      "group": "Staff interactions",
+      "topic": "Nursing responsiveness and basic care needs",
+      "label": "Nursing responsiveness",
+      "reach": 11.844043571563285,
+      "neg_share": 40.604687441964124,
+      "directional_statements": 26923
+    },
+    {
+      "group": "Cleanliness & protection",
+      "topic": "Cleanliness and housekeeping",
+      "label": "Cleanliness",
+      "reach": 5.774200618809989,
+      "neg_share": 36.0377358490566,
+      "directional_statements": 12190
+    },
+    {
+      "group": "Cleanliness & protection",
+      "topic": "Infection control and health safety practices",
+      "label": "Infection-control practices",
+      "reach": 1.3589352798152745,
+      "neg_share": 78.31782144088245,
+      "directional_statements": 2901
+    }
+  ]
+}
